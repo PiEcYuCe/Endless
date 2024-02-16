@@ -45,12 +45,12 @@ public class DashBoardController {
         return orderService.getAllOrdersDto();
     }
 
-    @GetMapping("/dashboard")
+    @RequestMapping("/dashboard")
     public String get() {
         return "admin/layout";
     }
 
-    @PostMapping("/cancel/order")
+    @PostMapping("/admin/cancel/order")
     public String cancelOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check ,Model model) {
         if(check){
             Order order = orderRepository.findById(orderId).orElse(null);
@@ -68,19 +68,19 @@ public class DashBoardController {
         else{
             String message = "Do you want to delete this order?";
             String text = "Confirm";
-            String link = "/cancel/order?orderId="+orderId;
+            String link = "order?orderId="+orderId;
             WarningModal warningModal = new WarningModal(message, text, link);
             model.addAttribute("warningModal", warningModal);
         }
-        return "admin/layout";
+        return "forward:/dashboard";
     }
 
-    @PostMapping("/confirm/order")
-    public String confirmOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check, Model model) {
+    @PostMapping("/admin/confirm/order")
+    public String confirmOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check ,Model model) {
         if (check) {
             Order order = orderRepository.findById(orderId).orElse(null);
             if (order != null) {
-                if (!order.getOrderStatus().equals("Processing")) {
+                if (order.getOrderStatus().equals("Processing")) {
                     order.setOrderStatus("Shipping");
                     orderRepository.save(order);
                     SuccessModal successModal = new SuccessModal("Order confirmation successful!");
@@ -96,11 +96,12 @@ public class DashBoardController {
         } else {
             String message = "Do you want to confirm this order?";
             String text = "Confirm";
-            String link = "/confirm/order?orderId=" + orderId;
+            String link = "order?orderId=" + orderId;
             WarningModal warningModal = new WarningModal(message, text, link);
             model.addAttribute("warningModal", warningModal);
         }
-        return "admin/layout";
+
+        return "forward:/dashboard";
     }
 
 

@@ -14,6 +14,8 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
             });
     };
 
+
+
     // Function to fetch order details by orderId
     $scope.fetchOrderDetails = function (orderId) {
         $http.get('/api/get-order?orderId=' + orderId)

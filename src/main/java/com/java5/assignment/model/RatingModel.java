@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RatingModel {
     private int ratingID;
-    private int productID;
+    private int productVersionID;
     private int userID;
     private int rating;
     private String comment;

@@ -68,15 +68,15 @@
                             </button>
                         </div>
                         <div class="p-1">
-                            <form action="/cancel/order" method="post">
+                            <form action="admin/cancel/order" method="post">
                                 <input type="hidden" name="orderId" value="{{ item.id }}">
                                 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
                             </form>
                         </div>
                         <div class="p-1">
-                            <form action="/confirm/order" method="post">
+                            <form action="admin/confirm/order" method="post">
                                 <input type="hidden" name="orderId" value="{{ item.id }}">
-                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Confirm</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
                             </form>
                         </div>
                     </div>

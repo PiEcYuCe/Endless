@@ -76,6 +76,15 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
 
     @Query("select pv from ProductVersion pv where pv.productID.categoryID.id in :catID and pv.productID.brandID.id between :from and :to")
     Page<Product> findByCustomQuery(@Param("catID") List<Long> catID, @Param("from") int from, @Param("to") int to, Pageable pageable);
-
+//
+//    @Query(value = """
+//            select distinct od.productVersionID \
+//            from OrderDetail od \
+//            left join Rating r on od.productVersionID = r.productVersionID \
+//            where r.productVersionID is null \
+//            and od.orderID.id = :oid\
+//            and od.orderID.userID.id = :uid"""
+//            )
+//    List<ProductVersion> findAllProductVersionsNotRating(@Param("uid")long uid, @Param("oid")long oid);
 }
 

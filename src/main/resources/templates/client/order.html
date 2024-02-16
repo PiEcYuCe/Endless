@@ -7,10 +7,10 @@
                         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Order awaiting confirmation</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-are-delivered" data-bs-toggle="pill" data-bs-target="#pills-delivered" type="button" role="tab" aria-controls="pills-delivered" aria-selected="false">Order is being delivered</button>
+                        <button class="nav-link" id="pills-are-delivered" data-bs-toggle="pill" data-bs-target="#pills-delivered" type="button" role="tab" aria-controls="pills-delivered" aria-selected="false">Order is shipping</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Order received</button>
+                        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Order delivered</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-cancel" data-bs-toggle="pill" data-bs-target="#pills-cancelled" type="button" role="tab" aria-controls="pills-cancelled" aria-selected="false">Order has been cancelled</button>
@@ -34,12 +34,13 @@
                                     <td class="px-5">{{item.orderDate}}</td>
                                     <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
+                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{ item.id }}">
                                             <i class="bi bi-eye-fill"></i> View
                                         </button>
-                                        <button type="button" class="btn btn-danger" id="cancelOrderBtn-{{item.id}}">
-                                            <i class="bi bi-x-circle"></i> Cancel
-                                        </button>
+                                        <form action="/cancel/order" method="post">
+                                            <input type="hidden" name="orderId" value="{{ item.id }}">
+                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -63,7 +64,7 @@
                                     <td class="px-5">{{item.orderDate}}</td>
                                     <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
+                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{ item.id}}">
                                             <i class="bi bi-eye-fill"></i> View
                                         </button>
                                     </td>
@@ -78,7 +79,7 @@
                                 <thead class="table-dark">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Date</th>
+                                    <th>Product</th>
                                     <th>Total</th>
                                     <th>Action</th>
                                 </tr>
@@ -92,7 +93,7 @@
                                         <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
                                             <i class="bi bi-eye-fill"></i> View
                                         </button>
-                                        <button type="button" class="btn btn-primary" id="cancelBtn-'{{item.id}}'" data-bs-toggle="modal" data-bs-target="#evaluate">
+                                        <button type="button" class="btn btn-warning" id="rating-{{item.id}}" onclick="showRatingModal(this)">
                                             <i class="bi bi-eye-fill"></i> Evaluate
                                         </button>
                                     </td>
@@ -118,11 +119,8 @@
                                     <td class="px-5">{{item.orderDate}}</td>
                                     <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" ng-click="getID($event)" id="{{ item.id }}">
                                             <i class="bi bi-eye-fill"></i> View
-                                        </button>
-                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#chooseStar">
-                                            <i class="bi bi-basket3"></i> Buy creek
                                         </button>
                                     </td>
                                 </tr>
