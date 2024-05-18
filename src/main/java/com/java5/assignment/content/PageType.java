@@ -1,0 +1,27 @@
+package com.java5.assignment.content;
+
+public enum PageType {
+    HOME,
+    CONTACT,
+    PRODUCT,
+    DETAIL_PRODUCT,
+    PROMOTION,
+    LOGIN,
+    REGISTER,
+    PROFILE,
+    CHANGE_PASSWORD,
+    ORDER,
+    ADMIN_HOME,
+    ADMIN_PRODUCT,
+    ADMIN_ATTRIBUTE,
+    ADMIN_RATING,
+    ADMIN_ACCOUNT,
+    ADMIN_PROMOTION,
+    ADMIN_VOUCHER,
+    ADMIN_DISCOUNT,
+    ADMIN_ORDER,
+    ADMIN_PURCHASE,
+    ADMIN_CATEGORY,
+    ADMIN_BRAND,
+    ADMIN_STATISTICAL
+}
