@@ -1,0 +1,206 @@
+{
+  "PromotionProduct": [
+    [
+      {
+        "promotionProductID": 1,
+        "promotionID": 1,
+        "productID": 1
+      },
+      {
+        "promotionProductID": 2,
+        "promotionID": 1,
+        "productID": 2
+      },
+      {
+        "promotionProductID": 3,
+        "promotionID": 1,
+        "productID": 3
+      },
+      {
+        "promotionProductID": 4,
+        "promotionID": 2,
+        "productID": 4
+      },
+      {
+        "promotionProductID": 5,
+        "promotionID": 2,
+        "productID": 5
+      },
+      {
+        "promotionProductID": 6,
+        "promotionID": 2,
+        "productID": 6
+      },
+      {
+        "promotionProductID": 7,
+        "promotionID": 3,
+        "productID": 7
+      },
+      {
+        "promotionProductID": 8,
+        "promotionID": 3,
+        "productID": 8
+      },
+      {
+        "promotionProductID": 9,
+        "promotionID": 3,
+        "productID": 9
+      },
+      {
+        "promotionProductID": 10,
+        "promotionID": 4,
+        "productID": 10
+      },
+      {
+        "promotionProductID": 11,
+        "promotionID": 4,
+        "productID": 11
+      },
+      {
+        "promotionProductID": 12,
+        "promotionID": 4,
+        "productID": 12
+      },
+      {
+        "promotionProductID": 13,
+        "promotionID": 5,
+        "productID": 13
+      },
+      {
+        "promotionProductID": 14,
+        "promotionID": 5,
+        "productID": 14
+      },
+      {
+        "promotionProductID": 15,
+        "promotionID": 5,
+        "productID": 15
+      },
+      {
+        "promotionProductID": 16,
+        "promotionID": 6,
+        "productID": 16
+      },
+      {
+        "promotionProductID": 17,
+        "promotionID": 6,
+        "productID": 17
+      },
+      {
+        "promotionProductID": 18,
+        "promotionID": 6,
+        "productID": 18
+      },
+      {
+        "promotionProductID": 19,
+        "promotionID": 7,
+        "productID": 19
+      },
+      {
+        "promotionProductID": 20,
+        "promotionID": 7,
+        "productID": 20
+      },
+      {
+        "promotionProductID": 21,
+        "promotionID": 8,
+        "productID": 21
+      },
+      {
+        "promotionProductID": 22,
+        "promotionID": 8,
+        "productID": 22
+      },
+      {
+        "promotionProductID": 23,
+        "promotionID": 8,
+        "productID": 23
+      },
+      {
+        "promotionProductID": 24,
+        "promotionID": 9,
+        "productID": 24
+      },
+      {
+        "promotionProductID": 25,
+        "promotionID": 9,
+        "productID": 25
+      },
+      {
+        "promotionProductID": 26,
+        "promotionID": 9,
+        "productID": 26
+      },
+      {
+        "promotionProductID": 27,
+        "promotionID": 10,
+        "productID": 27
+      },
+      {
+        "promotionProductID": 28,
+        "promotionID": 10,
+        "productID": 28
+      },
+      {
+        "promotionProductID": 29,
+        "promotionID": 10,
+        "productID": 29
+      },
+      {
+        "promotionProductID": 30,
+        "promotionID": 11,
+        "productID": 30
+      },
+      {
+        "promotionProductID": 31,
+        "promotionID": 11,
+        "productID": 31
+      },
+      {
+        "promotionProductID": 32,
+        "promotionID": 11,
+        "productID": 32
+      },
+      {
+        "promotionProductID": 33,
+        "promotionID": 12,
+        "productID": 33
+      },
+      {
+        "promotionProductID": 34,
+        "promotionID": 12,
+        "productID": 34
+      },
+      {
+        "promotionProductID": 35,
+        "promotionID": 12,
+        "productID": 35
+      },
+      {
+        "promotionProductID": 36,
+        "promotionID": 13,
+        "productID": 36
+      },
+      {
+        "promotionProductID": 37,
+        "promotionID": 13,
+        "productID": 37
+      },
+      {
+        "promotionProductID": 38,
+        "promotionID": 13,
+        "productID": 38
+      },
+      {
+        "promotionProductID": 39,
+        "promotionID": 14,
+        "productID": 39
+      },
+      {
+        "promotionProductID": 40,
+        "promotionID": 14,
+        "productID": 40
+      }
+    ]
+  ]
+}

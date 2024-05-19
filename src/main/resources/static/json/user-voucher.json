@@ -1,0 +1,124 @@
+{
+  "UserVoucher": [
+    {
+      "userVoucherID": 1,
+      "userID": 1,
+      "voucherID": 11,
+      "usageDate": "2025-01-10"
+    },
+    {
+      "userVoucherID": 2,
+      "userID": 2,
+      "voucherID": 12,
+      "usageDate": "2025-02-12"
+    },
+    {
+      "userVoucherID": 3,
+      "userID": 3,
+      "voucherID": 13,
+      "usageDate": "2025-03-15"
+    },
+    {
+      "userVoucherID": 4,
+      "userID": 4,
+      "voucherID": 14,
+      "usageDate": "2025-05-05"
+    },
+    {
+      "userVoucherID": 5,
+      "userID": 5,
+      "voucherID": 15,
+      "usageDate": "2025-06-18"
+    },
+    {
+      "userVoucherID": 6,
+      "userID": 6,
+      "voucherID": 16,
+      "usageDate": "2025-07-20"
+    },
+    {
+      "userVoucherID": 7,
+      "userID": 7,
+      "voucherID": 17,
+      "usageDate": "2025-08-25"
+    },
+    {
+      "userVoucherID": 8,
+      "userID": 8,
+      "voucherID": 18,
+      "usageDate": "2025-09-17"
+    },
+    {
+      "userVoucherID": 9,
+      "userID": 9,
+      "voucherID": 19,
+      "usageDate": "2025-10-30"
+    },
+    {
+      "userVoucherID": 10,
+      "userID": 10,
+      "voucherID": 20,
+      "usageDate": "2025-11-28"
+    },
+    {
+      "userVoucherID": 11,
+      "userID": 1,
+      "voucherID": 21,
+      "usageDate": "2025-11-29"
+    },
+    {
+      "userVoucherID": 12,
+      "userID": 2,
+      "voucherID": 22,
+      "usageDate": "2025-11-29"
+    },
+    {
+      "userVoucherID": 13,
+      "userID": 3,
+      "voucherID": 23,
+      "usageDate": "2025-12-20"
+    },
+    {
+      "userVoucherID": 14,
+      "userID": 4,
+      "voucherID": 24,
+      "usageDate": "2025-12-30"
+    },
+    {
+      "userVoucherID": 15,
+      "userID": 5,
+      "voucherID": 25,
+      "usageDate": "2026-01-05"
+    },
+    {
+      "userVoucherID": 16,
+      "userID": 6,
+      "voucherID": 26,
+      "usageDate": "2026-02-10"
+    },
+    {
+      "userVoucherID": 17,
+      "userID": 7,
+      "voucherID": 27,
+      "usageDate": "2026-03-15"
+    },
+    {
+      "userVoucherID": 18,
+      "userID": 8,
+      "voucherID": 28,
+      "usageDate": "2026-04-20"
+    },
+    {
+      "userVoucherID": 19,
+      "userID": 9,
+      "voucherID": 29,
+      "usageDate": "2026-05-25"
+    },
+    {
+      "userVoucherID": 20,
+      "userID": 10,
+      "voucherID": 30,
+      "usageDate": "2026-06-30"
+    }
+  ]
+}

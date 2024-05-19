@@ -1,0 +1,424 @@
+{
+  "VersionAttribute": [
+    {
+      "versionAttributeID": 1,
+      "productVersionID": 1,
+      "attributeID": 1,
+      "attributeValueID": 1
+    },
+    {
+      "versionAttributeID": 2,
+      "productVersionID": 1,
+      "attributeID": 2,
+      "attributeValueID": 4
+    },
+    {
+      "versionAttributeID": 3,
+      "productVersionID": 1,
+      "attributeID": 3,
+      "attributeValueID": 8
+    },
+    {
+      "versionAttributeID": 4,
+      "productVersionID": 1,
+      "attributeID": 4,
+      "attributeValueID": 13
+    },
+    {
+      "versionAttributeID": 5,
+      "productVersionID": 1,
+      "attributeID": 5,
+      "attributeValueID": 17
+    },
+    {
+      "versionAttributeID": 6,
+      "productVersionID": 1,
+      "attributeID": 6,
+      "attributeValueID": 20
+    },
+    {
+      "versionAttributeID": 7,
+      "productVersionID": 1,
+      "attributeID": 7,
+      "attributeValueID": 24
+    },
+    {
+      "versionAttributeID": 8,
+      "productVersionID": 1,
+      "attributeID": 8,
+      "attributeValueID": 28
+    },
+    {
+      "versionAttributeID": 9,
+      "productVersionID": 1,
+      "attributeID": 9,
+      "attributeValueID": 32
+    },
+    {
+      "versionAttributeID": 10,
+      "productVersionID": 1,
+      "attributeID": 10,
+      "attributeValueID": 36
+    },
+    {
+      "versionAttributeID": 11,
+      "productVersionID": 2,
+      "attributeID": 1,
+      "attributeValueID": 2
+    },
+    {
+      "versionAttributeID": 12,
+      "productVersionID": 2,
+      "attributeID": 2,
+      "attributeValueID": 5
+    },
+    {
+      "versionAttributeID": 13,
+      "productVersionID": 2,
+      "attributeID": 3,
+      "attributeValueID": 9
+    },
+    {
+      "versionAttributeID": 14,
+      "productVersionID": 2,
+      "attributeID": 4,
+      "attributeValueID": 14
+    },
+    {
+      "versionAttributeID": 15,
+      "productVersionID": 2,
+      "attributeID": 5,
+      "attributeValueID": 18
+    },
+    {
+      "versionAttributeID": 16,
+      "productVersionID": 2,
+      "attributeID": 6,
+      "attributeValueID": 21
+    },
+    {
+      "versionAttributeID": 17,
+      "productVersionID": 2,
+      "attributeID": 7,
+      "attributeValueID": 25
+    },
+    {
+      "versionAttributeID": 18,
+      "productVersionID": 2,
+      "attributeID": 8,
+      "attributeValueID": 29
+    },
+    {
+      "versionAttributeID": 19,
+      "productVersionID": 2,
+      "attributeID": 9,
+      "attributeValueID": 33
+    },
+    {
+      "versionAttributeID": 20,
+      "productVersionID": 2,
+      "attributeID": 10,
+      "attributeValueID": 37
+    },
+    {
+      "versionAttributeID": 21,
+      "productVersionID": 3,
+      "attributeID": 1,
+      "attributeValueID": 3
+    },
+    {
+      "versionAttributeID": 22,
+      "productVersionID": 3,
+      "attributeID": 2,
+      "attributeValueID": 6
+    },
+    {
+      "versionAttributeID": 23,
+      "productVersionID": 3,
+      "attributeID": 3,
+      "attributeValueID": 10
+    },
+    {
+      "versionAttributeID": 24,
+      "productVersionID": 3,
+      "attributeID": 4,
+      "attributeValueID": 15
+    },
+    {
+      "versionAttributeID": 25,
+      "productVersionID": 3,
+      "attributeID": 5,
+      "attributeValueID": 19
+    },
+    {
+      "versionAttributeID": 26,
+      "productVersionID": 3,
+      "attributeID": 6,
+      "attributeValueID": 22
+    },
+    {
+      "versionAttributeID": 27,
+      "productVersionID": 3,
+      "attributeID": 7,
+      "attributeValueID": 26
+    },
+    {
+      "versionAttributeID": 28,
+      "productVersionID": 3,
+      "attributeID": 8,
+      "attributeValueID": 30
+    },
+    {
+      "versionAttributeID": 29,
+      "productVersionID": 3,
+      "attributeID": 9,
+      "attributeValueID": 34
+    },
+    {
+      "versionAttributeID": 30,
+      "productVersionID": 3,
+      "attributeID": 10,
+      "attributeValueID": 38
+    },
+    {
+      "versionAttributeID": 31,
+      "productVersionID": 4,
+      "attributeID": 1,
+      "attributeValueID": 1
+    },
+    {
+      "versionAttributeID": 32,
+      "productVersionID": 4,
+      "attributeID": 2,
+      "attributeValueID": 4
+    },
+    {
+      "versionAttributeID": 33,
+      "productVersionID": 4,
+      "attributeID": 3,
+      "attributeValueID": 8
+    },
+    {
+      "versionAttributeID": 34,
+      "productVersionID": 4,
+      "attributeID": 4,
+      "attributeValueID": 14
+    },
+    {
+      "versionAttributeID": 35,
+      "productVersionID": 4,
+      "attributeID": 5,
+      "attributeValueID": 18
+    },
+    {
+      "versionAttributeID": 36,
+      "productVersionID": 4,
+      "attributeID": 6,
+      "attributeValueID": 21
+    },
+    {
+      "versionAttributeID": 37,
+      "productVersionID": 4,
+      "attributeID": 7,
+      "attributeValueID": 25
+    },
+    {
+      "versionAttributeID": 38,
+      "productVersionID": 4,
+      "attributeID": 8,
+      "attributeValueID": 29
+    },
+    {
+      "versionAttributeID": 39,
+      "productVersionID": 4,
+      "attributeID": 9,
+      "attributeValueID": 33
+    },
+    {
+      "versionAttributeID": 40,
+      "productVersionID": 4,
+      "attributeID": 10,
+      "attributeValueID": 37
+    },
+    {
+      "versionAttributeID": 41,
+      "productVersionID": 5,
+      "attributeID": 1,
+      "attributeValueID": 2
+    },
+    {
+      "versionAttributeID": 42,
+      "productVersionID": 5,
+      "attributeID": 2,
+      "attributeValueID": 5
+    },
+    {
+      "versionAttributeID": 43,
+      "productVersionID": 5,
+      "attributeID": 3,
+      "attributeValueID": 9
+    },
+    {
+      "versionAttributeID": 44,
+      "productVersionID": 5,
+      "attributeID": 4,
+      "attributeValueID": 14
+    },
+    {
+      "versionAttributeID": 45,
+      "productVersionID": 5,
+      "attributeID": 5,
+      "attributeValueID": 18
+    },
+    {
+      "versionAttributeID": 46,
+      "productVersionID": 5,
+      "attributeID": 6,
+      "attributeValueID": 21
+    },
+    {
+      "versionAttributeID": 47,
+      "productVersionID": 5,
+      "attributeID": 7,
+      "attributeValueID": 25
+    },
+    {
+      "versionAttributeID": 48,
+      "productVersionID": 5,
+      "attributeID": 8,
+      "attributeValueID": 29
+    },
+    {
+      "versionAttributeID": 49,
+      "productVersionID": 5,
+      "attributeID": 9,
+      "attributeValueID": 33
+    },
+    {
+      "versionAttributeID": 50,
+      "productVersionID": 5,
+      "attributeID": 10,
+      "attributeValueID": 37
+    },
+    {
+      "versionAttributeID": 51,
+      "productVersionID": 6,
+      "attributeID": 1,
+      "attributeValueID": 3
+    },
+    {
+      "versionAttributeID": 52,
+      "productVersionID": 6,
+      "attributeID": 2,
+      "attributeValueID": 6
+    },
+    {
+      "versionAttributeID": 53,
+      "productVersionID": 6,
+      "attributeID": 3,
+      "attributeValueID": 10
+    },
+    {
+      "versionAttributeID": 54,
+      "productVersionID": 6,
+      "attributeID": 4,
+      "attributeValueID": 15
+    },
+    {
+      "versionAttributeID": 55,
+      "productVersionID": 6,
+      "attributeID": 5,
+      "attributeValueID": 19
+    },
+    {
+      "versionAttributeID": 56,
+      "productVersionID": 6,
+      "attributeID": 6,
+      "attributeValueID": 22
+    },
+    {
+      "versionAttributeID": 57,
+      "productVersionID": 6,
+      "attributeID": 7,
+      "attributeValueID": 26
+    },
+    {
+      "versionAttributeID": 58,
+      "productVersionID": 6,
+      "attributeID": 8,
+      "attributeValueID": 30
+    },
+    {
+      "versionAttributeID": 59,
+      "productVersionID": 6,
+      "attributeID": 9,
+      "attributeValueID": 34
+    },
+    {
+      "versionAttributeID": 60,
+      "productVersionID": 6,
+      "attributeID": 10,
+      "attributeValueID": 38
+    },
+    {
+      "versionAttributeID": 61,
+      "productVersionID": 7,
+      "attributeID": 1,
+      "attributeValueID": 1
+    },
+    {
+      "versionAttributeID": 62,
+      "productVersionID": 7,
+      "attributeID": 2,
+      "attributeValueID": 4
+    },
+    {
+      "versionAttributeID": 63,
+      "productVersionID": 7,
+      "attributeID": 3,
+      "attributeValueID": 8
+    },
+    {
+      "versionAttributeID": 64,
+      "productVersionID": 7,
+      "attributeID": 4,
+      "attributeValueID": 14
+    },
+    {
+      "versionAttributeID": 65,
+      "productVersionID": 7,
+      "attributeID": 5,
+      "attributeValueID": 18
+    },
+    {
+      "versionAttributeID": 66,
+      "productVersionID": 7,
+      "attributeID": 6,
+      "attributeValueID": 21
+    },
+    {
+      "versionAttributeID": 67,
+      "productVersionID": 7,
+      "attributeID": 7,
+      "attributeValueID": 25
+    },
+    {
+      "versionAttributeID": 68,
+      "productVersionID": 7,
+      "attributeID": 8,
+      "attributeValueID": 29
+    },
+    {
+      "versionAttributeID": 69,
+      "productVersionID": 7,
+      "attributeID": 9,
+      "attributeValueID": 33
+    },
+    {
+      "versionAttributeID": 70,
+      "productVersionID": 7,
+      "attributeID": 10,
+      "attributeValueID": 37
+    }
+  ]
+}
