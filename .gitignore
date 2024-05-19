@@ -31,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Exclude everything
+*
+
+# But not these files...
+!*/
+!.gitignore
+!README.md
+!HELP.md
+!src/**/static/
