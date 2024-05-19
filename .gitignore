@@ -40,3 +40,5 @@ build/
 !.gitignore
 !README.md
 !HELP.md
+!src/**/**/static/
+!src/**/**/static/**
