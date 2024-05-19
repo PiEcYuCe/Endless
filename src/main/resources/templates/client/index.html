@@ -30,18 +30,15 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/home" th:classappend="${page.name == 'home'} ? 'active' : ''">Home</a>
-                </li>
-                <li class="btn-group">
-                    <a class="nav-link btn-sm" type="button" href="/our-store">
-                        Our-store
-                    </a>
+                    <a class="nav-link" href="/home" th:classappend="${page?.name == 'home'} ? 'active' : ''">Home</a>
                 </li>
                 <li class="nav-item dropdown d-flex align-items-center">
-                    <a class="nav-link" href="/product" id="navbarDropdown">
+                    <a class="nav-link" th:classappend="${page.name == 'product'} ? 'active' : ''" href="/product"
+                       id="navbarDropdown">
                         Product
                     </a>
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false"></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="/product/gaming">Gaming</a></li>
                         <li><a class="dropdown-item" href="/product/luxury">Luxury</a></li>
@@ -50,17 +47,27 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" th:classappend="${page.name == 'contact'} ? 'active' : ''" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/promotion">Promotion</a>
+                    <a class="nav-link" th:classappend="${page.name == 'promotion'} ? 'active' : ''" href="/promotion">Promotion</a>
                 </li>
             </ul>
             <form class="d-flex">
+                <div class="input-group col-12 px-3">
+                    <input class="form-control rounded-4" list="datalistOptions" placeholder="Search a product">
+                    <datalist id="datalistOptions">
+                        <option value="San Francisco">
+                        <option value="New York">
+                        <option value="Seattle">
+                        <option value="Los Angeles">
+                        <option value="Chicago">
+                    </datalist>
+                </div>
                 <div class="dropdown open">
                     <button class="btn btn-secondary rounded-circle" type="button" id="triggerId"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i>
+                        <h6 class="fa fa-user"></h6>
                     </button>
                     <div class="dropdown-menu mr-5" aria-labelledby="triggerId">
                         <li><a class="dropdown-item" href="/profile">Account infomation</a></li>
@@ -68,16 +75,18 @@
                             password</a></li>
                         <li><a class="dropdown-item" href="/loout">Log out</a></li>
                         <li class="dropdown-item form-check-inline">
-                            <a class="nav-link d-inline" href="/login">Log in</a>/<a class="nav-link d-inline" href="/register">Register</a>
+                            <a class="nav-link d-inline" href="/login">Log in</a>/<a class="nav-link d-inline"
+                                                                                     href="/register">Register</a>
                         </li>
                     </div>
                 </div>
+                <button class="btn btn-secondary rounded-circle mx-2"><h6 class="bi bi-cart2"></h6></button>
             </form>
 
         </div>
     </div>
 </nav>
-<main th:replace="${page?.url}">
+<main th:replace="~{${page?.url}}">
 
 </main>
 
@@ -85,30 +94,34 @@
     <div class="container ">
         <div class="row ">
             <div class="col-md-4">
-                <h3>THE FOXY</h3>
-                <p>
-                    Elevate your IT learning journey with our comprehensive quiz platform tailored for students in
-                    the field of Information Technology. Explore a user-friendly interface, receive instant results,
-                    and enhance your preparation for academic success.
-                </p>
+                <img src="ui/logoDarkRow.png" class="w-100">
+
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2  text-center">
                 <h3>Quick Links</h3>
                 <ul class="list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="/introduce">Introduce</a></li>
-                    <li><a href="/course">Course</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/feedback">Feedback</a></li>
+                    <li><a class="nav-link" href="#">Home</a></li>
+                    <li><a class="nav-link" href="/product">Product</a></li>
+                    <li><a class="nav-link" href="/contact">Contact</a></li>
+                    <li><a class="nav-link" href="/prmotion">Promotion</a></li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2 text-center">
+                <h3>Cagories</h3>
+                <ul class="list-unstyled">
+                    <li><a class="nav-link" href="#">Cagory 1</a></li>
+                    <li><a class="nav-link" href="/product">Cagory 2</a></li>
+                    <li><a class="nav-link" href="/contact">Cagory 3</a></li>
+                    <li><a class="nav-link" href="/prmotion">Cagory 4</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 text-center">
                 <h3>Connect</h3>
-                <div class="d-flex gap-3">
-                    <a href="#"><i class="fab fa-facebook fa-3x text-white"></i></a>
-                    <a href="#"><i class="fab fa-twitter fa-3x text-white"></i></a>
-                    <a href="#"><i class="fab fa-instagram fa-3x text-white"></i></a>
-                    <a href="#"><i class="fab fa-youtube fa-3x text-white"></i></a>
+                <div class="gap-3">
+                    <a href="#"><i class="fab fa-facebook fa-3x text-white px-2"></i></a>
+                    <a href="#"><i class="fab fa-twitter fa-3x text-white px-2"></i></a>
+                    <a href="#"><i class="fab fa-instagram fa-3x text-white px-2"></i></a>
+                    <a href="#"><i class="fab fa-youtube fa-3x text-white px-2"></i></a>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ public class Page {
         route.put(PageType.CONTACT,  new Page("client/contact.html", "contact"));
         route.put(PageType.PRODUCT,  new Page("client/product.html", "product"));
         route.put(PageType.DETAIL_PRODUCT,  new Page("client/detail-product.html", "detail-product"));
-        route.put(PageType.PROMOTION, new Page("client/promotion.html", ""));
+        route.put(PageType.PROMOTION, new Page("client/promotion.html", "promotion"));
         route.put(PageType.ORDER, new Page("client/order.html", "order"));
         route.put(PageType.ADMIN_HOME, new Page("admin/home.html", "home"));
         route.put(PageType.ADMIN_PRODUCT, new Page("admin/product.html", "product"));
