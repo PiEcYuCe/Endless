@@ -41,4 +41,3 @@ build/
 !README.md
 !HELP.md
 !src/**/static/
-!src/main/resources/static
