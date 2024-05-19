@@ -21,6 +21,7 @@ public class ContactController {
 
     @PostMapping("/contact")
     public String goToPageSubmit() {
-        return "client/index";
+        return "client/contact";
+        //Nhu sửa bằng tài khoản nmnhu2k4
     }
 }
