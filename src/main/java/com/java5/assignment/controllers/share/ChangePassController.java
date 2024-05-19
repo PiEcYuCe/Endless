@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class ChangePassController {
     @ModelAttribute("page")
-    public String setPageContent() {
-        return Page.route.get(PageType.CHANGE_PASSWORD).getUrl();
+    public Page setPageContent() {
+        return Page.route.get(PageType.CHANGE_PASSWORD);
     }
 
     @GetMapping("/change-password")

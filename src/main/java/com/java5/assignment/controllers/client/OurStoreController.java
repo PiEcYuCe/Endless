@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class OurStoreController {
     @ModelAttribute("page")
-    public String page() {
-        return Page.route.get(PageType.HOME).getUrl();
+    public Page page() {
+        return Page.route.get(PageType.HOME);
     }
 
     @GetMapping("/our-store")

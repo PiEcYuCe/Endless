@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller("")
 public class HomeController {
     @ModelAttribute("page")
-    public String page() {
-        return Page.route.get(PageType.HOME).getUrl();
+    public Page page() {
+        return Page.route.get(PageType.HOME);
     }
 
     @GetMapping("/home")
