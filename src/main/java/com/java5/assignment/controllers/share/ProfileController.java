@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class ProfileController {
     @ModelAttribute("page")
-    public String setPageContent() {
-        return Page.route.get(PageType.PROFILE).getUrl();
+    public Page setPageContent() {
+        return Page.route.get(PageType.PROFILE);
     }
 
     @GetMapping("/profile")

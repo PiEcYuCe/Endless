@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller("")
 public class PromotionController {
     @ModelAttribute("page")
-    public String page() {
-        return Page.route.get(PageType.PROMOTION).getUrl();
+    public Page page() {
+        return Page.route.get(PageType.PROMOTION);
     }
 
     @GetMapping("/promotion")

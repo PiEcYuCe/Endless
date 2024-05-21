@@ -1,0 +1,704 @@
+{
+  "ProductVersion": [
+    {
+      "ProductVersionID": 1,
+      "ProductID": 1,
+      "VersionName": "iPhone 13 64GB Black",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 100,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 2,
+      "ProductID": 1,
+      "VersionName": "iPhone 13 128GB White",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 3,
+      "ProductID": 1,
+      "VersionName": "iPhone 13 256GB Blue",
+      "PurchasePrice": 999.00,
+      "SalePrice": 1199.00,
+      "Quantity": 30,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 4,
+      "ProductID": 2,
+      "VersionName": "Samsung Galaxy S21 Ultra 128GB Phantom Black",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 5,
+      "ProductID": 2,
+      "VersionName": "Samsung Galaxy S21 Ultra 256GB Phantom Silver",
+      "PurchasePrice": 999.00,
+      "SalePrice": 1199.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 6,
+      "ProductID": 2,
+      "VersionName": "Samsung Galaxy S21 Ultra 512GB Phantom Navy",
+      "PurchasePrice": 1099.00,
+      "SalePrice": 1299.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 7,
+      "ProductID": 3,
+      "VersionName": "Xiaomi Mi 11 128GB Cosmic Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 8,
+      "ProductID": 3,
+      "VersionName": "Xiaomi Mi 11 256GB Horizon Blue",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 9,
+      "ProductID": 3,
+      "VersionName": "Xiaomi Mi 11 512GB Frost White",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 30,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 10,
+      "ProductID": 4,
+      "VersionName": "OnePlus 9 128GB Winter Mist",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 11,
+      "ProductID": 4,
+      "VersionName": "OnePlus 9 256GB Arctic Sky",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 12,
+      "ProductID": 4,
+      "VersionName": "OnePlus 9 512GB Winter Mist",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 20,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 13,
+      "ProductID": 5,
+      "VersionName": "Google Pixel 6 128GB Stormy Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 14,
+      "ProductID": 5,
+      "VersionName": "Google Pixel 6 256GB Sunny White",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 15,
+      "ProductID": 5,
+      "VersionName": "Google Pixel 6 512GB Frosted Green",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 16,
+      "ProductID": 6,
+      "VersionName": "Sony Xperia 1 III 128GB Frosted Black",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 17,
+      "ProductID": 6,
+      "VersionName": "Sony Xperia 1 III 256GB Frosted Purple",
+      "PurchasePrice": 999.00,
+      "SalePrice": 1199.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 18,
+      "ProductID": 6,
+      "VersionName": "Sony Xperia 1 III 512GB Frosted Grey",
+      "PurchasePrice": 1099.00,
+      "SalePrice": 1299.00,
+      "Quantity": 30,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 19,
+      "ProductID": 7,
+      "VersionName": "Huawei P40 128GB Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 20,
+      "ProductID": 7,
+      "VersionName": "Huawei P40 256GB Silver",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 21,
+      "ProductID": 7,
+      "VersionName": "Huawei P40 512GB Gold",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 22,
+      "ProductID": 8,
+      "VersionName": "LG Velvet 128GB Aurora Grey",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 70,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 23,
+      "ProductID": 8,
+      "VersionName": "LG Velvet 256GB Illusion Sunset",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 50,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 24,
+      "ProductID": 8,
+      "VersionName": "LG Velvet 512GB Mirage Violet",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 30,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 25,
+      "ProductID": 9,
+      "VersionName": "Techno Phantom X 128GB Starry Night Blue",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 90,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 26,
+      "ProductID": 9,
+      "VersionName": "Techno Phantom X 256GB Monet's Summer",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 27,
+      "ProductID": 9,
+      "VersionName": "Techno Phantom X 512GB Galaxy Blue",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 28,
+      "ProductID": 10,
+      "VersionName": "Realme GT 128GB Dashing Blue",
+      "PurchasePrice": 499.00,
+      "SalePrice": 699.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 29,
+      "ProductID": 10,
+      "VersionName": "Realme GT 256GB Racing Yellow",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 30,
+      "ProductID": 10,
+      "VersionName": "Realme GT 512GB Galactic Silver",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 31,
+      "ProductID": 11,
+      "VersionName": "iPhone 12 64GB Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 70,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 32,
+      "ProductID": 11,
+      "VersionName": "iPhone 12 128GB White",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 50,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 33,
+      "ProductID": 11,
+      "VersionName": "iPhone 12 256GB Green",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 30,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 34,
+      "ProductID": 12,
+      "VersionName": "Samsung Galaxy Note 20 128GB Mystic Bronze",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 80,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 35,
+      "ProductID": 12,
+      "VersionName": "Samsung Galaxy Note 20 256GB Mystic Green",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 60,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 36,
+      "ProductID": 12,
+      "VersionName": "Samsung Galaxy Note 20 512GB Mystic Gray",
+      "PurchasePrice": 999.00,
+      "SalePrice": 1199.00,
+      "Quantity": 40,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 37,
+      "ProductID": 13,
+      "VersionName": "Xiaomi Redmi Note 10 64GB Onyx Gray",
+      "PurchasePrice": 299.00,
+      "SalePrice": 499.00,
+      "Quantity": 90,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 38,
+      "ProductID": 13,
+      "VersionName": "Xiaomi Redmi Note 10 128GB Pebble White",
+      "PurchasePrice": 399.00,
+      "SalePrice": 599.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 39,
+      "ProductID": 13,
+      "VersionName": "Xiaomi Redmi Note 10 256GB Lake Green",
+      "PurchasePrice": 499.00,
+      "SalePrice": 699.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 40,
+      "ProductID": 14,
+      "VersionName": "OnePlus Nord 128GB Blue Marble",
+      "PurchasePrice": 399.00,
+      "SalePrice": 599.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 41,
+      "ProductID": 14,
+      "VersionName": "OnePlus Nord 256GB Gray Onyx",
+      "PurchasePrice": 499.00,
+      "SalePrice": 699.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 42,
+      "ProductID": 14,
+      "VersionName": "OnePlus Nord 512GB Blue Marble",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 43,
+      "ProductID": 15,
+      "VersionName": "Google Pixel 5 128GB Just Black",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 70,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 44,
+      "ProductID": 15,
+      "VersionName": "Google Pixel 5 256GB Clearly White",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 50,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 45,
+      "ProductID": 15,
+      "VersionName": "Google Pixel 5 512GB Sorta Sage",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 30,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 46,
+      "ProductID": 16,
+      "VersionName": "Sony Xperia 5 II 128GB Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 47,
+      "ProductID": 16,
+      "VersionName": "Sony Xperia 5 II 256GB Gray",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 48,
+      "ProductID": 16,
+      "VersionName": "Sony Xperia 5 II 512GB Blue",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 49,
+      "ProductID": 17,
+      "VersionName": "Huawei Mate 40 128GB Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 70,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 50,
+      "ProductID": 17,
+      "VersionName": "Huawei Mate 40 256GB White",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 50,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 51,
+      "ProductID": 17,
+      "VersionName": "Huawei Mate 40 512GB Gold",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 30,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 52,
+      "ProductID": 18,
+      "VersionName": "LG Wing 128GB Aurora Gray",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 80,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 53,
+      "ProductID": 18,
+      "VersionName": "LG Wing 256GB Illusion Sky",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 60,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 54,
+      "ProductID": 18,
+      "VersionName": "LG Wing 512GB Velvet Pink",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 40,
+      "Status": false,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 55,
+      "ProductID": 19,
+      "VersionName": "Techno Phantom X 128GB Midnight Blue",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 90,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 56,
+      "ProductID": 19,
+      "VersionName": "Techno Phantom X 256GB Tropical Green",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 57,
+      "ProductID": 19,
+      "VersionName": "Techno Phantom X 512GB Ocean Blue",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 58,
+      "ProductID": 20,
+      "VersionName": "Realme GT 128GB Galactic Blue",
+      "PurchasePrice": 499.00,
+      "SalePrice": 699.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 59,
+      "ProductID": 20,
+      "VersionName": "Realme GT 256GB Solar Yellow",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 60,
+      "ProductID": 20,
+      "VersionName": "Realme GT 512GB Cyber Silver",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 40,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 61,
+      "ProductID": 21,
+      "VersionName": "iPhone 13 Mini 64GB Midnight Black",
+      "PurchasePrice": 699.00,
+      "SalePrice": 899.00,
+      "Quantity": 100,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 62,
+      "ProductID": 21,
+      "VersionName": "iPhone 13 Mini 128GB Starlight",
+      "PurchasePrice": 799.00,
+      "SalePrice": 999.00,
+      "Quantity": 80,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 63,
+      "ProductID": 21,
+      "VersionName": "iPhone 13 Mini 256GB Blue",
+      "PurchasePrice": 899.00,
+      "SalePrice": 1099.00,
+      "Quantity": 60,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 64,
+      "ProductID": 22,
+      "VersionName": "Samsung Galaxy Z Fold 3 256GB Phantom Black",
+      "PurchasePrice": 1799.00,
+      "SalePrice": 1999.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 65,
+      "ProductID": 22,
+      "VersionName": "Samsung Galaxy Z Fold 3 512GB Phantom Green",
+      "PurchasePrice": 1899.00,
+      "SalePrice": 2099.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 66,
+      "ProductID": 22,
+      "VersionName": "Samsung Galaxy Z Fold 3 1TB Phantom Silver",
+      "PurchasePrice": 1999.00,
+      "SalePrice": 2199.00,
+      "Quantity": 30,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 67,
+      "ProductID": 23,
+      "VersionName": "Xiaomi Redmi Note 10 Pro 128GB Onyx Gray",
+      "PurchasePrice": 399.00,
+      "SalePrice": 599.00,
+      "Quantity": 90,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 68,
+      "ProductID": 23,
+      "VersionName": "Xiaomi Redmi Note 10 Pro 256GB Glacier Blue",
+      "PurchasePrice": 499.00,
+      "SalePrice": 699.00,
+      "Quantity": 70,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 69,
+      "ProductID": 23,
+      "VersionName": "Xiaomi Redmi Note 10 Pro 512GB Sunset Bronze",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 50,
+      "Status": true,
+      "Image": null
+    },
+    {
+      "ProductVersionID": 70,
+      "ProductID": 24,
+      "VersionName": "OnePlus 8T 128GB Lunar Silver",
+      "PurchasePrice": 599.00,
+      "SalePrice": 799.00,
+      "Quantity": 80,
+      "Status": false,
+      "Image": null
+    }
+  ]
+}

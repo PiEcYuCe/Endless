@@ -1,0 +1,94 @@
+{
+  "Promotion": [
+    {
+      "promotionID": 1,
+      "name": "New Year Sale",
+      "description": "Enjoy exclusive discounts on selected smartphones to kickstart the new year!",
+      "startDate": "2024-01-01",
+      "endDate": "2024-01-15",
+      "discountPercentage": 15,
+      "status": true
+    },
+    {
+      "promotionID": 2,
+      "name": "Summer Clearance",
+      "description": "Huge discounts on last season's smartphones. Limited time offer!",
+      "startDate": "2024-07-01",
+      "endDate": "2024-07-15",
+      "discountPercentage": 20,
+      "status": true
+    },
+    {
+      "promotionID": 3,
+      "name": "Back to School",
+      "description": "Get ready for school with special deals on selected smartphones.",
+      "startDate": "2024-08-15",
+      "endDate": "2024-08-31",
+      "discountPercentage": 10,
+      "status": true
+    },
+    {
+      "promotionID": 4,
+      "name": "Holiday Bonanza",
+      "description": "Unwrap the joy of savings with our holiday promotion!",
+      "startDate": "2024-12-01",
+      "endDate": "2024-12-25",
+      "discountPercentage": 25,
+      "status": true
+    },
+    {
+      "promotionID": 5,
+      "name": "Spring Special",
+      "description": "Spring into savings with discounts on smartphones!",
+      "startDate": "2024-04-01",
+      "endDate": "2024-04-15",
+      "discountPercentage": 15,
+      "status": true
+    },
+    {
+      "promotionID": 6,
+      "name": "Techtober Fest",
+      "description": "Celebrate the latest tech with exclusive deals during Techtober Fest!",
+      "startDate": "2024-10-01",
+      "endDate": "2024-10-15",
+      "discountPercentage": 20,
+      "status": true
+    },
+    {
+      "promotionID": 7,
+      "name": "Mid-Year Madness",
+      "description": "Crazy discounts on mid-year smartphones. Don't miss out!",
+      "startDate": "2024-06-15",
+      "endDate": "2024-06-30",
+      "discountPercentage": 30,
+      "status": true
+    },
+    {
+      "promotionID": 8,
+      "name": "Flash Sale Friday",
+      "description": "Every Friday, enjoy flash sales with limited-time discounts!",
+      "startDate": "2024-01-05",
+      "endDate": "2024-12-27",
+      "discountPercentage": 20,
+      "status": true
+    },
+    {
+      "promotionID": 9,
+      "name": "Prime Day Deals",
+      "description": "Exclusive deals for Prime members during Prime Day!",
+      "startDate": "2024-07-15",
+      "endDate": "2024-07-16",
+      "discountPercentage": 25,
+      "status": true
+    },
+    {
+      "promotionID": 10,
+      "name": "Black Friday Blowout",
+      "description": "Unbeatable deals on Black Friday. Get your favorite smartphones at incredible prices!",
+      "startDate": "2024-11-29",
+      "endDate": "2024-11-29",
+      "discountPercentage": 40,
+      "status": true
+    }
+  ]
+}
