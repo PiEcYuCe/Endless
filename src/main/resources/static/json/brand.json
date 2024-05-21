@@ -4,61 +4,61 @@
       "brandID": 1,
       "name": "Apple",
       "status": true,
-      "logo": "path/to/apple_logo.jpg"
+      "logo": "/images/Brand/apple_logo.jpg"
     },
     {
       "brandID": 2,
       "name": "Samsung",
       "status": true,
-      "logo": "path/to/samsung_logo.jpg"
+      "logo": "/images/Brand/samsung_logo.jpg"
     },
     {
       "brandID": 3,
       "name": "Xiaomi",
       "status": true,
-      "logo": "path/to/xiaomi_logo.jpg"
+      "logo": "/images/Brand/xiaomi_logo.jpg"
     },
     {
       "brandID": 4,
       "name": "OnePlus",
       "status": true,
-      "logo": "path/to/oneplus_logo.jpg"
+      "logo": "/images/Brand/oneplus_logo.jpg"
     },
     {
       "brandID": 5,
       "name": "Oppo",
       "status": true,
-      "logo": "path/to/oppo_logo.jpg"
+      "logo": "/images/Brand/oppo_logo.jpg"
     },
     {
       "brandID": 6,
       "name": "Sony",
       "status": true,
-      "logo": "path/to/sony_logo.jpg"
+      "logo": "/images/Brand/sony_logo.jpg"
     },
     {
       "brandID": 7,
       "name": "Huawei",
       "status": true,
-      "logo": "path/to/huawei_logo.jpg"
+      "logo": "/images/Brand/huawei_logo.jpg"
     },
     {
       "brandID": 8,
       "name": "LG",
       "status": false,
-      "logo": "path/to/lg_logo.jpg"
+      "logo": "/images/Brand/lg_logo.jpg"
     },
     {
       "brandID": 9,
       "name": "Techno",
       "status": true,
-      "logo": "path/to/techno_logo.jpg"
+      "logo": "/images/Brand/techno_logo.jpg"
     },
     {
       "brandID": 10,
       "name": "Realme",
       "status": true,
-      "logo": "path/to/realme_logo.jpg"
+      "logo": "/images/Brand/realme_logo.jpg"
     }
   ]
 }
