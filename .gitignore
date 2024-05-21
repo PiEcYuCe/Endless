@@ -42,3 +42,4 @@ build/
 !HELP.md
 !src/**/**/static/
 !src/**/**/static/**
+!src/**/**/**/**/assignment/**
