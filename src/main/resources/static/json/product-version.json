@@ -8,7 +8,7 @@
       "SalePrice": 999.00,
       "Quantity": 100,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/iPhone13Black64GB.png"
     },
     {
       "ProductVersionID": 2,
@@ -18,7 +18,7 @@
       "SalePrice": 1099.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/iPhone13White.png"
     },
     {
       "ProductVersionID": 3,
@@ -28,7 +28,7 @@
       "SalePrice": 1199.00,
       "Quantity": 30,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/iPhone13Blue.png"
     },
     {
       "ProductVersionID": 4,
@@ -38,7 +38,7 @@
       "SalePrice": 1099.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SamSungBlack.png"
     },
     {
       "ProductVersionID": 5,
@@ -48,7 +48,7 @@
       "SalePrice": 1199.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SamSungSilver.png"
     },
     {
       "ProductVersionID": 6,
@@ -58,7 +58,7 @@
       "SalePrice": 1299.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SamSungPhantomNavy.png"
     },
     {
       "ProductVersionID": 7,
@@ -68,7 +68,7 @@
       "SalePrice": 899.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/XiaomiCosmicBlack.png"
     },
     {
       "ProductVersionID": 8,
@@ -78,7 +78,7 @@
       "SalePrice": 999.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/XiaomiHorizonBlue.png"
     },
     {
       "ProductVersionID": 9,
@@ -88,7 +88,7 @@
       "SalePrice": 1099.00,
       "Quantity": 30,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/XiaomiWhite"
     },
     {
       "ProductVersionID": 10,
@@ -98,7 +98,7 @@
       "SalePrice": 899.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/OnePlus9WinterMist128GB.png"
     },
     {
       "ProductVersionID": 11,
@@ -108,7 +108,7 @@
       "SalePrice": 999.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/OnePlus9ArcticSky256GB.png"
     },
     {
       "ProductVersionID": 12,
@@ -118,7 +118,7 @@
       "SalePrice": 1099.00,
       "Quantity": 20,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/OnePlus9WinterMist512GB.png"
     },
     {
       "ProductVersionID": 13,
@@ -128,7 +128,7 @@
       "SalePrice": 899.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/GooglePixel128GB.png"
     },
     {
       "ProductVersionID": 14,
@@ -138,7 +138,7 @@
       "SalePrice": 999.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/GooglePixel256GB.png"
     },
     {
       "ProductVersionID": 15,
@@ -148,7 +148,7 @@
       "SalePrice": 1099.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/GooglePixel512GB.png"
     },
     {
       "ProductVersionID": 16,
@@ -158,7 +158,7 @@
       "SalePrice": 1099.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SonyXperia128GB.png"
     },
     {
       "ProductVersionID": 17,
@@ -168,7 +168,7 @@
       "SalePrice": 1199.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SonyXperia256GB.png"
     },
     {
       "ProductVersionID": 18,
@@ -178,7 +178,7 @@
       "SalePrice": 1299.00,
       "Quantity": 30,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SonyXperia512GB.png"
     },
     {
       "ProductVersionID": 19,
@@ -188,7 +188,7 @@
       "SalePrice": 899.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/HuaweiP40128GB.png"
     },
     {
       "ProductVersionID": 20,
@@ -198,7 +198,7 @@
       "SalePrice": 999.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/HuaweiP40256GB.png"
     },
     {
       "ProductVersionID": 21,
@@ -208,7 +208,7 @@
       "SalePrice": 1099.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/HuaweiP40512GB.png"
     },
     {
       "ProductVersionID": 22,
@@ -218,7 +218,7 @@
       "SalePrice": 799.00,
       "Quantity": 70,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/LGVelvet128GB.png"
     },
     {
       "ProductVersionID": 23,
@@ -228,7 +228,7 @@
       "SalePrice": 899.00,
       "Quantity": 50,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/LGVelvet256GB.png"
     },
     {
       "ProductVersionID": 24,
@@ -238,7 +238,7 @@
       "SalePrice": 999.00,
       "Quantity": 30,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/LGVelvet512GB.png"
     },
     {
       "ProductVersionID": 25,
@@ -248,7 +248,7 @@
       "SalePrice": 799.00,
       "Quantity": 90,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/TechnoPhantomX128GB.png"
     },
     {
       "ProductVersionID": 26,
@@ -258,7 +258,7 @@
       "SalePrice": 899.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/TechnoPhantomX256GB.png"
     },
     {
       "ProductVersionID": 27,
@@ -268,7 +268,7 @@
       "SalePrice": 999.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/TechnoPhantomX512GB.png"
     },
     {
       "ProductVersionID": 28,
@@ -278,7 +278,7 @@
       "SalePrice": 699.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RealmeGT128GB.png"
     },
     {
       "ProductVersionID": 29,
@@ -288,7 +288,7 @@
       "SalePrice": 799.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RealmeGT256GB.png"
     },
     {
       "ProductVersionID": 30,
@@ -298,7 +298,7 @@
       "SalePrice": 899.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RealmeGT512GB.png"
     },
     {
       "ProductVersionID": 31,
@@ -308,7 +308,7 @@
       "SalePrice": 899.00,
       "Quantity": 70,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/iPhone12Black64GB.png"
     },
     {
       "ProductVersionID": 32,
@@ -318,7 +318,7 @@
       "SalePrice": 999.00,
       "Quantity": 50,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/iPhone12White128GB.png"
     },
     {
       "ProductVersionID": 33,
@@ -328,7 +328,7 @@
       "SalePrice": 1099.00,
       "Quantity": 30,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/iPhone12Green256GB.png"
     },
     {
       "ProductVersionID": 34,
@@ -338,7 +338,7 @@
       "SalePrice": 999.00,
       "Quantity": 80,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/SamSungNote20128GB.png"
     },
     {
       "ProductVersionID": 35,
@@ -348,7 +348,7 @@
       "SalePrice": 1099.00,
       "Quantity": 60,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/SamSungNote20256GB.png"
     },
     {
       "ProductVersionID": 36,
@@ -358,7 +358,7 @@
       "SalePrice": 1199.00,
       "Quantity": 40,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/SamSungNote20512GB.png"
     },
     {
       "ProductVersionID": 37,
@@ -368,7 +368,7 @@
       "SalePrice": 499.00,
       "Quantity": 90,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RedmiNote1064GB.png"
     },
     {
       "ProductVersionID": 38,
@@ -378,7 +378,7 @@
       "SalePrice": 599.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RedmiNote10128GB.png"
     },
     {
       "ProductVersionID": 39,
@@ -388,7 +388,7 @@
       "SalePrice": 699.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RedmiNote10256GB.png"
     },
     {
       "ProductVersionID": 40,
@@ -398,7 +398,7 @@
       "SalePrice": 599.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/OnePlusNord128GB.png"
     },
     {
       "ProductVersionID": 41,
@@ -408,7 +408,7 @@
       "SalePrice": 699.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/OnePlusNord256GB.png"
     },
     {
       "ProductVersionID": 42,
@@ -418,7 +418,7 @@
       "SalePrice": 799.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/OnePlusNord512GB.png"
     },
     {
       "ProductVersionID": 43,
@@ -428,7 +428,7 @@
       "SalePrice": 799.00,
       "Quantity": 70,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/GooglePixel5Black128GB.png"
     },
     {
       "ProductVersionID": 44,
@@ -438,7 +438,7 @@
       "SalePrice": 899.00,
       "Quantity": 50,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/GooglePixel5White256GB.png"
     },
     {
       "ProductVersionID": 45,
@@ -448,7 +448,7 @@
       "SalePrice": 999.00,
       "Quantity": 30,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/GooglePixel5Sage512GB.png"
     },
     {
       "ProductVersionID": 46,
@@ -458,7 +458,7 @@
       "SalePrice": 899.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SonyXperia5II128GB.png"
     },
     {
       "ProductVersionID": 47,
@@ -468,7 +468,7 @@
       "SalePrice": 999.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SonyXperia5II256GB.png"
     },
     {
       "ProductVersionID": 48,
@@ -478,7 +478,7 @@
       "SalePrice": 1099.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SonyXperia5II512GB.png"
     },
     {
       "ProductVersionID": 49,
@@ -488,7 +488,7 @@
       "SalePrice": 899.00,
       "Quantity": 70,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/HuaweiMate40Black128GB.png"
     },
     {
       "ProductVersionID": 50,
@@ -498,7 +498,7 @@
       "SalePrice": 999.00,
       "Quantity": 50,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/HuaweiMate40White256GB.png"
     },
     {
       "ProductVersionID": 51,
@@ -508,7 +508,7 @@
       "SalePrice": 1099.00,
       "Quantity": 30,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/HuaweiMate40Gold512GB.png"
     },
     {
       "ProductVersionID": 52,
@@ -518,7 +518,7 @@
       "SalePrice": 899.00,
       "Quantity": 80,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/LGWing128GB.png"
     },
     {
       "ProductVersionID": 53,
@@ -528,7 +528,7 @@
       "SalePrice": 999.00,
       "Quantity": 60,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/LGWing256GB.png"
     },
     {
       "ProductVersionID": 54,
@@ -538,7 +538,7 @@
       "SalePrice": 1099.00,
       "Quantity": 40,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/LGWing512GB.png"
     },
     {
       "ProductVersionID": 55,
@@ -548,7 +548,7 @@
       "SalePrice": 799.00,
       "Quantity": 90,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/TechnoPhantomX128GB.png"
     },
     {
       "ProductVersionID": 56,
@@ -558,7 +558,7 @@
       "SalePrice": 899.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/TechnoPhantomX256GB.png"
     },
     {
       "ProductVersionID": 57,
@@ -568,7 +568,7 @@
       "SalePrice": 999.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/TechnoPhantomX512GB.png"
     },
     {
       "ProductVersionID": 58,
@@ -578,7 +578,7 @@
       "SalePrice": 699.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RealmeGT128GB.png"
     },
     {
       "ProductVersionID": 59,
@@ -588,7 +588,7 @@
       "SalePrice": 799.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RealmeGT256GB.png"
     },
     {
       "ProductVersionID": 60,
@@ -598,7 +598,7 @@
       "SalePrice": 899.00,
       "Quantity": 40,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RealmeGT512GB.png"
     },
     {
       "ProductVersionID": 61,
@@ -608,7 +608,7 @@
       "SalePrice": 899.00,
       "Quantity": 100,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/iPhone13Black64GB.png"
     },
     {
       "ProductVersionID": 62,
@@ -618,7 +618,7 @@
       "SalePrice": 999.00,
       "Quantity": 80,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/iPhone13WhiteGB.png"
     },
     {
       "ProductVersionID": 63,
@@ -628,7 +628,7 @@
       "SalePrice": 1099.00,
       "Quantity": 60,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/iPhone13BlueGB.png"
     },
     {
       "ProductVersionID": 64,
@@ -638,7 +638,7 @@
       "SalePrice": 1999.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SamSungZ3Black256GB.png"
     },
     {
       "ProductVersionID": 65,
@@ -648,7 +648,7 @@
       "SalePrice": 2099.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SamSungZ3Green512GB.png"
     },
     {
       "ProductVersionID": 66,
@@ -658,7 +658,7 @@
       "SalePrice": 2199.00,
       "Quantity": 30,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/SamSungZ3Silver1TGB.png"
     },
     {
       "ProductVersionID": 67,
@@ -668,7 +668,7 @@
       "SalePrice": 599.00,
       "Quantity": 90,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RedmiNote10Pro128GBGray.png"
     },
     {
       "ProductVersionID": 68,
@@ -678,7 +678,7 @@
       "SalePrice": 699.00,
       "Quantity": 70,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RedmiNote10Pro256GBBlue.png"
     },
     {
       "ProductVersionID": 69,
@@ -688,7 +688,7 @@
       "SalePrice": 799.00,
       "Quantity": 50,
       "Status": true,
-      "Image": null
+      "Image": "/images/productVersion/RedmiNote10Pro512Bronze.png"
     },
     {
       "ProductVersionID": 70,
@@ -698,7 +698,7 @@
       "SalePrice": 799.00,
       "Quantity": 80,
       "Status": false,
-      "Image": null
+      "Image": "/images/productVersion/OnePlus8T128GB.png"
     }
   ]
 }
