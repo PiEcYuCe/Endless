@@ -19,4 +19,5 @@ public class ProductVersion {
     private BigDecimal salePrice;
     private int quantity;
     private boolean status;
+    private String image;
 }

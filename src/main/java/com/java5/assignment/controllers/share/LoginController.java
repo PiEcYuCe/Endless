@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class LoginController {
     @ModelAttribute("page")
-    public String setPageContent() {
-        return Page.route.get(PageType.LOGIN).getUrl();
+    public Page setPageContent() {
+        return Page.route.get(PageType.LOGIN);
     }
 
     @GetMapping("/login")

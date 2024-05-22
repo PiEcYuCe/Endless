@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Map;
+
 @Controller
 public class ContactController {
     @ModelAttribute("page")
-    public String setPageContent() {
-        return Page.route.get(PageType.CONTACT).getUrl();
+    public Page setPageContent() {
+        return Page.route.get(PageType.CONTACT);
     }
 
     @GetMapping("/contact")

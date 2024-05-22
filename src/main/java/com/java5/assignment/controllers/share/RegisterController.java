@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class RegisterController {
     @ModelAttribute("page")
-    public String setPageContent() {
-        return Page.route.get(PageType.REGISTER).getUrl();
+    public Page setPageContent() {
+        return Page.route.get(PageType.REGISTER);
     }
 
     @GetMapping("/register")

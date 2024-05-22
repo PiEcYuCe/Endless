@@ -1,0 +1,74 @@
+{
+  "Rating": [
+    {
+      "ratingID": 1,
+      "userID": 1,
+      "productID": 1,
+      "rating": 4,
+      "comment": "Great phone, but battery life could be better."
+    },
+    {
+      "ratingID": 2,
+      "userID": 2,
+      "productID": 2,
+      "rating": 5,
+      "comment": "Absolutely love this phone! Amazing camera and performance."
+    },
+    {
+      "ratingID": 3,
+      "userID": 3,
+      "productID": 3,
+      "rating": 4,
+      "comment": "Solid choice for the price, camera is impressive."
+    },
+    {
+      "ratingID": 4,
+      "userID": 4,
+      "productID": 4,
+      "rating": 3,
+      "comment": "Decent phone, but not worth the high price tag."
+    },
+    {
+      "ratingID": 5,
+      "userID": 5,
+      "productID": 5,
+      "rating": 5,
+      "comment": "Best camera experience I've had on a phone."
+    },
+    {
+      "ratingID": 6,
+      "userID": 6,
+      "productID": 6,
+      "rating": 4,
+      "comment": "Great display and performance, camera could be better."
+    },
+    {
+      "ratingID": 7,
+      "userID": 7,
+      "productID": 7,
+      "rating": 3,
+      "comment": "Disappointed with the software experience."
+    },
+    {
+      "ratingID": 8,
+      "userID": 8,
+      "productID": 8,
+      "rating": 2,
+      "comment": "Poor build quality, screen has issues."
+    },
+    {
+      "ratingID": 9,
+      "userID": 9,
+      "productID": 9,
+      "rating": 5,
+      "comment": "Incredible display, very satisfied with the purchase."
+    },
+    {
+      "ratingID": 10,
+      "userID": 10,
+      "productID": 10,
+      "rating": 4,
+      "comment": "Great value for the features, highly recommend."
+    }
+  ]
+}

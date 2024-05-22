@@ -40,4 +40,6 @@ build/
 !.gitignore
 !README.md
 !HELP.md
-!src/**/static/
+!src/**/**/static/
+!src/**/**/static/**
+!src/**/**/**/**/assignment/**
