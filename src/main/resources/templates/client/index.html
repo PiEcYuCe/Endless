@@ -28,7 +28,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto d-flex flex-row">
                 <li class="nav-item">
                     <a class="nav-link" href="/home" th:classappend="${page?.name == 'home'} ? 'active' : ''">Home</a>
                 </li>
@@ -53,9 +53,11 @@
                     <a class="nav-link" th:classappend="${page.name == 'promotion'} ? 'active' : ''" href="/promotion">Promotion</a>
                 </li>
             </ul>
-            <form class="d-flex">
+
+            <form class="d-flex justify-content-end">
                 <div class="input-group col-12 px-3">
-                    <input class="form-control rounded-4" list="datalistOptions" placeholder="Search a product">
+                    <input class="form-control rounded-4 " list="datalistOptions"
+                           placeholder="Search a product">
                     <datalist id="datalistOptions">
                         <option value="San Francisco">
                         <option value="New York">
@@ -69,7 +71,7 @@
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <h6 class="fa fa-user"></h6>
                     </button>
-                    <div class="dropdown-menu mr-5" aria-labelledby="triggerId">
+                    <div class="dropdown-menu mr-5" style="margin-left: -10px">
                         <li><a class="dropdown-item" href="/profile">Account infomation</a></li>
                         <li><a class="dropdown-item" href="/change-password">Change
                             password</a></li>
@@ -82,7 +84,6 @@
                 </div>
                 <button class="btn btn-secondary rounded-circle mx-2"><h6 class="bi bi-cart2"></h6></button>
             </form>
-
         </div>
     </div>
 </nav>
