@@ -19,8 +19,19 @@ public class HomeController {
         return "client/index";
     }
 
+    @GetMapping("/login2")
+    public String get2() {
+        return "public/login2";
+    }
+//    @GetMapping("/about")
+//    public String get3() {
+//        return "client/about_us";
+//    }
+
     @PostMapping("/home")
     public String post(@ModelAttribute("page") Page page) {
         return "client/index";
     }
 }
+
+
