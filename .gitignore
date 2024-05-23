@@ -45,4 +45,4 @@ build/
 !src/**/**/static/**/**
 !src/**/**/**/**/assignment/**
 !src/**/**/**/**/assignment/controller/**
-!src/**/**/**/**/assignment/controller/client/AboutUsController
+!src/main/resources/templates/client/**
