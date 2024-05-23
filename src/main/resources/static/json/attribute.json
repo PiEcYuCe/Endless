@@ -1,29 +1,54 @@
 {
-  "Category": [
+  "Attribute": [
     {
-      "categoryID": 1,
-      "name": "Smartphones",
-      "description": "Latest mobile phones and smartphones"
+      "attributeID": 1,
+      "attributeName": "Color",
+      "attributeNote": "Available colors"
     },
     {
-      "categoryID": 2,
-      "name": "Basic Phones",
-      "description": "Simple and affordable mobile phones"
+      "attributeID": 2,
+      "attributeName": "Storage",
+      "attributeNote": "Available storage capacities"
     },
     {
-      "categoryID": 3,
-      "name": "Foldable Phones",
-      "description": "Cutting-edge foldable smartphones"
+      "attributeID": 3,
+      "attributeName": "RAM",
+      "attributeNote": "Available RAM sizes"
     },
     {
-      "categoryID": 4,
-      "name": "Gaming Phones",
-      "description": "High-performance smartphones optimized for gaming"
+      "attributeID": 4,
+      "attributeName": "Screen Size",
+      "attributeNote": "Screen size in inches"
     },
     {
-      "categoryID": 5,
-      "name": "Camera Phones",
-      "description": "Mobile phones with exceptional camera capabilities"
+      "attributeID": 5,
+      "attributeName": "Battery Capacity",
+      "attributeNote": "Battery capacity in mAh"
+    },
+    {
+      "attributeID": 6,
+      "attributeName": "Processor",
+      "attributeNote": "Mobile phone processor"
+    },
+    {
+      "attributeID": 7,
+      "attributeName": "Camera",
+      "attributeNote": "Camera specifications"
+    },
+    {
+      "attributeID": 8,
+      "attributeName": "Operating System",
+      "attributeNote": "Mobile phone operating system"
+    },
+    {
+      "attributeID": 9,
+      "attributeName": "Connectivity",
+      "attributeNote": "Available connectivity options"
+    },
+    {
+      "attributeID": 10,
+      "attributeName": "Display Technology",
+      "attributeNote": "Type of display technology used"
     }
   ]
 }
