@@ -35,7 +35,7 @@ public class Page {
         route.put(PageType.ADMIN_ATTRIBUTE, new Page("admin/attribute.html", "attribute"));
         route.put(PageType.ADMIN_RATING,  new Page("admin/rating.html", "rating"));
         route.put(PageType.ADMIN_ACCOUNT,  new Page("admin/account.html", "account"));
-        route.put(PageType.ADMIN_PROMOTION, new Page("admin/promotion.html", "promotion"));
+        route.put(PageType.ADMIN_PROMOTION, new Page("admin/about-us.html", "promotion"));
         route.put(PageType.ADMIN_VOUCHER,  new Page("admin/voucher.html", "voucher"));
         route.put(PageType.ADMIN_DISCOUNT, new Page("admin/discount.html", "discount"));
         route.put(PageType.ADMIN_ORDER, new Page("admin/order.html", "order"));
