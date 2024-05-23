@@ -28,14 +28,14 @@ public class Page {
         route.put(PageType.CONTACT,  new Page("client/contact.html", "contact"));
         route.put(PageType.PRODUCT,  new Page("client/product.html", "product"));
         route.put(PageType.DETAIL_PRODUCT,  new Page("client/detail-product.html", "detail-product"));
-        route.put(PageType.PROMOTION, new Page("client/promotion.html", "promotion"));
+        route.put(PageType.ABOUT_US, new Page("client/about-us.html", "about-us"));
         route.put(PageType.ORDER, new Page("client/order.html", "order"));
         route.put(PageType.ADMIN_HOME, new Page("admin/home.html", "home"));
         route.put(PageType.ADMIN_PRODUCT, new Page("admin/product.html", "product"));
         route.put(PageType.ADMIN_ATTRIBUTE, new Page("admin/attribute.html", "attribute"));
         route.put(PageType.ADMIN_RATING,  new Page("admin/rating.html", "rating"));
         route.put(PageType.ADMIN_ACCOUNT,  new Page("admin/account.html", "account"));
-        route.put(PageType.ADMIN_PROMOTION, new Page("admin/promotion.html", "promotion"));
+        route.put(PageType.ADMIN_PROMOTION, new Page("admin/about-us.html", "promotion"));
         route.put(PageType.ADMIN_VOUCHER,  new Page("admin/voucher.html", "voucher"));
         route.put(PageType.ADMIN_DISCOUNT, new Page("admin/discount.html", "discount"));
         route.put(PageType.ADMIN_ORDER, new Page("admin/order.html", "order"));

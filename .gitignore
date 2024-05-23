@@ -42,4 +42,7 @@ build/
 !HELP.md
 !src/**/**/static/
 !src/**/**/static/**
+!src/**/**/static/**/**
 !src/**/**/**/**/assignment/**
+!src/**/**/**/**/assignment/controller/**
+!src/main/resources/templates/client/**
