@@ -6,14 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-@Controller("")
-public class PromotionController {
+@Controller()
+public class AboutUsController {
     @ModelAttribute("page")
     public Page page() {
-        return Page.route.get(PageType.PROMOTION);
+        return Page.route.get(PageType.ABOUT_US);
     }
 
-    @GetMapping("/promotion")
+    @GetMapping("/about-us")
     public String get() {
         return "client/index";
     }

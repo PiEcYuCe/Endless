@@ -5,7 +5,7 @@ public enum PageType {
     CONTACT,
     PRODUCT,
     DETAIL_PRODUCT,
-    PROMOTION,
+    ABOUT_US,
     LOGIN,
     REGISTER,
     PROFILE,
