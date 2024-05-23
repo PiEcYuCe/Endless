@@ -15,6 +15,6 @@ public class LoginController {
 
     @GetMapping("/login")
     public String goToPage() {
-        return "client/index";
+        return "public/login";
     }
 }
