@@ -42,6 +42,7 @@ build/
 !HELP.md
 !src/**/**/static/
 !src/**/**/static/**
+!src/**/**/static/**/**
 !src/**/**/**/**/assignment/**
 !src/**/**/**/**/assignment/controller/**
-!src/**/**/**/**/assignment/controller/client/**
+!src/**/**/**/**/assignment/controller/client/AboutUsController
