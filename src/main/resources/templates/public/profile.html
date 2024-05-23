@@ -1,10 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<style>
+    .card {
+        width: 15rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
 
-</body>
-</html>
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-body a.btn {
+        display: inline-block;
+    }
+
+    .btn-success {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-primary {
+        width: 1000px;
+    }
+
+    .hidden-input {
+        display: none;
+    }
+</style>
+<main>
+    <div class="container mt-5">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card" style="width: 15rem;">
+                        <img src="/images/User/user2.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <a href="#" class="btn btn-success" id="choose-photo-btn">Choose photo</a>
+                            <input type="file" id="photo-input" class="hidden-input" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row g-3">
+                        <div class="col-md">
+                            <div class="mb-3">
+                                <label class="form-label">UserID: </label>
+                                <input type="text" class="form-control" name="userID" placeholder="Enter userId">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email: </label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email">
+                                <p class="text-danger"
+                                   th:if='${error?.getFieldError("email") != null}'
+                                   th:text='${error?.getFieldError("email")?.getDefaultMessage()}'></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status: </label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="true">
+                                    <label class="form-check-label">True</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="false">
+                                    <label class="form-check-label">False</label>
+                                </div>
+                                <p class="text-danger"
+                                   th:if='${error?.getFieldError("username") != null}'
+                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></p>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="mb-3">
+                                <label class="form-label">Username: </label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter username">
+                                <p class="text-danger"
+                                   th:if='${error?.getFieldError("username") != null}'
+                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Role: </label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="admin">
+                                    <label class="form-check-label">Admin</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="customer">
+                                    <label class="form-check-label">User</label>
+                                </div>
+                                <p class="text-danger"
+                                   th:if='${error?.getFieldError("username") != null}'
+                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></p>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <label class="form-label">Select province/city </label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select a province/city</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-md">
+                                <label class="form-label">Select district </label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select a district</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-md">
+                                <label class="form-label">Select ward/commune </label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select a ward/commune</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update information</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('choose-photo-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('photo-input').click();
+        });
+    </script>
+</main>
