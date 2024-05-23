@@ -45,4 +45,4 @@ build/
 !src/**/**/static/**/**
 !src/**/**/**/**/assignment/**
 !src/**/**/**/**/assignment/controller/**
-!src/main/resources/templates/client/**
+!src/main/resources/templates/admin/**
