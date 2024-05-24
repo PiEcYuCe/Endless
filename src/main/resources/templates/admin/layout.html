@@ -50,6 +50,31 @@
             </a>
         </li>
 
+
+        <li>
+            <a type="button"  th:class="${page.name}=='statistical'?'active':''"  onclick="onClick(this)">
+                <i class="fa-solid fa-chart-simple"></i>
+                <p class="mt-3">Statistical</p>
+                <i class="ai-chevron-down-small"></i>
+            </a>
+            <div class="sub-menu">
+                <ul>
+                    <li>
+                        <a type="button" href="/statistical-product">Product</a>
+                    </li>
+                    <li>
+                        <a type="button" href="/statistical-order">Order</a>
+                    </li>
+                    <li>
+                        <a type="button" href="/statistical-revenue">Revenue</a>
+                    </li>
+                    <li>
+                        <a type="button" href="/statistical-interact">Interact</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
         <li>
             <a type="button"  th:class="${page.name}=='product'?'active':''" onclick="onClick(this)">
                 <i class="fa-solid fa-mobile-screen"></i>
@@ -139,13 +164,6 @@
         </li>
 
         <li>
-            <a type="button" th:class="${page.name}=='profile'?'active':''" onclick="onClick(this)" href="/manage-profile">
-                <i class="fa-solid fa-gears"></i>
-                <p class="mt-3">My profile</p>
-            </a>
-        </li>
-
-        <li>
             <a type="button" th:class="${page.name}=='log-out'?'active':''" href="/logout" onclick="onClick(this)">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <p class="mt-3">Log out</p>
@@ -154,7 +172,7 @@
     </ul>
 </aside>
 <article id="content" class="p-0 bg-light">
-    <section th:include="${page.url}" class="px-5 d-flex align-items-center"></section>
+    <section th:insert="~{${page.url}}" class="px-5 d-flex align-items-center bg-light" style="box-shadow: -10px 15px 15px gray;"></section>
 </article>
 <script src="/js/dashboard.js"></script>
 
