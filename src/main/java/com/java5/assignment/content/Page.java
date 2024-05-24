@@ -43,7 +43,10 @@ public class Page {
         route.put(PageType.ADMIN_PURCHASE, new Page("admin/purchase.html", "purchase"));
         route.put(PageType.ADMIN_CATEGORY,  new Page("admin/category.html", "category"));
         route.put(PageType.ADMIN_BRAND, new Page("admin/brand.html", "brand"));
-        route.put(PageType.ADMIN_STATISTICAL, new Page("admin/statistical.html", "statistical"));
+        route.put(PageType.ADMIN_STATISTICAL_PRODUCT, new Page("admin/statistical-product.html", "statistical"));
+        route.put(PageType.ADMIN_STATISTICAL_ORDER, new Page("admin/statistical_order.html", "statistical"));
+        route.put(PageType.ADMIN_STATISTICAL_REVENUE, new Page("admin/statistical-revenue.html", "statistical"));
+        route.put(PageType.ADMIN_STATISTICAL_INTERACT, new Page("/admin/statistical-interact.html", "statistical"));
         route.put(PageType.PROFILE, new Page("public/profile.html", "account"));
         route.put(PageType.LOGIN, new Page("public/login.html", "login"));
         route.put(PageType.REGISTER,  new Page("public/register.html", "register"));
