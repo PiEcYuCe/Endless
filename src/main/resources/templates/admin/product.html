@@ -2,9 +2,123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container mt-5">
+    <h1 class="mb-4">Product Management</h1>
 
-</body>
-</html>
+    <!-- Card for Add/Edit Product Form -->
+    <div class="card mb-5">
+        <div class="card-header">
+            Add/Edit Product
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="productName">
+                </div>
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="productDescription" name="productDescription"
+                              rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="productCategory" class="form-label">Category</label>
+                    <select class="form-select" id="productCategory" name="productCategory">
+                        <option selected>Choose a category...</option>
+                        <option value="1">IPHONE 15</option>
+                        <option value="2">SAMSUNG GALAXY S23</option>
+                        <option value="3">XIAOMI 13</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="productBrand" class="form-label">Brand</label>
+                    <select class="form-select" id="productBrand" name="productBrand">
+                        <option selected>Choose a brand...</option>
+                        <option value="1">IPHONE</option>
+                        <option value="2">SAMSUNG</option>
+                        <option value="3">XIAOMI</option>
+                    </select>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="productStatus" name="productStatus">
+                    <label class="form-check-label" for="productStatus">Active</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Table -->
+    <!-- Product Table -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th> <!-- Thêm cột Actions -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Huawei P40</td>
+            <td>High-end smartphone with Leica quad-camera system</td>
+            <td>true</td>
+            <td> <!-- Thêm nút "Update" và "Delete" -->
+                <button type="button" class="btn btn-primary btn-sm">Update</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>iPhone 13 Pro</td>
+            <td>Apple's latest flagship smartphone with ProMotion display</td>
+            <td>true</td>
+            <td> <!-- Thêm nút "Update" và "Delete" -->
+                <button type="button" class="btn btn-primary btn-sm">Update</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Samsung Galaxy S21 Ultra</td>
+            <td>Powerful Android smartphone with S Pen support</td>
+            <td>false</td>
+            <td> <!-- Thêm nút "Update" và "Delete" -->
+                <button type="button" class="btn btn-primary btn-sm">Update</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td>Google Pixel 6 Pro</td>
+            <td>Flagship smartphone with advanced camera features</td>
+            <td>true</td>
+            <td> <!-- Thêm nút "Update" và "Delete" -->
+                <button type="button" class="btn btn-primary btn-sm">Update</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">5</th>
+            <td>OnePlus 9 Pro</td>
+            <td>High-performance Android smartphone with Hasselblad camera</td>
+            <td>true</td>
+            <td> <!-- Thêm nút "Update" và "Delete" -->
+                <button type="button" class="btn btn-primary btn-sm">Update</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <!-- Thêm các hàng khác tương tự cho các sản phẩm khác -->
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></
