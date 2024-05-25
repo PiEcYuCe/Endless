@@ -34,6 +34,7 @@ public class Page {
         route.put(PageType.ADMIN_DASHBOARD, new Page("admin/dashboard.html", "dashboard"));
         route.put(PageType.ADMIN_PRODUCT, new Page("admin/product.html", "product"));
         route.put(PageType.ADMIN_PRODUCT_VERSION, new Page("admin/product.html", "product"));
+        route.put(PageType.ADMIN_PRODUCT_LIST, new Page("admin/product-list.html", "product"));
         route.put(PageType.ADMIN_ATTRIBUTE, new Page("admin/attribute.html", "product"));
         route.put(PageType.ADMIN_RATING,  new Page("admin/rating.html", "user"));
         route.put(PageType.ADMIN_ACCOUNT,  new Page("admin/account.html", "user"));
