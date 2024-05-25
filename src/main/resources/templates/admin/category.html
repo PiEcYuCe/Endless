@@ -1,69 +1,102 @@
-<div class="container">
-    <div class="row mt-5 mb-5 p-2">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="active-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Category</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="link-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">List category</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="active-tab">
-                <form action="" method="">
-<!--                    <h1 class="text-center mt-2">Category</h1>-->
-                    <div class="row g-2 mt-2">
-                        <div class="col-md">
-                            <div class="mb-3">
-                                <label class="form-label">CategoryID:</label>
-                                <input type="email" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="mb-3">
-                                <label class="form-label">Name:</label>
-                                <input type="password" class="form-control" placeholder="Enter name">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Description:</label>
-                            <textarea class="form-control" rows="5" placeholder="Enter description"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add category</button>
-                    </div>
-                </form>
-            </div>
-            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="link-tab">
-                <table class="table table-bordered table-hover table-md mt-3">
-                    <thead class="table-dark">
-                    <tr>
-                        <th scope="col">CategoryId</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Gaming</td>
-                        <td>abc</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="container mt-5">
+    <h1 class="mb-4">Category Management</h1>
+
+    <!-- Button to toggle Add/Edit Category Form -->
+    <button type="button" class="btn btn-primary mb-3" id="addCategoryBtn">Add Category</button>
+
+    <!-- Card for Add/Edit Category Form -->
+    <div class="card mb-5" id="categoryFormCard" style="display: none;">
+        <div class="card-header">
+            Add/Edit Category
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name</label>
+                    <input type="text" class="form-control" id="categoryName" name="categoryName">
+                </div>
+                <div class="mb-3">
+                    <label for="categoryDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="categoryDescription" name="categoryDescription"
+                              rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
         </div>
     </div>
+
+    <!-- Category Table -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
+        <tr>
+            <th scope="row">1</th>
+            <td>Category 1</td>
+            <td>Description of Category 1</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Category 2</td>
+            <td>Description of Category 2</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Category 3</td>
+            <td>Description of Category 2</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td>Category 4</td>
+            <td>Description of Category 2</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">5</th>
+            <td>Category 5</td>
+            <td>Description of Category 2</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <!-- Thêm dòng khác nếu cần -->
+        </tbody>
+    </table>
+
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var tabLinks = document.querySelectorAll('.nav-link');
-        tabLinks.forEach(function(tabLink) {
-            tabLink.addEventListener('click', function(event) {
+        tabLinks.forEach(function (tabLink) {
+            tabLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 var target = this.getAttribute('href');
                 document.querySelector(target).classList.add('show', 'active');
                 var tabContents = document.querySelectorAll('.tab-pane');
-                tabContents.forEach(function(tabContent) {
+                tabContents.forEach(function (tabContent) {
                     if ("#" + tabContent.id !== target) {
                         tabContent.classList.remove('show', 'active');
                     }
@@ -73,4 +106,13 @@
     });
 </script>
 
-
+<script>
+    document.getElementById('addCategoryBtn').addEventListener('click', function () {
+        var categoryFormCard = document.getElementById('categoryFormCard');
+        if (categoryFormCard.style.display === 'none') {
+            categoryFormCard.style.display = 'block';
+        } else {
+            categoryFormCard.style.display = 'none';
+        }
+    });
+</script>
