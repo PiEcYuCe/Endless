@@ -1,41 +1,83 @@
+<!-- Bootstrap icon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<style>
+    .custom-form {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        background-color:#fff;
+    }
+
+    .custom-form {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .custom-form .left {
+        flex: 2;
+        padding: 5px;
+    }
+
+    .custom-form .right {
+        flex: 1;
+        padding: 5px;
+    }
+
+    .left, .right {
+        flex: 1;
+        padding: 5px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+</style>
 <main>
     <div class="container">
         <div class="py-3">
             <div class="container px-5 my-5">
-                <div class="row">
-                    <div class="col-md-5 offset-1">
-                        <img src="/ui/contact.png" class="w-100 mb-5">
-                        <p><i class="bi bi-house-door-fill"></i> FPT Polytechnic, 22 Street, Thuong Thach, Cai
-                            Rang, Can Tho City</p>
-                        <p><i class="bi bi-telephone-fill"></i> (+84) 375 613 426</p>
-                        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:lytinhnhiem@gmail.com">lytinhnhiem@gmail.com</a>
-                        </p>
-                        <p><i class="bi bi-calendar-week-fill"></i>
-                            Monday - Friday: 8:00 AM - 22:00 PM<br>
-                            Saturday: 8:00 AM - 20:00 PM
-                        </p>
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-3 order-first order-lg-last">
+                        <img class="img-fluid rounded mb-5 mb-lg-0" src="/ui/contact.png" alt="Growth & Beyond" />
                     </div>
-                    <div class="col-md-5 offset-1">
-                        <form>
-                            <div class="">
+                    <div class="col-lg-9">
+                        <form class="custom-form">
+                            <div class="left">
                                 <h2>Send us a message</h2>
-                                <div class="mb-3">
-                                    <label class="form-label">Full name: </label>
-                                    <input type="text" class="form-control" placeholder="Enter name">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email address: </label>
-                                    <input type="email" class="form-control" placeholder="Enter email">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone: </label>
-                                    <input type="text" class="form-control" placeholder="Enter phone">
-                                </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Full name: </label>
+                                        <input type="text" class="form-control" placeholder="Enter name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email address: </label>
+                                        <input type="email" class="form-control" placeholder="Enter email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone: </label>
+                                        <input type="text" class="form-control" placeholder="Enter phone">
+                                    </div>
                                 <div class="mb-3">
                                     <label class="form-label">Message</label>
                                     <textarea class="form-control" rows="5"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary offset-2 col-8">Send message</button>
+                                    <button type="submit" class="btn btn-primary">Send message</button>
+                            </div>
+                            <div class="right">
+                            <h2>Contact Us</h2>
+                            <p><i class="bi bi-house-door-fill"></i> FPT Polytechnic, 22 Street, Thuong Thach, Cai Rang, Can Tho City</p>
+                            <p><i class="bi bi-telephone-fill"></i> (+84) 375 613 426</p>
+                            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:lytinhnhiem@gmail.com">lytinhnhiem@gmail.com</a></p>
+                            <p><i class="bi bi-calendar-week-fill"></i>
+                                Monday - Friday: 8:00 AM - 22:00 PM<br>
+                                Saturday: 8:00 AM - 20:00 PM
+                            </p>
+                            <p><strong>Social Media:</strong> <br> <br>
+                                <a href="#"><i class="fab fa-facebook fa-3x text-dark"></i></a>
+                                <a href="#"><i class="fab fa-twitter fa-3x text-dark"></i></a>
+                                <a href="#"><i class="fab fa-instagram fa-3x text-dark"></i></a>
+                                <a href="#"><i class="fab fa-youtube fa-3x text-dark"></i></a>
+                            </p>
                             </div>
                         </form>
                     </div>

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Category Management</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 <div class="container mt-5">
     <h1 class="mb-4">Category Management</h1>
 
@@ -93,7 +85,27 @@
         <!-- Thêm dòng khác nếu cần -->
         </tbody>
     </table>
+
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tabLinks = document.querySelectorAll('.nav-link');
+        tabLinks.forEach(function (tabLink) {
+            tabLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                var target = this.getAttribute('href');
+                document.querySelector(target).classList.add('show', 'active');
+                var tabContents = document.querySelectorAll('.tab-pane');
+                tabContents.forEach(function (tabContent) {
+                    if ("#" + tabContent.id !== target) {
+                        tabContent.classList.remove('show', 'active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
@@ -107,5 +119,4 @@
         }
     });
 </script>
-</body>
-</html>
+
