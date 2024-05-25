@@ -1,10 +1,296 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="container">
+    <div class="row mt-5 mb-5 px-5">
+        <h2>Invoice List</h2>
+        <hr>
+        <div class="row mb-3 d-flex justify-content-end">
+            <div class="col-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter date">
+                    <button class="btn btn-primary"><i class="bi bi-funnel"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+            <table class="table table-bordered table-hover table-md">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Tom</td>
+                    <td>iPhone 13</td>
+                    <td>6</td>
+                    <td>10-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Lyly</td>
+                    <td>Xiaomi Redmi Note 10</td>
+                    <td>10</td>
+                    <td>20-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Marry</td>
+                    <td>OnePlus Nord</td>
+                    <td>5</td>
+                    <td>11-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Mie</td>
+                    <td>Google Pixel 5</td>
+                    <td>3</td>
+                    <td>22-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Lucy</td>
+                    <td>Sony Xperia 5 II</td>
+                    <td>2</td>
+                    <td>10-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Nami</td>
+                    <td>Huawei Mate 40</td>
+                    <td>5</td>
+                    <td>13-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Lucy</td>
+                    <td>Sony Xperia 5 II</td>
+                    <td>2</td>
+                    <td>10-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Nami</td>
+                    <td>Huawei Mate 40</td>
+                    <td>5</td>
+                    <td>13-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Jerry</td>
+                    <td>LG Wing</td>
+                    <td>6</td>
+                    <td>10-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Nana</td>
+                    <td>Techno Spark 7</td>
+                    <td>5</td>
+                    <td>01-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Kenny</td>
+                    <td>Realme C25</td>
+                    <td>5</td>
+                    <td>02-05-2024</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+            <script>
+                // Tạo một đối tượng div để chứa nội dung HTML của modal
+                var modalContainer = document.createElement('div');
+                modalContainer.innerHTML = `
+    <!-- The Modal -->
+    <div class="modal modal-xl" id="rating">
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Invoice Details</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-</body>
-</html>
+                <!-- Modal body -->
+                <div class="row modal-body px-4">
+                <div class="col-8" style="min-height: 500px; overflow-y: auto;" >
+                <table class="table text-center table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col" colspan="2" class="px-1">Product</th>
+                        <th scope="col" class="px-5">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-4">$999.00</td>
+                        <td class="py-4">$899.00</td>
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-4">$999.00</td>
+                        <td class="py-4">$899.00</td>
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-4">$999.00</td>
+                        <td class="py-4">$899.00</td>
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-4">$999.00</td>
+                        <td class="py-4">$899.00</td>
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-4">$999.00</td>
+                        <td class="py-4">$899.00</td>
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-4">$999.00</td>
+                        <td class="py-4">$899.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
+                <form class="custom-form">
+                    <h3>Customer Information</h3>
+                    <small class="d-block">Name: Tom</small>
+                    <small class="d-block">Phone: (+84) 372 888 992</small>
+                    <small class="d-block">Address: Can Tho City</small>
+                    <hr>
+                    <h5>Product List</h5>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <small class="d-block">$1099.00</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="">
+                    <label class="form-label">Voucher code: SALEENDYEAR</label>
+                    </div>
+                    <div class="row mb-3 mt-4">
+                        <div class="col-3  d-flex">
+                            <h3 class="text-danger">Total:</h3>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <h3 class="text-danger">$5.394</h3>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+`;
+
+                // Chèn đối tượng div vào cuối thẻ body
+                document.body.appendChild(modalContainer);
+
+            </script>
+
+        </div>
+    </div>
+</div>

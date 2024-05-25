@@ -1,44 +1,16 @@
-<style>
-    .card {
-        width: 15rem;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        text-align: center;
-    }
 
-    .card-body {
-        padding: 1rem;
-    }
-
-    .card-body a.btn {
-        display: inline-block;
-    }
-
-    .btn-success {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    }
-    
-    .btn-primary {
-        width: 1000px;
-    }
-
-    .hidden-input {
-        display: none;
-    }
-</style>
 <main>
     <div class="container mt-5">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form class="px-4" action="" method="post" id="form-my-info" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card" style="width: 15rem;">
-                        <img src="/images/User/user2.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <a href="#" class="btn btn-success" id="choose-photo-btn">Choose photo</a>
-                            <input type="file" id="photo-input" class="hidden-input" accept="image/*">
-                        </div>
+                <div class="col-md-3 text-center">
+                    <div class="text-center mt-5">
+                        <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" id="user-avatar"
+                             class="card-img-top rounded-circle border border-secondary" style=" box-shadow: 3px 2px 8px gray;" alt="">
                     </div>
                 </div>
                 <div class="col-md-9">
+                    <h1 class="text-center">Information</h1>
                     <div class="row g-3">
                         <div class="col-md">
                             <div class="mb-3">
@@ -93,6 +65,7 @@
                             </div>
                         </div>
                         <div class="row g-2">
+                            <label class="form-check-label">Address: </label>
                             <div class="col-md">
                                 <label class="form-label">Select province/city </label>
                                 <select class="form-select" aria-label="Default select example">
@@ -121,16 +94,44 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update information</button>
+                        <button type="submit" class="btn btn-primary col-5 offset-3">Update information</button>
                     </div>
                 </div>
             </div>
+
         </form>
     </div>
     <script>
-        document.getElementById('choose-photo-btn').addEventListener('click', function(event) {
+        document.getElementById('user-avatar').addEventListener('click', function(event) {
             event.preventDefault();
-            document.getElementById('photo-input').click();
+            var element = document.getElementById('input-file');
+
+            // Tạo phần tử input nếu nó chưa tồn tại
+            if(!element) {
+                element = document.createElement('input');
+                element.type = 'file';
+                element.name = 'file';
+                element.id = 'input-file';
+                element.style.display = 'none';
+                document.getElementById('form-my-info').appendChild(element);
+
+                // Thêm sự kiện change chỉ một lần khi phần tử được tạo
+                element.addEventListener('change', function (event){
+                    var file = event.target.files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = document.getElementById('user-avatar');
+                            img.src = e.target.result;
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Kích hoạt sự kiện click của input file
+            element.click();
         });
+
     </script>
 </main>

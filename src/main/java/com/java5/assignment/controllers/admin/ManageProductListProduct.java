@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 
-public class ManageListProduct {
+public class ManageProductListProduct {
     @ModelAttribute("page")
     public Page page() {
-        return Page.route.get(PageType.ADMIN_LIST_PRODUCT);
+        return Page.route.get(PageType.ADMIN_PRODUCT_LIST);
     }
 
-    @GetMapping("/manage-list-product")
+    @GetMapping("/manage-product-list")
     public String get() {
         return "admin/layout";
     }
