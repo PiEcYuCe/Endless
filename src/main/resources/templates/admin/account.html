@@ -1,75 +1,202 @@
-<div class="container">
+<div class="container bg-light">
     <div class="row mt-5 mb-5 p-2">
-        <table class="table table-bordered table-hover table-md mt-3">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">UserId</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col">Avatar</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Marry</td>
-                <td>marry@gmail.com</td>
-                <td>User</td>
-                <td>
-                    <img src="/images/User/user2.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                </td>
-                <td>True</td>
-                <td>
-                    <i class="bi bi-pencil-square text-success"></i>
-                    <i class="bi bi-trash-fill text-danger"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Tom</td>
-                <td>tom@gmail.com</td>
-                <td>User</td>
-                <td>
-                    <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                </td>
-                <td>True</td>
-                <td>
-                    <i class="bi bi-pencil-square text-success"></i>
-                    <i class="bi bi-trash-fill text-danger"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Nana</td>
-                <td>nana@gmail.com</td>
-                <td>User</td>
-                <td>
-                    <img src="/images/User/user3.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                </td>
-                <td>True</td>
-                <td>
-                    <i class="bi bi-pencil-square text-success"></i>
-                    <i class="bi bi-trash-fill text-danger"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Lucy</td>
-                <td>lucy@gmail.com</td>
-                <td>User</td>
-                <td>
-                    <img src="/images/User/user4.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                </td>
-                <td>True</td>
-                <td>
-                    <i class="bi bi-pencil-square text-success"></i>
-                    <i class="bi bi-trash-fill text-danger"></i>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <form>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="mb-3">
+                        <label class="form-label">UserID:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password:</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
+                            <label class="form-check-label">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
+                            <label class="form-check-label" >2</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="mb-3">
+                        <label class="form-label">Username:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                        <input type="email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option1">
+                            <label class="form-check-label" >1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
+                            <label class="form-check-label">2</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2">
+                <label class="form-label">Address:</label>
+                <div class="col-md">
+                    <label class="form-label">Select province/city </label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select a province/city</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <label class="form-label">Select district </label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select a district</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <label class="form-label">Select ward/commune </label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select a ward/commune</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3 mt-4 d-flex justify-content-between">
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary w-50">Add</button>
+                </div>
+                <div class="col-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="search">
+                        <button class="btn btn-primary"><i class="bi bi-search input-icon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <h2>List User</h2>
+        <div class="d-flex" style="overflow-y: scroll; max-height: 300px">
+            <table class="table table-bordered table-hover table-md mt-3">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">UserId</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Marry</td>
+                    <td>marry@gmail.com</td>
+                    <td>User</td>
+                    <td>
+                        <img src="/images/User/user2.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                    </td>
+                    <td>True</td>
+                    <td>Can Tho</td>
+                    <td>
+                        <i class="bi bi-pencil-square text-success"></i>
+                        <i class="bi bi-trash-fill text-danger"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Tom</td>
+                    <td>tom@gmail.com</td>
+                    <td>User</td>
+                    <td>
+                        <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                    </td>
+                    <td>True</td>
+                    <td>An Giang</td>
+                    <td>
+                        <i class="bi bi-pencil-square text-success"></i>
+                        <i class="bi bi-trash-fill text-danger"></i>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Tom</td>
+                    <td>tom@gmail.com</td>
+                    <td>User</td>
+                    <td>
+                        <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                    </td>
+                    <td>True</td>
+                    <td>An Giang</td>
+                    <td>
+                        <i class="bi bi-pencil-square text-success"></i>
+                        <i class="bi bi-trash-fill text-danger"></i>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Tom</td>
+                    <td>tom@gmail.com</td>
+                    <td>User</td>
+                    <td>
+                        <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                    </td>
+                    <td>True</td>
+                    <td>An Giang</td>
+                    <td>
+                        <i class="bi bi-pencil-square text-success"></i>
+                        <i class="bi bi-trash-fill text-danger"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Nana</td>
+                    <td>nana@gmail.com</td>
+                    <td>User</td>
+                    <td>
+                        <img src="/images/User/user3.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                    </td>
+                    <td>True</td>
+                    <td>An Giang</td>
+                    <td>
+                        <i class="bi bi-pencil-square text-success"></i>
+                        <i class="bi bi-trash-fill text-danger"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Lucy</td>
+                    <td>lucy@gmail.com</td>
+                    <td>User</td>
+                    <td>
+                        <img src="/images/User/user4.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                    </td>
+                    <td>True</td>
+                    <td>Vinh Long</td>
+                    <td>
+                        <i class="bi bi-pencil-square text-success"></i>
+                        <i class="bi bi-trash-fill text-danger"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
