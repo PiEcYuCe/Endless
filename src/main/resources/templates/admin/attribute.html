@@ -2,9 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Attribute Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container mt-5 bg-light">
+    <h1 class="mb-4">Attribute Management</h1>
 
+    <!-- Card for Add/Edit Attribute Form -->
+    <div class="card mb-5">
+        <div class="card-header">
+            Add/Edit Attribute
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="attributeName" class="form-label">Attribute Name</label>
+                    <input type="text" class="form-control" id="attributeName" name="attributeName">
+                </div>
+                <div class="mb-3">
+                    <label for="attributeNote" class="form-label">Attribute Note</label>
+                    <textarea class="form-control" id="attributeNote" name="attributeNote" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="attributeValue" class="form-label">Attribute Value</label>
+                    <input type="text" class="form-control" id="attributeValue" name="attributeValue">
+                </div>
+                <hr>
+               //coppy
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('addVersionAttributeBtn').addEventListener('click', function() {
+        var container = document.getElementById('versionAttributesContainer');
+        var newVersionAttribute = document.createElement('div');
+        newVersionAttribute.classList.add('version-attribute', 'mb-3');
+        newVersionAttribute.innerHTML = `
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="productVersionID" class="form-label">Product Version</label>
+                    <select class="form-select" name="productVersionID[]">
+                        <option selected>Choose a product version...</option>
+                        <option value="1">Version 1</option>
+                        <option value="2">Version 2</option>
+                        <option value="3">Version 3</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="attributeValueID" class="form-label">Attribute Value</label>
+                    <select class="form-select" name="attributeValueID[]">
+                        <option selected>Choose an attribute value...</option>
+                        <option value="1">Value 1</option>
+                        <option value="2">Value 2</option>
+                        <option value="3">Value 3</option>
+                    </select>
+                </div>
+            </div>
+        `;
+        container.appendChild(newVersionAttribute);
+    });
+</script>
 </body>
 </html>
