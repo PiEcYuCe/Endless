@@ -10,38 +10,30 @@
 </head>
 
 <body>
-<div class="container sign-up-mode">
+<div class="container "> <!--    sign-up-mode-->
+
     <div class="forms-container">
         <div class="signIn-signUp">
-            <form action="" class="sign-in-form">
+            <form action="/login" method="post" class="sign-in-form">
                 <h2 class="title">Sign In</h2>
                 <div class="input-field">
                     <i class='bx bx-user'></i>
-                    <input type="text" placeholder="User Name">
-
-<!--                    <input type="text" class="form-control" th:value="${student?.id}" id="id" name="id">-->
-<!--                    <small id="idError" class="text-danger"-->
-<!--                           th:if='${error?.getFieldError("id")!=null}'-->
-<!--                           th:text='${error?.getFieldError("id")?.getDefaultMessage()}'></small>-->
-
+                    <input type="text" name="username1" placeholder="User Name">
                 </div>
+                <div class="error-container"><p th:text="${error}"></p></div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
-                    <input type="password" placeholder="Password">
-                    <!-- Thêm icon con mắt vào đây -->
+                    <input type="password" name="password1" placeholder="Password">
                     <i class='bx bx-hide eye-icon'></i>
                     <i class='bx bx-show eye-icon' style="display:none"></i>
                 </div>
-                <div class="form-check d-flex p-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Remember me
-                    </label>
+                <div class="error-container"><p th:text="${error1}"></p></div>
+                <div class="checkbox-container">
+                    <input type="checkbox" name="rememberMe" id="rememberMe" value="true">
+                    <label for="rememberMe"> Remember me</label>
                 </div>
-                <input type="submit" value="Log In" class="btn solid">
+                <button type="submit" value="Sign In" class="btn solid">Sign In</button>
                 <p class="social-text"><a href="">Forgot password?</a></p>
-                <div class="social-media">
-                </div>
             </form>
             <form action="" class="sign-up-form">
                 <h2 class="title">Sign Up</h2>
@@ -64,7 +56,8 @@
                     <i class='bx bx-phone'></i>
                     <input type="text" placeholder=" Phone">
                 </div>
-                <input type="submit" value="Sign Up" class="btn solid">
+                <button type="submit" value="Sign Up" class="btn solid">Sign Up</button>
+
                 <p class="social-text"></p>
                 <div class="social-media">
                 </div>
