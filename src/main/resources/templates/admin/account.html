@@ -6,6 +6,10 @@
                     <div class="text-center">
                         <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" id="user-avatar"
                              class="card-img-top rounded-circle border border-secondary" style=" box-shadow: 3px 2px 8px gray;" alt="">
+                        <br>
+                        <span class="text-danger"
+                              th:if='${error?.getFieldError("image") != null}'
+                              th:text='${error?.getFieldError("image")?.getDefaultMessage()}'></span>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -20,32 +24,18 @@
                                    th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
-                                <label class="form-label">Email: </label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter email">
-                                <span class="text-danger"
-                                   th:if='${error?.getFieldError("email") != null}'
-                                   th:text='${error?.getFieldError("email")?.getDefaultMessage()}'></span>
+                                <label class="form-label">Fullname: </label>
+                                <input type="text" class="form-control" name="fullName" placeholder="Enter fullname">
+                                <p class="text-danger"
+                                   th:if='${error?.getFieldError("fullName") != null}'
+                                   th:text='${error?.getFieldError("fullName")?.getDefaultMessage()}'></p>
                             </div>
                             <div class="mb-1">
-                                <label class="form-label">Status: </label>
-                                <br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="true">
-                                    <label class="form-check-label">True</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="false">
-                                    <label class="form-check-label">False</label>
-                                </div>
+                                <label class="form-label">Phone: </label>
+                                <input type="text" class="form-control" placeholder="Enter phone">
                                 <span class="text-danger"
-                                   th:if='${error?.getFieldError("username") != null}'
-                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="mb-1">
-                                <label class="form-label">Password: </label>
-                                <input type="password" class="form-control" name="userID" placeholder="Enter password">
+                                      th:if='${error?.getFieldError("phone") != null}'
+                                      th:text='${error?.getFieldError("phone")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Role: </label>
@@ -58,47 +48,56 @@
                                     <input class="form-check-input" type="radio" name="role" value="customer">
                                     <label class="form-check-label">User</label>
                                 </div>
+                                <br>
                                 <span class="text-danger"
-                                   th:if='${error?.getFieldError("username") != null}'
-                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
+                                      th:if='${error?.getFieldError("role") != null}'
+                                      th:text='${error?.getFieldError("role")?.getDefaultMessage()}'></span>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <label class="form-check-label">Address: </label>
-                            <div class="col-md">
-                                <label class="form-label">Select province/city </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Select a province/city</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                        <div class="col-md">
+                            <div class="mb-1">
+                                <label class="form-label">Password: </label>
+                                <input type="password" class="form-control" name="userID" placeholder="Enter password">
+                                <span class="text-danger"
+                                      th:if='${error?.getFieldError("password") != null}'
+                                      th:text='${error?.getFieldError("password")?.getDefaultMessage()}'></span>
                             </div>
-                            <div class="col-md">
-                                <label class="form-label">Select district </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Select a district</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                            <div class="mb-1">
+                                <label class="form-label">Email: </label>
+                                <input type="text" class="form-control" name="email" placeholder="Enter email">
+                                <span class="text-danger"
+                                      th:if='${error?.getFieldError("email") != null}'
+                                      th:text='${error?.getFieldError("email")?.getDefaultMessage()}'></span>
                             </div>
-                            <div class="col-md">
-                                <label class="form-label">Select ward/commune </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Select a ward/commune</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                            <div class="mb-1">
+                                <label class="form-label">Address: </label>
+                                <input type="text" class="form-control" name="address" placeholder="Enter address">
+                                <span class="text-danger"
+                                      th:if='${error?.getFieldError("address") != null}'
+                                      th:text='${error?.getFieldError("address")?.getDefaultMessage()}'></span>
                             </div>
-                        </div>
-                        <div class="d-flex col-8">
-                            <button type="submit" class="btn btn-primary p-2 flex-fill mt-3 col-3"><i class="bi bi-plus-circle-fill"></i> Create</button>
-                            <button type="submit" class="btn btn-success p-2 flex-fill mt-3 col-3 mx-2"><i class="bi bi-arrow-up-circle-fill"></i> Update</button>
-                            <button type="submit" class="btn btn-warning text-white p-2 flex-fill mt-3 col-3"><i class="bi bi-x-circle-fill"></i> Clear</button>
-                        </div>
+                            <div class="mb-1">
+                                <label class="form-label">Status: </label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="true">
+                                    <label class="form-check-label">True</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="false">
+                                    <label class="form-check-label">False</label>
+                                </div>
+                                <br>
+                                <span class="text-danger"
+                                      th:if='${error?.getFieldError("status") != null}'
+                                      th:text='${error?.getFieldError("status")?.getDefaultMessage()}'></span>
+                            </div>
                     </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary col-3"><i class="bi bi-plus-circle-fill"></i> Create</button>
+                            <button type="submit" class="btn btn-success col-3"><i class="bi bi-arrow-up-circle-fill"></i> Update</button>
+                            <button type="submit" class="btn btn-warning text-white col-3"><i class="bi bi-x-circle-fill"></i> Clear</button>
+                        </div>
                 </div>
             </div>
         </form>
@@ -119,6 +118,7 @@
                 <tr>
                     <th scope="col">UserId</th>
                     <th scope="col">Username</th>
+                    <th scope="col">Fullname</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
                     <th scope="col">Avatar</th>
@@ -131,6 +131,7 @@
                 <tr>
                     <td>1</td>
                     <td>Marry</td>
+                    <td>Joni Marry</td>
                     <td>marry@gmail.com</td>
                     <td>User</td>
                     <td>
@@ -146,6 +147,7 @@
                 <tr>
                     <td>2</td>
                     <td>Tom</td>
+                    <td>Tom Tom</td>
                     <td>tom@gmail.com</td>
                     <td>User</td>
                     <td>
@@ -162,6 +164,7 @@
                 <tr>
                     <td>2</td>
                     <td>Tom</td>
+                    <td>Tom Tom</td>
                     <td>tom@gmail.com</td>
                     <td>User</td>
                     <td>
@@ -178,6 +181,7 @@
                 <tr>
                     <td>2</td>
                     <td>Tom</td>
+                    <td>Tom Tom</td>
                     <td>tom@gmail.com</td>
                     <td>User</td>
                     <td>
@@ -193,6 +197,7 @@
                 <tr>
                     <td>3</td>
                     <td>Nana</td>
+                    <td>Lulu Nana</td>
                     <td>nana@gmail.com</td>
                     <td>User</td>
                     <td>
@@ -208,6 +213,7 @@
                 <tr>
                     <td>4</td>
                     <td>Lucy</td>
+                    <td>Don Lucy</td>
                     <td>lucy@gmail.com</td>
                     <td>User</td>
                     <td>
