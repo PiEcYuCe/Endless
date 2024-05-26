@@ -30,5 +30,5 @@ public class ProductVersion {
     @NotNull(message = "Please enter quantity")
     private Integer quantity;
     private boolean status;
-    private MultipartFile image;
+    private String image;
 }
