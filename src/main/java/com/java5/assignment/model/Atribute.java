@@ -13,4 +13,6 @@ public class Atribute {
     private int attributeID;
     private String attributeName;
     private String attributeNote;
+
+
 }

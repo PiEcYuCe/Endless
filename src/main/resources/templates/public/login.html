@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,57 +10,56 @@
 </head>
 
 <body>
-<div class="container sign-up-mode">
+<div class="container "> <!--    sign-up-mode-->
+
     <div class="forms-container">
         <div class="signIn-signUp">
-            <form action="" class="sign-in-form">
+            <form action="/login" method="post" class="sign-in-form">
                 <h2 class="title">Sign In</h2>
                 <div class="input-field">
                     <i class='bx bx-user'></i>
-                    <input type="text" placeholder="User Name">
+                    <input type="text" name="username1" placeholder="User Name">
                 </div>
+                <div class="error-container"><p th:text="${error}"></p></div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
-                    <input type="password" placeholder="Password">
+                    <input type="password" name="password1" placeholder="Password">
+                    <i class='bx bx-hide eye-icon'></i>
+                    <i class='bx bx-show eye-icon' style="display:none"></i>
                 </div>
-                <input type="submit" value="Log In" class="btn solid">
+                <div class="error-container"><p th:text="${error1}"></p></div>
+                <div class="checkbox-container">
+                    <input type="checkbox" name="rememberMe" id="rememberMe" value="true">
+                    <label for="rememberMe"> Remember me</label>
+                </div>
+                <button type="submit" value="Sign In" class="btn solid">Sign In</button>
                 <p class="social-text"><a href="">Forgot password?</a></p>
-                <div class="social-media">
-                </div>
             </form>
             <form action="" class="sign-up-form">
                 <h2 class="title">Sign Up</h2>
                 <div class="input-field">
                     <i class='bx bx-user'></i>
-                    <input type="text" placeholder="User Name">
+                    <input type="text" placeholder=" User Name">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-envelope'></i>
-                    <input type="email" placeholder="Email">
+                    <input type="email" placeholder=" Email">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
-                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder=" Password">
+                    <!-- Thêm icon con mắt vào đây -->
+                    <i class='bx bx-hide eye-icon'></i>
+                    <i class='bx bx-show eye-icon' style="display:none"></i>
                 </div>
                 <div class="input-field">
                     <i class='bx bx-phone'></i>
-                    <input type="text" placeholder="Phone">
+                    <input type="text" placeholder=" Phone">
                 </div>
-                <input type="submit" value="Sign Up" class="btn solid">
+                <button type="submit" value="Sign Up" class="btn solid">Sign Up</button>
+
                 <p class="social-text"></p>
                 <div class="social-media">
-                    <!--                    <a href="#" class="social-icon">-->
-                    <!--                        <i class="bx bxl-facebook"></i>-->
-                    <!--                    </a>-->
-                    <!--                    <a href="#" class="social-icon">-->
-                    <!--                        <i class="bx bxl-twitter"></i>-->
-                    <!--                    </a>-->
-                    <!--                    <a href="#" class="social-icon">-->
-                    <!--                        <i class="bx bxl-google"></i>-->
-                    <!--                    </a>-->
-                    <!--                    <a href="#" class="social-icon">-->
-                    <!--                        <i class="bx bxl-linkedin"></i>-->
-                    <!--                    </a>-->
                 </div>
             </form>
         </div>
@@ -86,7 +85,36 @@
         </div>
     </div>
 </div>
+
 <script src="/js/login.js"></script>
+<script>
+
+    // Lấy các phần tử cần thiết cho form đăng nhập
+    const passwordInputSignIn = document.querySelector('.sign-in-form input[type="password"]');
+    const eyeIconSignIn = document.querySelector('.sign-in-form .eye-icon');
+
+    // Bắt sự kiện click vào icon con mắt cho form đăng nhập
+    eyeIconSignIn.addEventListener('click', function () {
+        const type = passwordInputSignIn.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInputSignIn.setAttribute('type', type);
+        eyeIconSignIn.classList.toggle('bx-hide');
+        eyeIconSignIn.classList.toggle('bx-show');
+    });
+
+    // Lấy các phần tử cần thiết cho form đăng ký
+    const passwordInputSignUp = document.querySelector('.sign-up-form input[type="password"]');
+    const eyeIconSignUp = document.querySelector('.sign-up-form .eye-icon');
+
+    // Bắt sự kiện click vào icon con mắt cho form đăng ký
+    eyeIconSignUp.addEventListener('click', function () {
+        const type = passwordInputSignUp.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInputSignUp.setAttribute('type', type);
+        eyeIconSignUp.classList.toggle('bx-hide');
+        eyeIconSignUp.classList.toggle('bx-show');
+    });
+
+
+</script>
 </body>
 
 </html>
