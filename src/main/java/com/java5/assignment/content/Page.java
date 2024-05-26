@@ -51,7 +51,7 @@ public class Page {
         route.put(PageType.ADMIN_STATISTICAL_INTERACT, new Page("/admin/statistical-interact.html", "statistical"));
         route.put(PageType.PROFILE, new Page("public/profile.html", "account"));
         route.put(PageType.LOGIN, new Page("public/login.html", "login"));
-        route.put(PageType.REGISTER,  new Page("public/register.html", "register"));
+//        route.put(PageType.REGISTER,  new Page("public/register.html", "register"));
         route.put(PageType.CHANGE_PASSWORD, new Page("public/change-password.html", "change-password"));
 
     }
