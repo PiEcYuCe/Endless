@@ -7,7 +7,7 @@ public enum PageType {
     DETAIL_PRODUCT,
     ABOUT_US,
     LOGIN,
-    REGISTER,
+//    REGISTER,
     PROFILE,
     CHANGE_PASSWORD,
     ORDER,
