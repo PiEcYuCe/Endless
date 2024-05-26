@@ -1,7 +1,286 @@
-<div class="container">
-    <div class="row mt-5 mb-5 px-5">
-        <h2>Invoice List</h2>
-        <hr>
+<style>
+    .autocomplete-items {
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        margin-top: 50px;
+        margin-right: -200px;
+        position: absolute;
+        max-height: 300px;
+        max-width: 600px;
+        overflow-y: auto;
+        background-color: white;
+        list-style-type: none;
+        cursor: pointer;
+    }
+
+    .autocomplete-items div {
+        padding: 2px;
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+    }
+
+    .autocomplete-items div:hover {
+        background-color: #f1f1f1;
+    }
+
+    .autocomplete-items div.active {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
+
+<div class="container py-3 bg-light">
+    <div class="row mb-3 p-2">
+        <div class="row d-flex justify-content-between">
+            <div class="d-flex input-group w-25 px-3" style="position: relative;">
+                <input type="text" class="form-control" id="productInput"
+                       aria-label="Amount (to the nearest dollar)" style="max-height: 100px;">
+                <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <ul id="productList" class="autocomplete-items"></ul>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-8" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col" colspan="2" class="px-1">Product</th>
+                        <th scope="col" class="px-5">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
+
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" placeholder="Recipient's username"
+                           aria-label="Enter email or phone number" aria-describedby="basic-addon2">
+                    <button class="input-group-text btn btn-primary" id="basic-addon2"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <form class="custom-form" id="total">
+                    <small class="d-block">Customer: tom</small>
+                    <small class="d-block">Phone : 0123456789</small>
+                    <small class="d-block">Address: Kantor</small>
+                    <hr>
+                    <div class="input-group col-12">
+                        <input class="form-control rounded-2" list="saleValue"
+                               placeholder="Enter voucher code">
+                        <datalist id="saleValue">
+                            <option value="Sale 5%">
+                            <option value="Sale 10%">
+                            <option value="Sale 15%">
+                            <option value="Sale 20%">
+                            <option value="Sale 25%">
+                        </datalist>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3 d-flex">
+                            <h6>Amount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$4.396</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex">
+                            <h6>Discount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$43.96</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 d-flex">
+                            <h3 class="text-danger">Total:</h3>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <h3 class="text-danger">$4.352,04</h3>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#cart">
+                        Submit
+                    </button>
+                </form>
+
+                <script th:inline="javascript">
+                    const productVersions = /*[[${productVersions}]]*/ [];
+
+                    function updateTotal() {
+                        let productQuantity = 0;
+                        let totalQuantity = 0;
+                        let totalPrice = 0;
+
+                        const rows = document.querySelectorAll('tbody tr');
+                        productQuantity = rows.length;
+                        rows.forEach(row => {
+                            const quantity = parseInt(row.querySelector('input[type="number"]').value);
+                            const price = parseFloat(row.querySelector('.price').innerText);
+                            totalQuantity += quantity;
+                            totalPrice += quantity * price;
+                        });
+
+                        document.getElementById('product-quantity').innerText = productQuantity;
+                        document.getElementById('total-quantity').innerText = totalQuantity;
+                        document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+                    }
+
+                    function deleteRow(rowId) {
+                        const row = document.getElementById(rowId);
+                        if (row) {
+                            row.parentNode.removeChild(row);
+                            updateTotal();
+                        }
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const input = document.getElementById('productInput');
+                        const ul = document.getElementById('productList');
+                        const tableBody = document.querySelector('tbody');
+
+                        function closeAllLists() {
+                            while (ul.firstChild) {
+                                ul.removeChild(ul.firstChild);
+                            }
+                        }
+
+                        function addProductToTable(item) {
+                            let existingRow = document.getElementById(`quantity_${item?.productVersionID}`);
+                            if (existingRow) {
+                                let quantityInput = document.getElementById(`quantity_${item?.productVersionID}`);
+                                let quantity = parseInt(quantityInput.value);
+                                quantityInput.value = quantity + 1;
+                            } else {
+                                const newRow = createTableRow(item);
+                                tableBody.appendChild(newRow);
+                            }
+                            updateTotal();
+                        }
+
+                        function createTableRow(item) {
+                            const newRow = document.createElement('tr');
+                            newRow.id = `row_${item?.productVersionID}`;
+                            newRow.innerHTML = `
+                <td class="px-0 mx-0 col-1 py-3">
+                    <div class="d-flex align-items-center">
+                        <img src="${item?.image}" class="img-fluid w-50">
+                    </div>
+                </td>
+                <td class="pt-4">
+                    <h6>${item?.versionName}</h6>
+                </td>
+                <td class="d-flex py-4">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="minus('quantity_${item?.productVersionID}', '${item?.purchasePrice}')">-</button>
+                    </div>
+                    <input type="number" class="form-control col-6 text-end" id="quantity_${item?.productVersionID}" min="0" value="1" style="width: 60px; max-height: 40px" onchange="updateTotal()">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="plus('quantity_${item?.productVersionID}', '${item?.purchasePrice}')">+</button>
+                    </div>
+                </td>
+                <td class="py-4 price">${item?.purchasePrice}</td>
+                <td class="py-4">
+                    <button class="btn btn-danger" onclick="deleteRow('row_${item?.productVersionID}')">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            `;
+                            return newRow;
+                        }
+
+                        function updateList(val) {
+                            closeAllLists();
+                            if (!val) {
+                                return false;
+                            }
+                            let count = 0;
+                            productVersions.forEach((item) => {
+                                if (item?.versionName.toUpperCase().includes(val.toUpperCase()) && count < 10) {
+                                    const li = document.createElement('li');
+                                    li.innerHTML = `
+                        <img src="${item?.image}" style="width: 50px; height: auto; margin-right: 10px;">
+                        <span>${item.versionName}</span>
+                    `;
+                                    li.addEventListener('mousedown', function () {
+                                        addProductToTable(item);
+                                    });
+                                    ul.appendChild(li);
+                                    count++;
+                                }
+                            });
+                        }
+
+                        input.addEventListener('input', function () {
+                            updateList(this.value);
+                        });
+
+                        document.addEventListener('click', function (event) {
+                            if (!event.target.closest('#productInput') && !event.target.closest('#productList')) {
+                                closeAllLists();
+                            }
+                        });
+                    });
+
+                    const plus = function (name, price) {
+                        var input = document.getElementById(name);
+                        var value = parseInt(input.value);
+                        input.value = value + 1;
+                        updateTotal();
+                    }
+
+                    const minus = function (name, price) {
+                        var input = document.getElementById(name);
+                        var value = parseInt(input.value);
+                        if (value > 0) {
+                            input.value = value - 1;
+                        }
+                        updateTotal();
+                    }
+                </script>
+
+                <script>
+                    var modalContainer = document.createElement('div');
+                    modalContainer.innerHTML = `
+    <!-- The Modal -->
+    <div class="modal" id="cart">
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+`;
+
+                    document.body.appendChild(modalContainer);
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2 mb-3 px-2">
         <div class="row mb-3 d-flex justify-content-end">
             <div class="col-3">
                 <div class="input-group">
@@ -30,7 +309,8 @@
                     <td>6</td>
                     <td>10-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +320,8 @@
                     <td>10</td>
                     <td>20-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -50,7 +331,8 @@
                     <td>5</td>
                     <td>11-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +342,8 @@
                     <td>3</td>
                     <td>22-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -70,7 +353,8 @@
                     <td>2</td>
                     <td>10-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -80,7 +364,8 @@
                     <td>5</td>
                     <td>13-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -90,7 +375,8 @@
                     <td>2</td>
                     <td>10-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -100,7 +386,8 @@
                     <td>5</td>
                     <td>13-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -110,7 +397,8 @@
                     <td>6</td>
                     <td>10-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -120,7 +408,8 @@
                     <td>5</td>
                     <td>01-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -130,7 +419,8 @@
                     <td>5</td>
                     <td>02-05-2024</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                                class="bi bi-eye-fill"></i></button>
                     </td>
                 </tr>
                 </tbody>
@@ -152,7 +442,7 @@
 
                 <!-- Modal body -->
                 <div class="row modal-body px-4">
-                <div class="col-8" style="min-height: 500px; overflow-y: auto;" >
+                <div class="col-8" style="min-height: 480px; overflow-y: auto;" >
                 <table class="table text-center table-hover">
                     <thead class="table-dark">
                     <tr>
