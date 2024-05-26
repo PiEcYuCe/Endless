@@ -24,103 +24,127 @@
     }
 
     .autocomplete-items div:hover {
-        background-color: #e9e9e9;
-
+        background-color: #f1f1f1; /* Màu nền khi hover */
     }
+
+    .autocomplete-items div.active {
+        background-color: #007bff; /* Màu nền khi được chọn */
+        color: #fff; /* Màu chữ khi được chọn */
+    }
+
 </style>
 <div class="container-fluid bg-light">
     <h2 class="text-center">Title website</h2>
     <div class="row mb-5 p-2">
-            <div class="row">
-                <div class="d-flex input-group w-25 px-3" style="position: relative;">
-                    <input type="text" class="form-control" id="productInput"
-                           aria-label="Amount (to the nearest dollar)" style="max-height: 100px;">
-                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <ul id="productList" class="autocomplete-items">
-
-                    </ul>
-                </div>
+        <div class="row">
+            <div class="d-flex input-group w-25 px-3" style="position: relative;">
+                <input type="text" class="form-control" id="productInput"
+                       aria-label="Amount (to the nearest dollar)" style="max-height: 100px;">
+                <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <ul id="productList" class="autocomplete-items"></ul>
             </div>
-            <div class="row mt-3">
-                <div class="col-8" style="min-height: 500px; overflow-y: auto;" >
-                    <table class="table table-hover">
-                        <thead class="table-dark">
-                        <tr>
-                            <th scope="col" colspan="2" class="px-1">Product</th>
-                            <th scope="col" class="px-5">Quantity</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
+        </div>
+        <div class="row mt-3">
+            <div class="col-8" style="min-height: 400px; overflow-y: auto;">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col" colspan="2" class="px-1">Product</th>
+                        <th scope="col" class="px-5">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
 
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
-                    <form class="custom-form">
-                        <h3>Customer Information</h3>
-                        <small class="d-block">Name: Tom</small>
-                        <small class="d-block">Phone: (+84) 372 888 992</small>
-                        <small class="d-block">Address: Can Tho City</small>
-                        <hr>
-                        <h5>Product List</h5>
-                        <div class="d-flex align-items-center px-5">
-                            <div class="form-check p-2">
-                                <input class="form-check-input" type="checkbox" value="" id="">
-                            </div>
-                            <div class="p-2 col-3">
-                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="p-2">
-                                <small class="d-block">iPhone 13 128GB White</small>
-                                <small class="d-block">$1099.00</small>
-                            </div>
+            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
+                <form class="custom-form">
+                    <h3>Customer Information</h3>
+                    <small class="d-block">Name: Tom</small>
+                    <small class="d-block">Phone: (+84) 372 888 992</small>
+                    <small class="d-block">Address: Can Tho City</small>
+                    <hr>
+                    <h5>Product List</h5>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="form-check p-2">
+                            <input class="form-check-input" type="checkbox" value="" id="">
                         </div>
-                        <hr>
-                        <div class="input-group col-12">
-                            <input class="form-control rounded-2" list="saleValue"
-                                   placeholder="Enter voucher code">
-                            <datalist id="saleValue">
-                                <option value="Sale 5%">
-                                <option value="Sale 10%">
-                                <option value="Sale 15%">
-                                <option value="Sale 20%">
-                                <option value="Sale 25%">
-                            </datalist>
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
                         </div>
-                        <div class="row mb-3 mt-4 d-flex justify-content-between">
-                            <div class="col-3">
-                                <h3 class="text-danger">Total:</h3>
-                            </div>
-                            <div class="col-3">
-                                <h3 class="text-danger">$</h3>
-                            </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <small class="d-block">$1099.00</small>
                         </div>
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#cart">Buy</button>
-                    </form>
+                    </div>
+                    <hr>
+                    <div class="input-group col-12">
+                        <input class="form-control rounded-2" list="saleValue"
+                               placeholder="Enter voucher code">
+                        <datalist id="saleValue">
+                            <option value="Sale 5%">
+                            <option value="Sale 10%">
+                            <option value="Sale 15%">
+                            <option value="Sale 20%">
+                            <option value="Sale 25%">
+                        </datalist>
+                    </div>
+                    <div class="row mb-3 mt-4 d-flex justify-content-between">
+                        <div class="col-3">
+                            <h3 class="text-danger">Total:</h3>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="text-danger">$</h3>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#cart">Buy</button>
+                </form>
 
-                    <script th:inline="javascript">
-                        const productVersions = /*[[${productVersions}]]*/ [];
 
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const input = document.getElementById('productInput');
-                            const ul = document.getElementById('productList');
-                            const tableBody = document.querySelector('tbody');
+                <script th:inline="javascript">
 
-                            function closeAllLists() {
-                                while (ul.firstChild) {
-                                    ul.removeChild(ul.firstChild);
-                                }
+                    function deleteRow(rowId) {
+                        const row = document.getElementById(rowId);
+                        if (row) {
+                            row.parentNode.removeChild(row);
+                        }
+                    }
+                    const productVersions = /*[[${productVersions}]]*/ [];
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const input = document.getElementById('productInput');
+                        const ul = document.getElementById('productList');
+                        const tableBody = document.querySelector('tbody');
+
+                        function closeAllLists() {
+                            while (ul.firstChild) {
+                                ul.removeChild(ul.firstChild);
                             }
+                        }
 
-                            function addProductToTable(item) {
-                                const newRow = document.createElement('tr');
-                                newRow.innerHTML = `
+                        function addProductToTable(item) {
+                            let existingRow = document.getElementById(`quantity_${item?.productVersionID}`);
+                            if (existingRow) {
+                                let quantityInput = document.getElementById(`quantity_${item?.productVersionID}`);
+                                let quantity = parseInt(quantityInput.value);
+                                quantityInput.value = quantity + 1;
+                            } else {
+                                const newRow = createTableRow(item);
+                                tableBody.appendChild(newRow);
+                            }
+                        }
+
+                        function createTableRow(item) {
+                            const newRow = document.createElement('tr');
+                            newRow.id = `row_${item?.productVersionID}`; // Gán id cho hàng
+                            newRow.innerHTML = `
                 <td class="px-0 mx-0 col-1 py-3">
                     <div class="d-flex align-items-center">
                         <img src="${item?.image}" class="img-fluid w-50">
@@ -130,54 +154,72 @@
                     <h6>${item?.versionName}</h6>
                 </td>
                 <td class="d-flex py-4">
-                    <div class=" input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" onclick="minus('quality1')">-</button>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="minus('quantity_${item?.productVersionID}')">-</button>
                     </div>
-                    <input type="number" class="form-control col-6 text-end" id="quality1" min="0" value="0" style="width: 60px; max-height: 40px">
+                    <input type="number" class="form-control col-6 text-end" id="quantity_${item?.productVersionID}" min="0" value="1" style="width: 60px; max-height: 40px">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" onclick="plus('quality1')">+</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="plus('quantity_${item?.productVersionID}')">+</button>
                     </div>
                 </td>
                 <td class="py-4">${item?.purchasePrice}</td>
                 <td class="py-4">
-                    <i class="bi bi-trash-fill text-danger"></i>
+                    <button class="btn btn-danger" onclick="deleteRow('row_${item?.productVersionID}')">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
                 </td>
             `;
-                                tableBody.appendChild(newRow);
-                                closeAllLists();
-                            }
+                            return newRow;
+                        }
 
-                            function updateList(val) {
-                                closeAllLists();
-                                if (!val) {
-                                    return false;
-                                }
-                                let count = 0;
-                                productVersions.forEach((item) => {
-                                    if (item.versionName.toUpperCase().includes(val.toUpperCase()) && count < 10) {
-                                        const li = document.createElement('li');
-                                        li.innerHTML = `
+
+                        function updateList(val) {
+                            closeAllLists();
+                            if (!val) {
+                                return false;
+                            }
+                            let count = 0;
+                            productVersions.forEach((item) => {
+                                if (item?.versionName.toUpperCase().includes(val.toUpperCase()) && count < 10) {
+                                    const li = document.createElement('li');
+                                    li.innerHTML = `
                         <img src="${item?.image}" style="width: 50px; height: auto; margin-right: 10px;">
                         <span>${item.versionName}</span>
                     `;
-                                        li.addEventListener('mousedown', function () {
-                                            addProductToTable(item);
-                                        });
-                                        ul.appendChild(li);
-                                        count++;
-                                    }
-                                });
-                            }
-
-                            input.addEventListener('input', function () {
-                                updateList(this.value);
+                                    li.addEventListener('mousedown', function () {
+                                        addProductToTable(item);
+                                    });
+                                    ul.appendChild(li);
+                                    count++;
+                                }
                             });
+                        }
 
-                            input.addEventListener('blur', function () {
-                                setTimeout(closeAllLists, 100);
-                            });
+                        input.addEventListener('input', function () {
+                            updateList(this.value);
                         });
-                    </script>
+
+                        document.addEventListener('click', function (event) {
+                            if (!event.target.closest('#productInput') && !event.target.closest('#productList')) {
+                                closeAllLists();
+                            }
+                        });
+                    });
+
+                    const plus = function (name) {
+                        var input = document.getElementById(name);
+                        var value = parseInt(input.value);
+                        input.value = value + 1;
+                    }
+
+                    const minus = function (name) {
+                        var input = document.getElementById(name);
+                        var value = parseInt(input.value);
+                        if (value > 0) {
+                            input.value = value - 1;
+                        }
+                    }
+                </script>
 
                     <script>
                         // Tạo một đối tượng div để chứa nội dung HTML của modal
