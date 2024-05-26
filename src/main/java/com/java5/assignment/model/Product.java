@@ -1,5 +1,6 @@
 package com.java5.assignment.model;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,17 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    @NotEmpty(message = "Product name cannot be empty")
+    @NotBlank(message = "Please enter product name")
     private String productName;
-
-    @NotEmpty(message = "Product description cannot be empty")
+    @NotBlank(message = "Please enter product description")
     private String productDescription;
-
-    @NotNull(message = "Please select a category")
     private Integer productCategory;
-
-    @NotNull(message = "Please select a brand")
     private Integer productBrand;
-
     private boolean productStatus;
 }

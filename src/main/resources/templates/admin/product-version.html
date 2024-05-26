@@ -7,7 +7,7 @@
             Add/Edit Product Version
         </div>
         <div class="card-body">
-            <form>
+            <form action="/manage-product-version" method="post" enctype="multipart/form-data">
                 <div class="mb-1">
                     <label for="exampleDataList" class="form-label">Product</label>
                     <input class="form-control" list="datalistOptions" id="exampleDataList"
@@ -20,20 +20,36 @@
 
                 </div>
                 <div class="mb-1">
-                    <label for="versionName" class="form-label">Version Name</label>
+                    <label for="versionName" class="form-label">Version name</label>
                     <input type="text" class="form-control" id="versionName" name="versionName">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("versionName") != null}'
+                          th:text='${error?.getFieldError("versionName")?.getDefaultMessage()}'></span>
                 </div>
                 <div class="mb-1">
-                    <label for="purchasePrice" class="form-label">Purchase Price</label>
-                    <input type="number" step="0.01" class="form-control" id="purchasePrice" name="purchasePrice">
+                    <label for="purchasePrice" class="form-label">Purchase price</label>
+                    <input type="number" min="0" class="form-control" id="purchasePrice" name="purchasePrice">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("purchasePrice") != null}'
+                          th:text='${error?.getFieldError("purchasePrice")?.getDefaultMessage()}'></span>
                 </div>
                 <div class="mb-1">
-                    <label for="salePrice" class="form-label">Sale Price</label>
-                    <input type="number" step="0.01" class="form-control" id="salePrice" name="salePrice">
+                    <label for="salePrice" class="form-label">Sale price</label>
+                    <input type="number" min="0" class="form-control" id="salePrice" name="salePrice">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("salePrice") != null}'
+                          th:text='${error?.getFieldError("salePrice")?.getDefaultMessage()}'></span>
+                </div>
+                <div class="mb-1">
+                    <label for="purchasePrice" class="form-label">Discount price</label>
+                    <input type="number" value="0" class="form-control" name="purchasePrice" readonly>
                 </div>
                 <div class="mb-1">
                     <label for="quantity" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity">
+                    <input type="number" min="1" class="form-control" id="quantity" name="quantity">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("quantity") != null}'
+                          th:text='${error?.getFieldError("quantity")?.getDefaultMessage()}'></span>
                 </div>
                 <h5 class="mb-1">Attribute</h5>
                 <div id="versionAttributesContainer">
@@ -82,6 +98,9 @@
                 <div class="mb-1">
                     <label for="image" class="form-label">Image</label>
                     <input class="form-control" type="file" id="image" name="image">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("image") != null}'
+                          th:text='${error?.getFieldError("image")?.getDefaultMessage()}'></span>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Save</button>
                 <button type="submit" class="btn btn-primary mt-2">Clear</button>
