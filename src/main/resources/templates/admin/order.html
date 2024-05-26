@@ -136,10 +136,10 @@
                 </tbody>
             </table>
         </div>
-            <script>
-                // Tạo một đối tượng div để chứa nội dung HTML của modal
-                var modalContainer = document.createElement('div');
-                modalContainer.innerHTML = `
+        <script>
+            // Tạo một đối tượng div để chứa nội dung HTML của modal
+            var modalContainer = document.createElement('div');
+            modalContainer.innerHTML = `
     <!-- The Modal -->
     <div class="modal modal-xl" id="rating">
         <div class="modal-dialog">
@@ -159,7 +159,6 @@
                         <th scope="col" colspan="2" class="px-1">Product</th>
                         <th scope="col" class="px-5">Quantity</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Amount</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -173,8 +172,10 @@
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="py-4">1</td>
-                        <td class="py-4">$999.00</td>
-                        <td class="py-4">$899.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
                     </tr>
                     <tr>
                         <td class="px-0 mx-0 col-1 py-3">
@@ -186,8 +187,11 @@
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="py-4">1</td>
-                        <td class="py-4">$999.00</td>
-                        <td class="py-4">$899.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
                     </tr>
                     <tr>
                         <td class="px-0 mx-0 col-1 py-3">
@@ -199,8 +203,11 @@
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="py-4">1</td>
-                        <td class="py-4">$999.00</td>
-                        <td class="py-4">$899.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
                     </tr>
                     <tr>
                         <td class="px-0 mx-0 col-1 py-3">
@@ -212,8 +219,11 @@
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="py-4">1</td>
-                        <td class="py-4">$999.00</td>
-                        <td class="py-4">$899.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
                     </tr>
                     <tr>
                         <td class="px-0 mx-0 col-1 py-3">
@@ -225,8 +235,11 @@
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="py-4">1</td>
-                        <td class="py-4">$999.00</td>
-                        <td class="py-4">$899.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
                     </tr>
                     <tr>
                         <td class="px-0 mx-0 col-1 py-3">
@@ -238,8 +251,11 @@
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="py-4">1</td>
-                        <td class="py-4">$999.00</td>
-                        <td class="py-4">$899.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
                     </tr>
                     </tbody>
                 </table>
@@ -253,44 +269,87 @@
                     <small class="d-block">Address: Can Tho City</small>
                     <hr>
                     <h5>Product List</h5>
+                    <div class="row" style="max-height: 180px; overflow-y: auto">
                     <div class="d-flex align-items-center px-5">
                         <div class="p-2 col-3">
                             <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
                         </div>
                         <div class="p-2">
                             <small class="d-block">iPhone 13 128GB White</small>
-                            <small class="d-block">$1099.00</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
                         </div>
+                    </div>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
                     </div>
                     <hr>
                     <div class="">
                     <label class="form-label">Voucher code: SALEENDYEAR</label>
                     </div>
-                    <div class="row mb-3 mt-4">
-                        <div class="col-3  d-flex">
+                    <div class="row mt-2">
+                        <div class="col-3 d-flex">
+                            <h6>Amount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$4.396</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex">
+                            <h6>Discount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$43.96</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 d-flex">
                             <h3 class="text-danger">Total:</h3>
                         </div>
                         <div class="col-3 offset-4 text-end d-flex">
-                            <h3 class="text-danger">$5.394</h3>
+                            <h3 class="text-danger">$4.352,04</h3>
                         </div>
                     </div>
                 </form>
                 </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     </div>
 `;
 
-                // Chèn đối tượng div vào cuối thẻ body
-                document.body.appendChild(modalContainer);
+            // Chèn đối tượng div vào cuối thẻ body
+            document.body.appendChild(modalContainer);
 
-            </script>
+        </script>
 
-        </div>
     </div>
 </div>

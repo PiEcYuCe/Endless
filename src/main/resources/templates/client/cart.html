@@ -1,16 +1,9 @@
-<!-- Bootstrap icon -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 <main>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-8">
-                <table class="table">
-                    <thead>
+            <div class="col-8" style="min-height: 500px; overflow-y: auto;" >
+                <table class="table table-hover">
+                    <thead class="table-dark">
                     <tr>
                         <th scope="col">
                             <div class="form-check">
@@ -19,7 +12,7 @@
                             </div>
                         </th>
                         <th scope="col" colspan="2" class="px-1">Product</th>
-                        <th scope="col" class="px-5">Quality</th>
+                        <th scope="col" class="px-5">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -29,27 +22,30 @@
                         <td class="py-4">
                             <input class="form-check-input" type="checkbox">
                         </td>
-                        <td class="px-0 mx-0 col-1">
+                        <td class="px-0 mx-0 col-1 py-3">
                             <div class="d-flex align-items-center">
                                 <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
                             </div>
                         </td>
-                        <td class="py-4">
+                        <td class="pt-4">
                             <h6>iPhone 13 64GB Black</h6>
                         </td>
                         <td class="d-flex py-4">
                             <div class=" input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="button" onclick="minus('quality1')">-
+                                <button class="btn btn-outline-secondary" type="button" onclick="minus('quality2')">-
                                 </button>
                             </div>
                             <input type="number" class="form-control col-6 text-end" id="quality1" min="0" value="0"
-                                   style="max-width: 70px; max-height: 40px">
+                                   style="width: 60px; max-height: 40px">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" onclick="plus('quality1')">+
+                                <button class="btn btn-outline-secondary" type="button" onclick="plus('quality2')">+
                                 </button>
                             </div>
                         </td>
-                        <td class="py-4">999.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
                         <td class="py-4">
                             <i class="bi bi-trash-fill text-danger"></i>
                         </td>
@@ -58,7 +54,7 @@
                         <td class="py-4">
                             <input class="form-check-input" type="checkbox">
                         </td>
-                        <td class="px-0 mx-0 col-1">
+                        <td class="px-0 mx-0 col-1 py-3">
                             <div class="d-flex align-items-center">
                                 <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
                             </div>
@@ -78,7 +74,10 @@
                                 </button>
                             </div>
                         </td>
-                        <td class="py-4">999.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
                         <td class="py-4">
                             <i class="bi bi-trash-fill text-danger"></i>
                         </td>
@@ -87,7 +86,7 @@
                         <td class="py-4">
                             <input class="form-check-input" type="checkbox">
                         </td>
-                        <td class="px-0 mx-0 col-1">
+                        <td class="px-0 mx-0 col-1 py-3">
                             <div class="d-flex align-items-center">
                                 <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
                             </div>
@@ -107,7 +106,10 @@
                                 </button>
                             </div>
                         </td>
-                        <td class="py-4">999.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
                         <td class="py-4">
                             <i class="bi bi-trash-fill text-danger"></i>
                         </td>
@@ -116,7 +118,7 @@
                         <td class="py-4">
                             <input class="form-check-input" type="checkbox">
                         </td>
-                        <td class="px-0 mx-0 col-1">
+                        <td class="px-0 mx-0 col-1 py-3">
                             <div class="d-flex align-items-center">
                                 <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
                             </div>
@@ -136,7 +138,10 @@
                                 </button>
                             </div>
                         </td>
-                        <td class="py-4">999.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
                         <td class="py-4">
                             <i class="bi bi-trash-fill text-danger"></i>
                         </td>
@@ -145,7 +150,7 @@
                         <td class="py-4">
                             <input class="form-check-input" type="checkbox">
                         </td>
-                        <td class="px-0 mx-0 col-1">
+                        <td class="px-0 mx-0 col-1 py-3">
                             <div class="d-flex align-items-center">
                                 <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
                             </div>
@@ -165,7 +170,10 @@
                                 </button>
                             </div>
                         </td>
-                        <td class="py-4">999.00</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
                         <td class="py-4">
                             <i class="bi bi-trash-fill text-danger"></i>
                         </td>
@@ -173,54 +181,142 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="col-4">
+            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
                 <form class="custom-form">
-                    <h3>Shopping</h3>
+                    <h3>Customer Information</h3>
+                    <small class="d-block">Name: Tom</small>
+                    <small class="d-block">Phone: (+84) 372 888 992</small>
+                    <small class="d-block">Address: Can Tho City</small>
                     <hr>
-                    <h5>Apple</h5>
-                    <div class="shopping-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="">
+                    <h5>Product List</h5>
+                    <div class="row" style="max-height: 180px; overflow-y: auto">
+                        <div class="d-flex align-items-center px-5">
+                            <div class="form-check p-2">
+                                <input class="form-check-input" type="checkbox" value="" id="">
+                            </div>
+                            <div class="p-2 col-3">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="p-2">
+                                <small class="d-block">iPhone 13 128GB White</small>
+                                <i class="">$1099.00</i> <i class="">x1</i>
+                                <h6 class="d-block">$1099.00</h6>
+                            </div>
                         </div>
-                        <div class="cart-info">
-                            <img src="/static/images/productVersion/iPhone13White.png" class="card-img-top" alt="">
-                            <div class="cart-title">
-                                <p>iPhone 13 128GB White - <span>1099.00</span></p>
+                        <div class="d-flex align-items-center px-5">
+                            <div class="form-check p-2">
+                                <input class="form-check-input" type="checkbox" value="" id="">
+                            </div>
+                            <div class="p-2 col-3">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="p-2">
+                                <small class="d-block">iPhone 13 128GB White</small>
+                                <i class="">$1099.00</i> <i class="">x1</i>
+                                <h6 class="d-block">$1099.00</h6>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center px-5">
+                            <div class="form-check p-2">
+                                <input class="form-check-input" type="checkbox" value="" id="">
+                            </div>
+                            <div class="p-2 col-3">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="p-2">
+                                <small class="d-block">iPhone 13 128GB White</small>
+                                <i class="">$1099.00</i> <i class="">x1</i>
+                                <h6 class="d-block">$1099.00</h6>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center px-5">
+                            <div class="form-check p-2">
+                                <input class="form-check-input" type="checkbox" value="" id="">
+                            </div>
+                            <div class="p-2 col-3">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="p-2">
+                                <small class="d-block">iPhone 13 128GB White</small>
+                                <i class="">$1099.00</i> <i class="">x1</i>
+                                <h6 class="d-block">$1099.00</h6>
                             </div>
                         </div>
                     </div>
                     <hr>
-                    <h3>Total:<span>$</span></h3>
-                    <a type="button" class="btn btn-primary" id="buyButton" data-bs-toggle="modal"
-                       data-bs-target="#exampleModal">
-                        Buy
-                    </a>
+                    <div class="input-group col-12">
+                        <input class="form-control rounded-2" list="saleValue"
+                               placeholder="Enter voucher code">
+                        <datalist id="saleValue">
+                            <option value="Sale 5%">
+                            <option value="Sale 10%">
+                            <option value="Sale 15%">
+                            <option value="Sale 20%">
+                            <option value="Sale 25%">
+                        </datalist>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3 d-flex">
+                            <h6>Amount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$4.396</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex">
+                            <h6>Discount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$43.96</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 d-flex">
+                            <h3 class="text-danger">Total:</h3>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <h3 class="text-danger">$4.352,04</h3>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#cart">Buy</button>
                 </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal" id="exampleModal" tabindex="-1">
+                <script>
+                    // Tạo một đối tượng div để chứa nội dung HTML của modal
+                    var modalContainer = document.createElement('div');
+                    modalContainer.innerHTML = `
+    <!-- The Modal -->
+    <div class="modal" id="cart">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" >
+                <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
+                <!-- Modal body -->
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    Modal body..
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
+
             </div>
         </div>
     </div>
+`;
 
+                    // Chèn đối tượng div vào cuối thẻ body
+                    document.body.appendChild(modalContainer);
+
+                </script>
+            </div>
+        </div>
+    </div>
 
     </div>
     <script>
