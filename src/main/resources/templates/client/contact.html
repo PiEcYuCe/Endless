@@ -17,24 +17,33 @@
                         </div>
                     </div>
                     <div class="col-5">
-                        <form>
+                        <form action="/contact" method="post" enctype="multipart/form-data">
                             <div>
                                 <h2>Send us a message</h2>
                                     <div class="mb-3">
-                                        <label class="form-label">Full name: </label>
-                                        <input type="text" class="form-control" placeholder="Enter name">
+                                        <label class="form-label">Fullname: </label>
+                                        <input type="text" class="form-control" name="fullName" placeholder="Enter fullname">
+                                        <span class="text-danger"
+                                           th:if='${error?.getFieldError("fullName") != null}'
+                                           th:text='${error?.getFieldError("fullName")?.getDefaultMessage()}'></span>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Email address: </label>
-                                        <input type="email" class="form-control" placeholder="Enter email">
+                                        <input type="text" class="form-control" name="email" placeholder="Enter email">
+                                        <span class="text-danger"
+                                              th:if='${error?.getFieldError("email") != null}'
+                                              th:text='${error?.getFieldError("email")?.getDefaultMessage()}'></span>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Phone: </label>
                                         <input type="text" class="form-control" placeholder="Enter phone">
+                                        <span class="text-danger"
+                                              th:if='${error?.getFieldError("phone") != null}'
+                                              th:text='${error?.getFieldError("phone")?.getDefaultMessage()}'></span>
                                     </div>
                                 <div class="mb-3">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control" rows="5"></textarea>
+                                    <textarea class="form-control" rows="5" placeholder="Enter message"></textarea>
                                 </div>
                                 <div class="row mb-3">
                                     <button type="submit" class="btn btn-primary col-6 offset-3">Send message</button>
