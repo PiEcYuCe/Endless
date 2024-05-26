@@ -3,6 +3,7 @@ package com.java5.assignment.controllers.admin;
 import com.java5.assignment.content.Page;
 import com.java5.assignment.content.PageType;
 import com.java5.assignment.model.Product;
+import com.java5.assignment.model.ProductVersion;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,5 +25,13 @@ public class ManageProductController {
         return "admin/layout";
     }
 
+    @PostMapping("/manage-product")
+    public String profile(@Valid Product pro, BindingResult error, Model model) {
+        if (error.hasErrors()) {
+            model.addAttribute("error", error);
+        }
+        model.addAttribute("pro", pro);
+        return "admin/layout";
+    }
 
 }

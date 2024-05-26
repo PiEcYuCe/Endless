@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class OrderController {
     @ModelAttribute("page")
     public Page setPageContent() {
-        return Page.route.get(PageType.PROFILE);
+        return Page.route.get(PageType.ORDER);
     }
 
     @GetMapping("/order")
