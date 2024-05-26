@@ -16,15 +16,35 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
 
+//    private int userID;
+//    @NotBlank(message = "Please enter username")
+//    private String username;
+//    private String password;
+//    @NotBlank(message = "Please enter email")
+//    @Email(message = "Email is in wrong format")
+//    private String email;
+//    @NotBlank(message = "Please select role")
+//    private String role;
+//    private boolean status;
+//    private List<MultipartFile> image;
+
+
     private int userID;
     @NotBlank(message = "Please enter username")
     private String username;
+
+    @NotBlank(message = "Please enter password")
     private String password;
+
     @NotBlank(message = "Please enter email")
     @Email(message = "Email is in wrong format")
     private String email;
+
     @NotBlank(message = "Please select role")
     private String role;
+
     private boolean status;
+
     private List<MultipartFile> image;
+
 }

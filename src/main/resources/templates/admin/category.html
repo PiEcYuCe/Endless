@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5 bg-light">
     <h1 class="mb-4">Category Management</h1>
 
     <!-- Button to toggle Add/Edit Category Form -->
@@ -21,70 +21,89 @@
                               rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Clear</button>
             </form>
         </div>
     </div>
 
     <!-- Category Table -->
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
-        <tr>
-            <th scope="row">1</th>
-            <td>Category 1</td>
-            <td>Description of Category 1</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Category 2</td>
-            <td>Description of Category 2</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Category 3</td>
-            <td>Description of Category 2</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>Category 4</td>
-            <td>Description of Category 2</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td>Category 5</td>
-            <td>Description of Category 2</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-            </td>
-        </tr>
-        <!-- Thêm dòng khác nếu cần -->
-        </tbody>
-    </table>
+    <div class="d-flex" style="overflow-y: scroll; max-height: 300px">
+        <table class="table table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
+            <tr>
+                <th scope="row">1</th>
+                <td>Smartphone</td>
+                <td>Description of Smartphone category goes here.</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Laptop</td>
+                <td>Description of Laptop category goes here.</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Tablets</td>
+                <td>Description of Tablets category goes here.</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Mobile Accessories</td>
+                <td>Description of Mobile Accessories category goes here.</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>Smartwatch</td>
+                <td>Description of Smartwatch category goes here.</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>Watch</td>
+                <td>Description of Watch category goes here.</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+
+            <!-- Thêm dòng khác nếu cần -->
+            </tbody>
+        </table>
+    </div>
 
 </div>
 <script>
