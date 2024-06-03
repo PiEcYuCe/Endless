@@ -35,6 +35,9 @@ build/
 # Exclude everything
 *
 
+### PROJECT ###
+uploads/**
+
 # But not these files...
 !*/
 !.gitignore
@@ -47,5 +50,3 @@ build/
 !src/**/**/**/**/assignment/controller/**
 !src/main/resources/templates/admin/**
 !src/main/resources/templates/client/**
-
-upload/**
