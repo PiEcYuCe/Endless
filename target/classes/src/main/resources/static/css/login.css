@@ -65,9 +65,12 @@
 
 .checkbox-container {
     display: flex;
-    justify-content: flex-end; /* Đặt nút checkbox sang phải */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    width: 70%; /* Đảm bảo nút checkbox chiếm toàn bộ chiều rộng */
+    justify-content: flex-start;
+    width: 75%;
+    height: 70px;
+    margin: 10px 0;
+    align-items: start;
+    padding: 0.4rem;
 }
 
 .error-container {
@@ -78,9 +81,6 @@
     width: 70%; /* Đảm bảo nút checkbox chiếm toàn bộ chiều rộng */
 }
 
-.checkbox-container label {
-    margin-left: 3px;
-}
 
 form {
     display: flex;
@@ -137,14 +137,69 @@ form.sign-up-form {
     outline: none;
     border: none;
     line-height: 1;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.3rem;
-    color: #333;
 }
 
-.input-field input::placeholder {
-    color: #807f7f;
-    font-weight: 400;
+
+.errorInput::-webkit-input-placeholder {
+    color: rgba(62, 0, 4, 0.79);
+    font-weight: 200;
+    font-size: 1.3rem;
+    white-space: pre-wrap;
+}
+
+.errorInput:-moz-placeholder {
+    color: rgba(62, 0, 4, 0.79);
+    font-weight: 200;
+    font-size: 1.3rem;
+    white-space: pre-wrap;
+}
+
+.errorInput::-moz-placeholder {
+    color: rgba(62, 0, 4, 0.79);
+    font-weight: 200;
+    font-size: 1.3rem;
+    white-space: pre-wrap;
+}
+
+.errorInput:-ms-input-placeholder {
+    font-weight: 200;
+    color: rgba(62, 0, 4, 0.79);
+    font-size: 1.3rem;
+    white-space: pre-wrap;
+}
+
+.errorInput::-ms-input-placeholder {
+    font-weight: 200;
+    color: rgba(62, 0, 4, 0.79);
+    font-size: 1.3rem;
+    white-space: pre-wrap;
+}
+
+.errorInput::placeholder {
+    font-weight: 200;
+    color: rgba(62, 0, 4, 0.79);
+    font-size: 1.3rem;
+    white-space: pre-wrap;
+}
+
+/* Animation for shaking effect */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    10%, 90% { transform: translateX(-10px); }
+    20%, 80% { transform: translateX(10px); }
+    30%, 50%, 70% { transform: translateX(-10px); }
+    40%, 60% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+.errorInput {
+    animation: shake 0.6s;
+}
+
+.errorInput::placeholder {
+    font-size: var(--placeholder-font-size, 1.3rem);
 }
 
 /* Thêm style cho icon con mắt */
@@ -181,7 +236,7 @@ form.sign-up-form {
 
 .social-text {
     padding: 0.7rem 0;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .social-media {

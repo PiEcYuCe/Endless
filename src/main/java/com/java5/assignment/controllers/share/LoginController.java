@@ -2,11 +2,14 @@ package com.java5.assignment.controllers.share;
 
 import com.java5.assignment.content.Page;
 import com.java5.assignment.content.PageType;
+import com.java5.assignment.model.LoginModel;
 import com.java5.assignment.services.CookieService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,35 +34,12 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String goToPage(Model model, @RequestParam(name = "username1", defaultValue = "") String username,
-                           @RequestParam(name = "password1", defaultValue = "") String password,
-                           @RequestParam(name = "rememberMe", defaultValue = "false") Boolean rememberMe) {
-        if (username.isEmpty()) {
-            model.addAttribute("error", "Please enter username ");
-        } else if (password.isEmpty()) {
-            model.addAttribute("error1", "Please enter password");
+    public String goToPage(Model model, @Valid LoginModel loginModel, BindingResult error) {
+        if(error.hasErrors()) {
+            model.addAttribute("loginError", error);
+            return "public/login";
         }
-
-        if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("12345")) {
-            if (rememberMe == true) {
-                cookieService.setCookie("username", username, 60);
-            } else if (rememberMe == false) {
-                session.setAttribute("username", username);
-                return "redirect:/dashboard";
-            }
-
-        }
-
-        if (username.equalsIgnoreCase("user") && password.equalsIgnoreCase("12345")) {
-            if (rememberMe == true) {
-                cookieService.setCookie("username", username, 60);
-            }
-            session.setAttribute("username", username);
-            return "redirect:/home";
-        }
-
         return "public/login";
     }
-
 
 }
