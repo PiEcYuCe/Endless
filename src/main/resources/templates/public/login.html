@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In & Sign Up | sL Code Hub</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
-<div class="container "> <!--    sign-up-mode-->
+<div class="container" th:classappend="${page}=='register' ? 'sign-up-mode' : ''"> <!--    sign-up-mode-->
 
     <div class="forms-container">
         <div class="signIn-signUp">
@@ -18,43 +19,42 @@
                 <h2 class="title">Sign In</h2>
                 <div class="input-field">
                     <i class='bx bx-user'></i>
-                    <input type="text" name="username1" placeholder="User Name">
+                    <input type="text" id="usernameLogin" name="username" th:classappend="${loginError?.getFieldError('username')==null} ? '' : 'errorInput'"
+                           th:placeholder="${loginError?.getFieldError('username') == null ? 'Username' : loginError?.getFieldError('username').getDefaultMessage()}">
                 </div>
-                <div class="error-container"><p th:text="${error}"></p></div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
-                    <input type="password" name="password1" placeholder="Password">
-                    <i class='bx bx-hide eye-icon'></i>
-                    <i class='bx bx-show eye-icon' style="display:none"></i>
+                    <input type="password" name="password" th:classappend="${loginError?.getFieldError('password')==null} ? '' : 'errorInput'"
+                           th:placeholder="${loginError?.getFieldError('password') == null ? 'Password' : loginError?.getFieldError('password').getDefaultMessage()}">
                 </div>
-                <div class="error-container"><p th:text="${error1}"></p></div>
                 <div class="checkbox-container">
                     <input type="checkbox" name="rememberMe" id="rememberMe" value="true">
-                    <label for="rememberMe"> Remember me</label>
+                    <label for="rememberMe" style="margin-left: 5px"> Remember me</label>
                 </div>
                 <button type="submit" value="Sign In" class="btn solid">Sign In</button>
                 <p class="social-text"><a href="">Forgot password?</a></p>
             </form>
-            <form action="" class="sign-up-form">
+            <form action="/sign-up" method="post" class="sign-up-form">
                 <h2 class="title">Sign Up</h2>
                 <div class="input-field">
                     <i class='bx bx-user'></i>
-                    <input type="text" placeholder=" User Name">
+                    <input type="text" name="username" th:classappend="${registerError?.getFieldError('username')==null} ? '' : 'errorInput'"
+                           th:placeholder="${registerError?.getFieldError('username') == null ? 'Username' : registerError?.getFieldError('username').getDefaultMessage()}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-envelope'></i>
-                    <input type="email" placeholder=" Email">
+                    <input type="email" name="email" th:classappend="${registerError?.getFieldError('email')==null} ? '' : 'errorInput'"
+                           th:placeholder="${registerError?.getFieldError('email') == null ? 'Email' : registerError?.getFieldError('email').getDefaultMessage()}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
-                    <input type="password" placeholder=" Password">
-                    <!-- Thêm icon con mắt vào đây -->
-                    <i class='bx bx-hide eye-icon'></i>
-                    <i class='bx bx-show eye-icon' style="display:none"></i>
+                    <input type="password" name="password" th:classappend="${registerError?.getFieldError('password')==null} ? '' : 'errorInput'"
+                           th:placeholder="${registerError?.getFieldError('password') == null ? 'Password' : registerError?.getFieldError('password').getDefaultMessage()}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-phone'></i>
-                    <input type="text" placeholder=" Phone">
+                    <input type="password" name="repeatPassword" th:classappend="${registerError?.getFieldError('repeatPassword')==null} ? '' : 'errorInput'"
+                           th:placeholder="${registerError?.getFieldError('repeatPassword') == null ? 'Repeat Password' : registerError?.getFieldError('repeatPassword').getDefaultMessage()}">
                 </div>
                 <button type="submit" value="Sign Up" class="btn solid">Sign Up</button>
 

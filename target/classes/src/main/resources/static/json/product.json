@@ -1,0 +1,244 @@
+{
+  "Product": [
+    {
+      "productID": 1,
+      "categoryID": 1,
+      "brandID": 1,
+      "name": "iPhone 13",
+      "description": "The latest iPhone with advanced features",
+      "status": true
+    },
+    {
+      "productID": 2,
+      "categoryID": 1,
+      "brandID": 2,
+      "name": "Samsung Galaxy S21 Ultra",
+      "description": "Flagship smartphone with advanced features",
+      "status": true
+    },
+    {
+      "productID": 3,
+      "categoryID": 1,
+      "brandID": 3,
+      "name": "Xiaomi Mi 11",
+      "description": "Powerful smartphone with a great camera",
+      "status": true
+    },
+    {
+      "productID": 4,
+      "categoryID": 1,
+      "brandID": 4,
+      "name": "OnePlus 9",
+      "description": "High-performance smartphone for enthusiasts",
+      "status": true
+    },
+    {
+      "productID": 5,
+      "categoryID": 1,
+      "brandID": 5,
+      "name": "Google Pixel 6",
+      "description": "Premium smartphone with top-notch camera capabilities",
+      "status": true
+    },
+    {
+      "productID": 6,
+      "categoryID": 1,
+      "brandID": 6,
+      "name": "Sony Xperia 1 III",
+      "description": "Flagship phone with advanced camera and display",
+      "status": true
+    },
+    {
+      "productID": 7,
+      "categoryID": 1,
+      "brandID": 7,
+      "name": "Huawei P40",
+      "description": "High-end smartphone with Leica quad-camera system",
+      "status": true
+    },
+    {
+      "productID": 8,
+      "categoryID": 1,
+      "brandID": 8,
+      "name": "LG Velvet",
+      "description": "Stylish smartphone with dual-screen option",
+      "status": false
+    },
+    {
+      "productID": 9,
+      "categoryID": 1,
+      "brandID": 9,
+      "name": "Techno Phantom X",
+      "description": "Premium smartphone with AMOLED display",
+      "status": true
+    },
+    {
+      "productID": 10,
+      "categoryID": 1,
+      "brandID": 10,
+      "name": "Realme GT",
+      "description": "Affordable 5G smartphone with flagship features",
+      "status": true
+    },
+    {
+      "productID": 11,
+      "categoryID": 1,
+      "brandID": 1,
+      "name": "iPhone 12",
+      "description": "Previous-generation iPhone with great performance",
+      "status": false
+    },
+    {
+      "productID": 12,
+      "categoryID": 1,
+      "brandID": 2,
+      "name": "Samsung Galaxy Note 20",
+      "description": "Premium smartphone with S Pen support",
+      "status": false
+    },
+    {
+      "productID": 13,
+      "categoryID": 1,
+      "brandID": 3,
+      "name": "Xiaomi Redmi Note 10",
+      "description": "Budget-friendly smartphone with impressive specs",
+      "status": true
+    },
+    {
+      "productID": 14,
+      "categoryID": 1,
+      "brandID": 4,
+      "name": "OnePlus Nord",
+      "description": "Mid-range smartphone with 5G capabilities",
+      "status": true
+    },
+    {
+      "productID": 15,
+      "categoryID": 1,
+      "brandID": 5,
+      "name": "Google Pixel 5",
+      "description": "Compact smartphone with excellent camera",
+      "status": false
+    },
+    {
+      "productID": 16,
+      "categoryID": 1,
+      "brandID": 6,
+      "name": "Sony Xperia 5 II",
+      "description": "Compact flagship with 120Hz OLED display",
+      "status": true
+    },
+    {
+      "productID": 17,
+      "categoryID": 1,
+      "brandID": 7,
+      "name": "Huawei Mate 40",
+      "description": "Premium phone with Kirin 9000 chipset",
+      "status": false
+    },
+    {
+      "productID": 18,
+      "categoryID": 1,
+      "brandID": 8,
+      "name": "LG Wing",
+      "description": "Unique smartphone with swivel display",
+      "status": false
+    },
+    {
+      "productID": 19,
+      "categoryID": 1,
+      "brandID": 9,
+      "name": "Techno Spark 7",
+      "description": "Budget-friendly smartphone with large display",
+      "status": true
+    },
+    {
+      "productID": 20,
+      "categoryID": 1,
+      "brandID": 10,
+      "name": "Realme C25",
+      "description": "Entry-level smartphone with long battery life",
+      "status": true
+    },
+    {
+      "productID": 21,
+      "categoryID": 1,
+      "brandID": 1,
+      "name": "iPhone SE (2020)",
+      "description": "Compact iPhone with powerful A13 Bionic chip",
+      "status": true
+    },
+    {
+      "productID": 22,
+      "categoryID": 1,
+      "brandID": 2,
+      "name": "Samsung Galaxy A52",
+      "description": "Mid-range smartphone with versatile camera setup",
+      "status": true
+    },
+    {
+      "productID": 23,
+      "categoryID": 1,
+      "brandID": 3,
+      "name": "Xiaomi Poco X3 Pro",
+      "description": "Performance-oriented smartphone with Snapdragon 860",
+      "status": true
+    },
+    {
+      "productID": 24,
+      "categoryID": 1,
+      "brandID": 4,
+      "name": "OnePlus 8T",
+      "description": "Flagship killer with 120Hz AMOLED display",
+      "status": true
+    },
+    {
+      "productID": 25,
+      "categoryID": 1,
+      "brandID": 5,
+      "name": "Oppo Reno 5",
+      "description": "Stylish smartphone with AI-powered quad-camera",
+      "status": true
+    },
+    {
+      "productID": 26,
+      "categoryID": 1,
+      "brandID": 6,
+      "name": "Sony Xperia 10 III",
+      "description": "Mid-range phone with OLED display and triple camera",
+      "status": true
+    },
+    {
+      "productID": 27,
+      "categoryID": 1,
+      "brandID": 7,
+      "name": "Huawei Nova 7",
+      "description": "Sleek smartphone with 5G connectivity",
+      "status": true
+    },
+    {
+      "productID": 28,
+      "categoryID": 1,
+      "brandID": 8,
+      "name": "LG K92 5G",
+      "description": "Affordable 5G smartphone with quad-camera setup",
+      "status": false
+    },
+    {
+      "productID": 29,
+      "categoryID": 1,
+      "brandID": 9,
+      "name": "Techno Camon 17",
+      "description": "Camera-centric smartphone with AI enhancements",
+      "status": true
+    },
+    {
+      "productID": 30,
+      "categoryID": 1,
+      "brandID": 10,
+      "name": "Realme Narzo 30 Pro",
+      "description": "Budget-friendly gaming smartphone with MediaTek Dimensity 800U",
+      "status": true
+    }
+  ]
+}

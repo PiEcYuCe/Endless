@@ -1,0 +1,180 @@
+{
+  "Voucher": [
+    {
+      "voucherID": 11,
+      "code": "NEWYEAR20",
+      "discountType": "percentage",
+      "discountValue": 20,
+      "minPurchaseAmount": 100,
+      "maxDiscountAmount": 200,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "status": true
+    },
+    {
+      "voucherID": 12,
+      "code": "LOVE10",
+      "discountType": "percentage",
+      "discountValue": 10,
+      "minPurchaseAmount": 50,
+      "maxDiscountAmount": 100,
+      "startDate": "2025-02-01",
+      "endDate": "2025-02-14",
+      "status": true
+    },
+    {
+      "voucherID": 13,
+      "code": "SPRINGSALE",
+      "discountType": "fixed",
+      "discountValue": 30,
+      "minPurchaseAmount": 150,
+      "maxDiscountAmount": 0,
+      "startDate": "2025-03-01",
+      "endDate": "2025-03-31",
+      "status": true
+    },
+    {
+      "voucherID": 14,
+      "code": "MOTHERSDAY",
+      "discountType": "percentage",
+      "discountValue": 15,
+      "minPurchaseAmount": 0,
+      "maxDiscountAmount": 150,
+      "startDate": "2025-05-01",
+      "endDate": "2025-05-10",
+      "status": true
+    },
+    {
+      "voucherID": 15,
+      "code": "FATHERSDAY",
+      "discountType": "percentage",
+      "discountValue": 25,
+      "minPurchaseAmount": 100,
+      "maxDiscountAmount": 250,
+      "startDate": "2025-06-01",
+      "endDate": "2025-06-21",
+      "status": true
+    },
+    {
+      "voucherID": 16,
+      "code": "BACKTOSCHOOL",
+      "discountType": "fixed",
+      "discountValue": 30,
+      "minPurchaseAmount": 150,
+      "maxDiscountAmount": 0,
+      "startDate": "2025-07-01",
+      "endDate": "2025-07-31",
+      "status": true
+    },
+    {
+      "voucherID": 17,
+      "code": "SUMMER25",
+      "discountType": "percentage",
+      "discountValue": 25,
+      "minPurchaseAmount": 200,
+      "maxDiscountAmount": 250,
+      "startDate": "2025-08-01",
+      "endDate": "2025-08-31",
+      "status": true
+    },
+    {
+      "voucherID": 18,
+      "code": "FALLSALE",
+      "discountType": "percentage",
+      "discountValue": 20,
+      "minPurchaseAmount": 100,
+      "maxDiscountAmount": 200,
+      "startDate": "2025-09-01",
+      "endDate": "2025-09-30",
+      "status": true
+    },
+    {
+      "voucherID": 19,
+      "code": "HALLOWEEN15",
+      "discountType": "percentage",
+      "discountValue": 15,
+      "minPurchaseAmount": 50,
+      "maxDiscountAmount": 150,
+      "startDate": "2025-10-01",
+      "endDate": "2025-10-31",
+      "status": true
+    },
+    {
+      "voucherID": 20,
+      "code": "WINTERSALE",
+      "discountType": "fixed",
+      "discountValue": 40,
+      "minPurchaseAmount": 200,
+      "maxDiscountAmount": 0,
+      "startDate": "2025-11-01",
+      "endDate": "2025-11-30",
+      "status": true
+    },
+    {
+      "voucherID": 21,
+      "code": "BLACKFRIDAY",
+      "discountType": "percentage",
+      "discountValue": 30,
+      "minPurchaseAmount": 150,
+      "maxDiscountAmount": 300,
+      "startDate": "2025-11-26",
+      "endDate": "2025-11-30",
+      "status": true
+    },
+    {
+      "voucherID": 22,
+      "code": "CYBERMONDAY",
+      "discountType": "percentage",
+      "discountValue": 25,
+      "minPurchaseAmount": 100,
+      "maxDiscountAmount": 250,
+      "startDate": "2025-11-29",
+      "endDate": "2025-11-29",
+      "status": true
+    },
+    {
+      "voucherID": 23,
+      "code": "CHRISTMAS10",
+      "discountType": "percentage",
+      "discountValue": 10,
+      "minPurchaseAmount": 0,
+      "maxDiscountAmount": 100,
+      "startDate": "2025-12-01",
+      "endDate": "2025-12-25",
+      "status": true
+    },
+    {
+      "voucherID": 24,
+      "code": "BOXINGDAY",
+      "discountType": "percentage",
+      "discountValue": 20,
+      "minPurchaseAmount": 50,
+      "maxDiscountAmount": 200,
+      "startDate": "2025-12-26",
+      "endDate": "2025-12-31",
+      "status": true
+    },
+    {
+      "voucherID": 25,
+      "code": "NEWYEAR25",
+      "discountType": "percentage",
+      "discountValue": 25,
+      "minPurchaseAmount": 100,
+      "maxDiscountAmount": 250,
+      "startDate": "2026-01-01",
+      "endDate": "2026-01-31",
+      "status": true
+    },
+    {
+      "voucherID": 26,
+      "code": "VALENTINE20",
+      "discountType": "percentage",
+      "discountValue": 20,
+      "minPurchaseAmount": 50,
+      "maxDiscountAmount": 200,
+      "startDate": "2026-02-01",
+      "endDate": "2026-02-14",
+      "status": true
+    }
+  ]
+}

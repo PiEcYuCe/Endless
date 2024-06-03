@@ -1,0 +1,204 @@
+{
+  "AttributeValue": [
+    {
+      "attributeValueID": 1,
+      "attributeID": 1,
+      "value": "Black"
+    },
+    {
+      "attributeValueID": 2,
+      "attributeID": 1,
+      "value": "White"
+    },
+    {
+      "attributeValueID": 3,
+      "attributeID": 1,
+      "value": "Blue"
+    },
+    {
+      "attributeValueID": 4,
+      "attributeID": 2,
+      "value": "64GB"
+    },
+    {
+      "attributeValueID": 5,
+      "attributeID": 2,
+      "value": "128GB"
+    },
+    {
+      "attributeValueID": 6,
+      "attributeID": 2,
+      "value": "256GB"
+    },
+    {
+      "attributeValueID": 7,
+      "attributeID": 2,
+      "value": "512GB"
+    },
+    {
+      "attributeValueID": 8,
+      "attributeID": 3,
+      "value": "4GB"
+    },
+    {
+      "attributeValueID": 9,
+      "attributeID": 3,
+      "value": "6GB"
+    },
+    {
+      "attributeValueID": 10,
+      "attributeID": 3,
+      "value": "8GB"
+    },
+    {
+      "attributeValueID": 11,
+      "attributeID": 3,
+      "value": "12GB"
+    },
+    {
+      "attributeValueID": 12,
+      "attributeID": 4,
+      "value": "5.5 inches"
+    },
+    {
+      "attributeValueID": 13,
+      "attributeID": 4,
+      "value": "6.1 inches"
+    },
+    {
+      "attributeValueID": 14,
+      "attributeID": 4,
+      "value": "6.7 inches"
+    },
+    {
+      "attributeValueID": 15,
+      "attributeID": 4,
+      "value": "6.9 inches"
+    },
+    {
+      "attributeValueID": 16,
+      "attributeID": 5,
+      "value": "3000 mAh"
+    },
+    {
+      "attributeValueID": 17,
+      "attributeID": 5,
+      "value": "4000 mAh"
+    },
+    {
+      "attributeValueID": 18,
+      "attributeID": 5,
+      "value": "4500 mAh"
+    },
+    {
+      "attributeValueID": 19,
+      "attributeID": 5,
+      "value": "5000 mAh"
+    },
+    {
+      "attributeValueID": 20,
+      "attributeID": 6,
+      "value": "Snapdragon 888"
+    },
+    {
+      "attributeValueID": 21,
+      "attributeID": 6,
+      "value": "Exynos 2100"
+    },
+    {
+      "attributeValueID": 22,
+      "attributeID": 6,
+      "value": "A14 Bionic"
+    },
+    {
+      "attributeValueID": 23,
+      "attributeID": 6,
+      "value": "Dimensity 1200"
+    },
+    {
+      "attributeValueID": 24,
+      "attributeID": 7,
+      "value": "12 MP + 12 MP + 12 MP"
+    },
+    {
+      "attributeValueID": 25,
+      "attributeID": 7,
+      "value": "108 MP + 12 MP + 12 MP"
+    },
+    {
+      "attributeValueID": 26,
+      "attributeID": 7,
+      "value": "64 MP + 8 MP + 5 MP"
+    },
+    {
+      "attributeValueID": 27,
+      "attributeID": 7,
+      "value": "48 MP + 12 MP + 5 MP"
+    },
+    {
+      "attributeValueID": 28,
+      "attributeID": 8,
+      "value": "Android 12"
+    },
+    {
+      "attributeValueID": 29,
+      "attributeID": 8,
+      "value": "iOS 15"
+    },
+    {
+      "attributeValueID": 30,
+      "attributeID": 8,
+      "value": "ColorOS 12"
+    },
+    {
+      "attributeValueID": 31,
+      "attributeID": 8,
+      "value": "One UI 4.0"
+    },
+    {
+      "attributeValueID": 32,
+      "attributeID": 9,
+      "value": "Wi-Fi 6"
+    },
+    {
+      "attributeValueID": 33,
+      "attributeID": 9,
+      "value": "5G"
+    },
+    {
+      "attributeValueID": 34,
+      "attributeID": 9,
+      "value": "Bluetooth 5.2"
+    },
+    {
+      "attributeValueID": 35,
+      "attributeID": 9,
+      "value": "NFC"
+    },
+    {
+      "attributeValueID": 36,
+      "attributeID": 10,
+      "value": "AMOLED"
+    },
+    {
+      "attributeValueID": 37,
+      "attributeID": 10,
+      "value": "Super AMOLED"
+    },
+    {
+      "attributeValueID": 38,
+      "attributeID": 10,
+      "value": "IPS LCD"
+    },
+    {
+      "attributeValueID": 39,
+      "attributeID": 10,
+      "value": "OLED"
+    },
+    {
+      "attributeValueID": 40,
+      "attributeID": 10,
+      "value": "TFT"
+    }
+  ]
+}

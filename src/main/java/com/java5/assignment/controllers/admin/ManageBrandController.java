@@ -2,8 +2,7 @@ package com.java5.assignment.controllers.admin;
 
 import com.java5.assignment.content.Page;
 import com.java5.assignment.content.PageType;
-import com.java5.assignment.model.Brand;
-import com.java5.assignment.model.ProductVersion;
+import com.java5.assignment.model.BrandModel;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +24,11 @@ public class ManageBrandController {
     }
 
     @PostMapping("/manage-brand")
-    public String profile(@Valid Brand brand, BindingResult error, Model model) {
+    public String profile(@Valid BrandModel brandModel, BindingResult error, Model model) {
         if (error.hasErrors()) {
             model.addAttribute("error", error);
         }
-        model.addAttribute("brand", brand);
+        model.addAttribute("brand", brandModel);
         return "admin/layout";
     }
 }

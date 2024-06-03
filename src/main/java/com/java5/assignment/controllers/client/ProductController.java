@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java5.assignment.content.Page;
 import com.java5.assignment.content.PageType;
-import com.java5.assignment.model.ProductVersion;
+import com.java5.assignment.model.ProductVersionModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,33 +31,33 @@ public class ProductController {
         InputStream inputStream = getClass().getResourceAsStream("/static/json/product-version.json");
         byte[] jsonData = inputStream.readAllBytes();
         ObjectMapper objectMapper = new ObjectMapper();
-        List<ProductVersion> productVersions = objectMapper.readValue(jsonData, new TypeReference<List<ProductVersion>>() {
+        List<ProductVersionModel> productVersionModels = objectMapper.readValue(jsonData, new TypeReference<List<ProductVersionModel>>() {
         });
 
         if(pre==1){
-            page =(int) productVersions.size() / 6;
+            page =(int) productVersionModels.size() / 6;
         }
         else if (pre >1){
             page = page-1;
         }
 
-        if(next==productVersions.size() / 6){
+        if(next== productVersionModels.size() / 6){
             page = 1;
         }
-        else if (next<=productVersions.size()/6 && next>0){
+        else if (next<= productVersionModels.size()/6 && next>0){
             page = page+1;
         }
 
         int startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-        int endIndex = Math.min(startIndex + PRODUCTS_PER_PAGE, productVersions.size());
+        int endIndex = Math.min(startIndex + PRODUCTS_PER_PAGE, productVersionModels.size());
 
 
-        List<ProductVersion> productsOnPage = productVersions.subList(startIndex, endIndex);
+        List<ProductVersionModel> productsOnPage = productVersionModels.subList(startIndex, endIndex);
 
         model.addAttribute("productVersions", productsOnPage);
         model.addAttribute("currentPage", page);
 
-        int totalPages = (int) Math.ceil((double) productVersions.size() / PRODUCTS_PER_PAGE);
+        int totalPages = (int) Math.ceil((double) productVersionModels.size() / PRODUCTS_PER_PAGE);
         model.addAttribute("totalPages", totalPages);
 
         return "client/index";
