@@ -18,43 +18,35 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Order.ENTITY_NAME)
-@Table(name = Order.TABLE_NAME)
+@Entity
+@Table(name = "Orders")
 public class Order {
-    public static final String ENTITY_NAME = "OrderModel";
-    public static final String TABLE_NAME = "Orders";
-    public static final String COLUMN_ID_NAME = "OrderID";
-    public static final String COLUMN_USERID_NAME = "UserID";
-    public static final String COLUMN_VOUCHERID_NAME = "VoucherID";
-    public static final String COLUMN_ORDERDATE_NAME = "OrderDate";
-    public static final String COLUMN_TOTALMONEY_NAME = "TotalMoney";
-    public static final String COLUMN_ORDERSTATUS_NAME = "OrderStatus";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "OrderID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_USERID_NAME, nullable = false)
-    private Long userID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "UserID", nullable = false)
+    private User userID;
 
-    @Column(name = COLUMN_VOUCHERID_NAME)
-    private Long voucherID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "VoucherID")
+    private Voucher voucherID;
 
     @NotNull
-    @Column(name = COLUMN_ORDERDATE_NAME, nullable = false)
+    @Column(name = "OrderDate", nullable = false)
     private LocalDate orderDate;
 
     @NotNull
-    @Column(name = COLUMN_TOTALMONEY_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "TotalMoney", nullable = false, precision = 18, scale = 2)
     private BigDecimal totalMoney;
 
     @Size(max = 50)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_ORDERSTATUS_NAME, nullable = false, length = 50)
+    @Column(name = "OrderStatus", nullable = false, length = 50)
     private String orderStatus;
 
     @OneToMany(mappedBy = "orderID")

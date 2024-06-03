@@ -12,28 +12,22 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = RatingPicture.ENTITY_NAME)
-@Table(name = RatingPicture.TABLE_NAME)
+@Entity
+@Table(name = "RatingPictures")
 public class RatingPicture {
-    public static final String ENTITY_NAME = "Rating_Picture";
-    public static final String TABLE_NAME = "RatingPictures";
-    public static final String COLUMN_ID_NAME = "PictureID";
-    public static final String COLUMN_RATINGID_NAME = "RatingID";
-    public static final String COLUMN_PICTURE_NAME = "Picture";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "PictureID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_RATINGID_NAME, nullable = false)
-    private Long ratingID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "RatingID", nullable = false)
+    private Rating ratingID;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_PICTURE_NAME)
+    @Column(name = "Picture")
     private String picture;
 
 }

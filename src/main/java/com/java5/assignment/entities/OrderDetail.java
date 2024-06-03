@@ -13,42 +13,34 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = OrderDetail.ENTITY_NAME)
-@Table(name = OrderDetail.TABLE_NAME)
+@Entity
+@Table(name = "OrderDetails")
 public class OrderDetail {
-    public static final String ENTITY_NAME = "Order_Detail";
-    public static final String TABLE_NAME = "OrderDetails";
-    public static final String COLUMN_ID_NAME = "OrderDetailID";
-    public static final String COLUMN_ORDERID_NAME = "OrderID";
-    public static final String COLUMN_PRODUCTVERSIONID_NAME = "ProductVersionID";
-    public static final String COLUMN_QUANTITY_NAME = "Quantity";
-    public static final String COLUMN_PRICE_NAME = "Price";
-    public static final String COLUMN_DISCOUNTPRICE_NAME = "DiscountPrice";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "OrderDetailID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_ORDERID_NAME, nullable = false)
-    private Long orderID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "OrderID", nullable = false)
+    private Order orderID;
 
     @NotNull
-    @Column(name = COLUMN_PRODUCTVERSIONID_NAME, nullable = false)
-    private Long productVersionID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ProductVersionID", nullable = false)
+    private ProductVersion productVersionID;
 
     @NotNull
-    @Column(name = COLUMN_QUANTITY_NAME, nullable = false)
+    @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
     @NotNull
-    @Column(name = COLUMN_PRICE_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "Price", nullable = false, precision = 18, scale = 2)
     private BigDecimal price;
 
     @NotNull
-    @Column(name = COLUMN_DISCOUNTPRICE_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "DiscountPrice", nullable = false, precision = 18, scale = 2)
     private BigDecimal discountPrice;
 
 }

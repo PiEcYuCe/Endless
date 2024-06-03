@@ -16,30 +16,23 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Category.ENTITY_NAME)
-@Table(name = Category.TABLE_NAME)
+@Entity
+@Table(name = "Categories")
 public class Category {
-    public static final String ENTITY_NAME = "CategoryModel";
-    public static final String TABLE_NAME = "Categories";
-    public static final String COLUMN_ID_NAME = "CategoryID";
-    public static final String COLUMN_NAME_NAME = "Name";
-    public static final String COLUMN_DESCRIPTION_NAME = "Description";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "CategoryID", nullable = false)
     private Long id;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_NAME_NAME, nullable = false)
+    @Column(name = "Name", nullable = false)
     private String name;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_DESCRIPTION_NAME)
+    @Column(name = "Description")
     private String description;
 
     @OneToMany(mappedBy = "categoryID")

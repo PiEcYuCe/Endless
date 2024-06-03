@@ -10,12 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = UserVoucher.ENTITY_NAME)
-@Table(name = UserVoucher.TABLE_NAME)
+@Entity
+@Table(name = "UserVouchers")
 public class UserVoucher {
-    public static final String ENTITY_NAME = "User_Voucher";
-    public static final String TABLE_NAME = "UserVouchers";
-
     @EmbeddedId
     private UserVoucherId id;
 

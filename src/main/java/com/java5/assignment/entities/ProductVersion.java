@@ -17,55 +17,44 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = ProductVersion.ENTITY_NAME)
-@Table(name = ProductVersion.TABLE_NAME)
+@Entity
+@Table(name = "ProductVersions")
 public class ProductVersion {
-    public static final String ENTITY_NAME = "Product_Version";
-    public static final String TABLE_NAME = "ProductVersions";
-    public static final String COLUMN_ID_NAME = "ProductVersionID";
-    public static final String COLUMN_PRODUCTID_NAME = "ProductID";
-    public static final String COLUMN_VERSIONNAME_NAME = "VersionName";
-    public static final String COLUMN_PURCHASEPRICE_NAME = "PurchasePrice";
-    public static final String COLUMN_PRICE_NAME = "Price";
-    public static final String COLUMN_QUANTITY_NAME = "Quantity";
-    public static final String COLUMN_STATUS_NAME = "Status";
-    public static final String COLUMN_IMAGE_NAME = "Image";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "ProductVersionID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_PRODUCTID_NAME, nullable = false)
-    private Long productID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ProductID", nullable = false)
+    private Product productID;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_VERSIONNAME_NAME, nullable = false)
+    @Column(name = "VersionName", nullable = false)
     private String versionName;
 
     @NotNull
-    @Column(name = COLUMN_PURCHASEPRICE_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "PurchasePrice", nullable = false, precision = 18, scale = 2)
     private BigDecimal purchasePrice;
 
     @NotNull
-    @Column(name = COLUMN_PRICE_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "Price", nullable = false, precision = 18, scale = 2)
     private BigDecimal price;
 
     @NotNull
-    @Column(name = COLUMN_QUANTITY_NAME, nullable = false)
+    @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
     @NotNull
-    @Column(name = COLUMN_STATUS_NAME, nullable = false)
+    @Column(name = "Status", nullable = false)
     private Boolean status = false;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_IMAGE_NAME)
+    @Column(name = "Image")
     private String image;
 
     @OneToMany(mappedBy = "productVersionID")

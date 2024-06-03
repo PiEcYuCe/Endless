@@ -15,38 +15,31 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Rating.ENTITY_NAME)
-@Table(name = Rating.TABLE_NAME)
+@Entity
+@Table(name = "Ratings")
 public class Rating {
-    public static final String ENTITY_NAME = "RatingModel";
-    public static final String TABLE_NAME = "Ratings";
-    public static final String COLUMN_ID_NAME = "RatingID";
-    public static final String COLUMN_PRODUCTID_NAME = "ProductID";
-    public static final String COLUMN_USERID_NAME = "UserID";
-    public static final String COLUMN_RATING_NAME = "RatingModel";
-    public static final String COLUMN_COMMENT_NAME = "Comment";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "RatingID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_PRODUCTID_NAME, nullable = false)
-    private Long productID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ProductID", nullable = false)
+    private Product productID;
 
     @NotNull
-    @Column(name = COLUMN_USERID_NAME, nullable = false)
-    private Long userID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "UserID", nullable = false)
+    private User userID;
 
     @NotNull
-    @Column(name = COLUMN_RATING_NAME, nullable = false)
+    @Column(name = "Rating", nullable = false)
     private Integer rating;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_COMMENT_NAME)
+    @Column(name = "Comment")
     private String comment;
 
     @OneToMany(mappedBy = "ratingID")

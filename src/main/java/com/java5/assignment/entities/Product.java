@@ -16,45 +16,37 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Product.ENTITY_NAME)
-@Table(name = Product.TABLE_NAME)
+@Entity
+@Table(name = "Products")
 public class Product {
-    public static final String ENTITY_NAME = "ProductModel";
-    public static final String TABLE_NAME = "Products";
-    public static final String COLUMN_ID_NAME = "ProductID";
-    public static final String COLUMN_CATEGORYID_NAME = "CategoryID";
-    public static final String COLUMN_BRANDID_NAME = "BrandID";
-    public static final String COLUMN_NAME_NAME = "Name";
-    public static final String COLUMN_DESCRIPTION_NAME = "Description";
-    public static final String COLUMN_STATUS_NAME = "Status";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "ProductID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_CATEGORYID_NAME, nullable = false)
-    private Long categoryID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "CategoryID", nullable = false)
+    private Category categoryID;
 
     @NotNull
-    @Column(name = COLUMN_BRANDID_NAME, nullable = false)
-    private Long brandID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "BrandID", nullable = false)
+    private Brand brandID;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_NAME_NAME, nullable = false)
+    @Column(name = "Name", nullable = false)
     private String name;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_DESCRIPTION_NAME)
+    @Column(name = "Description")
     private String description;
 
     @NotNull
-    @Column(name = COLUMN_STATUS_NAME, nullable = false)
+    @Column(name = "Status", nullable = false)
     private Boolean status = false;
 
     @OneToMany(mappedBy = "productID")

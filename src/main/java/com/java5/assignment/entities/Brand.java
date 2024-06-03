@@ -16,35 +16,27 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Brand.ENTITY_NAME)
-@Table(name = Brand.TABLE_NAME)
+@Entity
+@Table(name = "Brands")
 public class Brand {
-    public static final String ENTITY_NAME = "BrandModel";
-    public static final String TABLE_NAME = "Brands";
-    public static final String COLUMN_ID_NAME = "BrandID";
-    public static final String COLUMN_NAME_NAME = "Name";
-    public static final String COLUMN_LOGO_NAME = "Logo";
-    public static final String COLUMN_STATUS_NAME = "Status";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "BrandID", nullable = false)
     private Long id;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_NAME_NAME, nullable = false)
+    @Column(name = "Name", nullable = false)
     private String name;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_LOGO_NAME)
+    @Column(name = "Logo")
     private String logo;
 
     @NotNull
-    @Column(name = COLUMN_STATUS_NAME, nullable = false)
+    @Column(name = "Status", nullable = false)
     private Boolean status = false;
 
     @OneToMany(mappedBy = "brandID")

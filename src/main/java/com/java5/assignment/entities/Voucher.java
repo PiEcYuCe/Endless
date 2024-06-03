@@ -18,60 +18,46 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Voucher.ENTITY_NAME)
-@Table(name = Voucher.TABLE_NAME)
+@Entity
+@Table(name = "Vouchers")
 public class Voucher {
-    public static final String ENTITY_NAME = "VoucherModel";
-    public static final String TABLE_NAME = "Vouchers";
-    public static final String COLUMN_ID_NAME = "VoucherID";
-    public static final String COLUMN_LEASTBILL_NAME = "LeastBill";
-    public static final String COLUMN_LEASTDISCOUNT_NAME = "LeastDiscount";
-    public static final String COLUMN_BIGGESTDISCOUNT_NAME = "BiggestDiscount";
-    public static final String COLUMN_DISCOUNTLEVEL_NAME = "DiscountLevel";
-    public static final String COLUMN_DISCOUNTFORM_NAME = "DiscountForm";
-    public static final String COLUMN_STARTDATE_NAME = "StartDate";
-    public static final String COLUMN_ENDDATE_NAME = "EndDate";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "VoucherID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_LEASTBILL_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "LeastBill", nullable = false, precision = 18, scale = 2)
     private BigDecimal leastBill;
 
     @NotNull
-    @Column(name = COLUMN_LEASTDISCOUNT_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "LeastDiscount", nullable = false, precision = 18, scale = 2)
     private BigDecimal leastDiscount;
 
     @NotNull
-    @Column(name = COLUMN_BIGGESTDISCOUNT_NAME, nullable = false, precision = 18, scale = 2)
+    @Column(name = "BiggestDiscount", nullable = false, precision = 18, scale = 2)
     private BigDecimal biggestDiscount;
 
     @NotNull
-    @Column(name = COLUMN_DISCOUNTLEVEL_NAME, nullable = false)
+    @Column(name = "DiscountLevel", nullable = false)
     private Integer discountLevel;
 
     @Size(max = 50)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_DISCOUNTFORM_NAME, nullable = false, length = 50)
+    @Column(name = "DiscountForm", nullable = false, length = 50)
     private String discountForm;
 
     @NotNull
-    @Column(name = COLUMN_STARTDATE_NAME, nullable = false)
+    @Column(name = "StartDate", nullable = false)
     private LocalDate startDate;
 
     @NotNull
-    @Column(name = COLUMN_ENDDATE_NAME, nullable = false)
+    @Column(name = "EndDate", nullable = false)
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "voucherID")
     private Set<Order> orders = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "voucherID")
-    private Set<User> users = new LinkedHashSet<>();
 
 }

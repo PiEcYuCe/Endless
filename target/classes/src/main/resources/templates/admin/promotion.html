@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="card">
-                    <img src="https://www.uplevo.com/img/designbox/thiet-ke-banner-anh-quang-cao.png" class="img-fluid" alt="" id="user-avatar"
+                    <img src="https://www.uplevo.com/img/designbox/thiet-ke-banner-anh-quang-cao.png" class="img-fluid" alt="" id="userModel-avatar"
                          style="width: 600px; height: 200px">
                 </div>
                 <hr>
@@ -177,7 +177,7 @@
 </div>
 
 <script>
-    document.getElementById('user-avatar').addEventListener('click', function (event) {
+    document.getElementById('userModel-avatar').addEventListener('click', function (event) {
         event.preventDefault();
         var element = document.getElementById('input-file');
 
@@ -196,7 +196,7 @@
                 if (file) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        var img = document.getElementById('user-avatar');
+                        var img = document.getElementById('userModel-avatar');
                         img.src = e.target.result;
                     }
                     reader.readAsDataURL(file);

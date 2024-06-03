@@ -16,30 +16,23 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = Attribute.ENTITY_NAME)
-@Table(name = Attribute.TABLE_NAME)
+@Entity
+@Table(name = "Attributes")
 public class Attribute {
-    public static final String ENTITY_NAME = "Attribute";
-    public static final String TABLE_NAME = "Attributes";
-    public static final String COLUMN_ID_NAME = "AttributeID";
-    public static final String COLUMN_ATTRIBUTENAME_NAME = "AttributeName";
-    public static final String COLUMN_ATTRIBUTENOTE_NAME = "AttributeNote";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "AttributeID", nullable = false)
     private Long id;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_ATTRIBUTENAME_NAME, nullable = false)
+    @Column(name = "AttributeName", nullable = false)
     private String attributeName;
 
     @Size(max = 255)
     @Nationalized
-    @Column(name = COLUMN_ATTRIBUTENOTE_NAME)
+    @Column(name = "AttributeNote")
     private String attributeNote;
 
     @OneToMany(mappedBy = "attributeID")

@@ -16,60 +16,48 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = User.ENTITY_NAME)
-@Table(name = User.TABLE_NAME)
+@Entity
+@Table(name = "Users")
 public class User {
-    public static final String ENTITY_NAME = "UserModel";
-    public static final String TABLE_NAME = "Users";
-    public static final String COLUMN_ID_NAME = "UserID";
-    public static final String COLUMN_USERNAME_NAME = "Username";
-    public static final String COLUMN_PASSWORD_NAME = "Password";
-    public static final String COLUMN_PHONE_NAME = "Phone";
-    public static final String COLUMN_EMAIL_NAME = "Email";
-    public static final String COLUMN_ROLE_NAME = "Role";
-    public static final String COLUMN_STATUS_NAME = "Status";
-    public static final String COLUMN_AVATAR_NAME = "Avatar";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "UserID", nullable = false)
     private Long id;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_USERNAME_NAME, nullable = false)
+    @Column(name = "Username", nullable = false)
     private String username;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_PASSWORD_NAME, nullable = false)
+    @Column(name = "Password", nullable = false)
     private String password;
 
     @Size(max = 11)
     @Nationalized
-    @Column(name = COLUMN_PHONE_NAME, length = 11)
+    @Column(name = "Phone", length = 11)
     private String phone;
 
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_EMAIL_NAME, nullable = false)
+    @Column(name = "Email", nullable = false)
     private String email;
 
     @NotNull
-    @Column(name = COLUMN_ROLE_NAME, nullable = false)
+    @Column(name = "Role", nullable = false)
     private Boolean role = false;
 
     @NotNull
-    @Column(name = COLUMN_STATUS_NAME, nullable = false)
+    @Column(name = "Status", nullable = false)
     private Boolean status = false;
 
     @Nationalized
     @Lob
-    @Column(name = COLUMN_AVATAR_NAME)
+    @Column(name = "Avatar")
     private String avatar;
 
     @OneToMany(mappedBy = "userID")
@@ -80,8 +68,5 @@ public class User {
 
     @OneToMany(mappedBy = "userID")
     private Set<Rating> ratings = new LinkedHashSet<>();
-
-    @ManyToMany(mappedBy = "userID")
-    private Set<Voucher> vouchers = new LinkedHashSet<>();
 
 }

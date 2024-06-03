@@ -14,27 +14,21 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = PromotionDetail.ENTITY_NAME)
-@Table(name = PromotionDetail.TABLE_NAME)
+@Entity
+@Table(name = "PromotionDetails")
 public class PromotionDetail {
-    public static final String ENTITY_NAME = "Promotion_Detail";
-    public static final String TABLE_NAME = "PromotionDetails";
-    public static final String COLUMN_ID_NAME = "PromotionDetailID";
-    public static final String COLUMN_PROMOTIONID_NAME = "PromotionID";
-    public static final String COLUMN_DISCOUNTLEVEL_NAME = "DiscountLevel";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "PromotionDetailID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_PROMOTIONID_NAME, nullable = false)
-    private Long promotionID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PromotionID", nullable = false)
+    private Promotion promotionID;
 
     @NotNull
-    @Column(name = COLUMN_DISCOUNTLEVEL_NAME, nullable = false)
+    @Column(name = "DiscountLevel", nullable = false)
     private Integer discountLevel;
 
     @OneToMany(mappedBy = "promotionDetailID")

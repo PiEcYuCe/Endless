@@ -13,34 +13,28 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = PromotionProduct.ENTITY_NAME)
-@Table(name = PromotionProduct.TABLE_NAME)
+@Entity
+@Table(name = "PromotionProducts")
 public class PromotionProduct {
-    public static final String ENTITY_NAME = "Promotion_Product";
-    public static final String TABLE_NAME = "PromotionProducts";
-    public static final String COLUMN_ID_NAME = "PromotionProductID";
-    public static final String COLUMN_PROMOTIONDETAILID_NAME = "PromotionDetailID";
-    public static final String COLUMN_PRODUCTVERSIONID_NAME = "ProductVersionID";
-    public static final String COLUMN_STATUS_NAME = "Status";
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+    @Column(name = "PromotionProductID", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = COLUMN_PROMOTIONDETAILID_NAME, nullable = false)
-    private Long promotionDetailID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PromotionDetailID", nullable = false)
+    private PromotionDetail promotionDetailID;
 
     @NotNull
-    @Column(name = COLUMN_PRODUCTVERSIONID_NAME, nullable = false)
-    private Long productVersionID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ProductVersionID", nullable = false)
+    private ProductVersion productVersionID;
 
     @Size(max = 50)
     @NotNull
     @Nationalized
-    @Column(name = COLUMN_STATUS_NAME, nullable = false, length = 50)
+    @Column(name = "Status", nullable = false, length = 50)
     private String status;
 
 }

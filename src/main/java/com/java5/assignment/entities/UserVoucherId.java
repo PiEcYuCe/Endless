@@ -18,16 +18,13 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class UserVoucherId implements Serializable {
-    public static final String COLUMN_USERID_NAME = "UserID";
-    public static final String COLUMN_VOUCHERID_NAME = "VoucherID";
-    private static final long serialVersionUID = 2936525196983193874L;
-
+    private static final long serialVersionUID = 6222263488674560007L;
     @NotNull
-    @Column(name = COLUMN_USERID_NAME, nullable = false)
+    @Column(name = "UserID", nullable = false)
     private Long userID;
 
     @NotNull
-    @Column(name = COLUMN_VOUCHERID_NAME, nullable = false)
+    @Column(name = "VoucherID", nullable = false)
     private Long voucherID;
 
     @Override
