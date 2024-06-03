@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-3 d-flex align-items-center text-center">
                     <div class="text-center">
-                        <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" id="user-avatar"
+                        <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" id="userModel-avatar"
                              class="card-img-top rounded-circle border border-secondary" style=" box-shadow: 3px 2px 8px gray;" alt="">
                         <br>
                         <span class="text-danger"
@@ -229,7 +229,7 @@
             </table>
         </div>
         <script>
-            document.getElementById('user-avatar').addEventListener('click', function(event) {
+            document.getElementById('userModel-avatar').addEventListener('click', function(event) {
                 event.preventDefault();
                 var element = document.getElementById('input-file');
 
@@ -248,7 +248,7 @@
                         if (file) {
                             var reader = new FileReader();
                             reader.onload = function(e) {
-                                var img = document.getElementById('user-avatar');
+                                var img = document.getElementById('userModel-avatar');
                                 img.src = e.target.result;
                             }
                             reader.readAsDataURL(file);

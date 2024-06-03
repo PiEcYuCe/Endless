@@ -2,13 +2,9 @@ package com.java5.assignment.controllers.share;
 
 import com.java5.assignment.content.Page;
 import com.java5.assignment.content.PageType;
-import com.java5.assignment.model.User;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegisterController {
@@ -23,7 +19,7 @@ public class RegisterController {
     }
 
 //    @PostMapping("/sign-up")
-//    public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult errors) {
+//    public String registerUser(@Valid @ModelAttribute("user") UserModel user, BindingResult errors) {
 //        if (errors.hasErrors()) {
 //            return "public/login";
 //        }

@@ -113,7 +113,7 @@
                 </form>
 
                 <script th:inline="javascript">
-                    const productVersions = /*[[${productVersions}]]*/ [];
+                    const productVersionModels = /*[[${productVersionModels}]]*/ [];
 
                     function updateTotal() {
                         let productQuantity = 0;
@@ -203,7 +203,7 @@
                                 return false;
                             }
                             let count = 0;
-                            productVersions.forEach((item) => {
+                            productVersionModels.forEach((item) => {
                                 if (item?.versionName.toUpperCase().includes(val.toUpperCase()) && count < 10) {
                                     const li = document.createElement('li');
                                     li.innerHTML = `

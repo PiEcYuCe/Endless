@@ -1,0 +1,232 @@
+<section class="container-fluid mt-3">
+    <div class="row mt-3 mx-0 px-0 border border-light bg-light" style="box-shadow: 5px 5px 10px gray;">
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-success bg-light">
+                <div class="text-success rounded-4 border border-success mx-0 p-3 px-4 my-2"><h1
+                        class="fa-solid fa-hand-holding-medical"></h1></div>
+                <div class="text-center text-success mt-3">
+                    <h3>500</h3>
+                    <h6>Product has been sold</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-info bg-light">
+                <div class="text-info rounded-4 border border-info mx-0 p-3 px-3 my-2"><h1
+                        class="fa-solid fa-truck-fast"></h1></div>
+                <div class="text-center text-info mt-3">
+                    <h4>38</h4>
+                    <h6>Product is shipping</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-warning bg-light">
+                <div class="text-warning rounded-4 border border-warning mx-0 p-3 px-4 my-2"><h1
+                        class="fa-regular fa-square-check"></h1></h1></div>
+                <div class="text-center text-warning mt-3">
+                    <h4>10</h4>
+                    <h6>Product is about to run out of stock</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-danger bg-light">
+                <div class="text-danger rounded-4 border border-danger mx-0 p-3 px-4 my-2"><h1
+                        class="fa-solid fa-ban"></h1></div>
+                <div class="text-center text-danger mt-3">
+                    <h4>1</h4>
+                    <h6>Product is out of stock</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid mt-3">
+    <div class="row" >
+        <div class="mt-3 w-25">
+            <div class="input-group mb-3">
+                <label>Brand: </label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" list="brand" id="brandinput" placeholder="Enter brand">
+                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-filter"></i></button>
+                </div>
+                <datalist id="brand">
+                    <option value="Samsung">
+                    <option value="Apple">
+                    <option value="Techno">
+                    <option value="Oppo">
+                    <option value="Xiaomi">
+                </datalist>
+            </div>
+        </div>
+        <div class="mt-3 w-25">
+            <div class="input-group mb-3">
+                <label>Category: </label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" list="category" id="categoryInput"
+                           placeholder="Enter category">
+                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-filter"></i></button>
+                </div>
+                <datalist id="category">
+                    <option value="Gaming">
+                    <option value="Compact">
+                    <option value="Cinema">
+                    <option value="Light">
+                </datalist>
+            </div>
+        </div>
+        <div class="mt-3 w-25">
+            <label>Sort by: </label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Default</option>
+                <option value="1">Price</option>
+                <option value="2">Quantity</option>
+                <option value="3">Revenue</option>
+            </select>
+        </div>
+    </div>
+    <div class="row px-2"  style="max-height: 380px; overflow-y: auto; ">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Version Name</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Category</th>
+                <th scope="col">Units Sold</th>
+                <th scope="col">Inventory</th>
+                <th scope="col">Cost Price</th>
+                <th scope="col">Selling Price</th>
+                <th scope="col">Revenue</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>iPhone 12</td>
+                <td>Apple iPhone 12</td>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>1,000,000</td>
+                <td>500,000</td>
+                <td>$699.00</td>
+                <td>$799.00</td>
+                <td>$799,000,000.00</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Galaxy S21 Ultra</td>
+                <td>Samsung Galaxy S21 Ultra</td>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>800,000</td>
+                <td>300,000</td>
+                <td>$1,199.99</td>
+                <td>$1,299.99</td>
+                <td>$1,039,999,200.00</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>OnePlus 9 Pro</td>
+                <td>OnePlus 9 Pro</td>
+                <td>OnePlus</td>
+                <td>Smartphone</td>
+                <td>500,000</td>
+                <td>200,000</td>
+                <td>$969.00</td>
+                <td>$1,069.00</td>
+                <td>$534,500,000.00</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Pixel 6 Pro</td>
+                <td>Google Pixel 6 Pro</td>
+                <td>Google</td>
+                <td>Smartphone</td>
+                <td>300,000</td>
+                <td>150,000</td>
+                <td>$899.00</td>
+                <td>$999.00</td>
+                <td>$299,700,000.00</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Xperia 1 III</td>
+                <td>Sony Xperia 1 III</td>
+                <td>Sony</td>
+                <td>Smartphone</td>
+                <td>200,000</td>
+                <td>100,000</td>
+                <td>$1,099.99</td>
+                <td>$1,199.99</td>
+                <td>$239,999,800.00</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>iPhone 13</td>
+                <td>Apple iPhone 13</td>
+                <td>Apple</td>
+                <td>Smartphone</td>
+                <td>1,200,000</td>
+                <td>600,000</td>
+                <td>$799.00</td>
+                <td>$899.00</td>
+                <td>$1,078,800,000.00</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Galaxy Note 20</td>
+                <td>Samsung Galaxy Note 20</td>
+                <td>Samsung</td>
+                <td>Smartphone</td>
+                <td>700,000</td>
+                <td>250,000</td>
+                <td>$999.99</td>
+                <td>$1,099.99</td>
+                <td>$769,999,300.00</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>OnePlus 9T</td>
+                <td>OnePlus 9T</td>
+                <td>OnePlus</td>
+                <td>Smartphone</td>
+                <td>400,000</td>
+                <td>180,000</td>
+                <td>$899.00</td>
+                <td>$999.00</td>
+                <td>$399,600,000.00</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Pixel 5A</td>
+                <td>Google Pixel 5A</td>
+                <td>Google</td>
+                <td>Smartphone</td>
+                <td>250,000</td>
+                <td>120,000</td>
+                <td>$499.00</td>
+                <td>$599.00</td>
+                <td>$149,750,000.00</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Xperia 5 II</td>
+                <td>Sony Xperia 5 II</td>
+                <td>Sony</td>
+                <td>Smartphone</td>
+                <td>180,000</td>
+                <td>90,000</td>
+                <td>$999.99</td>
+                <td>$1,099.99</td>
+                <td>$197,998,200.00</td>
+            </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+</section>

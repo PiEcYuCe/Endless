@@ -2,7 +2,7 @@ package com.java5.assignment.controllers.admin;
 
 import com.java5.assignment.content.Page;
 import com.java5.assignment.content.PageType;
-import com.java5.assignment.model.User;
+import com.java5.assignment.model.UserModel;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +24,11 @@ public class ManageAccountController {
     }
 
     @PostMapping("/manage-account")
-    public String profile(@Valid User user, BindingResult error, Model model) {
+    public String profile(@Valid UserModel userModel, BindingResult error, Model model) {
         if (error.hasErrors()) {
             model.addAttribute("error", error);
         }
-        model.addAttribute("user", user);
+        model.addAttribute("user", userModel);
         return "admin/layout";
     }
 }
