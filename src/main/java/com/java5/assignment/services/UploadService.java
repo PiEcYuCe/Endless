@@ -11,9 +11,9 @@ import java.util.Date;
 
 @Service
 public class UploadService {
-    public String uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file, String path) {
         if (!file.isEmpty()) {
-            Path root = Paths.get("uploads");
+            Path root = Paths.get("uploads/"+path);
             try {
                 Files.createDirectories(root);
                 String name = String.valueOf(new Date().getTime());
