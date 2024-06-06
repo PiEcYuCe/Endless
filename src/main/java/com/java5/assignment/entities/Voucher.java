@@ -62,5 +62,4 @@ public class Voucher {
     @OneToMany(mappedBy = "voucherID")
     private Set<Order> orders = new LinkedHashSet<>();
 
-
 }

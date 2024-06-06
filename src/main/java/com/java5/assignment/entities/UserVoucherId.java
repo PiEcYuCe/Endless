@@ -18,8 +18,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-@Embeddable
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@Embeddable
 public class UserVoucherId implements Serializable {
     private static final long serialVersionUID = 6222263488674560007L;
     @NotNull

@@ -47,6 +47,7 @@ uploads/**
 !src/**/**/static/**
 !src/**/**/static/**/**
 !src/**/**/**/**/assignment/**
+!src/**/**/**/**/assignment/entities/**
 !src/**/**/**/**/assignment/controller/**
 !src/main/resources/templates/admin/**
 !src/main/resources/templates/client/**
