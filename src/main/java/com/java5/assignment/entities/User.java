@@ -72,4 +72,5 @@ public class User {
     @OneToMany(mappedBy = "userID")
     private Set<Rating> ratings = new LinkedHashSet<>();
 
+
 }

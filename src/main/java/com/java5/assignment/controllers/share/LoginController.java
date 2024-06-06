@@ -53,7 +53,12 @@ public class LoginController {
             if(user!=null){
                 UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getRole(), user.getStatus());
                 session.setAttribute("user", userDto);
-                return "redirect:/home";
+                if(user.getRole()){
+                    return "redirect:/dashboard";
+                }
+                else{
+                    return "redirect:/home";
+                }
             }
         }
         return "public/login";
