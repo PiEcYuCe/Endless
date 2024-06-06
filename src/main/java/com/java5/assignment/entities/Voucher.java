@@ -1,5 +1,7 @@
 package com.java5.assignment.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -19,6 +21,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "Vouchers")
 public class Voucher {
     @Id
@@ -58,8 +61,5 @@ public class Voucher {
 
     @OneToMany(mappedBy = "voucherID")
     private Set<Order> orders = new LinkedHashSet<>();
-
-    @ManyToMany(mappedBy = "vouchers")
-    private Set<User> users = new LinkedHashSet<>();
 
 }
