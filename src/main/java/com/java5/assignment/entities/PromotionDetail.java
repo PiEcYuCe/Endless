@@ -1,5 +1,7 @@
 package com.java5.assignment.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "PromotionDetails")
 public class PromotionDetail {
     @Id

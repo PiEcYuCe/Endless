@@ -2,96 +2,49 @@
     <div class="container mt-5">
         <form class="px-4" action="/profile" method="post" id="form-my-info" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-md-3 text-center">
-                    <div class="text-center mt-5">
-                        <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" id="userModel-avatar"
-                             class="card-img-top rounded-circle border border-secondary" style=" box-shadow: 3px 2px 8px gray;" alt="">
+                <div class="col-md-5 text-center">
+                    <div class="text-center mt-2">
+                        <img th:src="${user?.avatar} !=null ? ${user?.avatar} : 'https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg' " id="userModel-avatar"
+                             class="card-img-top rounded-circle border border-secondary" style="box-shadow: 3px 2px 8px gray; width: 50vh; height: 50vh">
                         <br>
                         <span class="text-danger"
                            th:if='${error?.getFieldError("image") != null}'
                            th:text='${error?.getFieldError("image")?.getDefaultMessage()}'></span>
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div class="row g-3">
+                <div class="col-md-7 px-3">
+                    <div class="row g-3 mt-2">
                         <div class="col-md">
                             <div class="mb-1">
                                 <label class="form-label">UserID: </label>
-                                <input type="text" class="form-control" name="userID" placeholder="Enter userId" readonly>
+                                <input type="text" class="form-control" name="userID" th:value="${user?.id}" placeholder="Enter userId" readonly>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label">Username: </label>
+                                <input type="text" class="form-control" name="username" th:value="${user?.username}" placeholder="Enter username" readonly>
+                                <span class="text-danger"
+                                      th:if='${error?.getFieldError("username") != null}'
+                                      th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Email: </label>
-                                <input type="text" class="form-control" name="email" placeholder="Enter email">
+                                <input type="text" class="form-control" name="email" th:value="${user?.email}" placeholder="Enter email">
                                 <span class="text-danger"
                                    th:if='${error?.getFieldError("email") != null}'
                                    th:text='${error?.getFieldError("email")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Phone: </label>
-                                <input type="text" class="form-control" placeholder="Enter phone">
+                                <input type="text" class="form-control" name="phone" th:value="${user?.phone}" placeholder="Enter phone">
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("phone") != null}'
                                       th:text='${error?.getFieldError("phone")?.getDefaultMessage()}'></span>
                             </div>
-                            <div class="mb-1">
-                                <label class="form-label">Role: </label>
-                                <br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="admin">
-                                    <label class="form-check-label">Admin</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="customer">
-                                    <label class="form-check-label">User</label>
-                                </div>
-                                <br>
-                                <span class="text-danger"
-                                      th:if='${error?.getFieldError("role") != null}'
-                                      th:text='${error?.getFieldError("role")?.getDefaultMessage()}'></span>
-                            </div>
                         </div>
-                        <div class="col-md">
-                            <div class="mb-1">
-                                <label class="form-label">Username: </label>
-                                <input type="text" class="form-control" name="username" placeholder="Enter username">
-                                <span class="text-danger"
-                                   th:if='${error?.getFieldError("username") != null}'
-                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
-                            </div>
-                            <div class="mb-1">
-                                <label class="form-label">Fullname: </label>
-                                <input type="text" class="form-control" name="fullName" placeholder="Enter fullname">
-                                <span class="text-danger"
-                                   th:if='${error?.getFieldError("fullName") != null}'
-                                   th:text='${error?.getFieldError("fullName")?.getDefaultMessage()}'></span>
-                            </div>
-                            <div class="mb-1">
-                                <label class="form-label">Address: </label>
-                                <input type="text" class="form-control" name="address" placeholder="Enter username">
-                                <span class="text-danger"
-                                      th:if='${error?.getFieldError("address") != null}'
-                                      th:text='${error?.getFieldError("address")?.getDefaultMessage()}'></span>
-                            </div>
-                            <div class="mb-1">
-                                <label class="form-label">Status: </label>
-                                <br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="true">
-                                    <label class="form-check-label">True</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="false">
-                                    <label class="form-check-label">False</label>
-                                </div>
-                                <br>
-                                <span class="text-danger"
-                                   th:if='${error?.getFieldError("status") != null}'
-                                   th:text='${error?.getFieldError("status")?.getDefaultMessage()}'></span>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-primary col-3"><i class="bi bi-arrow-up-circle-fill"></i> Update Information</button>
-                            <button type="submit" class="btn btn-warning text-white col-3"><i class="bi bi-x-circle-fill"></i> Clear</button>
+
+                        <div class="mt-3 mb-5">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-up-circle-fill"></i> Update</button>
+                            <button type="submit" class="btn btn-warning text-white"><i class="bi bi-x-circle-fill"></i> Clear</button>
                         </div>
                     </div>
                 </div>
@@ -104,16 +57,14 @@
             event.preventDefault();
             var element = document.getElementById('input-file');
 
-            // Tạo phần tử input nếu nó chưa tồn tại
             if(!element) {
                 element = document.createElement('input');
                 element.type = 'file';
-                element.name = 'file';
+                element.name = 'avatar';
                 element.id = 'input-file';
                 element.style.display = 'none';
                 document.getElementById('form-my-info').appendChild(element);
 
-                // Thêm sự kiện change chỉ một lần khi phần tử được tạo
                 element.addEventListener('change', function (event){
                     var file = event.target.files[0];
                     if (file) {
