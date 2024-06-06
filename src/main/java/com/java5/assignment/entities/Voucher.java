@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -22,24 +23,41 @@ import java.util.Set;
 @Setter
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Table(name = "Promotions")
+@Table(name = "Vouchers")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Promotion {
+public class Voucher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PromotionID", nullable = false)
+    @Column(name = "VoucherID", nullable = false)
     private Long id;
 
-    @Size(max = 255)
+    @Size(max = 50)
     @NotNull
     @Nationalized
-    @Column(name = "Name", nullable = false)
-    private String name;
+    @Column(name = "VoucherCode", nullable = false, length = 50)
+    private String voucherCode;
 
+    @NotNull
+    @Column(name = "LeastBill", nullable = false, precision = 18, scale = 2)
+    private BigDecimal leastBill;
+
+    @NotNull
+    @Column(name = "LeastDiscount", nullable = false, precision = 18, scale = 2)
+    private BigDecimal leastDiscount;
+
+    @NotNull
+    @Column(name = "BiggestDiscount", nullable = false, precision = 18, scale = 2)
+    private BigDecimal biggestDiscount;
+
+    @NotNull
+    @Column(name = "DiscountLevel", nullable = false)
+    private Integer discountLevel;
+
+    @Size(max = 50)
+    @NotNull
     @Nationalized
-    @Lob
-    @Column(name = "Description")
-    private String description;
+    @Column(name = "DiscountForm", nullable = false, length = 50)
+    private String discountForm;
 
     @NotNull
     @Column(name = "StartDate", nullable = false)
@@ -49,16 +67,10 @@ public class Promotion {
     @Column(name = "EndDate", nullable = false)
     private LocalDate endDate;
 
-    @NotNull
-    @Column(name = "Status", nullable = false)
-    private Boolean status = false;
+    @OneToMany(mappedBy = "voucherID")
+    private Set<Order> orders = new LinkedHashSet<>();
 
-    @Size(max = 255)
-    @Nationalized
-    @Column(name = "Poster")
-    private String poster;
-
-    @OneToMany(mappedBy = "promotionID")
-    private Set<PromotionDetail> promotionDetails = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "voucherID")
+    private Set<UserVoucher> userVouchers = new LinkedHashSet<>();
 
 }
