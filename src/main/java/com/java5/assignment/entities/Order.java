@@ -2,6 +2,7 @@ package com.java5.assignment.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.java5.assignment.jpa.PromotionProductRepository;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -36,7 +37,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "VoucherID")
-    private Voucher voucherID;
+    private PromotionProductRepository.Voucher voucherID;
 
     @NotNull
     @Column(name = "OrderDate", nullable = false)
