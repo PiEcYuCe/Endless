@@ -2,6 +2,7 @@ package com.java5.assignment.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.java5.assignment.jpa.PromotionProductRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,6 @@ public class UserVoucher {
     @MapsId("voucherID")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "VoucherID", nullable = false)
-    private Voucher voucherID;
+    private PromotionProductRepository.Voucher voucherID;
 
 }

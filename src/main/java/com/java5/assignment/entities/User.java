@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -63,14 +60,9 @@ public class User {
     @Column(name = "Avatar")
     private String avatar;
 
-    @OneToMany(mappedBy = "userID")
-    private Set<Cart> carts = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "userID")
-    private Set<Order> orders = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "userID")
-    private Set<Rating> ratings = new LinkedHashSet<>();
-
+    @Nationalized
+    @Lob
+    @Column(name = "Address")
+    private String address;
 
 }
