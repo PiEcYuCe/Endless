@@ -31,6 +31,7 @@ public class Page {
         route.put(PageType.ABOUT_US, new Page("client/about-us.html", "about-us"));
         route.put(PageType.ORDER, new Page("client/order.html", "order"));
         route.put(PageType.CART, new Page("client/cart.html", "cart"));
+        route.put(PageType.VOUCHER,  new Page("client/voucher-form.html", "voucher-form"));
         route.put(PageType.ADMIN_DASHBOARD, new Page("admin/dashboard.html", "dashboard"));
         route.put(PageType.ADMIN_PRODUCT, new Page("admin/product.html", "product"));
         route.put(PageType.ADMIN_PRODUCT_VERSION, new Page("admin/product-version.html", "product"));

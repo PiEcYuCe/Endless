@@ -12,6 +12,7 @@ public enum PageType {
     CHANGE_PASSWORD,
     ORDER,
     CART,
+    VOUCHER,
     ADMIN_DASHBOARD,
     ADMIN_PROFILE,
     ADMIN_PRODUCT,
