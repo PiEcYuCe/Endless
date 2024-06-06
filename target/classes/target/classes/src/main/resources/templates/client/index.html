@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!--Font Awesome Icons-->
+    <script src="https://kit.fontawesome.com/a055717105.js"></script>
+
+    <!--Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+<header>
+</header>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <img src="/ui/NonBGLogo.png" class="navbar-brandModel" style="width: 50px">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto d-flex flex-row">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home" th:classappend="${page?.name == 'home'} ? 'active' : ''">Home</a>
+                </li>
+                <li class="nav-item dropdown d-flex align-items-center">
+                    <a class="nav-link" th:classappend="${page.name == 'product'} ? 'active' : ''" href="/product"
+                       id="navbarDropdown">
+                        Product
+                    </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false"></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/product/gaming">Gaming</a></li>
+                        <li><a class="dropdown-item" href="/product/luxury">Luxury</a></li>
+                        <li><a class="dropdown-item" href="/product/compact">Compact</a></li>
+                        <li><a class="dropdown-item" href="/product/cinemactor">Cinemator</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${page.name == 'about-us'} ? 'active' : ''" href="/about-us">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${page.name == 'contact'} ? 'active' : ''" href="/contact">Contact</a>
+                </li>
+
+            </ul>
+
+            <form class="d-flex justify-content-end">
+                <div class="input-group col-12 px-3">
+                    <input class="form-control rounded-4 " list="datalistOptions"
+                           placeholder="Search a product">
+                    <datalist id="datalistOptions">
+                        <option value="San Francisco">
+                        <option value="New York">
+                        <option value="Seattle">
+                        <option value="Los Angeles">
+                        <option value="Chicago">
+                    </datalist>
+                </div>
+                <div class="dropdown open">
+                    <button class="btn btn-secondary rounded-circle" type="button" id="triggerId"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <h6 class="fa fa-user"></h6>
+                    </button>
+                    <div class="dropdown-menu mr-5" style="margin-left: -10px">
+                        <!-- Kiểm tra xem account có giá trị không -->
+                        <li th:if="${account != null}">
+                            <a class="dropdown-item" th:href="@{/profile}">My account</a>
+                        </li>
+                        <li th:if="${account != null}">
+                            <a class="dropdown-item" th:href="@{/order}">My order</a>
+                        </li>
+                        <li th:if="${account != null}">
+                            <a class="dropdown-item" th:href="@{/change-password}">Change password</a>
+                        </li>
+                        <li th:if="${account != null}">
+                            <a class="dropdown-item" th:href="@{/logout}">Log out</a>
+                        </li>
+                        <li th:unless="${account != null}" class="dropdown-item form-check-inline">
+                            <a class="nav-link d-inline" th:href="@{/login}">Log in</a>/
+                            <a class="nav-link d-inline" th:href="@{/register}">Register</a>
+                        </li>
+                    </div>
+                </div>
+
+                <a href="/cart" class="btn btn-secondary rounded-circle mx-2"><h6 class="bi bi-cart2"></h6></a>
+            </form>
+        </div>
+    </div>
+</nav>
+<main th:replace="~{${page?.url}}">
+
+</main>
+
+<footer class="footer mt-4 text-bg-dark py-5 pb-0">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-md-4">
+                <img src="/ui/logoDarkRow.png" class="w-100">
+
+            </div>
+            <div class="col-md-2  text-center">
+                <h3>Quick Links</h3>
+                <ul class="list-unstyled">
+                    <li><a class="nav-link" href="#">Home</a></li>
+                    <li><a class="nav-link" href="/product">Product</a></li>
+                    <li><a class="nav-link" href="/contact">Contact</a></li>
+                    <li><a class="nav-link" href="/prmotion">Promotion</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-2 text-center">
+                <h3>Cagories</h3>
+                <ul class="list-unstyled">
+                    <li><a class="nav-link" href="#">Cagory 1</a></li>
+                    <li><a class="nav-link" href="/product">Cagory 2</a></li>
+                    <li><a class="nav-link" href="/contact">Cagory 3</a></li>
+                    <li><a class="nav-link" href="/prmotion">Cagory 4</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 text-center">
+                <h3>Connect</h3>
+                <div class="gap-3">
+                    <a href="#"><i class="fab fa-facebook fa-3x text-white px-2"></i></a>
+                    <a href="#"><i class="fab fa-twitter fa-3x text-white px-2"></i></a>
+                    <a href="#"><i class="fab fa-instagram fa-3x text-white px-2"></i></a>
+                    <a href="#"><i class="fab fa-youtube fa-3x text-white px-2"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-center">
+            <h6>Copyright @ FPT POLYTECHNIC</h6>
+        </div>
+    </div>
+</footer>
+
+<script>
+
+</script>
+
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
