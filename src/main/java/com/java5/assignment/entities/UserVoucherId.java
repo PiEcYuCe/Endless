@@ -1,5 +1,7 @@
 package com.java5.assignment.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Embeddable
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class UserVoucherId implements Serializable {
     private static final long serialVersionUID = 6222263488674560007L;
     @NotNull

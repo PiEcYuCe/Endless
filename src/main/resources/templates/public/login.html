@@ -20,12 +20,14 @@
                 <div class="input-field">
                     <i class='bx bx-user'></i>
                     <input type="text" id="usernameLogin" name="username" th:classappend="${loginError?.getFieldError('username')==null} ? '' : 'errorInput'"
-                           th:placeholder="${loginError?.getFieldError('username') == null ? 'Username' : loginError?.getFieldError('username').getDefaultMessage()}">
+                           th:placeholder="${loginError?.getFieldError('username') == null ? 'Username' : loginError?.getFieldError('username').getDefaultMessage()}"
+                           th:value="${login?.username}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
                     <input type="password" name="password" th:classappend="${loginError?.getFieldError('password')==null} ? '' : 'errorInput'"
-                           th:placeholder="${loginError?.getFieldError('password') == null ? 'Password' : loginError?.getFieldError('password').getDefaultMessage()}">
+                           th:placeholder="${loginError?.getFieldError('password') == null ? 'Password' : loginError?.getFieldError('password').getDefaultMessage()}"
+                           th:value="${login?.password}">
                 </div>
                 <div class="checkbox-container">
                     <input type="checkbox" name="rememberMe" id="rememberMe" value="true">
@@ -39,22 +41,26 @@
                 <div class="input-field">
                     <i class='bx bx-user'></i>
                     <input type="text" name="username" th:classappend="${registerError?.getFieldError('username')==null} ? '' : 'errorInput'"
-                           th:placeholder="${registerError?.getFieldError('username') == null ? 'Username' : registerError?.getFieldError('username').getDefaultMessage()}">
+                           th:placeholder="${registerError?.getFieldError('username') == null ? 'Username' : registerError?.getFieldError('username').getDefaultMessage()}"
+                           th:value="${register?.username}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-envelope'></i>
                     <input type="email" name="email" th:classappend="${registerError?.getFieldError('email')==null} ? '' : 'errorInput'"
-                           th:placeholder="${registerError?.getFieldError('email') == null ? 'Email' : registerError?.getFieldError('email').getDefaultMessage()}">
+                           th:placeholder="${registerError?.getFieldError('email') == null ? 'Email' : registerError?.getFieldError('email').getDefaultMessage()}"
+                           th:value="${register?.email}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-lock-alt'></i>
                     <input type="password" name="password" th:classappend="${registerError?.getFieldError('password')==null} ? '' : 'errorInput'"
-                           th:placeholder="${registerError?.getFieldError('password') == null ? 'Password' : registerError?.getFieldError('password').getDefaultMessage()}">
+                           th:placeholder="${registerError?.getFieldError('password') == null ? 'Password' : registerError?.getFieldError('password').getDefaultMessage()}"
+                           th:value="${register?.password}">
                 </div>
                 <div class="input-field">
                     <i class='bx bx-phone'></i>
                     <input type="password" name="repeatPassword" th:classappend="${registerError?.getFieldError('repeatPassword')==null} ? '' : 'errorInput'"
-                           th:placeholder="${registerError?.getFieldError('repeatPassword') == null ? 'Repeat Password' : registerError?.getFieldError('repeatPassword').getDefaultMessage()}">
+                           th:placeholder="${registerError?.getFieldError('repeatPassword') == null ? 'Repeat Password' : registerError?.getFieldError('repeatPassword').getDefaultMessage()}"
+                           th:value="${register?.repeatPassword}">
                 </div>
                 <button type="submit" value="Sign Up" class="btn solid">Sign Up</button>
 
