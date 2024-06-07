@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -14,6 +15,6 @@ public class BrandModel {
     private int brandID;
     @NotBlank(message = "Please enter the brand name")
     private String name;
-    private String logo;
+    private MultipartFile logo;
     private boolean status;
 }
