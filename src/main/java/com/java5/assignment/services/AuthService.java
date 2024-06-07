@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     @Autowired
     HttpSession session;
-
-    @Autowired
-    CookieService cookieService;
-
     public boolean isLogin() {
         UserDto userDto = (UserDto) session.getAttribute("user");
         return userDto != null;
@@ -20,12 +16,12 @@ public class AuthService {
 
     public boolean isAdmin() {
         UserDto userDto = (UserDto) session.getAttribute("user");
-        return userDto.getRole();
+        return userDto != null && userDto.getRole();
     }
 
-    public boolean isStatus(){
+    public boolean isStatus() {
         UserDto userDto = (UserDto) session.getAttribute("user");
-        return userDto.getStatus();
+        return userDto != null && userDto.getStatus();
     }
 
 

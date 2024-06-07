@@ -16,6 +16,7 @@
     <div class="forms-container">
         <div class="signIn-signUp">
             <form action="/login" method="post" class="sign-in-form">
+                <input type="hidden" name="path" th:value="${path}">
                 <h2 class="title">Sign In</h2>
                 <div class="input-field">
                     <i class='bx bx-user'></i>

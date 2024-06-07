@@ -1,4 +1,4 @@
-package com.java5.assignment.content;
+package com.java5.assignment.components;
 
 import com.java5.assignment.dto.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 @Component
-public class AccountInforInterceptor implements HandlerInterceptor {
+public class AccountInterceptor implements HandlerInterceptor {
 
 
     @Override

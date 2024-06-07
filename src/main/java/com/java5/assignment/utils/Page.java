@@ -1,4 +1,4 @@
-package com.java5.assignment.content;
+package com.java5.assignment.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
