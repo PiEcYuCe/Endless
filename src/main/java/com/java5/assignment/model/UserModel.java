@@ -40,5 +40,5 @@ public class UserModel {
     @NotBlank(message = "Please select status")
     private String status;
     @NotNull(message = "Please select image")
-    private List<MultipartFile> image;
+    private MultipartFile avatar;
 }

@@ -40,17 +40,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="item: ${Ratings}">
-                    <td th:text="${item?.productID?.id}"></td>
+                <tr th:each="item: ${ratings}">
+                    <td th:text="${item?.id}"></td>
                     <td th:text="${item?.userID?.name}"></td>
                     <td class="px-0 mx-0 col-3">
                         <div class="d-flex align-items-center">
-                            <img th:src="'productVersion/'+${item?.image}" class="img-fluid col-1 mx-3">
+                            <img th:src="'productVersion/'+${item?.productID?.image}" class="img-fluid col-1 mx-3">
                             <h6 th:text="${item?.productID?.name}"></h6>
                         </div>
                     </td>
-                    <td>20-05-2024</td>
-                    <td th:text="${item?.rating}">
+                    <td th:text="${item?.ratingDate}"></td>
+                    <td th:text="${item?.ratingValue}">
 <!--                        <i class="fa-solid fa-star text-warning"> </i>-->
 <!--                        <i class="fa-solid fa-star text-warning"> </i>-->
 <!--                        <i class="fa-solid fa-star text-warning"> </i>-->
