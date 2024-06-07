@@ -1,0 +1,75 @@
+<body>
+<div class="container mt-5 bg-light">
+    <h1 class="mb-4">Attribute Management</h1>
+
+    <!-- Card for Add/Edit Attribute Form -->
+    <div class="card mb-5" >
+        <div class="card-header">
+            Add/Edit Attribute
+        </div>
+        <div class="card-body">
+            <form id="attributeForm" method="post" th:action="@{/manage-attribute}">
+                <div class="mb-3">
+                    <label for="attributeName" class="form-label">Attribute Name</label>
+                    <input type="text" class="form-control" id="attributeName" name="attributeName"
+                           placeholder="Enter attribute name">
+                    <p th:text="${error}" class="text-danger"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="attributeNote" class="form-label">Attribute Note</label>
+                    <textarea class="form-control" id="attributeNote" name="attributeNote" rows="3"
+                              placeholder="Enter additional notes about the attribute"></textarea>
+                    <p th:text="${error1}" class="text-danger"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="attributeValue" class="form-label">Attribute Value</label>
+                    <input type="text" class="form-control" id="attributeValue" name="attributeValue"
+                           placeholder="Enter attribute value">
+                    <p th:text="${error2}" class="text-danger"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" id="clearFormBtn">Clear</button>
+            </form>
+        </div>
+    </div>
+    <!-- Attribute Table -->
+    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 300px">
+        <table class="table table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Attribute Name</th>
+                <th scope="col">Attribute Note</th>
+                <th scope="col">Attribute Value</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
+            <tr>
+                <td scope="row">Color</td>
+                <td>Color of the product</td>
+                <td>Red</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td scope="row">ROM</td>
+                <td>Rom capacity of the product</td>
+                <td>256GB</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+</body>

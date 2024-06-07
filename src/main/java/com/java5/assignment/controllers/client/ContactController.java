@@ -1,7 +1,7 @@
 package com.java5.assignment.controllers.client;
 
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.UserModel;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

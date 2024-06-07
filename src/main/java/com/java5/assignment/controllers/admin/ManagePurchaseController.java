@@ -2,8 +2,8 @@ package com.java5.assignment.controllers.admin;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.ProductVersionModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
