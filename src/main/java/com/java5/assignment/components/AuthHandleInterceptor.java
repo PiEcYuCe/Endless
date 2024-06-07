@@ -34,7 +34,7 @@ public class AuthHandleInterceptor implements HandlerInterceptor {
             if (authService.isAdmin() || !isAdminRequired) {
                 return true;
             } else {
-                response.sendRedirect("/login");
+                response.sendRedirect("/logout");
                 return false;
             }
         } else {
