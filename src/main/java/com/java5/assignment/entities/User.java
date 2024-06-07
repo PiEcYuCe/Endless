@@ -1,6 +1,7 @@
 package com.java5.assignment.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ import java.util.Set;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "Users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +34,11 @@ public class User {
     @Nationalized
     @Column(name = "Username", nullable = false)
     private String username;
+
+    @Size(max = 255)
+    @Nationalized
+    @Column(name = "Fullname")
+    private String fullname;
 
     @Size(max = 255)
     @NotNull
@@ -63,6 +70,11 @@ public class User {
     @Column(name = "Avatar")
     private String avatar;
 
+    @Nationalized
+    @Lob
+    @Column(name = "Address")
+    private String address;
+
     @OneToMany(mappedBy = "userID")
     private Set<Cart> carts = new LinkedHashSet<>();
 
@@ -72,5 +84,7 @@ public class User {
     @OneToMany(mappedBy = "userID")
     private Set<Rating> ratings = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "userID")
+    private Set<UserVoucher> userVouchers = new LinkedHashSet<>();
 
 }
