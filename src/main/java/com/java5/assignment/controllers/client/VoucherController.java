@@ -11,7 +11,7 @@ public class VoucherController {
         return Page.route.get(PageType.VOUCHER);
     }
 
-    @GetMapping("/voucher-form")
+    @GetMapping("/voucher")
     public String get() {
         return "client/index";
     }
