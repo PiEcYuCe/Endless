@@ -1,9 +1,8 @@
 package com.java5.assignment.controllers.admin;
 
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
-import com.java5.assignment.model.ProductVersion;
-import com.java5.assignment.model.User;
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
+import com.java5.assignment.model.ProductVersionModel;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +24,7 @@ public class ManageProductVersionController {
     }
 
     @PostMapping("/manage-product-version")
-    public String profile(@Valid ProductVersion pro, BindingResult error, Model model) {
+    public String profile(@Valid ProductVersionModel pro, BindingResult error, Model model) {
         if (error.hasErrors()) {
             model.addAttribute("error", error);
         }

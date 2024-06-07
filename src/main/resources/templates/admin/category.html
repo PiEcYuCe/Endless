@@ -1,31 +1,32 @@
 <div class="container mt-5 bg-light">
     <h1 class="mb-4">Category Management</h1>
-
-
-    <!-- Card for Add/Edit Category Form -->
     <div class="card mb-5" id="categoryFormCard" >
         <div class="card-header">
             Add/Edit Category
         </div>
         <div class="card-body">
-            <form>
+            <form th:action="${category == null} ? '/add-category' : '/update-category?id='+${category?.id}" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="categoryName" class="form-label">Category Name</label>
-                    <input type="text" class="form-control" id="categoryName" name="categoryName">
+                    <input type="text" class="form-control" id="categoryName" name="name" th:value="${category?.name}">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("name") != null}'
+                          th:text='${error?.getFieldError("name")?.getDefaultMessage()}'></span>
                 </div>
                 <div class="mb-3">
-                    <label for="categoryDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="categoryDescription" name="categoryDescription"
-                              rows="3"></textarea>
+                    <label for="description" class="form-label">Description</label>
+                    <textarea role="textbox" type="" class="form-control" id="description" name="description"
+                              rows="3" th:text="${category?.description}"></textarea>
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("description") != null}'
+                          th:text='${error?.getFieldError("description")?.getDefaultMessage()}'></span>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-                <button type="submit" class="btn btn-primary">Clear</button>
+                <input type="submit" class="btn btn-success" th:value="${category == null} ? 'Create' : 'Update'">
+                <a th:href="'/clear-formCategory'" class="btn btn-primary">Clear</a>
             </form>
         </div>
     </div>
-
-    <!-- Category Table -->
-    <div class="d-flex" style="overflow-y: scroll; max-height: 300px">
+    <div class="d-flex">
         <table class="table table-striped">
             <thead class="table-dark">
             <tr>
@@ -36,73 +37,34 @@
             </tr>
             </thead>
             <tbody>
-            <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
-            <tr>
-                <th scope="row">1</th>
-                <td>Smartphone</td>
-                <td>Description of Smartphone category goes here.</td>
+            <tr th:each="item :${Categories}">
+                <td th:text="${item?.id}"></td>
+                <td th:text="${item?.name}"></td>
+                <td th:text="${item?.description}"></td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                    <div class="row">
+                        <div class="col-3">
+                            <form th:action="'/edit-category'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <form th:action="'/delete-category'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Laptop</td>
-                <td>Description of Laptop category goes here.</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Tablets</td>
-                <td>Description of Tablets category goes here.</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Mobile Accessories</td>
-                <td>Description of Mobile Accessories category goes here.</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Smartwatch</td>
-                <td>Description of Smartwatch category goes here.</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">6</th>
-                <td>Watch</td>
-                <td>Description of Watch category goes here.</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
-            <!-- Thêm dòng khác nếu cần -->
             </tbody>
         </table>
     </div>
-
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

@@ -1,0 +1,29 @@
+{
+  "Category": [
+    {
+      "categoryID": 1,
+      "name": "Smartphones",
+      "description": "Latest mobile phones and smartphones"
+    },
+    {
+      "categoryID": 2,
+      "name": "Basic Phones",
+      "description": "Simple and affordable mobile phones"
+    },
+    {
+      "categoryID": 3,
+      "name": "Foldable Phones",
+      "description": "Cutting-edge foldable smartphones"
+    },
+    {
+      "categoryID": 4,
+      "name": "Gaming Phones",
+      "description": "High-performance smartphones optimized for gaming"
+    },
+    {
+      "categoryID": 5,
+      "name": "Camera Phones",
+      "description": "Mobile phones with exceptional camera capabilities"
+    }
+  ]
+}

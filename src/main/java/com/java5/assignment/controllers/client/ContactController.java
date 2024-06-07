@@ -1,8 +1,8 @@
 package com.java5.assignment.controllers.client;
 
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
-import com.java5.assignment.model.User;
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
+import com.java5.assignment.model.UserModel;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.sql.SQLOutput;
-import java.util.Map;
 
 @Controller
 public class ContactController {
@@ -27,12 +24,12 @@ public class ContactController {
     }
 
     @PostMapping("/contact")
-    public String profile(@Valid User user, BindingResult error, Model model) {
+    public String profile(@Valid UserModel userModel, BindingResult error, Model model) {
         if (error.hasErrors()) {
             model.addAttribute("error", error);
             System.out.println(error.getFieldError("phone").getDefaultMessage());
         }
-        model.addAttribute("user", user);
+        model.addAttribute("user", userModel);
         return "client/index";
     }
 }

@@ -1,0 +1,159 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.voucher-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* khoảng cách giữa các cột */
+}
+
+.voucher-card {
+    flex: 1 1 calc(33.333% - 16px); /* mỗi cột chiếm 1/3 chiều rộng trừ đi khoảng cách */
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* đường viền xung quanh mỗi voucher */
+    border-radius: 8px; /* bo tròn các góc */
+    overflow: hidden; /* ẩn các phần tử vượt quá phạm vi */
+    margin-bottom: 16px; /* khoảng cách dưới mỗi voucher */
+    display: flex;
+    flex-direction: column;
+}
+
+.voucher-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ vùng và giữ tỷ lệ */
+}
+
+.voucher-card .card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.voucher-card .card-title {
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+}
+
+.voucher-card .card-text {
+    margin-bottom: 0.5em;
+}
+
+.voucher-card .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.voucher-card button.btn {
+    margin-left: auto;
+}
+
+
+
+.tabs-container,
+.tabs-container * {
+    box-sizing: border-box;
+}
+
+.tabs-container {
+    width: 1200px;
+    height: 680px;
+    font-family: "Roboto", sans-serif;
+    padding: 16px;
+    background: #fff;
+    color: #14213d;
+    box-shadow: 0 5px 50px -8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.tabs-container .tab-heading .icon svg {
+    height: 30px;
+}
+
+.tabs-container .tab-heading-container {
+    display: flex;
+    background: #e63946;
+    margin: -16px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabs-container .tab-heading {
+    padding: 12px 30px;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-weight: 800;
+    gap: 4px;
+}
+
+.tabs-container .tab-heading.active {
+    background: #1d3557;
+}
+
+.tabs-container .tab-content {
+    display: none;
+    overflow-y: scroll;
+    height: 600px;
+    margin-top: 24px;
+}
+
+.tabs-container .tab-content.active {
+    display: block;
+}
+
+.tabs-container .tab-content h2 {
+    font-size: 40px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.tabs-container .tab-content .content {
+    line-height: 2;
+}
+
+.tabs-container .tab-content .content img {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .tabs-container {
+        width: 80%;
+    }
+
+    .tabs-container .tab-heading-container {
+        justify-content: space-between;
+    }
+
+    .tabs-container .tab-heading {
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .tabs-container {
+        width: 90%;
+    }
+
+    .tabs-container .tab-content h2 {
+        font-size: 30px;
+        margin-top: 16px;
+        margin-bottom: 8px;
+    }
+
+    .tabs-container .tab-heading {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
