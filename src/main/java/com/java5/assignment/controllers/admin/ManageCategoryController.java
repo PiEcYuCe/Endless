@@ -1,13 +1,16 @@
 package com.java5.assignment.controllers.admin;
 
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
+
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
+
 import com.java5.assignment.entities.Brand;
 import com.java5.assignment.entities.Category;
 import com.java5.assignment.jpa.CategoryRepository;
 import com.java5.assignment.model.CategoryModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

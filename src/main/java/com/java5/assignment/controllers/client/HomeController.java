@@ -1,11 +1,9 @@
 package com.java5.assignment.controllers.client;
 
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
 import com.java5.assignment.dto.UserDto;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
