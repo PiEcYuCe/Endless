@@ -5,7 +5,7 @@ import com.java5.assignment.utils.PageType;
 import com.java5.assignment.dto.UserDto;
 import com.java5.assignment.entities.User;
 import com.java5.assignment.jpa.UserRepository;
-import com.java5.assignment.model.share.LoginModel;
+import com.java5.assignment.model.share.login.LoginModel;
 import com.java5.assignment.services.CookieService;
 import com.java5.assignment.services.EncodeService;
 import jakarta.servlet.http.HttpSession;
