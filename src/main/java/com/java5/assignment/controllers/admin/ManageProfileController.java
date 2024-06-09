@@ -1,7 +1,7 @@
 package com.java5.assignment.controllers.admin;
 
-import com.java5.assignment.content.Page;
-import com.java5.assignment.content.PageType;
+import com.java5.assignment.utils.Page;
+import com.java5.assignment.utils.PageType;
 import com.java5.assignment.entities.User;
 import com.java5.assignment.jpa.UserRepository;
 import com.java5.assignment.model.user.UpdateProfileModel;
