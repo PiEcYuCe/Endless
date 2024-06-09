@@ -1,107 +1,127 @@
-
 <div class="container mt-5 bg-light">
-    <h1 class="mb-4">Product Version Management</h1>
-    <!-- Card for Add/Edit ProductModel Version Form -->
     <div class="card mb-5">
-        <div class="card-header">
-            Add/Edit Product Version
-        </div>
         <div class="card-body">
             <form action="/manage-product-version" method="post" enctype="multipart/form-data">
-                <div class="mb-1">
-                    <label for="exampleDataList" class="form-label">Product</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList"
-                           placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        <option value="IPHONE 15"></option>
-                        <option value="SAMSUNG GALAXY S23"></option>
-                        <option value="XIAOMI 13"></option>
-                    </datalist>
 
-                </div>
-                <div class="mb-1">
-                    <label for="versionName" class="form-label">Version name</label>
-                    <input type="text" class="form-control" id="versionName" name="versionName">
-                    <span class="text-danger"
-                          th:if='${error?.getFieldError("versionName") != null}'
-                          th:text='${error?.getFieldError("versionName")?.getDefaultMessage()}'></span>
-                </div>
-                <div class="mb-1">
-                    <label for="purchasePrice" class="form-label">Purchase price</label>
-                    <input type="number" min="0" class="form-control" id="purchasePrice" name="purchasePrice">
-                    <span class="text-danger"
-                          th:if='${error?.getFieldError("purchasePrice") != null}'
-                          th:text='${error?.getFieldError("purchasePrice")?.getDefaultMessage()}'></span>
-                </div>
-                <div class="mb-1">
-                    <label for="salePrice" class="form-label">Sale price</label>
-                    <input type="number" min="0" class="form-control" id="salePrice" name="salePrice">
-                    <span class="text-danger"
-                          th:if='${error?.getFieldError("salePrice") != null}'
-                          th:text='${error?.getFieldError("salePrice")?.getDefaultMessage()}'></span>
-                </div>
-                <div class="mb-1">
-                    <label for="purchasePrice" class="form-label">Discount price</label>
-                    <input type="number" value="0" class="form-control" name="purchasePrice" readonly>
-                </div>
-                <div class="mb-1">
-                    <label for="quantity" class="form-label">Quantity</label>
-                    <input type="number" min="1" class="form-control" id="quantity" name="quantity">
-                    <span class="text-danger"
-                          th:if='${error?.getFieldError("quantity") != null}'
-                          th:text='${error?.getFieldError("quantity")?.getDefaultMessage()}'></span>
-                </div>
-                <h5 class="mb-1">Attribute</h5>
-                <div id="versionAttributesContainer">
-                    <div class="version-attribute mb-3">
-                        <div class="row ">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-md-6 mb-1">
-                                        <label for="attributeName" class="form-label">Attribute Name</label>
-                                        <select class="form-select" id="attributeName" name="attributeName[]">
-                                            <option selected>Choose an attribute...</option>
-                                            <option value="Color">Color</option>
-                                            <option value="Storage">ROM</option>
-                                            <option value="RAM">RAM</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <label for="attributeValue" class="form-label">Attribute Value</label>
-                                        <select class="form-select" id="attributeValue" name="attributeValue[]">
-                                            <option selected>Choose a value...</option>
-                                            <option value="Black">Black</option>
-                                            <option value="White">White</option>
-                                            <option value="128GB">128GB</option>
-                                            <option value="256GB">256GB</option>
-                                            <option value="8GB">8GB</option>
-                                            <option value="12GB">12GB</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 mt-4 pt-2">
-                                <button type="button" class="btn btn-secondary mb-3" id="addVersionAttributeBtn">Add
-                                    Version
-                                    Attribute
-                                </button>
-                            </div>
-
-                        </div>
-
+                <div class="row d-flex justify-content-between">
+                    <div class="d-flex input-group w-25 px-3" style="position: relative;">
+                        <input  type="text" class="form-control" id="productInput"
+                               aria-label="Amount (to the nearest dollar)" style="max-height: 100px;">
+                        <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <ul id="productList" class="autocomplete-items"></ul>
                     </div>
                 </div>
-                <div class="form-check form-switch mb-1">
-                    <input class="form-check-input" type="checkbox" id="status" name="status">
-                    <label class="form-check-label" for="status">Active</label>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <label for="exampleDataList" class="form-label">Product</label>
+                            <input class="form-control" list="datalistOptions" id="exampleDataList"
+                                   placeholder="Type to search...">
+                            <datalist id="datalistOptions">
+                                <option th:each="item : ${products}" th:value="${item?.name}"></option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <label for="versionName" class="form-label">Version name</label>
+                            <input type="text" class="form-control" id="versionName" name="versionName">
+                            <span class="text-danger"
+                                  th:if='${error?.getFieldError("versionName") != null}'
+                                  th:text='${error?.getFieldError("versionName")?.getDefaultMessage()}'></span>
+                        </div>
+                    </div>
+
+
                 </div>
-                <div class="mb-1">
-                    <label for="image" class="form-label">Image</label>
-                    <input class="form-control" type="file" id="image" name="image">
-                    <span class="text-danger"
-                          th:if='${error?.getFieldError("image") != null}'
-                          th:text='${error?.getFieldError("image")?.getDefaultMessage()}'></span>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <label for="purchasePrice" class="form-label">Purchase price</label>
+                            <input type="number" min="0" class="form-control" id="purchasePrice" name="purchasePrice">
+                            <span class="text-danger"
+                                  th:if='${error?.getFieldError("purchasePrice") != null}'
+                                  th:text='${error?.getFieldError("purchasePrice")?.getDefaultMessage()}'></span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <label for="salePrice" class="form-label">Sale price</label>
+                            <input type="number" min="0" class="form-control" id="salePrice" name="salePrice">
+                            <span class="text-danger"
+                                  th:if='${error?.getFieldError("salePrice") != null}'
+                                  th:text='${error?.getFieldError("salePrice")?.getDefaultMessage()}'></span>
+                        </div>
+                    </div>
                 </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="mb-1">
+                            <label for="image" class="form-label">Image</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                            <span class="text-danger"
+                                  th:if='${error?.getFieldError("image") != null}'
+                                  th:text='${error?.getFieldError("image")?.getDefaultMessage()}'></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-3 mt-4">
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" id="status" name="status">
+                        <label class="form-check-label" for="status">Active</label>
+                    </div>
+                </div>
+
+                <div class="border mt-4">
+                    <div class="p-3">
+                        <h5 class="mb-1 ">Attribute</h5>
+                        <div id="versionAttributesContainer">
+                            <div class="version-attribute mb-3">
+                                <div class="row ">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-1">
+                                                <label for="attributeName" class="form-label">Attribute Name</label>
+                                                <select class="form-select" id="attributeName" name="attributeName[]">
+                                                    <option selected>Choose an attribute...</option>
+                                                    <option value="Color">Color</option>
+                                                    <option value="Storage">ROM</option>
+                                                    <option value="RAM">RAM</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-1">
+                                                <label for="attributeValue" class="form-label">Attribute Value</label>
+                                                <select class="form-select" id="attributeValue" name="attributeValue[]">
+                                                    <option selected>Choose a value...</option>
+                                                    <option value="Black">Black</option>
+                                                    <option value="White">White</option>
+                                                    <option value="128GB">128GB</option>
+                                                    <option value="256GB">256GB</option>
+                                                    <option value="8GB">8GB</option>
+                                                    <option value="12GB">12GB</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mt-4 pt-2">
+                                        <button type="button" class="btn btn-secondary mb-3"
+                                                id="addVersionAttributeBtn">Add
+                                            Version
+                                            Attribute
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary mt-2">Save</button>
                 <button type="submit" class="btn btn-primary mt-2">Clear</button>
 

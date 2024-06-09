@@ -1,5 +1,6 @@
 package com.java5.assignment.model;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,12 @@ public class ProductModel {
     private String productName;
     @NotBlank(message = "Please enter product description")
     private String productDescription;
-    private Integer productCategory;
-    private Integer productBrand;
+
+    @Min(value = 0, message = "Please select Category")
+    private long productCategory;
+
+    @Min(value = 0, message = "Please select Brand")
+    private long productBrand;
+
     private boolean productStatus;
 }

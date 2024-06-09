@@ -16,8 +16,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class ProductVersionModel {
     private int productVersionID;
-    private int productID;
+
+    private long productID;
     @NotBlank(message = "Please enter version name")
+
     private String versionName;
     @NotNull(message = "Please enter purchase price")
     @DecimalMin("0")
