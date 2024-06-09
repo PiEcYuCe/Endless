@@ -1,5 +1,6 @@
 package com.java5.assignment.controllers.client;
 
+import com.java5.assignment.dto.ProductInfoDTO;
 import com.java5.assignment.entities.Category;
 import com.java5.assignment.entities.Product;
 import com.java5.assignment.entities.ProductVersion;
@@ -43,17 +44,34 @@ public class HomeController {
     ProductVersionService productVersionService;
 
     @ModelAttribute("productCatList")
-    public Map<Category, List<ProductVersion>> getTop3ProductVersionsByCategory() {
-        Map<Category, List<ProductVersion>> productCatList = new HashMap<>();
+    public Map<Category, List<ProductInfoDTO>> getTop3ProductVersionsByCategory() {
+        Map<Category, List<ProductInfoDTO>> productCatList = new HashMap<>();
         List<Category> categories = categoryRepository.findAll();
 
         for (Category category : categories) {
-            List<ProductVersion> top3ProductVersions = productVersionService.getTop3ProductVersionsByCategory(category.getId());
+            List<ProductInfoDTO> top3ProductVersions = productVersionService.getProductInfoByCategory(category, PageRequest.of(0, 3));
             productCatList.put(category, top3ProductVersions);
         }
 
         return productCatList;
     }
+
+    @ModelAttribute("topSale")
+    public List<Product> getTopSale() {
+        return productRepository.findBestSellers(PageRequest.of(0, 4));
+    }
+
+    @ModelAttribute("hotProduct")
+    public Product getHotProduct() {
+        return productRepository.findTopRatedProducts(PageRequest.of(0, 1)).iterator().next();
+    }
+
+    @ModelAttribute("specialProduct")
+    public Product getSpecialProduct() {
+        return productRepository.findTopSellingProductsInLast100Orders(PageRequest.of(0, 1)).iterator().next();
+    }
+
+
 
     @ModelAttribute("page")
     public Page page() {
