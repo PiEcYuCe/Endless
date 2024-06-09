@@ -4,7 +4,7 @@ import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import com.java5.assignment.entities.User;
 import com.java5.assignment.jpa.UserRepository;
-import com.java5.assignment.model.share.RegisterModel;
+import com.java5.assignment.model.share.login.RegisterModel;
 import com.java5.assignment.services.EncodeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

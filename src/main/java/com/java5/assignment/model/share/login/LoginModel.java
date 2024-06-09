@@ -1,4 +1,4 @@
-package com.java5.assignment.model.share;
+package com.java5.assignment.model.share.login;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

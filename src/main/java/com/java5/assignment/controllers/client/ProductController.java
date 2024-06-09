@@ -2,9 +2,12 @@ package com.java5.assignment.controllers.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.java5.assignment.jpa.ProductVersionRepository;
+import com.java5.assignment.jpa.PromotionProductRepository;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.ProductVersionModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,9 @@ import java.util.List;
 @Controller
 public class ProductController {
     private static final int PRODUCTS_PER_PAGE = 6;
+
+    @Autowired
+    ProductVersionRepository productVersionRepository;
 
     @ModelAttribute("page")
     public Page setPageContent() {

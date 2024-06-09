@@ -34,8 +34,8 @@ public class Rating {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ProductID", nullable = false)
-    private Product productID;
+    @JoinColumn(name = "ProductVersionID", nullable = false)
+    private ProductVersion productVersionID;
 
     @Column(name = "RatingValue")
     private Integer ratingValue;
