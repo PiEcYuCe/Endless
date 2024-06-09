@@ -6,11 +6,13 @@
             <table class="table table-bordered table-hover table-md mt-3">
                 <thead class="table-dark">
                 <tr>
-                    <th scope="col">
-                    <div class="d-flex justify-content-between">
-                        <div>ID</div>
-                        <div><i class="bi bi-caret-down"></i></div>
-                    </div>
+                    <th>
+                        <div class="d-flex justify-content-between">
+                            <div class="p-2">ID</div>
+                            <div>
+                                <button type="submit" class="btn btn-dark bi bi-caret-down"></button>
+                            </div>
+                        </div>
                     </th>
                     <th scope="col">
                         <div class="d-flex justify-content-between">
@@ -40,67 +42,87 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="item: ${ratings}">
+                <tr th:each="item: ${Ratings}">
                     <td th:text="${item?.id}"></td>
-                    <td th:text="${item?.userID?.name}"></td>
+                    <td th:text="${item?.userID?.fullname}"></td>
                     <td class="px-0 mx-0 col-3">
                         <div class="d-flex align-items-center">
-                            <img th:src="'productVersion/'+${item?.productID?.image}" class="img-fluid col-1 mx-3">
-                            <h6 th:text="${item?.productID?.name}"></h6>
+                            <img th:src="'product-version/'+${item?.ProductVersionID?.image}"class="img-fluid col-1 mx-3">
+                            <h6 th:text="${item?.ProductVersionID?.versionName}"></h6>
                         </div>
                     </td>
                     <td th:text="${item?.ratingDate}"></td>
-                    <td th:text="${item?.ratingValue}">
-<!--                        <i class="fa-solid fa-star text-warning"> </i>-->
-<!--                        <i class="fa-solid fa-star text-warning"> </i>-->
-<!--                        <i class="fa-solid fa-star text-warning"> </i>-->
-<!--                        <i class="fa-solid fa-star text-warning"> </i>-->
+                    <td>
+                        <i class="fa-solid fa-star text-warning" th:if="${item?.ratingValue>0}"></i>
+                        <i class="fa-solid fa-star text-warning" th:if="${item?.ratingValue>1}"></i>
+                        <i class="fa-solid fa-star text-warning" th:if="${item?.ratingValue>2}"></i>
+                        <i class="fa-solid fa-star text-warning" th:if="${item?.ratingValue>3}"></i>
+                        <i class="fa-solid fa-star text-warning" th:if="${item?.ratingValue>4}"></i>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i class="bi bi-eye-fill"></i></button>
+                        <div th:name="${item.id}">
+                            <input type="hidden" th:value="${item?.userID?.avatar}" th:id="'avatar'+${item?.id}" name="${item?.id}">
+                            <input type="hidden" th:value="${item?.userID?.fullname}" th:id="'fullname'+${item?.id}" name="${item?.id}">
+                            <input type="hidden" th:value="${item?.comment}" th:id="'comment'+${item?.id}" name="${item?.id}">
+                            <input type="hidden" th:each="Picture : ${item?.ratingPictures}" th:value="${Picture?.picture}" th:name="'pic'+${item?.id}" name="${item?.id}">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa-solid fa-eye" style="font-weight: bold; cursor: pointer;" th:id="${item?.id}" onclick="displayRating(this)">
+                                </i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
 
-            <script>
-                // Tạo một đối tượng div để chứa nội dung HTML của modal
-                var modalContainer = document.createElement('div');
-                modalContainer.innerHTML = `
-    <!-- The Modal -->
-    <div class="modal" id="rating">
+    <script>
+        function removeModal() {
+            var modalElement = document.getElementById("ratingModal");
+            modalElement.remove();
+        }
+
+        function displayRating(buttonElement) {
+            let avatar = document.getElementById('avatar'+buttonElement.id).value;
+            let customerName = document.getElementById('fullname'+buttonElement.id).value;
+            let comment = document.getElementById('comment'+buttonElement.id).value;
+            let pictureName = 'picture'+buttonElement.id;
+            let pictures = document.querySelectorAll('[name="'+pictureName+'"]');
+            let firstPicture = pictures.length > 0 ? pictures[0].value : '';
+
+            var modalContainer = document.createElement('div');
+            modalContainer.innerHTML = `
+       <div class="modal" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" onclick="removeModal()">
         <div class="modal-dialog">
-            <div class="modal-content" >
-                <!-- Modal Header -->
+            <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="ratingModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                <div class="mb-3">
-                     <div class="p-2 text-center">
-                         <img src="/images/User/user2.jpg" class="img-fluid col-2 mx-3 rounded-circle">
-                         <h6>Marry</h6>
-                         <small>Product very good 😍😍😍😍😍😍</small>
-                         <div class="row d-flex justify-content-center">
-                         <img src="/images/productVersion/GooglePixel5Sage512GB.png" class="img-fluid col-4 p-1" alt="">
-                         <img src="/images/productVersion/iPhone13White.png" class="img-fluid col-4 p-1" alt="">
-                         <img src="/images/productVersion/iPhone13Blue.png" class="img-fluid col-4 p-1"  alt="">
-                         </div>
+                <div class="modal-body" id="ratingContent">
+                    <div class="mb-3">
+                         <div class="p-2 text-center">
+                             <img src="${avatar}" class="img-fluid col-2 mx-3 rounded-circle">
+                             <h6>${customerName}</h6>
+                             <small>${comment}</small>
+                             <div class="row d-flex justify-content-center">
+                                 <img src="${firstPicture}" class="img-fluid col-4 p-1" alt="">
+                             </div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
     </div>
-`;
+    `;
 
-                // Chèn đối tượng div vào cuối thẻ body
-                document.body.appendChild(modalContainer);
+            document.body.appendChild(modalContainer);
 
-            </script>
+            var modalElement = document.getElementById("ratingModal");
+            var modal = new bootstrap.Modal(modalElement);
 
-        </div>
-    </div>
+            modal.show();
+        }
+    </script>
 </div>
