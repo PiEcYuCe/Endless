@@ -40,10 +40,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false"></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/product/gaming">Gaming</a></li>
-                        <li><a class="dropdown-item" href="/product/luxury">Luxury</a></li>
-                        <li><a class="dropdown-item" href="/product/compact">Compact</a></li>
-                        <li><a class="dropdown-item" href="/product/cinemactor">Cinemator</a></li>
+                        <li th:each="item: ${cat}"><a class="dropdown-item" th:href="'/product?catID='+${item?.id}" th:text="${item?.name}"></a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -122,10 +119,7 @@
             <div class="col-md-2 text-center">
                 <h3>Cagories</h3>
                 <ul class="list-unstyled">
-                    <li><a class="nav-link" href="#">Cagory 1</a></li>
-                    <li><a class="nav-link" href="/product">Cagory 2</a></li>
-                    <li><a class="nav-link" href="/contact">Cagory 3</a></li>
-                    <li><a class="nav-link" href="/prmotion">Cagory 4</a></li>
+                    <li th:each="item: ${cat}"><a class="nav-link" th:href="'/product?catID='+${item?.id}" th:text="${item?.name}"></a></li>
                 </ul>
             </div>
             <div class="col-md-3 text-center">

@@ -36,11 +36,9 @@
     <div class="row mb-3 p-2">
         <div class="row d-flex justify-content-between">
             <div class="d-flex input-group w-25 px-3" style="position: relative;">
-                <input type="text" class="form-control" id="productInput"
-                       aria-label="Amount (to the nearest dollar)" style="max-height: 100px;">
-                <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <ul id="productList" class="autocomplete-items"></ul>
+                <input type="text" class="form-control" id="productInput" style="max-height: 100px;">
+                <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <ul id="productList" class="autocomplete-items" style="user-select: none; "></ul>
             </div>
         </div>
         <div class="row mt-3">
@@ -112,140 +110,6 @@
                     </button>
                 </form>
 
-                <script th:inline="javascript">
-                    const productVersionModels = /*[[${productVersionModels}]]*/ [];
-
-                    function updateTotal() {
-                        let productQuantity = 0;
-                        let totalQuantity = 0;
-                        let totalPrice = 0;
-
-                        const rows = document.querySelectorAll('tbody tr');
-                        productQuantity = rows.length;
-                        rows.forEach(row => {
-                            const quantity = parseInt(row.querySelector('input[type="number"]').value);
-                            const price = parseFloat(row.querySelector('.price').innerText);
-                            totalQuantity += quantity;
-                            totalPrice += quantity * price;
-                        });
-
-                        document.getElementById('product-quantity').innerText = productQuantity;
-                        document.getElementById('total-quantity').innerText = totalQuantity;
-                        document.getElementById('total-price').innerText = totalPrice.toFixed(2);
-                    }
-
-                    function deleteRow(rowId) {
-                        const row = document.getElementById(rowId);
-                        if (row) {
-                            row.parentNode.removeChild(row);
-                            updateTotal();
-                        }
-                    }
-
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const input = document.getElementById('productInput');
-                        const ul = document.getElementById('productList');
-                        const tableBody = document.querySelector('tbody');
-
-                        function closeAllLists() {
-                            while (ul.firstChild) {
-                                ul.removeChild(ul.firstChild);
-                            }
-                        }
-
-                        function addProductToTable(item) {
-                            let existingRow = document.getElementById(`quantity_${item?.productVersionID}`);
-                            if (existingRow) {
-                                let quantityInput = document.getElementById(`quantity_${item?.productVersionID}`);
-                                let quantity = parseInt(quantityInput.value);
-                                quantityInput.value = quantity + 1;
-                            } else {
-                                const newRow = createTableRow(item);
-                                tableBody.appendChild(newRow);
-                            }
-                            updateTotal();
-                        }
-
-                        function createTableRow(item) {
-                            const newRow = document.createElement('tr');
-                            newRow.id = `row_${item?.productVersionID}`;
-                            newRow.innerHTML = `
-                <td class="px-0 mx-0 col-1 py-3">
-                    <div class="d-flex align-items-center">
-                        <img src="${item?.image}" class="img-fluid w-50">
-                    </div>
-                </td>
-                <td class="pt-4">
-                    <h6>${item?.versionName}</h6>
-                </td>
-                <td class="d-flex py-4">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" onclick="minus('quantity_${item?.productVersionID}', '${item?.purchasePrice}')">-</button>
-                    </div>
-                    <input type="number" class="form-control col-6 text-end" id="quantity_${item?.productVersionID}" min="0" value="1" style="width: 60px; max-height: 40px" onchange="updateTotal()">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" onclick="plus('quantity_${item?.productVersionID}', '${item?.purchasePrice}')">+</button>
-                    </div>
-                </td>
-                <td class="py-4 price">${item?.purchasePrice}</td>
-                <td class="py-4">
-                    <button class="btn btn-danger" onclick="deleteRow('row_${item?.productVersionID}')">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
-                </td>
-            `;
-                            return newRow;
-                        }
-
-                        function updateList(val) {
-                            closeAllLists();
-                            if (!val) {
-                                return false;
-                            }
-                            let count = 0;
-                            productVersionModels.forEach((item) => {
-                                if (item?.versionName.toUpperCase().includes(val.toUpperCase()) && count < 10) {
-                                    const li = document.createElement('li');
-                                    li.innerHTML = `
-                        <img src="${item?.image}" style="width: 50px; height: auto; margin-right: 10px;">
-                        <span>${item.versionName}</span>
-                    `;
-                                    li.addEventListener('mousedown', function () {
-                                        addProductToTable(item);
-                                    });
-                                    ul.appendChild(li);
-                                    count++;
-                                }
-                            });
-                        }
-
-                        input.addEventListener('input', function () {
-                            updateList(this.value);
-                        });
-
-                        document.addEventListener('click', function (event) {
-                            if (!event.target.closest('#productInput') && !event.target.closest('#productList')) {
-                                closeAllLists();
-                            }
-                        });
-                    });
-
-                    const plus = function (name, price) {
-                        var input = document.getElementById(name);
-                        var value = parseInt(input.value);
-                        input.value = value + 1;
-                        updateTotal();
-                    }
-
-                    const minus = function (name, price) {
-                        var input = document.getElementById(name);
-                        var value = parseInt(input.value);
-                        if (value > 0) {
-                            input.value = value - 1;
-                        }
-                        updateTotal();
-                    }
-                </script>
 
                 <script>
                     var modalContainer = document.createElement('div');
@@ -426,6 +290,7 @@
                 </tbody>
             </table>
         </div>
+        //Them modal
         <script>
             // Tạo một đối tượng div để chứa nội dung HTML của modal
             var modalContainer = document.createElement('div');
@@ -642,4 +507,6 @@
         </script>
 
     </div>
+
+    <script src="/js/searchProduct.js"></script>
 </div>
