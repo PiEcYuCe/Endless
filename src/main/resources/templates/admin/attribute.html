@@ -1,19 +1,20 @@
-<body>
 <div class="container mt-5 bg-light">
-    <h1 class="mb-4">Attribute Management</h1>
-
-    <!-- Card for Add/Edit Attribute Form -->
-    <div class="card mb-5" >
-        <div class="card-header">
-            Add/Edit Attribute
-        </div>
+    <div class="card mb-5">
         <div class="card-body">
             <form id="attributeForm" method="post" th:action="@{/manage-attribute}">
                 <div class="mb-3">
-                    <label for="attributeName" class="form-label">Attribute Name</label>
-                    <input type="text" class="form-control" id="attributeName" name="attributeName"
-                           placeholder="Enter attribute name">
-                    <p th:text="${error}" class="text-danger"></p>
+                    <label for="exampleDataList" class="form-label">Attribute Name</label>
+                    <input class="form-control" list="datalistOptions" id="exampleDataList"
+                           placeholder="Type to search...">
+                    <datalist id="datalistOptions">
+
+                    </datalist>
+
+
+                    <!--                    <label for="attributeName" class="form-label">Attribute Name</label>-->
+                    <!--                    <input type="text" class="form-control" id="attributeName" name="attributeName"-->
+                    <!--                           placeholder="Enter attribute name">-->
+                    <!--                    <p th:text="${error}" class="text-danger"></p>-->
                 </div>
                 <div class="mb-3">
                     <label for="attributeNote" class="form-label">Attribute Note</label>
@@ -21,14 +22,42 @@
                               placeholder="Enter additional notes about the attribute"></textarea>
                     <p th:text="${error1}" class="text-danger"></p>
                 </div>
-                <div class="mb-3">
-                    <label for="attributeValue" class="form-label">Attribute Value</label>
-                    <input type="text" class="form-control" id="attributeValue" name="attributeValue"
-                           placeholder="Enter attribute value">
-                    <p th:text="${error2}" class="text-danger"></p>
+
+
+                <form action="">
+                    <div class="border mt-4">
+                        <div class="p-3">
+                            <h5 class="mb-1 ">Attribute</h5>
+                            <div id="versionAttributesContainer">
+                                <div class="version-attribute mb-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-md-6">
+                                                <input class="form-control" type="text" id="" name="">
+                                                <small class="text-danger"
+                                                       th:if='${error?.getFieldError("productCategory")!=null}'
+                                                       th:text='${error?.getFieldError("productCategory")?.getDefaultMessage()}'></small>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="button" class="btn btn-secondary mb-3" id="attribute1"
+                                                    onclick="addNewAttributeRow(this)">Add new Attribute
+                                            </button>
+                                        </div>
+                                        <div class="col-3"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <button class="btn btn-primary mt-2" onclick="saveAttributes()">Save Attribute</button>-->
+
+                </form>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" id="clearFormBtn">Clear</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-secondary" id="clearFormBtn">Clear</button>
             </form>
         </div>
     </div>
@@ -71,5 +100,3 @@
 </div>
 
 
-
-</body>

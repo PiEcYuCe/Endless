@@ -1,46 +1,56 @@
 <div class="container mt-4 bg-light " id="form-my-info" enctype="multipart/form-data">
-    <form id="promotionForm">
+    <form method="post" th:action="${promotion == null} ? '/add-promotion' : '/update-promotion?id='+${promotion?.id}"
+          enctype="multipart/form-data">
         <div class="row">
             <div class="col-6">
                 <div class="card">
-                    <img src="https://www.uplevo.com/img/designbox/thiet-ke-banner-anh-quang-cao.png" class="img-fluid" alt="" id="userModel-avatar"
+                    <img th:if="${promotion?.poster != null}" th:src="${promotion?.poster}" class="img-fluid" alt=""
+                         id="user-avatar"
                          style="width: 600px; height: 200px">
+                    <input th:value="${promotion?.poster}" class="form-control" type="file" id="poster" name="poster">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("poster") != null}'
+                          th:text='${error?.getFieldError("poster")?.getDefaultMessage()}'></span>
                 </div>
                 <hr>
                 <div class="row d-flex justify-content-start j mt-4">
-
-                        <div class="d-flex col-1  ">
-
-                            <button type="button" class="btn btn-outline-primary btn-sm btn-nhu"><i class="bi bi-plus"></i>
-                            </button>
-                        </div>
-                        <div class="col-5 d-flex g-0 m-0 p-0" >
-                            <input style="margin-left: -5px" placeholder="level_discout" type="text" class="form-control nhu"
-                                   id="name1"
-                                   name="name1">
-
-                        </div>
-
+                    <div class="d-flex col-1  ">
+                        <button type="button" class="btn btn-outline-primary btn-sm btn-nhu"><i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+                    <div class="col-5 d-flex g-0 m-0 p-0">
+                        <input style="margin-left: -5px" placeholder="level_discout" type="text"
+                               class="form-control nhu"
+                               id="name1"
+                               name="name1"></div>
                 </div>
-
             </div>
             <div class="col-6">
                 <div class="mb-3">
                     <label for="name" class="form-label">Promotion name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input th:value="${promotion?.name}" type="text" class="form-control" id="name" name="name">
+                    <span class="text-danger" th:if="${error?.getFieldError('name') != null}"
+                          th:text="${error?.getFieldError('name')?.getDefaultMessage()}"></span>
                 </div>
                 <div class="row">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="startDate" class="form-label">Start date</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate">
+                                <input th:value="${promotion?.startDate}" type="date" class="form-control"
+                                       id="startDate" name="startDate">
+                                <span class="text-danger" th:if="${error?.getFieldError('startDate') != null}"
+                                      th:text="${error?.getFieldError('startDate')?.getDefaultMessage()}"></span>
+
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="endDate" class="form-label">End date</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate">
+                                <input th:value="${promotion?.endDate}" type="date" class="form-control" id="endDate"
+                                       name="endDate">
+                                <span class="text-danger" th:if="${error?.getFieldError('endDate') != null}"
+                                      th:text="${error?.getFieldError('endDate')?.getDefaultMessage()}"></span>
                             </div>
                         </div>
                     </div>
@@ -48,12 +58,16 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
+                        <input th:value="${promotion?.description}" class="form-control" id="description"
+                               name="description">
+                        <span class="text-danger" th:if="${error?.getFieldError('description') != null}"
+                              th:text="${error?.getFieldError('description')?.getDefaultMessage()}"></span>
                     </div>
                     <div class="col-6 position-relative">
                         <div class="form-check form-switch mb-3 position-absolute top-50 start-50 translate-middle">
-                            <input class="form-check-input " type="checkbox" id="productStatus" name="productStatus">
-                            <label class="form-check-label" for="productStatus"> Active</label>
+                            <input th:checked="${promotion?.status}" class="form-check-input " type="checkbox"
+                                   name="status">
+                            <label class="form-check-label"> Active</label>
                         </div>
                     </div>
                 </div>
@@ -63,8 +77,9 @@
                     </div>
                     <div class="col-6">
                         <div class="mb-3 p-2 bd-highlight">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-secondary" id="">Clear</button>
+                            <input type="submit" class="btn btn-success"
+                                   th:value="${promotion == null} ? 'Create' : 'Update'">
+                            <a th:href="'/clear-formPromotion'" class="btn btn-primary">Clear</a>
                         </div>
                     </div>
                 </div>
@@ -76,13 +91,13 @@
 
     </form>
 
-    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 230px">
+    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 300px">
         <table class="table table-hover">
             <thead class="table-dark">
             <tr>
-                <th scope="col">Promotion ID</th>
+                <!--                <th scope="col">Promotion ID</th>-->
                 <th scope="col">Name</th>
-                <th scope="col">Description</th>
+                <th >Description</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Status</th>
@@ -92,92 +107,48 @@
             </thead>
             <tbody>
             <!-- Example row -->
-            <tr>
-                <th scope="row">1</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+            <tr th:each="item :${promotions}">
+                <!--                <td cope="row" th:text="${item.id}"></td>-->
+                <td cope="row" th:text="${item.name}">Name</td>
+                <td cope="row" th:text="${item.description}">Description</td>
+                <td cope="row" th:text="${item.startDate}">Start Date</td>
+                <td cope="row" th:text="${item.endDate}">End Date</td>
+                <td cope="row" th:text="${item.status ? 'Active' : 'Inactive'}">Status</td>
+                <td cope="row"><img th:src="@{'/uploads/product/' + ${item.poster}}" width="25"></td>
+                <td cope="row"> <!-- Thêm nút "Update" và "Delete" -->
+                    <div class="row">
+                        <div class="col-2">
+                            <form th:action="'/edit-promotion'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}"
+                                        class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-2 ms-2">
+                            <form th:action="'/delete-promotion'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}"
+                                        class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-2 ms-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
                 </td>
             </tr>
-
-            <tr>
-                <th scope="row">2</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">3</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">4</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-    document.getElementById('userModel-avatar').addEventListener('click', function (event) {
+    document.getElementById('user-avatar').addEventListener('click', function (event) {
         event.preventDefault();
         var element = document.getElementById('input-file');
 
@@ -196,7 +167,7 @@
                 if (file) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        var img = document.getElementById('userModel-avatar');
+                        var img = document.getElementById('user-avatar');
                         img.src = e.target.result;
                     }
                     reader.readAsDataURL(file);
