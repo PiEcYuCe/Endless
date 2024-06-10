@@ -1,11 +1,17 @@
 <div class="container bg-light">
     <div class="row mt-5 mb-5 p-2">
-        <form class="px-4" action="" method="post" id="form-my-info" enctype="multipart/form-data">
+        <form id="form-my-info" class="px-4"
+              th:action="${user == null} ? '/add-account' : '/update-account?id='+${user?.id}" method="post"
+              enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-3 d-flex align-items-center text-center">
                     <div class="text-center">
-                        <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" id="userModel-avatar"
-                             class="card-img-top rounded-circle border border-secondary" style=" box-shadow: 3px 2px 8px gray;" alt="">
+                        <!--                        <img th:if="${user?.image != null}" th:src="${user?.image}"-->
+                        <!--                             id="userModel-avatar"-->
+                        <!--                             class="card-img-top rounded-circle border border-secondary"-->
+                        <!--                             style=" box-shadow: 3px 2px 8px gray;" alt="">-->
+                        <input class="form-control" type="file" id="image" name="image">
+                        <!--                        <img th:if="${user?.image != null}" th:src="${user?.image}" class="col-1 mt-2">-->
                         <br>
                         <span class="text-danger"
                               th:if='${error?.getFieldError("image") != null}'
@@ -17,36 +23,34 @@
                         <div class="col-md">
                             <div class="mb-1">
                                 <label class="form-label">Username: </label>
-                                <input type="text" class="form-control" name="username" placeholder="Enter username">
+                                <input th:value="${user?.username}" type="text" class="form-control" name="username"
+                                       placeholder="Enter username">
                                 <span class="text-danger"
-                                   th:if='${error?.getFieldError("username") != null}'
-                                   th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
+                                      th:if='${error?.getFieldError("username") != null}'
+                                      th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Fullname: </label>
-                                <input type="text" class="form-control" name="fullName" placeholder="Enter fullname">
+                                <input th:value="${user?.fullname}" type="text" class="form-control" name="fullName"
+                                       placeholder="Enter fullname">
                                 <p class="text-danger"
                                    th:if='${error?.getFieldError("fullName") != null}'
                                    th:text='${error?.getFieldError("fullName")?.getDefaultMessage()}'></p>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Phone: </label>
-                                <input type="text" class="form-control" placeholder="Enter phone">
+                                <input th:value="${user?.phone}" type="text" class="form-control" name="phone">
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("phone") != null}'
                                       th:text='${error?.getFieldError("phone")?.getDefaultMessage()}'></span>
                             </div>
-                            <div class="mb-1">
-                                <label class="form-label">Role: </label>
-                                <br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="admin">
-                                    <label class="form-check-label">Admin</label>
+                            <div class="mb-1 mt-4">
+                                <div class="form-check form-switch">
+                                    <label th:checked="${user?.status}" class="form-label">Role: </label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked1" checked
+                                           name="status" th:checked="${user?.role}">
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="customer">
-                                    <label class="form-check-label">User</label>
-                                </div>
+
                                 <br>
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("role") != null}'
@@ -56,47 +60,54 @@
                         <div class="col-md">
                             <div class="mb-1">
                                 <label class="form-label">Password: </label>
-                                <input type="password" class="form-control" name="userID" placeholder="Enter password">
+                                <input th:value="${user?.password}" type="password" class="form-control" name="password"
+                                       placeholder="Enter password">
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("password") != null}'
                                       th:text='${error?.getFieldError("password")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Email: </label>
-                                <input type="text" class="form-control" name="email" placeholder="Enter email">
+                                <input th:value="${user?.email}" type="text" class="form-control" name="email"
+                                       placeholder="Enter email">
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("email") != null}'
                                       th:text='${error?.getFieldError("email")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Address: </label>
-                                <input type="text" class="form-control" name="address" placeholder="Enter address">
+                                <input th:value="${user?.address}" type="text" class="form-control" name="address"
+                                       placeholder="Enter address">
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("address") != null}'
                                       th:text='${error?.getFieldError("address")?.getDefaultMessage()}'></span>
                             </div>
-                            <div class="mb-1">
-                                <label class="form-label">Status: </label>
-                                <br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="true">
-                                    <label class="form-check-label">True</label>
+                            <div class="mb-1 mt-4">
+                                <div class="form-check form-switch">
+                                    <label th:checked="${user?.status}" class="form-check-label"
+                                           for="flexSwitchCheckChecked">Status</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
+                                           name="status" th:checked="${user?.status}">
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="false">
-                                    <label class="form-check-label">False</label>
-                                </div>
-                                <br>
-                                <span class="text-danger"
-                                      th:if='${error?.getFieldError("status") != null}'
-                                      th:text='${error?.getFieldError("status")?.getDefaultMessage()}'></span>
+
                             </div>
-                    </div>
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-primary col-3"><i class="bi bi-plus-circle-fill"></i> Create</button>
-                            <button type="submit" class="btn btn-success col-3"><i class="bi bi-arrow-up-circle-fill"></i> Update</button>
-                            <button type="submit" class="btn btn-warning text-white col-3"><i class="bi bi-x-circle-fill"></i> Clear</button>
                         </div>
+                        <div class="mt-3">
+
+                            <input type="submit" class="btn btn-success col-3"
+                                   th:value="${user == null} ? 'Create' : 'Update'">
+
+
+                            <!--                            <button type="submit" class="btn btn-primary col-3"><i class="bi bi-plus-circle-fill"></i>-->
+                            <!--                                Create-->
+                            <!--                            </button>-->
+                            <!--                            <button type="submit" class="btn btn-success col-3"><i-->
+                            <!--                                    class="bi bi-arrow-up-circle-fill"></i> Update-->
+                            <!--                            </button>-->
+                            <a th:href="'/clear-formUser'" class="btn btn-warning text-white col-3"><i
+                                    class="bi bi-x-circle-fill"></i> Clear</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -127,114 +138,51 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Marry</td>
-                    <td>Joni Marry</td>
-                    <td>marry@gmail.com</td>
-                    <td>User</td>
+                <tr th:each="item : ${accounts}">
+                    <td th:text="${item?.id}">1</td>
+                    <td th:text="${item?.username}">Marry</td>
+                    <td th:text="${item?.fullname}">Joni Marry</td>
+                    <td th:text="${item?.email}">marry@gmail.com</td>
+                    <td th:text="${item?.role ? 'Admin' : 'User'}">User</td>
                     <td>
-                        <img src="/images/User/user2.jpg" class="card-img-top" alt="" style="width: 3rem;">
+                        <img th:src="'user/'+${item?.avatar}" class="card-img-top" alt="" style="width: 3rem;">
                     </td>
-                    <td>True</td>
-                    <td>Can Tho</td>
+                    <td th:text="${item?.status ? 'Active' : 'Inactive'}">True</td>
+                    <td th:text="${item?.address}">Can Tho</td>
                     <td>
-                        <i class="bi bi-pencil-square text-success"></i>
-                        <i class="bi bi-trash-fill text-danger"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tom</td>
-                    <td>Tom Tom</td>
-                    <td>tom@gmail.com</td>
-                    <td>User</td>
-                    <td>
-                        <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                    </td>
-                    <td>True</td>
-                    <td>An Giang</td>
-                    <td>
-                        <i class="bi bi-pencil-square text-success"></i>
-                        <i class="bi bi-trash-fill text-danger"></i>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td>Tom</td>
-                    <td>Tom Tom</td>
-                    <td>tom@gmail.com</td>
-                    <td>User</td>
-                    <td>
-                        <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                    </td>
-                    <td>True</td>
-                    <td>An Giang</td>
-                    <td>
-                        <i class="bi bi-pencil-square text-success"></i>
-                        <i class="bi bi-trash-fill text-danger"></i>
+                        <div class="row">
+                            <div class="col-2 ms-5">
+                                <form th:action="'/edit-account'" method="post">
+                                    <input type="hidden" name="id" th:value="${item?.id}">
+                                    <button type="submit" role="button" th:if="${item?.id != null}"
+                                            class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-2 ">
+                                <form th:action="'/delete-account'" method="post">
+                                    <input type="hidden" name="id" th:value="${item?.id}">
+                                    <button type="submit" role="button" th:if="${item?.id != null}"
+                                            class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                 </tr>
 
-                <tr>
-                    <td>2</td>
-                    <td>Tom</td>
-                    <td>Tom Tom</td>
-                    <td>tom@gmail.com</td>
-                    <td>User</td>
-                    <td>
-                        <img src="/images/User/user1.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                    </td>
-                    <td>True</td>
-                    <td>An Giang</td>
-                    <td>
-                        <i class="bi bi-pencil-square text-success"></i>
-                        <i class="bi bi-trash-fill text-danger"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Nana</td>
-                    <td>Lulu Nana</td>
-                    <td>nana@gmail.com</td>
-                    <td>User</td>
-                    <td>
-                        <img src="/images/User/user3.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                    </td>
-                    <td>True</td>
-                    <td>An Giang</td>
-                    <td>
-                        <i class="bi bi-pencil-square text-success"></i>
-                        <i class="bi bi-trash-fill text-danger"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Lucy</td>
-                    <td>Don Lucy</td>
-                    <td>lucy@gmail.com</td>
-                    <td>User</td>
-                    <td>
-                        <img src="/images/User/user4.jpg" class="card-img-top" alt="" style="width: 3rem;">
-                    </td>
-                    <td>True</td>
-                    <td>Vinh Long</td>
-                    <td>
-                        <i class="bi bi-pencil-square text-success"></i>
-                        <i class="bi bi-trash-fill text-danger"></i>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
         <script>
-            document.getElementById('userModel-avatar').addEventListener('click', function(event) {
+            document.getElementById('userModel-avatar').addEventListener('click', function (event) {
                 event.preventDefault();
                 var element = document.getElementById('input-file');
 
                 // Tạo phần tử input nếu nó chưa tồn tại
-                if(!element) {
+                if (!element) {
                     element = document.createElement('input');
                     element.type = 'file';
                     element.name = 'file';
@@ -243,11 +191,11 @@
                     document.getElementById('form-my-info').appendChild(element);
 
                     // Thêm sự kiện change chỉ một lần khi phần tử được tạo
-                    element.addEventListener('change', function (event){
+                    element.addEventListener('change', function (event) {
                         var file = event.target.files[0];
                         if (file) {
                             var reader = new FileReader();
-                            reader.onload = function(e) {
+                            reader.onload = function (e) {
                                 var img = document.getElementById('userModel-avatar');
                                 img.src = e.target.result;
                             }

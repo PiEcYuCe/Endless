@@ -1,46 +1,56 @@
 <div class="container mt-4 bg-light " id="form-my-info" enctype="multipart/form-data">
-    <form id="promotionForm">
+    <form method="post" th:action="${promotion == null} ? '/add-promotion' : '/update-promotion?id='+${promotion?.id}"
+          enctype="multipart/form-data">
         <div class="row">
             <div class="col-6">
                 <div class="card">
-                    <img src="data:image/jpeg;base64,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" class="img-fluid" alt="" id="user-avatar"
+                    <img th:if="${promotion?.poster != null}" th:src="${promotion?.poster}" class="img-fluid" alt=""
+                         id="user-avatar"
                          style="width: 600px; height: 200px">
+                    <input th:value="${promotion?.poster}" class="form-control" type="file" id="poster" name="poster">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("poster") != null}'
+                          th:text='${error?.getFieldError("poster")?.getDefaultMessage()}'></span>
                 </div>
                 <hr>
                 <div class="row d-flex justify-content-start j mt-4">
-
-                        <div class="d-flex col-1  ">
-
-                            <button type="button" class="btn btn-outline-primary btn-sm btn-nhu"><i class="bi bi-plus"></i>
-                            </button>
-                        </div>
-                        <div class="col-5 d-flex g-0 m-0 p-0" >
-                            <input style="margin-left: -5px" placeholder="level_discout" type="text" class="form-control nhu"
-                                   id="name1"
-                                   name="name1">
-
-                        </div>
-
+                    <div class="d-flex col-1  ">
+                        <button type="button" class="btn btn-outline-primary btn-sm btn-nhu"><i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+                    <div class="col-5 d-flex g-0 m-0 p-0">
+                        <input style="margin-left: -5px" placeholder="level_discout" type="text"
+                               class="form-control nhu"
+                               id="name1"
+                               name="name1"></div>
                 </div>
-
             </div>
             <div class="col-6">
                 <div class="mb-3">
                     <label for="name" class="form-label">Promotion name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input th:value="${promotion?.name}" type="text" class="form-control" id="name" name="name">
+                    <span class="text-danger" th:if="${error?.getFieldError('name') != null}"
+                          th:text="${error?.getFieldError('name')?.getDefaultMessage()}"></span>
                 </div>
                 <div class="row">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="startDate" class="form-label">Start date</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate">
+                                <input th:value="${promotion?.startDate}" type="date" class="form-control"
+                                       id="startDate" name="startDate">
+                                <span class="text-danger" th:if="${error?.getFieldError('startDate') != null}"
+                                      th:text="${error?.getFieldError('startDate')?.getDefaultMessage()}"></span>
+
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="endDate" class="form-label">End date</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate">
+                                <input th:value="${promotion?.endDate}" type="date" class="form-control" id="endDate"
+                                       name="endDate">
+                                <span class="text-danger" th:if="${error?.getFieldError('endDate') != null}"
+                                      th:text="${error?.getFieldError('endDate')?.getDefaultMessage()}"></span>
                             </div>
                         </div>
                     </div>
@@ -48,12 +58,16 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
+                        <input th:value="${promotion?.description}" class="form-control" id="description"
+                               name="description">
+                        <span class="text-danger" th:if="${error?.getFieldError('description') != null}"
+                              th:text="${error?.getFieldError('description')?.getDefaultMessage()}"></span>
                     </div>
                     <div class="col-6 position-relative">
                         <div class="form-check form-switch mb-3 position-absolute top-50 start-50 translate-middle">
-                            <input class="form-check-input " type="checkbox" id="productStatus" name="productStatus">
-                            <label class="form-check-label" for="productStatus"> Active</label>
+                            <input th:checked="${promotion?.status}" class="form-check-input " type="checkbox"
+                                   name="status">
+                            <label class="form-check-label"> Active</label>
                         </div>
                     </div>
                 </div>
@@ -63,8 +77,9 @@
                     </div>
                     <div class="col-6">
                         <div class="mb-3 p-2 bd-highlight">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-secondary" id="">Clear</button>
+                            <input type="submit" class="btn btn-success"
+                                   th:value="${promotion == null} ? 'Create' : 'Update'">
+                            <a th:href="'/clear-formPromotion'" class="btn btn-primary">Clear</a>
                         </div>
                     </div>
                 </div>
@@ -76,13 +91,13 @@
 
     </form>
 
-    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 230px">
+    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 300px">
         <table class="table table-hover">
             <thead class="table-dark">
             <tr>
-                <th scope="col">Promotion ID</th>
+                <!--                <th scope="col">Promotion ID</th>-->
                 <th scope="col">Name</th>
-                <th scope="col">Description</th>
+                <th >Description</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Status</th>
@@ -92,85 +107,41 @@
             </thead>
             <tbody>
             <!-- Example row -->
-            <tr>
-                <th scope="row">1</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+            <tr th:each="item :${promotions}">
+                <!--                <td cope="row" th:text="${item.id}"></td>-->
+                <td cope="row" th:text="${item.name}">Name</td>
+                <td cope="row" th:text="${item.description}">Description</td>
+                <td cope="row" th:text="${item.startDate}">Start Date</td>
+                <td cope="row" th:text="${item.endDate}">End Date</td>
+                <td cope="row" th:text="${item.status ? 'Active' : 'Inactive'}">Status</td>
+                <td cope="row"><img th:src="@{'/uploads/product/' + ${item.poster}}" width="25"></td>
+                <td cope="row"> <!-- Thêm nút "Update" và "Delete" -->
+                    <div class="row">
+                        <div class="col-2">
+                            <form th:action="'/edit-promotion'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}"
+                                        class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-2 ms-2">
+                            <form th:action="'/delete-promotion'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}"
+                                        class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-2 ms-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
                 </td>
             </tr>
-
-            <tr>
-                <th scope="row">2</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">3</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">4</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Summer Sale</td>
-                <td>Get 50% off on selected items.</td>
-                <td>2024-06-01</td>
-                <td>2024-06-30</td>
-                <td>Active</td>
-                <td>Image</a></td>
-                <td> <!-- Thêm nút "Update" và "Delete" -->
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></button>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-
             </tbody>
         </table>
     </div>

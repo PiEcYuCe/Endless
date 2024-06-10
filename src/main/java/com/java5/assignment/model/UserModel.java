@@ -23,22 +23,29 @@ public class UserModel {
     private String username;
     @NotBlank(message = "Please enter fullname")
     private String fullName;
+
     @NotNull(message = "Please enter password")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$\n",
             message = "Password are uppercase, lowercase, number, special characters and include 6")
     private String password;
+
+
+
     @NotBlank(message = "Please enter email")
     @Email(message = "Email is in wrong format")
     private String email;
     //@Pattern(regexp = "^0[0-9]{9}$", message = "Phone number is in wrong format")
-    @NotNull(message = "Please enter phone")
+
+    @NotBlank(message = "Please enter phone")
     private String phone;
-    @NotBlank(message = "Please select role")
-    private String role;
+
+
+    private boolean role;
     @NotBlank(message = "Please enter address")
     private String address;
-    @NotBlank(message = "Please select status")
-    private String status;
-    @NotNull(message = "Please select image")
-    private List<MultipartFile> image;
+
+
+    private boolean status;
+
+    private MultipartFile image;
 }
