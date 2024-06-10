@@ -47,6 +47,9 @@ public class ManageBrandController {
         return "admin/layout";
     }
 
+
+
+
     @PostMapping("/add-brand")
     public String addBrand(@Valid BrandModel brandModel, BindingResult error, Model model) {
 
@@ -65,6 +68,9 @@ public class ManageBrandController {
         brandRepository.save(brand);
         return "redirect:/manage-brand";
     }
+
+
+
 
     @PostMapping("/edit-brand")
     public String editBrand(@RequestParam("id") long id, Model model) {

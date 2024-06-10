@@ -1,0 +1,285 @@
+<section class="container-fluid mt-3 mb-5">
+    <div class="row mt-3 mx-0 px-0 border border-light bg-light" style="box-shadow: 5px 5px 10px gray;">
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-warning bg-light">
+                <div class="text-warning rounded-4 border border-warning mx-0 p-3 px-4 my-2"><h1 class="fa-solid fa-hourglass-start"></h1></div>
+                <div class="text-center text-warning mt-3">
+                    <h4>20</h4>
+                    <h6>Orders awaiting confirmation</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-info bg-light">
+                <div class="text-info rounded-4 border border-info mx-0 p-3 px-3 my-2"><h1 class="fa-solid fa-truck-fast"></h1></div>
+                <div class="text-center text-info mt-3">
+                    <h4>5</h4>
+                    <h6>Orders in transit</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-success bg-light">
+                <div class="text-success rounded-4 border border-success mx-0 p-3 px-4 my-2"><h1 class="fa-regular fa-square-check"></h1></h1></div>
+                <div class="text-center text-success mt-3">
+                    <h4>10</h4>
+                    <h6>Orders delivered</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-3">
+            <div class="d-flex justify-content-around p-2 rounded-4 border border-danger bg-light">
+                <div class="text-danger rounded-4 border border-danger mx-0 p-3 px-4 my-2"><h1 class="fa-solid fa-ban"></h1></div>
+                <div class="text-center text-danger mt-3">
+                    <h4>1</h4>
+                    <h6>Orders cancelled</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid mt-3 mb-5" style="max-height: 410px; overflow-y: auto; ">
+    <h2>Waiting Order List</h2>
+    <table class="table table-bordered table-hover table-md">
+        <thead class="table table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Phone Number</th>
+            <th>Time</th>
+            <th>Total Amount</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item :${orders}">
+            <td th:text="${item?.id}"></td>
+            <td th:text="${item?.userID?.fullname}"></td>
+            <td th:text="${item?.userID?.phone}"></td>
+            <td th:text="${item?.orderDate}"></td>
+            <td th:text="${item?.totalMoney}"></td>
+            <td>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detail-order"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Tạo một đối tượng div để chứa nội dung HTML của modal
+        var modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+    <!-- The Modal -->
+    <div class="modal modal-xl" id="detail-order">
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Invoice Details</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="row modal-body px-4">
+                <div class="col-8" style="min-height: 480px; overflow-y: auto;" >
+                <table class="table text-center table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col" colspan="2" class="px-1">Product</th>
+                        <th scope="col" class="px-5">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>iPhone 13 64GB Black</h6>
+                        </td>
+                        <td class="py-4">1</td>
+                        <td class="py-2">
+                            <s style="font-size: 12px">$999.00</s>
+                            <h6>$899.00</h6>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
+                <form class="custom-form">
+                    <h3>Customer Information</h3>
+                    <small class="d-block">Name: Tom</small>
+                    <small class="d-block">Phone: (+84) 372 888 992</small>
+                    <small class="d-block">Address: Can Tho City</small>
+                    <hr>
+                    <h5>Product List</h5>
+                    <div class="row" style="max-height: 180px; overflow-y: auto">
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center px-5">
+                        <div class="p-2 col-3">
+                            <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="p-2">
+                            <small class="d-block">iPhone 13 128GB White</small>
+                            <i class="">$1099.00</i> <i class="">x1</i>
+                            <h6 class="d-block">$1099.00</h6>
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="">
+                    <label class="form-label">Voucher code: SALEENDYEAR</label>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3 d-flex">
+                            <h6>Amount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$4.396</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex">
+                            <h6>Discount:</h6>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">$43.96</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 d-flex">
+                            <h3 class="text-danger">Total:</h3>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <h3 class="text-danger">$4.352,04</h3>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+
+        // Chèn đối tượng div vào cuối thẻ body
+        document.body.appendChild(modalContainer);
+
+    </script>
+</section>
