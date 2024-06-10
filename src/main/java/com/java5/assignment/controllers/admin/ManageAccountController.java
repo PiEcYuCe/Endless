@@ -55,7 +55,7 @@ public class ManageAccountController {
 
     @PostMapping("/add-account")
     public String addVoucher(@Valid UserModel userModel, BindingResult error, Model model) {
-        String fileName = uploadService.uploadFile(userModel.getImage(), "user");
+        String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
         if (fileName == null) {
             error.addError(new FieldError("account", "image", "Please select a image"));
         }
@@ -108,7 +108,7 @@ public class ManageAccountController {
         user.setRole(userModel.isRole());
 
 
-        String fileName = uploadService.uploadFile(userModel.getImage(), "user");
+        String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
         if (fileName == null) {
             fileName = userRepository.findById(id).get().getAvatar();
         } else {

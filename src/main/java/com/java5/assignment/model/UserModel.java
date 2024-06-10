@@ -29,8 +29,6 @@ public class UserModel {
             message = "Password are uppercase, lowercase, number, special characters and include 6")
     private String password;
 
-
-
     @NotBlank(message = "Please enter email")
     @Email(message = "Email is in wrong format")
     private String email;
@@ -44,13 +42,8 @@ public class UserModel {
     @NotBlank(message = "Please enter address")
     private String address;
 
-
-    private boolean status;
-
-    private MultipartFile image;
-  
     @NotBlank(message = "Please select status")
-    private String status;
+    private boolean status;
   
     @NotNull(message = "Please select image")
     private MultipartFile avatar;
