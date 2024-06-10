@@ -1,16 +1,32 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.entities.Order;
+import com.java5.assignment.jpa.OrderRepository;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.List;
+
 @Controller
 public class DashBoardController {
+
+    @Autowired
+    OrderRepository orderRepository;
+
+
     @ModelAttribute("page")
     public Page page() {
         return Page.route.get(PageType.ADMIN_DASHBOARD);
+    }
+
+    @ModelAttribute("orders")
+    public List<Order> orders() {
+        return orderRepository.findAll();
     }
 
     @GetMapping("/dashboard")
