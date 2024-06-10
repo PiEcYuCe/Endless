@@ -1,6 +1,7 @@
 package com.java5.assignment.components;
 
 import com.java5.assignment.dto.UserDto;
+import com.java5.assignment.dto.UserInfoDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;

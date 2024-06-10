@@ -1,0 +1,97 @@
+<div class="container mt-5 bg-light">
+    <h1 class="mb-4">Category Management</h1>
+    <div class="card mb-5" id="categoryFormCard" >
+        <div class="card-header">
+            Add/Edit Category
+        </div>
+        <div class="card-body">
+            <form th:action="${category == null} ? '/add-category' : '/update-category?id='+${category?.id}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name</label>
+                    <input type="text" class="form-control" id="categoryName" name="name" th:value="${category?.name}">
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("name") != null}'
+                          th:text='${error?.getFieldError("name")?.getDefaultMessage()}'></span>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea role="textbox" type="" class="form-control" id="description" name="description"
+                              rows="3" th:text="${category?.description}"></textarea>
+                    <span class="text-danger"
+                          th:if='${error?.getFieldError("description") != null}'
+                          th:text='${error?.getFieldError("description")?.getDefaultMessage()}'></span>
+                </div>
+                <input type="submit" class="btn btn-success" th:value="${category == null} ? 'Create' : 'Update'">
+                <a th:href="'/clear-formCategory'" class="btn btn-primary">Clear</a>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex">
+        <table class="table table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item :${Categories}">
+                <td th:text="${item?.id}"></td>
+                <td th:text="${item?.name}"></td>
+                <td th:text="${item?.description}"></td>
+                <td>
+                    <div class="row">
+                        <div class="col-3">
+                            <form th:action="'/edit-category'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <form th:action="'/delete-category'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tabLinks = document.querySelectorAll('.nav-link');
+        tabLinks.forEach(function (tabLink) {
+            tabLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                var target = this.getAttribute('href');
+                document.querySelector(target).classList.add('show', 'active');
+                var tabContents = document.querySelectorAll('.tab-pane');
+                tabContents.forEach(function (tabContent) {
+                    if ("#" + tabContent.id !== target) {
+                        tabContent.classList.remove('show', 'active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('addCategoryBtn').addEventListener('click', function () {
+        var categoryFormCard = document.getElementById('categoryFormCard');
+        if (categoryFormCard.style.display === 'none') {
+            categoryFormCard.style.display = 'block';
+        } else {
+            categoryFormCard.style.display = 'none';
+        }
+    });
+</script>

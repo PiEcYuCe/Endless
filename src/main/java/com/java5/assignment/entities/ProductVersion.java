@@ -34,7 +34,6 @@ public class ProductVersion {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ProductID", nullable = false)
     private Product productID;
-
     @Size(max = 255)
     @NotNull
     @Nationalized
