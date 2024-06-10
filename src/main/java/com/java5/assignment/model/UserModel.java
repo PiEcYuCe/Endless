@@ -48,4 +48,11 @@ public class UserModel {
     private boolean status;
 
     private MultipartFile image;
+  
+    @NotBlank(message = "Please select status")
+    private String status;
+  
+    @NotNull(message = "Please select image")
+    private MultipartFile avatar;
+
 }

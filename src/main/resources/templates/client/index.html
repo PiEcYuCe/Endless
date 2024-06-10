@@ -60,15 +60,11 @@
 
             <form class="d-flex justify-content-end">
                 <div class="input-group col-12 px-3">
-                    <input class="form-control rounded-4 " list="datalistOptions"
-                           placeholder="Search a product">
-                    <datalist id="datalistOptions">
-                        <option value="San Francisco">
-                        <option value="New York">
-                        <option value="Seattle">
-                        <option value="Los Angeles">
-                        <option value="Chicago">
-                    </datalist>
+                    <div class="d-flex input-group w-25 px-3" style="position: relative;">
+                        <input type="text" class="form-control" id="productInput" style="max-height: 100px;">
+                        <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <ul id="productList" class="autocomplete-items" style="user-select: none; "></ul>
+                    </div>
                 </div>
                 <div class="dropdown open">
                     <button class="btn btn-secondary rounded-circle" type="button" id="triggerId"
@@ -145,7 +141,7 @@
     </div>
 </footer>
 
-<script>
+<script src="/js/getProductList.js">
 
 </script>
 

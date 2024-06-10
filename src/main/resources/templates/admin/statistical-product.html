@@ -104,129 +104,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>iPhone 12</td>
-                <td>Apple iPhone 12</td>
-                <td>Apple</td>
-                <td>Smartphone</td>
-                <td>1,000,000</td>
-                <td>500,000</td>
-                <td>$699.00</td>
-                <td>$799.00</td>
-                <td>$799,000,000.00</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Galaxy S21 Ultra</td>
-                <td>Samsung Galaxy S21 Ultra</td>
-                <td>Samsung</td>
-                <td>Smartphone</td>
-                <td>800,000</td>
-                <td>300,000</td>
-                <td>$1,199.99</td>
-                <td>$1,299.99</td>
-                <td>$1,039,999,200.00</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>OnePlus 9 Pro</td>
-                <td>OnePlus 9 Pro</td>
-                <td>OnePlus</td>
-                <td>Smartphone</td>
-                <td>500,000</td>
-                <td>200,000</td>
-                <td>$969.00</td>
-                <td>$1,069.00</td>
-                <td>$534,500,000.00</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Pixel 6 Pro</td>
-                <td>Google Pixel 6 Pro</td>
-                <td>Google</td>
-                <td>Smartphone</td>
-                <td>300,000</td>
-                <td>150,000</td>
-                <td>$899.00</td>
-                <td>$999.00</td>
-                <td>$299,700,000.00</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Xperia 1 III</td>
-                <td>Sony Xperia 1 III</td>
-                <td>Sony</td>
-                <td>Smartphone</td>
-                <td>200,000</td>
-                <td>100,000</td>
-                <td>$1,099.99</td>
-                <td>$1,199.99</td>
-                <td>$239,999,800.00</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>iPhone 13</td>
-                <td>Apple iPhone 13</td>
-                <td>Apple</td>
-                <td>Smartphone</td>
-                <td>1,200,000</td>
-                <td>600,000</td>
-                <td>$799.00</td>
-                <td>$899.00</td>
-                <td>$1,078,800,000.00</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Galaxy Note 20</td>
-                <td>Samsung Galaxy Note 20</td>
-                <td>Samsung</td>
-                <td>Smartphone</td>
-                <td>700,000</td>
-                <td>250,000</td>
-                <td>$999.99</td>
-                <td>$1,099.99</td>
-                <td>$769,999,300.00</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>OnePlus 9T</td>
-                <td>OnePlus 9T</td>
-                <td>OnePlus</td>
-                <td>Smartphone</td>
-                <td>400,000</td>
-                <td>180,000</td>
-                <td>$899.00</td>
-                <td>$999.00</td>
-                <td>$399,600,000.00</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Pixel 5A</td>
-                <td>Google Pixel 5A</td>
-                <td>Google</td>
-                <td>Smartphone</td>
-                <td>250,000</td>
-                <td>120,000</td>
-                <td>$499.00</td>
-                <td>$599.00</td>
-                <td>$149,750,000.00</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Xperia 5 II</td>
-                <td>Sony Xperia 5 II</td>
-                <td>Sony</td>
-                <td>Smartphone</td>
-                <td>180,000</td>
-                <td>90,000</td>
-                <td>$999.99</td>
-                <td>$1,099.99</td>
-                <td>$197,998,200.00</td>
+            <tr th:each="item : ${statisticalProducts}">
+                <td th:text="${item?.id}"></td>
+                <td th:text="${item?.versionName}"></td>
+                <td th:text="${item?.productName}"></td>
+                <td th:text="${item?.brand}"></td>
+                <td th:text="${item?.category}"></td>
+                <td th:text="${item?.unitsSold}"></td>
+                <td th:text="${item?.inventory}"></td>
+                <td th:text="${item?.costPrice}"></td>
+                <td th:text="${item?.sellingPrice}"></td>
+                <td th:text="${item?.revenue}"></td>
             </tr>
             </tbody>
-
-
         </table>
     </div>
 </section>

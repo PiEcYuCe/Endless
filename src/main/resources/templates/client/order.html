@@ -1,722 +1,128 @@
-<div class="container">
+<div class="container" style="min-height: 60vh">
     <div class="row mt-3 mb-5">
         <div class="container">
-            <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Order awaiting confirmation
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-are-delivered" data-bs-toggle="pill"
-                            data-bs-target="#pills-delivered" type="button" role="tab" aria-controls="pills-delivered"
-                            aria-selected="false">Order is being delivered
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                            aria-selected="false">Order received
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-cancel" data-bs-toggle="pill" data-bs-target="#pills-cancelled"
-                            type="button" role="tab" aria-controls="pills-cancelled" aria-selected="false">Order has
-                        been cancelled
-                    </button>
-                </li>
-            </ul>
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                     tabindex="0">
-                    <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-                        <table class="table table-bordered table-hover text-center mt-3">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="px-5">1</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">2</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">3</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">4</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">5</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">6</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">7</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">8</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">9</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">10</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Wait</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-x-circle"></i> Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Order awaiting confirmation</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-are-delivered" data-bs-toggle="pill" data-bs-target="#pills-delivered" type="button" role="tab" aria-controls="pills-delivered" aria-selected="false">Order is being delivered</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Order received</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-cancel" data-bs-toggle="pill" data-bs-target="#pills-cancelled" type="button" role="tab" aria-controls="pills-cancelled" aria-selected="false">Order has been cancelled</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+                    <table class="table table-bordered table-hover text-center mt-3">
+                        <thead class="table-dark">
+                        <tr>
+                            <th >ID</th>
+                            <th >Date</th>
+                            <th >Total</th>
+                            <th >Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item :${Orders}"
+                            th:if="${item.orderStatus == 'Processing'}">
+                            <td class="px-5" th:text="${item?.id}">1</td>
+                            <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
+                            <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
+                            <td >
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-eye-fill"></i> View</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-x-circle"></i> Cancel</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="tab-pane fade" id="pills-delivered" role="tabpanel" aria-labelledby="pills-are-delivered"
-                     tabindex="0">
-                    <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-                        <table class="table table-bordered table-hover text-center mt-3">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="px-5">1</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">2</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">3</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">4</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">5</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">6</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">7</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">8</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">9</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">10</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+            <div class="tab-pane fade" id="pills-delivered" role="tabpanel" aria-labelledby="pills-are-delivered" tabindex="0">
+                <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+                    <table class="table table-bordered table-hover text-center mt-3">
+                        <thead class="table-dark">
+                        <tr>
+                            <th >ID</th>
+                            <th >Date</th>
+                            <th >Total</th>
+                            <th >Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item :${Orders}"
+                            th:if="${item.orderStatus == 'Shipped'}">
+                            <td class="px-5" th:text="${item?.id}">1</td>
+                            <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
+                            <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
+                            <td >
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-eye-fill"></i> View</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                     tabindex="0">
-                    <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-                        <table class="table table-bordered table-hover text-center mt-3">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="px-5">1</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">2</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">3</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">4</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">5</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">6</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">7</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">8</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">9</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">10</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Are delivered</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#evaluate"><i class="bi bi-check-circle"></i> Evaluate
-                                    </button>
-
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+                    <table class="table table-bordered table-hover text-center mt-3">
+                        <thead class="table-dark">
+                        <tr>
+                            <th >ID</th>
+                            <th >Date</th>
+                            <th >Total</th>
+                            <th >Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item :${Orders}"
+                            th:if="${item.orderStatus == 'Delivered'}">
+                            <td class="px-5" th:text="${item?.id}">1</td>
+                            <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
+                            <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="# "><i class="bi bi-eye-fill"></i> View</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#evaluate"><i class="bi bi-eye-fill"></i> Evaulate</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="tab-pane fade" id="pills-cancelled" role="tabpanel" aria-labelledby="pills-cancel"
-                     tabindex="0">
-                    <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-                        <table class="table table-bordered table-hover text-center mt-3">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="px-5">1</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">2</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">3</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">4</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">5</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">6</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">7</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">8</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">9</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5">10</td>
-                                <td class="px-5">20-05-2024</td>
-                                <td class="px-5">Cancelled</td>
-                                <td class="px-5">$999.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-eye-fill"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#rating"><i class="bi bi-basket3"></i> Buy creek
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+            <div class="tab-pane fade" id="pills-cancelled" role="tabpanel" aria-labelledby="pills-cancel" tabindex="0">
+                <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+                    <table class="table table-bordered table-hover text-center mt-3">
+                        <thead class="table-dark">
+                        <tr>
+                            <th >ID</th>
+                            <th >Date</th>
+                            <th >Total</th>
+                            <th >Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item :${Orders}"
+                            th:if="${item.orderStatus == 'Canceled'}">
+                            <td class="px-5" th:text="${item?.id}">1</td>
+                            <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
+                            <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
+                            <td >
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-eye-fill"></i> View</button>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-basket3"></i> Buy creek</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <script>
-            // Tạo một đối tượng div để chứa nội dung HTML của modal
-            var modalContainer = document.createElement('div');
-            modalContainer.innerHTML = `
-        <div class="modal" id="evaluate">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <div class="p-2 text-center">
-                                <img src="/images/User/user2.jpg" class="img-fluid col-2 mx-3 rounded-circle">
-                                <h6>Marry</h6>
-                                <div class="mb-5 text-warning" id="start">
-                                    <b class="fa-solid fa-star" id="start1" onclick="rating(1)"></b>
-                                    <b class="fa-regular fa-star" id="start2" onclick="rating(2)"></b>
-                                    <b class="fa-regular fa-star" id="start3" onclick="rating(3)"></b>
-                                    <b class="fa-regular fa-star" id="start4" onclick="rating(4)"></b>
-                                    <b class="fa-regular fa-star" id="start5" onclick="rating(5)"></b>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter review" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="text-start">Thêm hình ảnh:</label>
-                                    <input type="file" class="form-control" id="exampleInputEmail1">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    `;
-
-            const rating = function (number) {
-                for (let i = 1; i <= 5; i++) {
-                    const starElement = document.getElementById('start' + i);
-                    starElement.remove();
-                }
-                let text = '';
-                for (let i = 1; i <= number; i++) {
-                    text += '<b class="fa-solid fa-star" id="start'+i+'" onclick="rating('+i+')"></b>';
-                }
-                for (let i = 1; i <= 5 - number; i++) {
-                    text += '<b class="fa-regular fa-star" id="start'+(i + number)+'" onclick="rating('+(i + number)+')"></b>';
-                }
-                document.getElementById('start').innerHTML += text;
-            };
-
-            // Chèn đối tượng div vào cuối thẻ body
-            document.body.appendChild(modalContainer);
-        </script>
-
-        <script>
-            var modalContainer = document.createElement('div');
-            modalContainer.innerHTML = `
-        <div class="modal" id="rating">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body"></div>
-                </div>
-            </div>
-        </div>
-    `;
-            // Chèn đối tượng div vào cuối thẻ body
-            document.body.appendChild(modalContainer);
-        </script>
-
-    </div>
+        <script src="/js/createModalRating.js"></script>
+        <script src="/js/chooseStar.js"></script>
+        <script src="/js/showRatingPicture.js"></script>
+</div>
 </div>
