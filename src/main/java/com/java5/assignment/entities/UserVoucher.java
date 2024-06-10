@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,17 +18,15 @@ import lombok.Setter;
 @Table(name = "UserVouchers")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserVoucher {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UserVoucherID", nullable = false)
-    private Long id;
+    @EmbeddedId
+    private UserVoucherId id;
 
-    @NotNull
+    @MapsId("userID")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "UserID", nullable = false)
     private User userID;
 
-    @NotNull
+    @MapsId("voucherID")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "VoucherID", nullable = false)
     private Voucher voucherID;
