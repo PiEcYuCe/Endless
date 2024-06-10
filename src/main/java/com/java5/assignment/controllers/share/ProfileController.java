@@ -74,7 +74,8 @@ public class ProfileController {
         }
         UserDto userDto = (UserDto)session.getAttribute("user");
         User user = userRepository.findById(userDto.getId()).get();
-        System.out.println("loi 2");
+
+        user.setFullname(updateProfileModel.getFullname());
         user.setEmail(updateProfileModel.getEmail());
         user.setPhone(updateProfileModel.getPhone());
         user.setAddress(updateProfileModel.getAddress());

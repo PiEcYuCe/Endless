@@ -6,38 +6,11 @@
             <table class="table table-bordered table-hover table-md mt-3">
                 <thead class="table-dark">
                 <tr>
-                    <th>
-                        <div class="d-flex justify-content-between">
-                            <div class="p-2">ID</div>
-                            <div>
-                                <button type="submit" class="btn btn-dark bi bi-caret-down"></button>
-                            </div>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="d-flex justify-content-between">
-                            <div>Name</div>
-                            <div><i class="bi bi-caret-down"></i></div>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="d-flex justify-content-between">
-                            <div class="px-1">Product</div>
-                            <div><i class="bi bi-caret-down"></i></div>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="d-flex justify-content-between">
-                            <div>Date</div>
-                            <div><i class="bi bi-caret-down"></i></div>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="d-flex justify-content-between">
-                            <div>Review</div>
-                            <div><i class="bi bi-caret-down"></i></div>
-                        </div>
-                    </th>
+                    <th>ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Review</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -76,53 +49,5 @@
             </table>
         </div>
     </div>
-
-    <script>
-        function removeModal() {
-            var modalElement = document.getElementById("ratingModal");
-            modalElement.remove();
-        }
-
-        function displayRating(buttonElement) {
-            let avatar = document.getElementById('avatar'+buttonElement.id).value;
-            let customerName = document.getElementById('fullname'+buttonElement.id).value;
-            let comment = document.getElementById('comment'+buttonElement.id).value;
-            let pictureName = 'picture'+buttonElement.id;
-            let pictures = document.querySelectorAll('[name="'+pictureName+'"]');
-            let firstPicture = pictures.length > 0 ? pictures[0].value : '';
-
-            var modalContainer = document.createElement('div');
-            modalContainer.innerHTML = `
-       <div class="modal" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" onclick="removeModal()">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ratingModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="ratingContent">
-                    <div class="mb-3">
-                         <div class="p-2 text-center">
-                             <img src="${avatar}" class="img-fluid col-2 mx-3 rounded-circle">
-                             <h6>${customerName}</h6>
-                             <small>${comment}</small>
-                             <div class="row d-flex justify-content-center">
-                                 <img src="${firstPicture}" class="img-fluid col-4 p-1" alt="">
-                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-
-            document.body.appendChild(modalContainer);
-
-            var modalElement = document.getElementById("ratingModal");
-            var modal = new bootstrap.Modal(modalElement);
-
-            modal.show();
-        }
-    </script>
+    <script src="/js/showRatingDetail.js"></script>
 </div>

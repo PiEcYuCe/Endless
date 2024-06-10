@@ -4,10 +4,11 @@
             <div class="row">
                 <div class="col-md-5 text-center">
                     <div class="text-center mt-2">
-                        <img th:src="'User/'+${user?.avatar} !=null ? ${user?.avatar} : 'https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg' " id="userModel-avatar"
+                        <img th:src="'user/'+${user?.avatar} " id="userModel-avatar"
                              class="card-img-top rounded-circle border border-secondary" style="box-shadow: 3px 2px 8px gray; width: 50vh; height: 50vh">
                         <br>
                     </div>
+                    <input type="file" name="avatar" id="input-file" style="display: none;">
                 </div>
                 <div class="col-md-7 px-3">
                     <div class="row g-3 mt-2">
@@ -22,6 +23,13 @@
                                 <span class="text-danger"
                                       th:if='${error?.getFieldError("username") != null}'
                                       th:text='${error?.getFieldError("username")?.getDefaultMessage()}'></span>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label">Fullname: </label>
+                                <input type="text" class="form-control" name="fullname" th:value="${user?.fullname}" placeholder="Enter fullname">
+                                <span class="text-danger"
+                                      th:if='${error?.getFieldError("fullname") != null}'
+                                      th:text='${error?.getFieldError("fullname")?.getDefaultMessage()}'></span>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label">Email: </label>
@@ -56,36 +64,5 @@
 
         </form>
     </div>
-    <script>
-        document.getElementById('userModel-avatar').addEventListener('click', function(event) {
-            event.preventDefault();
-            var element = document.getElementById('input-file');
-
-            if(!element) {
-                element = document.createElement('input');
-                element.type = 'file';
-                element.name = 'avatar';
-                element.form = 'profile';
-                element.id = 'input-file';
-                element.style.display = 'none';
-                document.getElementById('form-my-info').appendChild(element);
-
-                element.addEventListener('change', function (event){
-                    var file = event.target.files[0];
-                    if (file) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            var img = document.getElementById('userModel-avatar');
-                            img.src = e.target.result;
-                        }
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
-
-            // Kích hoạt sự kiện click của input file
-            element.click();
-        });
-
-    </script>
+    <script src="/js/userAvatar.js"></script>
 </main>

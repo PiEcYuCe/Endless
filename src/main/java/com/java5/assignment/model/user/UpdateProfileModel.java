@@ -15,7 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateProfileModel {
-    private String fullName;
+    @NotBlank(message = "Please enter fullname")
+    private String fullname;
     @NotBlank(message = "Please enter email")
     @Email(message = "Email is in wrong format")
     private  String email;
