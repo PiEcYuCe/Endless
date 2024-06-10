@@ -3,6 +3,7 @@ package com.java5.assignment.controllers.admin;
 import com.java5.assignment.dto.ProductInfoDTO;
 import com.java5.assignment.dto.UserInfoDto;
 import com.java5.assignment.dto.VoucherDto;
+import com.java5.assignment.entities.OrderDetail;
 import com.java5.assignment.entities.Voucher;
 import com.java5.assignment.jpa.OrderDetailRepository;
 import com.java5.assignment.jpa.OrderRepository;
