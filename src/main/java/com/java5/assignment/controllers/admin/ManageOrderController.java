@@ -4,6 +4,7 @@ import com.java5.assignment.dto.ProductInfoDTO;
 import com.java5.assignment.dto.UserInfoDto;
 import com.java5.assignment.dto.VoucherDto;
 import com.java5.assignment.entities.Voucher;
+import com.java5.assignment.jpa.OrderDetailRepository;
 import com.java5.assignment.jpa.OrderRepository;
 import com.java5.assignment.jpa.ProductVersionRepository;
 import com.java5.assignment.jpa.UserVoucherRepository;
@@ -51,6 +52,9 @@ public class ManageOrderController {
     @Autowired
     OrderDetailService orderDetailService;
 
+    @Autowired
+    OrderDetailRepository orderDetailRepository;
+
     @ModelAttribute("page")
     public Page page() {
         return Page.route.get(PageType.ADMIN_ORDER);
@@ -59,6 +63,11 @@ public class ManageOrderController {
     @ModelAttribute("productVersions")
     public List<ProductInfoDTO> productVersions() {
         return productVersionService.getAllProductActive();
+    }
+
+    @ModelAttribute("orderDetails")
+    public List<OrderDetail> orderDetails() {
+        return orderDetailRepository.findAll();
     }
 
     @GetMapping("/api/productVersions")

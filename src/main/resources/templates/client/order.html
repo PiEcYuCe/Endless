@@ -55,7 +55,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="item :${Orders}"
-                            th:if="${item.orderStatus == 'Shipped'}">
+                            th:if="${item.orderStatus == 'Shipping'}">
                             <td class="px-5" th:text="${item?.id}">1</td>
                             <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
                             <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
@@ -106,7 +106,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="item :${Orders}"
-                            th:if="${item.orderStatus == 'Canceled'}">
+                            th:if="${item.orderStatus == 'Cancelled'}">
                             <td class="px-5" th:text="${item?.id}">1</td>
                             <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
                             <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>

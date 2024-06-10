@@ -35,7 +35,8 @@ public class OrderController {
 
     @ModelAttribute("Orders")
     public List<Order> getOrders() {
-        return orderRepository.findAll();
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        return orderRepository.findByUserID(userDto.getId());
     }
 
     @GetMapping("/order")

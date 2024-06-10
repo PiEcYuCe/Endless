@@ -53,16 +53,31 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item :${orders}">
+        <tr th:each="item :${orders}"
+            th:if="${item.orderStatus == 'Processing'}">
             <td th:text="${item?.id}"></td>
             <td th:text="${item?.userID?.fullname}"></td>
             <td th:text="${item?.userID?.phone}"></td>
             <td th:text="${item?.orderDate}"></td>
             <td th:text="${item?.totalMoney}"></td>
             <td>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detail-order"><i class="fa-solid fa-eye"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                <button type="button" class="btn btn-primary">Confirm</button>
+                <div class="d-flex justify-content-start">
+                    <div class="p-1">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detail-order"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                    <div class="p-1">
+                        <form action="/cancel/order" method="post">
+                            <input type="hidden" name="orderId" th:value="${item.id}">
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
+                        </form>
+                    </div>
+                    <div class="p-1">
+                        <form action="/confirm/order" method="post">
+                            <input type="hidden" name="orderId" th:value="${item.id}">
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Confirm</button>
+                        </form>
+                    </div>
+                </div>
             </td>
         </tr>
         </tbody>
