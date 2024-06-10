@@ -31,272 +31,276 @@
         color: #fff;
     }
 </style>
-
-<div class="container py-3 bg-light">
-    <div class="row mb-3 p-2">
-        <div class="row d-flex justify-content-between">
-            <div class="d-flex input-group w-25 px-3" style="position: relative;">
-                <input type="text" class="form-control" id="productInput" style="max-height: 100px;">
-                <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <ul id="productList" class="autocomplete-items" style="user-select: none; "></ul>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-8" style="max-height: 400px; overflow-y: auto;">
-                <table class="table table-hover">
-                    <thead class="table-dark">
-                    <tr>
-                        <th scope="col" colspan="2" class="px-1">Product</th>
-                        <th scope="col" class="px-5">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
-
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" placeholder="Recipient's username"
-                           aria-label="Enter email or phone number" aria-describedby="basic-addon2">
-                    <button class="input-group-text btn btn-primary" id="basic-addon2"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                <form class="custom-form" id="total">
-                    <small class="d-block">Customer: tom</small>
-                    <small class="d-block">Phone : 0123456789</small>
-                    <small class="d-block">Address: Kantor</small>
-                    <hr>
-                    <div class="input-group col-12">
-                        <input class="form-control rounded-2" list="saleValue"
-                               placeholder="Enter voucher code">
-                        <datalist id="saleValue">
-                            <option value="Sale 5%">
-                            <option value="Sale 10%">
-                            <option value="Sale 15%">
-                            <option value="Sale 20%">
-                            <option value="Sale 25%">
-                        </datalist>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-3 d-flex">
-                            <h6>Amount:</h6>
-                        </div>
-                        <div class="col-3 offset-4 text-end d-flex">
-                            <span class="text-danger">$4.396</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3 d-flex">
-                            <h6>Discount:</h6>
-                        </div>
-                        <div class="col-3 offset-4 text-end d-flex">
-                            <span class="text-danger">$43.96</span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-3 d-flex">
-                            <h3 class="text-danger">Total:</h3>
-                        </div>
-                        <div class="col-3 offset-4 text-end d-flex">
-                            <h3 class="text-danger">$4.352,04</h3>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#cart">
-                        Submit
+<div>
+    <div class="container py-3 bg-light">
+        <div class="row mb-3 p-2">
+            <div class="row d-flex justify-content-between">
+                <div class="d-flex input-group w-25 px-3" style="position: relative;">
+                    <input type="text" class="form-control" id="productInput" style="max-height: 100px;"
+                           ng-model="searchQuery">
+                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                </form>
-
-
-                <script>
-                    var modalContainer = document.createElement('div');
-                    modalContainer.innerHTML = `
-    <!-- The Modal -->
-    <div class="modal" id="cart">
-        <div class="modal-dialog">
-            <div class="modal-content" >
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <ul id="productList" class="autocomplete-items" style="user-select: none;">
+                        <li ng-repeat="item in filteredItems" ng-click="addProductToCart(item)">
+                            <img ng-src="{{ item.image }}" style="width: 50px; height: auto; margin-right: 10px;">
+                            <span>{{ item.versionName }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-8" style="max-height: 400px; overflow-y: auto;">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                        <tr>
+                            <th scope="col" colspan="2" class="px-1">Product</th>
+                            <th scope="col" class="px-5">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in selectedItems">
+                            <td class="px-0 mx-0 col-1 py-3">
+                                <div class="d-flex align-items-center">
+                                    <img ng-src="{{ item.image }}" class="img-fluid w-50">
+                                </div>
+                            </td>
+                            <td class="pt-4">
+                                <h6>{{ item.versionName }}</h6>
+                            </td>
+                            <td class="d-flex py-4">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary minus-btn" type="button" ng-click="decrementQuantity($index)">-</button>
+                                </div>
+                                <input type="number" class="form-control col-6 text-end" ng-model="item.quantity" min="0" value="1" style="width: 60px; max-height: 40px" ng-change="updateTotal()">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary plus-btn" type="button" ng-click="incrementQuantity($index)">+</button>
+                                </div>
+                            </td>
+                            <td class="py-4 price">
+                                <b class="text-danger">{{ '$' + item.discountedPrice }}</b><s style="font-size:10px">{{ '$' + item.price }}</s>
+                            </td>
+                            <td class="py-4">
+                                <button class="btn btn-danger delete-btn" ng-click="removeFromCart($index)">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Modal body..
-                </div>
+                <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
+                    <form class="custom-form" id="total">
+                        <div class="input-group col-12">
+                            <input class="form-control rounded-2" placeholder="Enter customer's name or ID"
+                                   ng-model="searchCustomer"
+                                   ng-keyup="$event.keyCode === 13 && getUserInfo(searchCustomer)">
+                        </div>
+                        <small class="d-block mt-1">id: {{ selectedCustomer.id }}</small>
+                        <small class="d-block mt-1">Username: {{ selectedCustomer.username }}</small>
+                        <small class="d-block">Fullname: {{ selectedCustomer.fullname }}</small>
+                        <small class="d-block">Phone : {{ selectedCustomer.phone }}</small>
+                        <small class="d-block">Address: {{ selectedCustomer.address }}</small>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+                        <hr>
+                        <div class="input-group col-12">
+                            <input class="form-control rounded-2" list="saleValueList" placeholder="Enter voucher code"
+                                   ng-model="selectedVoucher">
+                            <datalist id="saleValueList">
+                                <option ng-repeat="voucher in vouchers" ng-value="voucher.voucherCode">
+                                    Discount: {{ voucher.discountLevel }}{{ voucher.discountForm === 'fixed' ? '$' : '%' }},
+                                    From ${{ voucher.leastDiscount }} to ${{ voucher.biggestDiscount }}
+                                </option>
+                            </datalist>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-3 d-flex">
+                                <h6>Amount:</h6>
+                            </div>
+                            <div class="col-3 offset-4 text-end d-flex">
+                                <span class="text-danger">{{ totalAmount }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 d-flex">
+                                <h6>Discount:</h6>
+                            </div>
+                            <div class="col-3 offset-4 text-end d-flex">
+                                <span class="text-danger">{{ totalDiscount }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3 d-flex">
+                                <h3 class="text-danger">Total:</h3>
+                            </div>
+                            <div class="col-3 offset-4 text-end d-flex">
+                                <h3 class="text-danger">{{ totalPrice }}</h3>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100" ng-click="submitOrder()">Submit</button>
 
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-`;
 
-                    document.body.appendChild(modalContainer);
-                </script>
+
+<div class="row mt-2 mb-3 px-2">
+    <div class="row mb-3 d-flex justify-content-end">
+        <div class="col-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter date">
+                <button class="btn btn-primary"><i class="bi bi-funnel"></i></button>
             </div>
         </div>
     </div>
-    <div class="row mt-2 mb-3 px-2">
-        <div class="row mb-3 d-flex justify-content-end">
-            <div class="col-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter date">
-                    <button class="btn btn-primary"><i class="bi bi-funnel"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-            <table class="table table-bordered table-hover table-md">
-                <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Tom</td>
-                    <td>iPhone 13</td>
-                    <td>6</td>
-                    <td>10-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lyly</td>
-                    <td>Xiaomi Redmi Note 10</td>
-                    <td>10</td>
-                    <td>20-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Marry</td>
-                    <td>OnePlus Nord</td>
-                    <td>5</td>
-                    <td>11-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Mie</td>
-                    <td>Google Pixel 5</td>
-                    <td>3</td>
-                    <td>22-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Lucy</td>
-                    <td>Sony Xperia 5 II</td>
-                    <td>2</td>
-                    <td>10-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Nami</td>
-                    <td>Huawei Mate 40</td>
-                    <td>5</td>
-                    <td>13-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Lucy</td>
-                    <td>Sony Xperia 5 II</td>
-                    <td>2</td>
-                    <td>10-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Nami</td>
-                    <td>Huawei Mate 40</td>
-                    <td>5</td>
-                    <td>13-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Jerry</td>
-                    <td>LG Wing</td>
-                    <td>6</td>
-                    <td>10-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Nana</td>
-                    <td>Techno Spark 7</td>
-                    <td>5</td>
-                    <td>01-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Kenny</td>
-                    <td>Realme C25</td>
-                    <td>5</td>
-                    <td>02-05-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i
-                                class="bi bi-eye-fill"></i></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        //Them modal
-        <script>
-            // Tạo một đối tượng div để chứa nội dung HTML của modal
-            var modalContainer = document.createElement('div');
-            modalContainer.innerHTML = `
+    <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+        <table class="table table-bordered table-hover table-md">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Tom</td>
+                <td>iPhone 13</td>
+                <td>6</td>
+                <td>10-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Lyly</td>
+                <td>Xiaomi Redmi Note 10</td>
+                <td>10</td>
+                <td>20-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Marry</td>
+                <td>OnePlus Nord</td>
+                <td>5</td>
+                <td>11-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Mie</td>
+                <td>Google Pixel 5</td>
+                <td>3</td>
+                <td>22-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Lucy</td>
+                <td>Sony Xperia 5 II</td>
+                <td>2</td>
+                <td>10-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Nami</td>
+                <td>Huawei Mate 40</td>
+                <td>5</td>
+                <td>13-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Lucy</td>
+                <td>Sony Xperia 5 II</td>
+                <td>2</td>
+                <td>10-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Nami</td>
+                <td>Huawei Mate 40</td>
+                <td>5</td>
+                <td>13-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Jerry</td>
+                <td>LG Wing</td>
+                <td>6</td>
+                <td>10-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Nana</td>
+                <td>Techno Spark 7</td>
+                <td>5</td>
+                <td>01-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Kenny</td>
+                <td>Realme C25</td>
+                <td>5</td>
+                <td>02-05-2024</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    //Them modal
+    <script>
+        // Tạo một đối tượng div để chứa nội dung HTML của modal
+        var modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
     <!-- The Modal -->
-    <div class="modal modal-xl" id="chooseStar">
+    <div class="modal modal-xl" id="rating">
         <div class="modal-dialog">
             <div class="modal-content" >
                 <!-- Modal Header -->
@@ -501,12 +505,13 @@
     </div>
 `;
 
-            // Chèn đối tượng div vào cuối thẻ body
-            document.body.appendChild(modalContainer);
+        // Chèn đối tượng div vào cuối thẻ body
+        document.body.appendChild(modalContainer);
 
-        </script>
+    </script>
 
-    </div>
+</div>
 
-    <script src="/js/searchProduct.js"></script>
+<script src="/js/showModalOrderAdmin.js"></script>
+<script src="/js/handleCartInOrderManage.js"></script>
 </div>
