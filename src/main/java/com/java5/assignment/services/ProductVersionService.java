@@ -61,7 +61,7 @@ public class ProductVersionService {
             productInfo.setId(productVersion.getId());
             productInfo.setVersionName(productVersion.getVersionName());
             productInfo.setPrice(productVersion.getPrice());
-
+            productInfo.setPurchasePrice(productVersion.getPurchasePrice());
             BigDecimal discountedPrice = calculateDiscountedPrice(productVersion);
             productInfo.setDiscountedPrice(discountedPrice);
             productInfo.setImage(productVersion.getImage());

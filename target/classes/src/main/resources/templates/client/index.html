@@ -54,18 +54,9 @@
                     <a class="nav-link" th:classappend="${page.name == 'voucher'} ? 'active' : ''" href="/voucher">Voucher</a>
                 </li>
 
-
-
             </ul>
 
             <form class="d-flex justify-content-end">
-                <div class="input-group col-12 px-3">
-                    <div class="d-flex input-group w-25 px-3" style="position: relative;">
-                        <input type="text" class="form-control" id="productInput" style="max-height: 100px;">
-                        <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <ul id="productList" class="autocomplete-items" style="user-select: none; "></ul>
-                    </div>
-                </div>
                 <div class="dropdown open">
                     <button class="btn btn-secondary rounded-circle" type="button" id="triggerId"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
