@@ -1,6 +1,6 @@
 <main>
-    <div class="container mt-3">
-        <div class="row">
+    <div class="container pt-5">
+        <div class="row pt-5">
             <div class="col-8" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-hover">
                     <thead class="table-dark">
@@ -18,42 +18,39 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="item :${Carts}">
+                    <tr ng-repeat="item in cartItems">
                         <td class="py-4">
                             <div class="form-check">
-                                <input class="form-check-input checkbox-item" type="checkbox">
+                                <input class="form-check-input checkbox-item" type="checkbox" id="checkbox-{{$index}}" ng-click="toggleSelection(item)">
                             </div>
                         </td>
                         <td class="px-0 mx-0 col-1 py-3">
                             <div class="d-flex align-items-center">
-                                <img th:src="'product-version/'+${item?.productVersionID?.image}"
-                                     class="img-fluid w-50">
+                                <img src="{{item.image}}" class="img-fluid w-50">
                             </div>
                         </td>
                         <td class="pt-4">
-                            <h6 th:text="${item?.productVersionID?.versionName}"></h6>
+                            <h6>{{item.productVersionName}}</h6>
                         </td>
                         <td class="d-flex py-4">
                             <div class="input-group-prepend">
-                                <a class="btn btn-outline-secondary" type="button"
-                                   onclick="updateQuantity('${item?.id}', -1)" id="minusButton"
-                                   th:classappend="${item?.quantity == 1} ? 'disabled'">-</a>
+                                <button class="btn btn-outline-secondary btn-minus" type="button" ng-click="decrementQuantity(item)" ng-class="{'disabled': item.quantity == 1}">-</button>
                             </div>
                             <div class="col-3">
-                                <input id="quantityInput${item?.id}" type="text" class="form-control text-center"
-                                       th:value="${item?.quantity}">
+                                <input type="text" class="form-control text-center" ng-model="item.quantity" ng-change="updateQuantity(item)">
                             </div>
                             <div class="input-group-append">
-                                <a class="btn btn-outline-secondary" type="button"
-                                   onclick="updateQuantity('${item?.id}', 1)" id="pushButton">+</a>
+                                <button class="btn btn-outline-secondary btn-plus" type="button" ng-click="incrementQuantity(item)">+</button>
                             </div>
                         </td>
                         <td class="py-2">
-                            <s style="font-size: 12px" th:text="${item?.productVersionID?.price}"></s>
-                            <h6>$899.00</h6>
+                            <s style="font-size: 12px">{{item.price | currency}}</s>
+                            <h6>{{item.disCountPrice | currency}}</h6>
                         </td>
                         <td class="py-4">
-                            <i class="bi bi-trash-fill text-danger"></i>
+                            <button class="btn btn-danger" ng-click="removeItem(item.id)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -62,44 +59,39 @@
             <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
                 <form class="custom-form">
                     <h3>Customer Information</h3>
-                    <small class="d-block">Name: <span th:text="${user?.fullname}"></span></small>
-                    <small class="d-block">Phone: (+84) <span th:text="${user?.phone}"></span></small>
-                    <small class="d-block">Address: <span th:text="${user?.address}"></span></small>
+                    <small class="d-block">Id: <span>{{customerInfo.id}}</span></small>
+                    <small class="d-block">Username: <span>{{customerInfo.username}}</span></small>
+                    <small class="d-block">Name: <span>{{customerInfo.fullname}}</span></small>
+                    <small class="d-block">Phone: (+84) <span>{{customerInfo.phone}}</span></small>
+                    <small class="d-block">Address: <span>{{customerInfo.address}}</span></small>
                     <hr>
-                    <h5>Product List</h5>
+                    <h5>Selected Products</h5>
                     <div class="row" style="max-height: 180px; overflow-y: auto">
-                        <div class="d-flex align-items-center px-5">
-                            <div class="form-check p-2">
-                                <input class="form-check-input" type="checkbox" value="">
-                            </div>
+                        <div class="d-flex align-items-center px-5" ng-repeat="item in selectedItems">
                             <div class="p-2 col-3">
-                                <img src="/images/productVersion/iPhone12Black64GB.png" class="img-fluid" alt="">
+                                <img src="{{item.image}}" class="img-fluid" alt="">
                             </div>
                             <div class="p-2">
-                                <small class="d-block">iPhone 13 128GB White</small>
-                                <i class="">$1099.00</i> <i class="">x1</i>
-                                <h6 class="d-block">$1099.00</h6>
+                                <small class="d-block">{{item.productVersionName}}</small>
+                                <i>{{item.disCountPrice | currency}}</i> <i>x{{item.quantity}}</i>
+                                <h6 class="d-block text-danger">{{item.disCountPrice * item.quantity | currency}}</h6>
                             </div>
                         </div>
                         <hr>
                     </div>
                     <div class="input-group col-12">
-                        <input class="form-control rounded-2" list="saleValue"
-                               placeholder="Enter voucher code">
-                        <datalist id="saleValue">
-                            <option value="Sale 5%">
-                            <option value="Sale 10%">
-                            <option value="Sale 15%">
-                            <option value="Sale 20%">
-                            <option value="Sale 25%">
-                        </datalist>
+                        <select class="form-select" ng-model="selectedVoucher" ng-change="selectVoucher()">
+                            <option ng-repeat="voucher in vouchers" value="{{voucher.voucherCode}}" ng-if="voucher.discountLevel > 0 && totalAmount >= voucher.leastBill">
+                                {{voucher.voucherCode}} : Discount {{voucher.discountLevel}}{{voucher.discountForm === 'fixed' ? '$' : '%'}} From ${{voucher.leastDiscount}} to ${{voucher.biggestDiscount}}
+                            </option>
+                        </select>
                     </div>
                     <div class="row mt-2">
                         <div class="col-3 d-flex">
                             <h6>Amount:</h6>
                         </div>
                         <div class="col-3 offset-4 text-end d-flex">
-                            <span class="text-danger">$4.396</span>
+                            <span class="text-danger">{{totalAmount | currency}}</span>
                         </div>
                     </div>
                     <div class="row">
@@ -107,7 +99,7 @@
                             <h6>Discount:</h6>
                         </div>
                         <div class="col-3 offset-4 text-end d-flex">
-                            <span class="text-danger">$43.96</span>
+                            <span class="text-danger">{{discount | currency}}</span>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -115,22 +107,36 @@
                             <h3 class="text-danger">Total:</h3>
                         </div>
                         <div class="col-3 offset-4 text-end d-flex">
-                            <h3 class="text-danger">$4.352,04</h3>
+                            <h3 class="text-danger">{{totalAmount - discount | currency}}</h3>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#cart">
+                    <button type="button" class="btn btn-primary w-100" ng-click="submitOrder()">
                         Buy
                     </button>
                 </form>
-                <script src="/js/createModelCart.js"></script>
-                <!--                quantity-->
-                <script src="/js/updateQuantity.js"></script>
-                <!--                select all & show delete all-->
-                <script src="/js/showDeleteAll.js"></script>
-            </div>
-            <div>
-                <button type="submit" id="deleteButton" class="btn btn-danger" style="display:none;">Delete All</button>
             </div>
         </div>
     </div>
 </main>
+
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationModalLabel">Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{notifiMessage}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/handleCartClient.js"></script>

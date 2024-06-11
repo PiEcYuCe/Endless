@@ -170,127 +170,13 @@
             </tr>
             </thead>
             <tbody>
+            <tr th:each="item :${orderDetails}">
+                <td th:text="${item?.id}"></td>
+                <td th:text="${item?.orderID?.userID?.fullname}">></td>
+                <td th:text="${item?.productVersionID?.versionName}"></td>
+                <td th:text="${item?.quantity}"></td>
+                <td th:text="${item?.orderID?.orderDate}"></td>
             <tr>
-                <td>1</td>
-                <td>Tom</td>
-                <td>iPhone 13</td>
-                <td>6</td>
-                <td>10-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Lyly</td>
-                <td>Xiaomi Redmi Note 10</td>
-                <td>10</td>
-                <td>20-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Marry</td>
-                <td>OnePlus Nord</td>
-                <td>5</td>
-                <td>11-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Mie</td>
-                <td>Google Pixel 5</td>
-                <td>3</td>
-                <td>22-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Lucy</td>
-                <td>Sony Xperia 5 II</td>
-                <td>2</td>
-                <td>10-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Nami</td>
-                <td>Huawei Mate 40</td>
-                <td>5</td>
-                <td>13-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Lucy</td>
-                <td>Sony Xperia 5 II</td>
-                <td>2</td>
-                <td>10-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Nami</td>
-                <td>Huawei Mate 40</td>
-                <td>5</td>
-                <td>13-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Jerry</td>
-                <td>LG Wing</td>
-                <td>6</td>
-                <td>10-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Nana</td>
-                <td>Techno Spark 7</td>
-                <td>5</td>
-                <td>01-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Kenny</td>
-                <td>Realme C25</td>
-                <td>5</td>
-                <td>02-05-2024</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>

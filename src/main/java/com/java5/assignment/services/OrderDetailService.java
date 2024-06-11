@@ -34,7 +34,6 @@ public class OrderDetailService {
     public List<OrderDetail> saveOrderAndDetail(OrderData orderData, List<OrderDetailData> orderDetailData) {
         Order order = new Order();
         order.setUserID(userRepository.getById(orderData.getUserID()));
-        System.out.println("UserVoucher" + orderData.getVoucherID());
         order.setVoucherID(voucherRepository.getById(orderData.getVoucherID()));
         order.setOrderDate(orderData.getOrderDate());
         order.setTotalMoney(orderData.getTotalMoney());
