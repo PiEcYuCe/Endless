@@ -34,4 +34,5 @@ public class VersionAttribute {
     @JoinColumn(name = "AttributeValueID", nullable = false)
     private AttributeValue attributeValueID;
 
+
 }

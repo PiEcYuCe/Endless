@@ -1,6 +1,5 @@
 package com.java5.assignment.controllers.admin;
 
-import com.java5.assignment.dto.AttributeValueDto;
 import com.java5.assignment.entities.Attribute;
 import com.java5.assignment.entities.AttributeValue;
 import com.java5.assignment.entities.Product;
@@ -9,13 +8,10 @@ import com.java5.assignment.jpa.AttributeRepository;
 import com.java5.assignment.jpa.AttributeValueRepository;
 import com.java5.assignment.jpa.ProductRepository;
 import com.java5.assignment.jpa.ProductVersionRepository;
-import com.java5.assignment.model.ProductModel;
 import com.java5.assignment.model.admin.productVersion.ProductVersionCreateModel;
-import com.java5.assignment.services.AttributeValueService;
 import com.java5.assignment.services.UploadService;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
-import com.java5.assignment.model.ProductVersionModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,8 +40,6 @@ public class ManageProductVersionController {
     @Autowired
     private UploadService uploadService;
 
-    @Autowired
-    AttributeValueService attributeValueService;
 
     @ModelAttribute("page")
     public Page page() {
@@ -77,11 +71,7 @@ public class ManageProductVersionController {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    @GetMapping("/api/attribute-value")
-    @ResponseBody
-    public List<AttributeValueDto> getAttributeValues(@RequestParam(name = "attributeID") long attributeID) {
-        return attributeValueService.getAttributeValueByAttributeID(attributeID);
-    }
+
 
 
     @GetMapping("/manage-product-version")

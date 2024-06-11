@@ -58,7 +58,6 @@ public class ManageVoucherController {
             return "admin/layout";
         }
 
-
         Voucher voucher = new Voucher();
         voucher.setVoucherCode(voucherModel.getVoucherCode());
         voucher.setLeastBill(BigDecimal.valueOf(voucherModel.getLeastBill()));
@@ -80,20 +79,6 @@ public class ManageVoucherController {
         model.addAttribute("voucher", voucher);
         return "admin/layout";
 
-//        VoucherModel voucherModel = new VoucherModel();
-//        // Copy properties from voucher to voucherModel
-//        voucherModel.setVoucherCode(voucher.getVoucherCode());
-//        voucherModel.setLeastBill(voucher.getLeastBill().doubleValue());
-//        voucherModel.setLeastDiscount(voucher.getLeastDiscount().doubleValue());
-//        voucherModel.setBiggestDiscount(voucher.getBiggestDiscount().doubleValue());
-//        voucherModel.setDiscountLevel(voucher.getDiscountLevel());
-//        voucherModel.setDiscountForm(voucher.getDiscountForm());
-//        voucherModel.setStartDate(voucher.getStartDate());
-//        voucherModel.setEndDate(voucher.getEndDate());
-//
-//        model.addAttribute("voucherModel", voucherModel);
-//        model.addAttribute("voucherId", id);  // Add the voucher id to the model
-//        return "admin/layout";
     }
 
     @PostMapping("/update-voucher")
@@ -126,8 +111,8 @@ public class ManageVoucherController {
         return "redirect:/manage-voucher";
     }
 
-//    @GetMapping("/clear-voucher")
-//    public String clearForm() {
-//        return "redirect:/manage-voucher";
-//    }
+    @GetMapping("/clear-voucher")
+    public String clearForm() {
+        return "redirect:/manage-voucher";
+    }
 }
