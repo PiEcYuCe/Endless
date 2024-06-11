@@ -126,5 +126,10 @@ public class ManageProductController {
         return "redirect:/manage-product";
     }
 
+    @GetMapping("/clear-product")
+    public String clearForm() {
+        return "redirect:/manage-product";
+    }
+
 
 }

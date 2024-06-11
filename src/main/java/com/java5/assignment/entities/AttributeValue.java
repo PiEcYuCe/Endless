@@ -30,7 +30,7 @@ public class AttributeValue {
     private Long id;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "AttributeID", nullable = false)
     private Attribute attributeID;
 
@@ -42,5 +42,6 @@ public class AttributeValue {
 
     @OneToMany(mappedBy = "attributeValueID")
     private Set<VersionAttribute> versionAttributes = new LinkedHashSet<>();
+
 
 }

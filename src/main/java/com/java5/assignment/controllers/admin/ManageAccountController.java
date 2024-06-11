@@ -4,6 +4,7 @@ import com.java5.assignment.entities.Promotion;
 import com.java5.assignment.entities.User;
 import com.java5.assignment.jpa.UserRepository;
 import com.java5.assignment.model.PromotionModel;
+import com.java5.assignment.services.EncodeService;
 import com.java5.assignment.services.UploadService;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
@@ -33,6 +34,9 @@ public class ManageAccountController {
     @Autowired
     private UploadService uploadService;
 
+    @Autowired
+    EncodeService encode;
+
     @ModelAttribute("page")
     public Page page() {
         return Page.route.get(PageType.ADMIN_ACCOUNT);
@@ -57,7 +61,7 @@ public class ManageAccountController {
     public String addVoucher(@Valid UserModel userModel, BindingResult error, Model model) {
         String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
         if (fileName == null) {
-            error.addError(new FieldError("account", "image", "Please select a image"));
+            error.addError(new FieldError("account", "avatar", "Please select a image"));
         }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
@@ -66,7 +70,8 @@ public class ManageAccountController {
 
         User user = new User();
         user.setUsername(userModel.getUsername());
-        user.setPassword(userModel.getPassword());
+        String password = encode.hashCode(userModel.getPassword());
+        user.setPassword(password);
         user.setEmail(userModel.getEmail());
         user.setFullname(userModel.getFullName());
         user.setPhone(userModel.getPhone());
@@ -84,7 +89,10 @@ public class ManageAccountController {
     @PostMapping("/edit-account")
     public String editBrand(@RequestParam("id") long id, Model model) {
         User user = userRepository.findById(id).get();
+        user.setPassword(null);
         model.addAttribute("user", user);
+
+
         return "admin/layout";
     }
 
@@ -97,9 +105,12 @@ public class ManageAccountController {
         }
 
 
-        User user = new User();
+        User user = userRepository.findById(id).get();
+
         user.setUsername(userModel.getUsername());
-        user.setPassword(userModel.getPassword());
+
+        String password = userModel.getPassword() == null ? user.getPassword() : encode.hashCode(userModel.getPassword());
+        user.setPassword(password);
         user.setEmail(userModel.getEmail());
         user.setFullname(userModel.getFullName());
         user.setPhone(userModel.getPhone());
@@ -128,7 +139,7 @@ public class ManageAccountController {
         return "redirect:/manage-account";
     }
 
-    @GetMapping("/clear-formUser")
+    @GetMapping("/clear-form-user")
     public String clearForm() {
         return "redirect:/manage-account";
     }

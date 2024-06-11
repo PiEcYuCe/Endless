@@ -1,5 +1,6 @@
 package com.java5.assignment.jpa;
 
+import com.java5.assignment.entities.AttributeValue;
 import com.java5.assignment.entities.Product;
 import com.java5.assignment.entities.ProductVersion;
 import org.springframework.data.domain.Pageable;
@@ -55,7 +56,8 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
     @Query("SELECT MAX(pv.price) FROM ProductVersion pv")
     BigDecimal findMaxPrice();
 
+
     @Query("SELECT pv FROM ProductVersion pv WHERE pv.id = :productID")
     List<ProductVersion> findByProductID(@Param("productID") Long productID);
-}
+
 
