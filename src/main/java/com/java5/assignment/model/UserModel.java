@@ -1,9 +1,6 @@
 package com.java5.assignment.model;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +21,28 @@ public class UserModel {
     @NotBlank(message = "Please enter fullname")
     private String fullName;
 
-    @NotNull(message = "Please enter password")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$\n",
-            message = "Password are uppercase, lowercase, number, special characters and include 6")
+    @NotEmpty(message = "Please enter password here!")
+    @NotBlank(message = "Password cannot be blank")
+    @Pattern(
+            regexp = "^.{8,}$",
+            message = "Password must be at least 8 characters long"
+    )
+    @Pattern(
+            regexp = "^(?=.*[a-z]).*$",
+            message = "Password must contain at least one lowercase letter"
+    )
+    @Pattern(
+            regexp = "^(?=.*[A-Z]).*$",
+            message = "Password must contain at least one uppercase letter"
+    )
+    @Pattern(
+            regexp = "^(?=.*\\d).*$",
+            message = "Password must contain at least one digit"
+    )
+    @Pattern(
+            regexp = "^(?=.*[@$!%*?&]).*$",
+            message = "Password must contain at least one special character"
+    )
     private String password;
 
     @NotBlank(message = "Please enter email")
@@ -42,10 +58,9 @@ public class UserModel {
     @NotBlank(message = "Please enter address")
     private String address;
 
-    @NotBlank(message = "Please select status")
     private boolean status;
-  
-    @NotNull(message = "Please select image")
+
+
     private MultipartFile avatar;
 
 }

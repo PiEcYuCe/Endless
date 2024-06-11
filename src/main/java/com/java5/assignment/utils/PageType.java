@@ -8,6 +8,7 @@ public enum PageType {
     ABOUT_US,
     LOGIN,
     //    REGISTER,
+    ADMIN_ATTRIBUTE_VALUE,
     PROFILE,
     CHANGE_PASSWORD,
     ORDER,
