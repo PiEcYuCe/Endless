@@ -52,3 +52,4 @@ uploads/**
 !src/**/**/**/**/assignment/controller/**
 !src/main/resources/templates/admin/**
 !src/main/resources/templates/client/**
+/target/classes/
