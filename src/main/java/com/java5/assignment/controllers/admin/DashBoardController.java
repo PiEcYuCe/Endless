@@ -1,7 +1,11 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.dto.CartInfo;
 import com.java5.assignment.entities.Order;
+import com.java5.assignment.entities.OrderDetail;
+import com.java5.assignment.jpa.OrderDetailRepository;
 import com.java5.assignment.jpa.OrderRepository;
+import com.java5.assignment.services.CartService;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import lombok.AllArgsConstructor;
@@ -17,10 +21,14 @@ import java.util.Optional;
 
 @Controller
 public class DashBoardController {
-
     @Autowired
     OrderRepository orderRepository;
 
+    @Autowired
+    OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    CartService cartService;
 
     @ModelAttribute("page")
     public Page page() {
@@ -29,6 +37,7 @@ public class DashBoardController {
 
     @ModelAttribute("orders")
     public List<Order> orders() {
+        System.out.println(orderRepository.findAll());
         return orderRepository.findAll();
     }
 
@@ -55,6 +64,22 @@ public class DashBoardController {
             orderRepository.save(order);
         }
         return "admin/layout";
+    }
+
+    @GetMapping("/api/get-order")
+    @ResponseBody
+    public Order getOrder(@RequestParam("orderId") long orderId) {
+        return orderRepository.findById(orderId).orElse(null);
+    }
+
+    @GetMapping("/api/get-order-detail")
+    @ResponseBody
+    public List<CartInfo> getOrderDetail(@RequestParam("orderId") long orderID) {
+        List<OrderDetail> list = orderDetailRepository.findAllByOrderID(orderID);
+        for(OrderDetail orderDetail : list) {
+            orderDetail.setProductVersionID(orderDetail.getProductVersionID());
+        }
+        return cartService.getByOrder(list);
     }
 
 }

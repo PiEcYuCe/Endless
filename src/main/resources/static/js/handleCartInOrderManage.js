@@ -189,7 +189,7 @@ app.controller('myCtrl', function ($scope, $http) {
         // Chuẩn bị dữ liệu đơn hàng
         var orderData = {
             userID: $scope.selectedCustomer.id,
-            voucherID: $scope.selectedVoucher ? $scope.selectedVoucher.id : 1,
+            voucherID: $scope.selectedVoucher ? $scope.selectedVoucher.id : -1,
             orderDate: new Date(),
             totalMoney: $scope.totalPrice,
             orderStatus: 'Shipping'

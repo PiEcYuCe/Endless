@@ -37,7 +37,7 @@ public class Order {
     private User userID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VoucherID")
+    @JoinColumn(name = "VoucherID", nullable = true)
     private Voucher voucherID;
 
     @NotNull

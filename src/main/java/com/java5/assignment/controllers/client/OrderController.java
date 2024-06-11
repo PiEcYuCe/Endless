@@ -78,6 +78,15 @@ public class OrderController {
         return "";
     }
 
+    @GetMapping("/api/get-order-details-list")
+    @ResponseBody
+    public List<CartInfo> getOrderDetailsByOrderID() {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        User user = userRepository.findById(userDto.getId()).get();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return cartService.getAllByUser(user, sort);
+    }
+
     @GetMapping("/api/get-cart-list")
     @ResponseBody
     public List<CartInfo> getCartrList() {

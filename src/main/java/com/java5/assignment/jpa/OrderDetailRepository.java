@@ -3,6 +3,7 @@ package com.java5.assignment.jpa;
 import com.java5.assignment.entities.OrderDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             nativeQuery = true)
     List<Object[]> findDailyOrderStatistics();
 
+    @Query(value = "select od from OrderDetail od where od.orderID.id = :oid")
+    List<OrderDetail> findAllByOrderID(@Param("oid") long id);
 }

@@ -65,4 +65,21 @@ public class CartService {
 
         return discountedPrice;
     }
+
+
+    public List<CartInfo> getByOrder(List<OrderDetail> orderDetails) {
+        List<CartInfo> list = new ArrayList<>();
+        for(OrderDetail orderDetail : orderDetails){
+            CartInfo cart = new CartInfo();
+            ProductVersion productVersion = orderDetail.getProductVersionID();
+            cart.setProductVersionID(productVersion.getId());
+            cart.setProductVersionName(productVersion.getVersionName());
+            cart.setPrice(productVersion.getPrice());
+            cart.setQuantity(orderDetail.getQuantity());
+            cart.setImage(productVersion.getImage());
+            cart.setDisCountPrice(calculateDiscountedPrice(productVersion));
+            list.add(cart);
+        }
+        return list;
+    }
 }
