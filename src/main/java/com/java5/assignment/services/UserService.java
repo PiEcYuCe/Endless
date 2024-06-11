@@ -16,6 +16,7 @@ public class UserService {
         UserInfoDto userDto = new UserInfoDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
+        userDto.setFullname(user.getFullname());
         userDto.setEmail(user.getEmail());
         userDto.setAddress(user.getAddress());
         userDto.setPhone(user.getPhone());
