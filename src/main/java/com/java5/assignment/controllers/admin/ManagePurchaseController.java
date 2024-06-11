@@ -3,6 +3,8 @@ package com.java5.assignment.controllers.admin;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java5.assignment.dto.UserDto;
+import com.java5.assignment.entities.PurchaseOrderDetail;
+import com.java5.assignment.jpa.PurchaseOrderDetailRepository;
 import com.java5.assignment.model.purchase.PurchaseData;
 import com.java5.assignment.model.purchase.PurchaseRequest;
 import com.java5.assignment.services.PurchaseService;
@@ -27,9 +29,17 @@ public class ManagePurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
+    @Autowired
+    PurchaseOrderDetailRepository purchaseOrderDetailRepository;
+
     @ModelAttribute("page")
     public Page page() {
         return Page.route.get(PageType.ADMIN_PURCHASE);
+    }
+
+    @ModelAttribute("purchaseOrderDetails")
+    public List<PurchaseOrderDetail> purchaseOrderDetails() {
+        return purchaseOrderDetailRepository.findAll();
     }
 
     @GetMapping("/manage-purchase")

@@ -87,56 +87,8 @@
         </div>
     </div>
 
-    <form action="" >
-        <div class="border mt-4">
-            <div class="p-3">
-                <h5 class="mb-1 ">Attribute</h5>
-                <div id="versionAttributesContainer">
-                    <div class="version-attribute mb-3">
-                        <div class="row ">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-md-6 mb-1">
-                                        <select class="form-select" id="attributeName1" name="attributeName"
-                                                onchange="chooseAttribute(this)">
-                                            <option selected value="-1">Attribute Name</option>
-                                            <option th:each="item: ${attributes}"
-                                                    th:text="${item.attributeName}" th:value="${item.id}">One
-                                            </option>
-                                        </select>
-                                        <small class="text-danger"
-                                               th:if='${error?.getFieldError("productCategory")!=null}'
-                                               th:text='${error?.getFieldError("productCategory")?.getDefaultMessage()}'></small>
-                                    </div>
-
-                                    <div class="col-md-6 mb-1">
-                                        <select class="form-select" id="attributeValue1" name="attributeValue">
-                                            <option selected value="-1">Choose a value...</option>
-                                        </select>
-                                        <small class="text-danger"
-                                               th:if='${error?.getFieldError("productCategory")!=null}'
-                                               th:text='${error?.getFieldError("productCategory")?.getDefaultMessage()}'></small>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="col-6">
-                                <button type="button" class="btn btn-secondary mb-3" id="attribute1"
-                                        onclick="addNewAttributeRow(this)">Add new Attribute
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-primary mt-2" onclick="saveAttributes()">Save Attribute</button>
-
-    </form>
     <button type="submit" class="btn btn-primary mt-2" form="product-version-form">Save</button>
-    <button type="submit" class="btn btn-primary mt-2">Clear</button>
+    <button type="submit" class="btn btn-secondary mt-2">Clear</button>
 </div>
 
 

@@ -14,4 +14,8 @@ public interface AttributeValueRepository extends JpaRepository<AttributeValue, 
 
     @Query("SELECT av FROM AttributeValue av JOIN av.attributeID a WHERE a.attributeName = :attributeName ORDER BY av.value")
     List<AttributeValue> findValuesByAttributeName(@Param("attributeName") String attributeName);
+
+    @Query(value = "select av from AttributeValue av where av.attributeID.id = :aid")
+    List<AttributeValue> findValuesByAttributeValueId(Long aid);
+
 }

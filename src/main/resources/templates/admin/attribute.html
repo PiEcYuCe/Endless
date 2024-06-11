@@ -1,63 +1,29 @@
 <div class="container mt-5 bg-light">
     <div class="card mb-5">
         <div class="card-body">
-            <form id="attributeForm" method="post" th:action="@{/manage-attribute}">
+            <form th:action="${attribute == null} ? '/add-attribute' : '/update-attribute?id='+${attribute?.id}"
+                  method="post"
+                  enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="exampleDataList" class="form-label">Attribute Name</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList"
-                           placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-
-                    </datalist>
-
-
-                    <!--                    <label for="attributeName" class="form-label">Attribute Name</label>-->
-                    <!--                    <input type="text" class="form-control" id="attributeName" name="attributeName"-->
-                    <!--                           placeholder="Enter attribute name">-->
-                    <!--                    <p th:text="${error}" class="text-danger"></p>-->
+                    <label class="form-label">Attribute Name</label>
+                    <input th:value="${attribute?.attributeName}" class="form-control" id="" name="attributeName"
+                          >
+                    <small class="text-danger"
+                           th:if='${error?.getFieldError("attributeName")!=null}'
+                           th:text='${error?.getFieldError("attributeName")?.getDefaultMessage()}'></small>
                 </div>
                 <div class="mb-3">
                     <label for="attributeNote" class="form-label">Attribute Note</label>
-                    <textarea class="form-control" id="attributeNote" name="attributeNote" rows="3"
-                              placeholder="Enter additional notes about the attribute"></textarea>
+                    <input th:value="${attribute?.attributeNote}" class="form-control" id="attributeNote" name="attributeNote" rows="3"
+                         >
                     <p th:text="${error1}" class="text-danger"></p>
                 </div>
 
 
-                <form action="">
-                    <div class="border mt-4">
-                        <div class="p-3">
-                            <h5 class="mb-1 ">Attribute</h5>
-                            <div id="versionAttributesContainer">
-                                <div class="version-attribute mb-3">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="col-md-6">
-                                                <input class="form-control" type="text" id="" name="">
-                                                <small class="text-danger"
-                                                       th:if='${error?.getFieldError("productCategory")!=null}'
-                                                       th:text='${error?.getFieldError("productCategory")?.getDefaultMessage()}'></small>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <button type="button" class="btn btn-secondary mb-3" id="attribute1"
-                                                    onclick="addNewAttributeRow(this)">Add new Attribute
-                                            </button>
-                                        </div>
-                                        <div class="col-3"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--                    <button class="btn btn-primary mt-2" onclick="saveAttributes()">Save Attribute</button>-->
-
-                </form>
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" id="clearFormBtn">Clear</button>
-                </div>
+                    <input type="submit" class="btn btn-success"
+                           th:value="${attribute == null} ? 'Create' : 'Update'">
+                    <a href="/clear-attribute" type="button" class="btn btn-secondary">Clear</a></div>
             </form>
         </div>
     </div>
@@ -68,30 +34,35 @@
             <tr>
                 <th scope="col">Attribute Name</th>
                 <th scope="col">Attribute Note</th>
-                <th scope="col">Attribute Value</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
-            <tr>
-                <td scope="row">Color</td>
-                <td>Color of the product</td>
-                <td>Red</td>
+            <tr th:each="item : ${attributes}">
+                <td th:text="${item.attributeName}"></td>
+                <td th:text="${item.attributeNote}"></td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row">ROM</td>
-                <td>Rom capacity of the product</td>
-                <td>256GB</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                    <div class="row">
+                        <div class="col-3">
+                            <form th:action="'/edit-attribute'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}"
+                                        class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-3">
+                            <form th:action="'/delete-attribute'" method="post">
+                                <input type="hidden" name="id" th:value="${item?.id}">
+                                <button type="submit" role="button" th:if="${item?.id != null}"
+                                        class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
