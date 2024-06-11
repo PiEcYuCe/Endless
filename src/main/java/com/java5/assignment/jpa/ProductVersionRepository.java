@@ -57,5 +57,7 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
     BigDecimal findMaxPrice();
 
 
-}
+    @Query("SELECT pv FROM ProductVersion pv WHERE pv.id = :productID")
+    List<ProductVersion> findByProductID(@Param("productID") Long productID);
+
 

@@ -146,8 +146,6 @@
             </div>
         </div>
     </div>
-
-
 <div class="row mt-2 mb-3 px-2">
     <div class="row mb-3 d-flex justify-content-end">
         <div class="col-3">
@@ -176,11 +174,14 @@
                 <td th:text="${item?.productVersionID?.versionName}"></td>
                 <td th:text="${item?.quantity}"></td>
                 <td th:text="${item?.orderID?.orderDate}"></td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating"><i
+                            class="bi bi-eye-fill"></i></button>
+                </td>
             <tr>
             </tbody>
         </table>
     </div>
-    //Them modal
     <script>
         // Tạo một đối tượng div để chứa nội dung HTML của modal
         var modalContainer = document.createElement('div');
