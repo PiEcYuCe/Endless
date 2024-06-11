@@ -111,5 +111,28 @@
             </div>
         </div>
     </div>
-</div>
+    <div class="row px-3 " style="max-height: 250px; overflow-y: auto;">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Purchase Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item :${purchaseOrderDetails}">
+                <td th:text="${item?.id}"></td>
+                <td th:text="${item?.purchaseOrderID?.purchaseDate}"></td>
+                <td th:text="${item?.purchaseOrderID?.purchaseOrderStatus}">Completed</td>
+                <td th:text="${item?.quantity}"></td>
+                <td th:text="${item?.purchaseOrderID?.totalMoney}"></td>
+                <td><button class="btn btn-primary" onclick="showDetails(1)"><i class="fa-solid fa-eye"></i></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div></div>
 <script src="/js/HandlePurchase.js"></script>
