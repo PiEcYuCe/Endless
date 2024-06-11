@@ -102,6 +102,7 @@ public class ManageOrderController {
             return true;
         }
         catch(Exception e){
+            e.printStackTrace();
             return false;
         }
     }
