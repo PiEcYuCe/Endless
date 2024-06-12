@@ -28,86 +28,86 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- Price -->
-                <div class="col-md-12">
-                    <h5 class="mt-3 mb-3">Price</h5>
-                    <div class="row">
-                        <!-- Add more price checkboxes here -->
-                        <!-- Add more price checkboxes as needed -->
-                        <div class="col-md-10 mb-2">
-                            <div class="row g-2">
-                                <div class="col">
-                                    <input type="number" class="form-control" id="minPriceInput" th:value="${minPrice}" min="0">
-                                </div>
-                                <div class="col">
-                                    <input type="number" id="maxPriceInput" class="form-control" th:value="${maxPrice}" min="0">
-                                </div>
-                            </div>
-                            <div class="text-center mt-2">
-                                <button type="submit" class="btn btn-primary">Sort</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="mt-3 mb-3">Color</h5>
-                        <div class="row">
-                            <div th:each="color : ${colors}" class="col-md-6 mb-2">
-                            <input class="form-check-input" type="checkbox" name="color" th:id="'color' + ${color.id}"
-                                   th:value="${color.value}">
-                            <label class="form-check-label" th:for="'color' + ${color.id}"
-                                   th:text="${color.value}"></label>
-                        </div>
-                        </div>
-                    </div>
+<!--            <div class="row">-->
+<!--                &lt;!&ndash; Price &ndash;&gt;-->
+<!--                <div class="col-md-12">-->
+<!--                    <h5 class="mt-3 mb-3">Price</h5>-->
+<!--                    <div class="row">-->
+<!--                        &lt;!&ndash; Add more price checkboxes here &ndash;&gt;-->
+<!--                        &lt;!&ndash; Add more price checkboxes as needed &ndash;&gt;-->
+<!--                        <div class="col-md-10 mb-2">-->
+<!--                            <div class="row g-2">-->
+<!--                                <div class="col">-->
+<!--                                    <input type="number" class="form-control" id="minPriceInput" th:value="${minPrice}" min="0">-->
+<!--                                </div>-->
+<!--                                <div class="col">-->
+<!--                                    <input type="number" id="maxPriceInput" class="form-control" th:value="${maxPrice}" min="0">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="text-center mt-2">-->
+<!--                                <button type="submit" class="btn btn-primary">Sort</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <h5 class="mt-3 mb-3">Color</h5>-->
+<!--                        <div class="row">-->
+<!--                            <div th:each="color : ${colors}" class="col-md-6 mb-2">-->
+<!--                            <input class="form-check-input" type="checkbox" name="color" th:id="'color' + ${color.id}"-->
+<!--                                   th:value="${color.value}">-->
+<!--                            <label class="form-check-label" th:for="'color' + ${color.id}"-->
+<!--                                   th:text="${color.value}"></label>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <!-- Storage Capacity -->
-                    <div class="col-md-12">
-                        <h5 class="mt-3 mb-3">Storage Capacity</h5>
-                        <div class="row">
-                            <!-- Add more storage capacity checkboxes here -->
-                            <div th:each="storage : ${storageValues}" class="col-md-6 mb-2">
-                                <input class="form-check-input" type="checkbox" name="storage" th:id="'storage' + ${storage.id}"
-                                       th:value="${storage.value}">
-                                <label class="form-check-label" th:for="'storage' + ${storage.id}"
-                                       th:text="${storage.value}"></label>
-                            </div>
-                        </div>
-                    </div>
+<!--                    &lt;!&ndash; Storage Capacity &ndash;&gt;-->
+<!--                    <div class="col-md-12">-->
+<!--                        <h5 class="mt-3 mb-3">Storage Capacity</h5>-->
+<!--                        <div class="row">-->
+<!--                            &lt;!&ndash; Add more storage capacity checkboxes here &ndash;&gt;-->
+<!--                            <div th:each="storage : ${storageValues}" class="col-md-6 mb-2">-->
+<!--                                <input class="form-check-input" type="checkbox" name="storage" th:id="'storage' + ${storage.id}"-->
+<!--                                       th:value="${storage.value}">-->
+<!--                                <label class="form-check-label" th:for="'storage' + ${storage.id}"-->
+<!--                                       th:text="${storage.value}"></label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <!-- RAM -->
-                    <div class="col-md-12">
-                        <h5 class="mt-3 mb-3">RAM</h5>
-                        <div class="row">
-                            <!-- Add more RAM checkboxes here -->
-                            <div th:each="ram : ${ramValues}" class="col-md-6 mb-2">
-                                <input class="form-check-input" type="checkbox" name="ram" th:id="'ram' + ${ram.id}"
-                                       th:value="${ram.value}">
-                                <label class="form-check-label" th:for="'ram' + ${ram.id}"
-                                       th:text="${ram.value}"></label>
-                            </div>
-                        </div>
-                    </div>
+<!--                    &lt;!&ndash; RAM &ndash;&gt;-->
+<!--                    <div class="col-md-12">-->
+<!--                        <h5 class="mt-3 mb-3">RAM</h5>-->
+<!--                        <div class="row">-->
+<!--                            &lt;!&ndash; Add more RAM checkboxes here &ndash;&gt;-->
+<!--                            <div th:each="ram : ${ramValues}" class="col-md-6 mb-2">-->
+<!--                                <input class="form-check-input" type="checkbox" name="ram" th:id="'ram' + ${ram.id}"-->
+<!--                                       th:value="${ram.value}">-->
+<!--                                <label class="form-check-label" th:for="'ram' + ${ram.id}"-->
+<!--                                       th:text="${ram.value}"></label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <!-- Screen Size -->
-                    <div class="col-md-12">
-                        <h5 class="mt-3 mb-3">Screen Size</h5>
-                        <div class="row">
-                            <!-- Add more screen size checkboxes here -->
-                            <div th:each="screenSize : ${screenSizeValues}" class="col-md-6 mb-2">
-                                <input class="form-check-input" type="checkbox" name="screenSize" th:id="'screenSize' + ${screenSize.id}"
-                                       th:value="${screenSize.value}">
-                                <label class="form-check-label" th:for="'screenSize' + ${screenSize.id}"
-                                       th:text="${screenSize.value}"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--                    &lt;!&ndash; Screen Size &ndash;&gt;-->
+<!--                    <div class="col-md-12">-->
+<!--                        <h5 class="mt-3 mb-3">Screen Size</h5>-->
+<!--                        <div class="row">-->
+<!--                            &lt;!&ndash; Add more screen size checkboxes here &ndash;&gt;-->
+<!--                            <div th:each="screenSize : ${screenSizeValues}" class="col-md-6 mb-2">-->
+<!--                                <input class="form-check-input" type="checkbox" name="screenSize" th:id="'screenSize' + ${screenSize.id}"-->
+<!--                                       th:value="${screenSize.value}">-->
+<!--                                <label class="form-check-label" th:for="'screenSize' + ${screenSize.id}"-->
+<!--                                       th:text="${screenSize.value}"></label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </aside>
         <article class="col-md-9 col-9">
             <div class="row mt-3 mb-3 d-flex justify-content-end">
@@ -135,6 +135,39 @@
                 </div>
 
             </div>
+
+            <section class="p-3 mt-3 mb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 col-md-4" th:each="product : ${productList}">
+                            <div class="row">
+                                <div class="col-5">
+                            <span class="badge bg-warning position-absolute top-2 start-2"
+                                  th:if="${product.discountedPrice lt product.price}"
+                                  th:text="'-' + ${product.discountPercentage} + '%'"></span>
+                                    <a th:href="'/product/detail?id='+${product.id}">
+                                        <img th:src="@{${product.image}}"
+                                             class="flex-block position-absolute" style="height: 150px;"
+                                             th:id="'prodImg'+${product.id}">
+                                    </a>
+                                </div>
+                                <div class="col-7">
+                                    <div class="top-5 start-0">
+                                        <h5 style="font-weight: bold; font-size: 1.1rem" th:text="${product.versionName}"></h5>
+                                        <b class="mt-1"><i class="fa-solid fa-star text-warning"></i>
+                                            <span th:text="${product.averageRating}"></span>/5
+                                        </b> <br>
+                                        <b class="text-danger" th:text="${product.discountedPrice}"></b>
+                                        <s th:if="${product.discountedPrice lt product.price}"
+                                           th:text="${product.price}"></s><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <div class="row mt-5 mb-5">
                 <div th:each="item : ${productVersionModels}" class="col-12 col-md-6 mb-3">

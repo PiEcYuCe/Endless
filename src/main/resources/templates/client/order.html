@@ -35,7 +35,7 @@
                                     <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
                                     <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
                                     <td >
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-eye-fill"></i> View</button>
+                                        <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-x-circle"></i> Cancel</button>
                                     </td>
                                 </tr>
@@ -61,7 +61,7 @@
                                     <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
                                     <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
                                     <td >
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-eye-fill"></i> View</button>
+                                        <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -86,7 +86,7 @@
                                     <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
                                     <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="# "><i class="bi bi-eye-fill"></i> View</button>
+                                        <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#evaluate"><i class="bi bi-eye-fill"></i> Evaulate</button>
                                     </td>
                                 </tr>
@@ -125,6 +125,7 @@
             <script src="/js/createModalRating.js"></script>
             <script src="/js/chooseStar.js"></script>
             <script src="/js/showRatingPicture.js"></script>
+            <script src="/js/showOrderDetailsModal.js"></script>
         </div>
     </div>
 </main>

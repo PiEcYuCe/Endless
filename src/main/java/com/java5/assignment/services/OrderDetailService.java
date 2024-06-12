@@ -34,7 +34,9 @@ public class OrderDetailService {
     public List<OrderDetail> saveOrderAndDetail(OrderData orderData, List<OrderDetailData> orderDetailData) {
         Order order = new Order();
         order.setUserID(userRepository.getById(orderData.getUserID()));
-        order.setVoucherID(voucherRepository.getById(orderData.getVoucherID()));
+        if (orderData.getVoucherID()!=-1) {
+            order.setVoucherID(voucherRepository.getById(orderData.getVoucherID()));
+        }
         order.setOrderDate(orderData.getOrderDate());
         order.setTotalMoney(orderData.getTotalMoney());
         order.setOrderStatus(orderData.getOrderStatus());
@@ -45,7 +47,7 @@ public class OrderDetailService {
 
         for (OrderDetailData orderDetaildt : orderDetailData) {
             OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrderID(order);
+            orderDetail.setOrderID(savedOrder);
             orderDetail.setProductVersionID(productVersionRepository.getById(orderDetaildt.getProductVersionID()));
             orderDetail.setQuantity(orderDetaildt.getQuantity());
             orderDetail.setPrice(orderDetaildt.getPrice());

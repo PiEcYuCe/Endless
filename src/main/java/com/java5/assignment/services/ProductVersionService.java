@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -96,6 +97,26 @@ public class ProductVersionService {
         return productInfoList;
     }
 
+    public ProductInfoDTO getProductInfoById(Long productId) {
+        Optional<ProductVersion> optionalProductVersion = productVersionRepository.findById(productId);
+        if (optionalProductVersion.isPresent()) {
+            ProductVersion productVersion = optionalProductVersion.get();
+            ProductInfoDTO productInfoDTO = new ProductInfoDTO();
+            productInfoDTO.setId(productVersion.getId());
+            productInfoDTO.setVersionName(productVersion.getVersionName());
+            productInfoDTO.setPrice(productVersion.getPrice());
+            productInfoDTO.setDiscountedPrice(calculateDiscountedPrice(productVersion));
+            productInfoDTO.setImage(productVersion.getImage());
+            productInfoDTO.setAverageRating(calculateAverageRating(productVersion));
+            productInfoDTO.setPurchasePrice(productVersion.getPurchasePrice());
+            int discountPercentage = calculateDiscountPercentage(productVersion.getPrice(), productInfoDTO.getDiscountedPrice());
+            productInfoDTO.setDiscountPercentage(discountPercentage);
+
+            return productInfoDTO;
+        }
+        return null;
+    }
+
 
     private int calculateDiscountPercentage(BigDecimal originalPrice, BigDecimal discountedPrice) {
         if (originalPrice == null || discountedPrice == null || originalPrice.compareTo(BigDecimal.ZERO) == 0) {
@@ -140,5 +161,6 @@ public class ProductVersionService {
         double averageRating = (double) totalRating / ratings.size();
         return averageRating;
     }
+
 
 }

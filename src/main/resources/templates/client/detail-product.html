@@ -1,227 +1,98 @@
 <main class="pt-5">
     <div class="container">
         <div class="row mt-5 mb-5">
-            <div class="col-12 mt-3 mb-3 col-md-5 offset-md-1">
-                <img id="prodImg" style="max-width: 500px; height: 500px;" class="d-flex flex-block"
-                     src="/ui/iphone15promax.png">
-            </div>
-            <div class="col-12 mt-3 mb-3 col-md-5">
-                <div class="info1">
-                    <!--                <h3 class="text-danger">Apple</h3>-->
-                    <h1 style="font-weight: bold">Iphone 15</h1>
-                    <h4 class="mt-1 mb-1"><i class="fa-solid fa-star text-warning"> </i> 4.9/5</h4>
-                    <h3 class="text-danger">$300.00 <s class="text-dark" style="font-size: 15px"> $350</s><br></h3>
-                    <hr class="mb-2">
+            <div class="d-flex align-items-center">
+                <div class="col-12 mt-3 mb-3 col-md-5 offset-md-1">
+                    <img id="prodImg" style="max-width: 500px; height: 500px;" class="d-flex flex-block"
+                         th:src="@{${product.image}}" alt="Product Image">
                 </div>
-                <div class="info2 mt-2">
-                    <!-- Nav pills -->
-                    <ul class="nav nav-pills nav-justified" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#menu1">Basic</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#menu2">Pro</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#menu3">Pro Max</a>
-                        </li>
-                    </ul>
-
+                <div class="col-12 mt-3 mb-3 col-md-5">
+                    <div class="info1">
+                        <h1 style="font-weight: bold" th:text="${product.versionName}"></h1>
+                        <h4 class="mt-1 mb-1"> <i class="fa-solid fa-star text-warning"></i>
+                            <span th:text="${product.averageRating}">4.9</span>/5</h4>
+                        <h3 class="text-danger"><span th:text="${product.discountedPrice}">$300.00</span>
+                            <s th:if="${product.discountedPrice lt product.price}" th:text="${product.price}"
+                               class="text-dark" style="font-size: 15px">$350</s><br></h3>
+                        <hr class="mb-2">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div id="quality1" class="col-3 mb-3">
+                            <label class="col-2" for="quality1">Quality:</label><br>
+                            <div class="input-group mb-1">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button" id="minusBtn1">-</button>
+                                </div>
+                                <input type="number" class="form-control text-end" id="numberInput1" min="1" value="1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="plusBtn1">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end mt-1">
+                            <input type="hidden" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control w-100" placeholder="Enter voucher code">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-warning col-6 mx-2 w-100" href="javascript:void(0);" onclick="addToCart(productId)">
+                            <i class="fa-solid fa-bag-shopping"></i> Add to cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
                     <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div id="menu1" class="container tab-pane active"><br>
-                            <label for="color1">Color:</label><br>
-                            <div id="color1" class="mb-2">
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: black; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: white; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: red; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                            </div>
-                            <label class="mt-2" for="ram1">RAM:</label><br>
-                            <div id="ram1" class="mb-2">
-                                <input checked name="ram1" type="radio" class="btn p-0 mx-1" href="">4GB</input>
-                                <input name="ram1" type="radio" class="btn p-0 mx-1" href="">8GB</input>
-                                <input name="ram1" type="radio" class="btn p-0 mx-1" href="">16GB</input>
-                            </div>
-                            <label class="mt-2" for="rom1">ROM:</label><br>
-                            <div id="rom1" class="mb-3">
-                                <input checked name="rom1" type="radio" class="btn p-0 mx-1" href="">64GB</input>
-                                <input name="rom1" type="radio" class="btn p-0 mx-1" href="">128GB</input>
-                                <input name="rom1" type="radio" class="btn p-0 mx-1" href="">256GB</input>
-                            </div>
-                            <div id="quality1" class="col-3 mb-3">
-                                <label class="col-2" for="quality1">Quality:</label><br>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button" id="minusBtn1">-</button>
-                                    </div>
-                                    <input type="number" class="form-control text-end" id="numberInput1" min="0" value="0">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="plusBtn1">+</button>
-                                    </div>
-                                </div>
-                                <script>
-                                    document.getElementById('plusBtn1').addEventListener('click', function() {
-                                        var input = document.getElementById('numberInput1');
-                                        var value = parseInt(input.value);
-                                        if (value >= 0) {
-                                            input.value = value + 1;
-                                        }
-                                    });
-
-                                    document.getElementById('minusBtn1').addEventListener('click', function() {
-                                        var input = document.getElementById('numberInput1');
-                                        var value = parseInt(input.value);
-                                        if (value > 0) {
-                                            input.value = value - 1;
-                                        }
-                                    });
-
-                                </script>
-                            </div>
-                            <div id="action1" class="d-flex justify-content-center">
-                                <a class="btn btn-danger col-6 mx-2" href=""><i class="fa-solid fa-credit-card"> </i> Buy
-                                    now</a>
-                                <a class="btn btn-warning col-6 mx-2" href=""><i class="fa-solid fa-bag-shopping"> </i> Add
-                                    to cart</a>
-                            </div>
-                        </div>
-                        <div id="menu2" class="container tab-pane fade"><br>
-                            <label for="color2">Color:</label><br>
-                            <div id="color2" class="mb-2">
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: black; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: white; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: red; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                            </div>
-                            <label class="mt-2" for="ram2">RAM:</label><br>
-                            <div id="ram2" class="mb-2">
-                                <input checked name="ram1" type="radio" class="btn p-0 mx-1" href="">4GB</input>
-                                <input name="ram1" type="radio" class="btn p-0 mx-1" href="">8GB</input>
-                                <input name="ram1" type="radio" class="btn p-0 mx-1" href="">16GB</input>
-                            </div>
-                            <label class="mt-2" for="rom2">ROM:</label><br>
-                            <div id="rom2" class="mb-3">
-                                <input checked name="rom1" type="radio" class="btn p-0 mx-1" href="">64GB</input>
-                                <input name="rom1" type="radio" class="btn p-0 mx-1" href="">128GB</input>
-                                <input name="rom1" type="radio" class="btn p-0 mx-1" href="">256GB</input>
-                            </div>
-                            <div id="quality2" class="col-3 mb-3">
-                                <label class="col-2" for="quality2">Quality:</label><br>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button" id="minusBtn2">-</button>
-                                    </div>
-                                    <input type="number" class="form-control text-end" id="numberInput2" min="0" value="0">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="plusBtn2">+</button>
-                                    </div>
-                                </div>
-                                <script>
-                                    document.getElementById('plusBtn2').addEventListener('click', function() {
-                                        var input = document.getElementById('numberInput2');
-                                        var value = parseInt(input.value);
-                                        if (value >= 0) {
-                                            input.value = value + 1;
-                                        }
-                                    });
-
-                                    document.getElementById('minusBtn2').addEventListener('click', function() {
-                                        var input = document.getElementById('numberInput2');
-                                        var value = parseInt(input.value);
-                                        if (value > 0) {
-                                            input.value = value - 1;
-                                        }
-                                    });
-
-                                </script>
-                            </div>
-                            <div id="action2" class="d-flex justify-content-center">
-                                <a class="btn btn-danger col-6 mx-2" href=""><i class="fa-solid fa-credit-card"> </i> Buy
-                                    now</a>
-                                <a class="btn btn-warning col-6 mx-2" href=""><i class="fa-solid fa-bag-shopping"> </i> Add
-                                    to cart</a>
-                            </div>
-                        </div>
-                        <div id="menu3" class="container tab-pane fade"><br>
-                            <label for="color3">Color:</label><br>
-                            <div id="color3" class="mb-2">
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: black; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: white; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                                <a class="btn p-0 mx-1"
-                                   style="width: 3vh; height: 3vh; border-radius: 50%; background-color: red; box-shadow: 2px 3px 5px gray; border: 0.01vh solid gray">
-                                </a>
-                            </div>
-                            <label class="mt-2" for="ram3">RAM:</label><br>
-                            <div id="ram3" class="mb-2">
-                                <input checked name="ram3" type="radio" class="btn p-0 mx-1" href="">4GB</input>
-                                <input name="ram3" type="radio" class="btn p-0 mx-1" href="">8GB</input>
-                                <input name="ram3" type="radio" class="btn p-0 mx-1" href="">16GB</input>
-                            </div>
-                            <label class="mt-2" for="rom3">ROM:</label><br>
-                            <div id="rom3" class="mb-3">
-                                <input checked name="rom3" type="radio" class="btn p-0 mx-1" href="">64GB</input>
-                                <input name="rom3" type="radio" class="btn p-0 mx-1" href="">128GB</input>
-                                <input name="rom3" type="radio" class="btn p-0 mx-1" href="">256GB</input>
-                            </div>
-                            <div id="quality3" class="col-3 mb-3">
-                                <label class="col-2" for="quality3">Quality:</label><br>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button" id="minusBtn3">-</button>
-                                    </div>
-                                    <input type="number" class="form-control text-end" id="numberInput3" min="0" value="0">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="plusBtn3">+</button>
-                                    </div>
-                                </div>
-                                <script>
-                                    document.getElementById('plusBtn3').addEventListener('click', function() {
-                                        var input = document.getElementById('numberInput3');
-                                        var value = parseInt(input.value);
-                                        if (value >= 0) {
-                                            input.value = value + 1;
-                                        }
-                                    });
-
-                                    document.getElementById('minusBtn3').addEventListener('click', function() {
-                                        var input = document.getElementById('numberInput3');
-                                        var value = parseInt(input.value);
-                                        if (value > 0) {
-                                            input.value = value - 1;
-                                        }
-                                    });
-
-                                </script>
-                            </div>
-                            <div id="action3" class="d-flex justify-content-center">
-                                <a class="btn btn-danger col-6 mx-2" href=""><i class="fa-solid fa-credit-card"> </i> Buy
-                                    now</a>
-                                <a class="btn btn-warning col-6 mx-2" href=""><i class="fa-solid fa-bag-shopping"> </i> Add
-                                    to cart</a>
+<!--                    <div class="tab-content">-->
+<!--                        <div id="menu1" class="container tab-pane active"><br>-->
+<!--                            <label for="color1">Color:</label><br>-->
+<!--                            <div id="color1" class="form-check form-check-inline mb-2" th:each="color : ${colors}">-->
+<!--                                <input type="radio" name="color" th:id="'color' + ${color.id}"-->
+<!--                                       th:value="${color.value}">-->
+<!--                                <label class="form-check-label" th:for="'color' + ${color.id}"-->
+<!--                                       th:text="${color.value}"></label>-->
+<!--                            </div>-->
+<!--                            <br>-->
+<!--                            <label class="mt-2" for="ram1">RAM:</label><br>-->
+<!--                            <div id="ram1" class="form-check form-check-inline mb-2" th:each="ram : ${ramValues}">-->
+<!--                                <input type="radio" class="btn p-0 mx-1" name="ram" th:id="'ram' + ${ram.id}"-->
+<!--                                       th:value="${ram.value}">-->
+<!--                                <label class="form-check-label" th:for="'ram' + ${ram.id}"-->
+<!--                                       th:text="${ram.value}"></label>-->
+<!--                            </div>-->
+<!--                            <br>-->
+<!--                            <label class="mt-2" for="rom1">ROM:</label><br>-->
+<!--                            <div id="rom1" class="form-check form-check-inline mb-3" th:each="storage : ${storageValues}">-->
+<!--                                <input type="radio" name="storage" th:id="'storage' + ${storage.id}"-->
+<!--                                       th:value="${storage.value}">-->
+<!--                                <label class="form-check-label" th:for="'storage' + ${storage.id}"-->
+<!--                                       th:text="${storage.value}"></label>-->
+<!--                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+        </div>-->
+    <script>
+        document.getElementById('plusBtn1').addEventListener('click', function() {
+            var input = document.getElementById('numberInput1');
+            var value = parseInt(input.value);
+            if (value >= 1) {
+                input.value = value + 1;
+            }
+        });
 
-
-        </div>
+        document.getElementById('minusBtn1').addEventListener('click', function() {
+            var input = document.getElementById('numberInput1');
+            var value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+    </script>
         <div class="row mt-5 mb-5">
             <div class="col-8 offset-2">
                 <div class="card">
@@ -280,14 +151,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-6"></div>
-
         </div>
-        <div class="row mt-5 mb-5">
-
-        </div>
+        <div class="col-6"></div>
+        <div class="row mt-5 mb-5"></div>
     </div>
-
-
 </main>

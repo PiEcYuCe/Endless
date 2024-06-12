@@ -269,9 +269,9 @@
                             <span class="badge bg-warning position-absolute top-2 start-2"
                                   th:if="${productVersion?.discountedPrice lt productVersion?.price}"
                                   th:text="'-' + ${productVersion?.discountPercentage} + '%'"></span>
-                                <a th:href="'product/detail?id='+${productVersion?.id}">
+                                <a th:href="'product/detail?id='+${productVersion?.id}" class="d-flex">
                                     <img th:src="@{${productVersion?.image}}"
-                                         class="flex-block w-100 position-relative" th:id="'prodImg'+${productVersion?.id}"
+                                         class="flex-block w-100 position-relative d-flex" th:id="'prodImg'+${productVersion?.id}"
                                          style="height: 20vh; width: auto">
                                 </a>
                             </div>
