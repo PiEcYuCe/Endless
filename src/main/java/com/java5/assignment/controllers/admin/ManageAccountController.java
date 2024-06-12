@@ -57,11 +57,42 @@ public class ManageAccountController {
     }
 
 
-    @PostMapping("/add-account")
+    @PostMapping("/manage-add-account")
     public String addVoucher(@Valid UserModel userModel, BindingResult error, Model model) {
+
+        if (userRepository.existsByUsername(userModel.getUsername())) {
+            error.addError(new FieldError("userModel", "username", "Username already exists"));
+        }
+        if (userRepository.existsByEmail(userModel.getEmail())) {
+            error.addError(new FieldError("userModel", "email", "Email already exists"));
+        }
+        if (userRepository.existsByPhone(userModel.getPhone())) {
+            error.addError(new FieldError("userModel", "phone", "Phone number already exists"));
+        }
+
         String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
         if (fileName == null) {
             error.addError(new FieldError("account", "avatar", "Please select a image"));
+        }
+        // Validate password manually
+        if (userModel.getPassword() == null || userModel.getPassword().isEmpty()) {
+            error.addError(new FieldError("userModel", "password", "Please enter password here!"));
+        } else {
+            if (userModel.getPassword().length() < 8) {
+                error.addError(new FieldError("userModel", "password", "Password must be at least 8 characters long"));
+            }
+            if (!userModel.getPassword().matches("^(?=.*[a-z]).*$")) {
+                error.addError(new FieldError("userModel", "password", "Password must contain at least one lowercase letter"));
+            }
+            if (!userModel.getPassword().matches("^(?=.*[A-Z]).*$")) {
+                error.addError(new FieldError("userModel", "password", "Password must contain at least one uppercase letter"));
+            }
+            if (!userModel.getPassword().matches("^(?=.*\\d).*$")) {
+                error.addError(new FieldError("userModel", "password", "Password must contain at least one digit"));
+            }
+            if (!userModel.getPassword().matches("^(?=.*[@$!%*?&]).*$")) {
+                error.addError(new FieldError("userModel", "password", "Password must contain at least one special character"));
+            }
         }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
@@ -86,7 +117,7 @@ public class ManageAccountController {
         return "redirect:/manage-account";
     }
 
-    @PostMapping("/edit-account")
+    @PostMapping("/manage-edit-account")
     public String editBrand(@RequestParam("id") long id, Model model) {
         User user = userRepository.findById(id).get();
         user.setPassword(null);
@@ -96,9 +127,24 @@ public class ManageAccountController {
         return "admin/layout";
     }
 
-    @PostMapping("/update-account")
+    @PostMapping("/manage-update-account")
     public String updateBrand(@Valid UserModel userModel, BindingResult error,
                               @RequestParam("id") long id, Model model) {
+
+        User existingUser = userRepository.findById(id).orElse(null);
+        if (existingUser == null) {
+            error.addError(new FieldError("userModel", "id", "User not found"));
+        } else {
+            if (!existingUser.getUsername().equals(userModel.getUsername()) && userRepository.existsByUsername(userModel.getUsername())) {
+                error.addError(new FieldError("userModel", "username", "Username already exists"));
+            }
+            if (!existingUser.getEmail().equals(userModel.getEmail()) && userRepository.existsByEmail(userModel.getEmail())) {
+                error.addError(new FieldError("userModel", "email", "Email already exists"));
+            }
+            if (!existingUser.getPhone().equals(userModel.getPhone()) && userRepository.existsByPhone(userModel.getPhone())) {
+                error.addError(new FieldError("userModel", "phone", "Phone number already exists"));
+            }
+        }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
             return "admin/layout";
@@ -131,7 +177,7 @@ public class ManageAccountController {
         return "redirect:/manage-account";
     }
 
-    @PostMapping("/delete-account")
+    @PostMapping("/manage-delete-account")
     public String deleteBrand(@RequestParam("id") long id) {
         User user = userRepository.findById(id).get();
         uploadService.remove(userRepository.findById(id).get().getAvatar());
@@ -139,7 +185,7 @@ public class ManageAccountController {
         return "redirect:/manage-account";
     }
 
-    @GetMapping("/clear-form-user")
+    @GetMapping("/manage-clear-form-user")
     public String clearForm() {
         return "redirect:/manage-account";
     }
