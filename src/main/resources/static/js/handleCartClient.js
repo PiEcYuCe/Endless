@@ -173,12 +173,17 @@ app.controller('myCtrl', function ($scope, $http) {
         }
         $scope.updateDiscount();
     };
-
     $scope.showNotificationModal = function () {
         var modal = new bootstrap.Modal(document.getElementById('notificationModal'));
         modal.show();
+
+        // Đóng modal sau một khoảng thời gian
+        setTimeout(function () {
+            modal.hide();
+        }, 3000); // 5000 là số miligiây, tương ứng với 5 giây
     };
 
+    // Submit order
     // Submit order
     $scope.submitOrder = function () {
         if ($scope.selectedItems.length === 0) {
@@ -211,8 +216,30 @@ app.controller('myCtrl', function ($scope, $http) {
             .then(function (response) {
                 if (response.data === true) {
                     $scope.notifiMessage = 'Order created successfully!';
-                    $scope.selectedItems = [];
-                    $scope.updateTotalAmount();
+
+                    // Xóa các mục hàng đã chọn khỏi giỏ hàng
+                    $scope.selectedItems.forEach(function (item) {
+                        $scope.removeItem(item.id);
+                    });
+
+                    // Cập nhật lại tổng số tiền và chiết khấu
+                    $scope.totalAmount = 0;
+                    $scope.discount = 0;
+
+                    // Cập nhật hiển thị giỏ hàng sau khi xóa
+                    $http.get("/api/get-cart-list")
+                        .then(function (response) {
+                            if (response.status === 200 && response.data) {
+                                $scope.cartItems = response.data;
+                                $scope.updateTotalAmount();
+                            } else {
+                                console.error('Error fetching cart items:', response);
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error('Error fetching cart items:', error);
+                        });
+
                 } else {
                     $scope.notifiMessage = 'Failed to create order. Please try again later.';
                     console.log(orderData, orderDetailsData);
@@ -226,4 +253,5 @@ app.controller('myCtrl', function ($scope, $http) {
                 $scope.showNotificationModal();
             });
     };
+
 });

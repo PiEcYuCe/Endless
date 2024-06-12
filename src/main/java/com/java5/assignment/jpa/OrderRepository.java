@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
@@ -14,4 +16,17 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findAllByOrderStatus(String status);
 
+    int countByOrderStatus(String status);
+
+    @Query("SELECT SUM(o.totalMoney) FROM Order o WHERE o.orderDate = CURRENT_DATE")
+    BigDecimal getRevenueToday();
+
+    @Query("SELECT SUM(o.totalMoney) FROM Order o WHERE o.orderDate >= :startOfWeek")
+    BigDecimal getRevenueThisWeek(@Param("startOfWeek") LocalDate startOfWeek);
+
+    @Query("SELECT SUM(o.totalMoney) FROM Order o WHERE o.orderDate >= :startOfMonth")
+    BigDecimal getRevenueThisMonth(@Param("startOfMonth") LocalDate startOfMonth);
+
+    @Query("SELECT SUM(o.totalMoney) FROM Order o WHERE o.orderDate >= :startOfYear")
+    BigDecimal getRevenueThisYear(@Param("startOfYear") LocalDate startOfYear);
 }

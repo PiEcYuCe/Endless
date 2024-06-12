@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
@@ -23,4 +25,11 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
 
     @Query(value = "select od from OrderDetail od where od.orderID.id = :oid")
     List<OrderDetail> findAllByOrderID(@Param("oid") long id);
+
+    @Query(value = "select sum(od.quantity) from OrderDetail od where od.orderID.orderStatus != 'Delivered'")
+    long countProductSold();
+
+    @Query(value = "select sum(od.quantity) from OrderDetail od where od.orderID.orderStatus != 'Shipping'")
+    long countProductShipping();
+
 }

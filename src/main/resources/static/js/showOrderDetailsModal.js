@@ -68,10 +68,10 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
                                                 <s style="font-size: 12px">{{item.price}}</s>
                                                 <h6>{{item.disCountPrice | number: 2}}</h6>
                                             </td>
-                                            <td class="py-2"  ng-if="item.quantity>0">
+                                            <td class="py-4"  ng-if="item.quantity>0">
                                                 <h6>{{item.price - item.disCountPrice | number: 2}}</h6>
                                             </td>
-                                            <td class="py-2"  ng-if="item.quantity>0">
+                                            <td class="py-4"  ng-if="item.quantity>0">
                                                 <h6>{{item.quantity * item.disCountPrice | number: 2}}</h6>
                                             </td>
                                         </tr>

@@ -1,5 +1,4 @@
 HELP.md
-/target/**
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -51,4 +50,3 @@ uploads/**
 !src/**/**/**/**/assignment/controller/**
 !src/main/resources/templates/admin/**
 !src/main/resources/templates/client/**
-/target//**
