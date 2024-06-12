@@ -41,6 +41,7 @@ function move(id) {
     newProductImage.style.position = 'absolute';
     newProductImage.style.width = productImageRect.width + 'px';
     newProductImage.style.height = productImageRect.height + 'px';
+    newProductImage.style.display = "flex";
     newProductImage.style.top = '0';
     newProductImage.style.left = '0';
     newProductImage.style.transition = 'transform 1.5s ease-in-out, opacity 1.5s ease-in-out';
@@ -50,8 +51,7 @@ function move(id) {
     // Lấy ra phần tử cha của productImage
     var parentElement = productImage.parentNode;
 
-    // Chèn newProductImage vào trước productImage
-    parentElement.insertBefore(newProductImage, productImage);
+    parentElement.appendChild(newProductImage);
 
     var offsetX = cartIconRect.left - productImageRect.left + (cartIconRect.width - productImageRect.width) / 2;
     var offsetY = cartIconRect.top - productImageRect.top + (cartIconRect.height - productImageRect.height) / 2;
@@ -65,4 +65,3 @@ function move(id) {
         parentElement.removeChild(newProductImage);
     }, 1600);
 }
-

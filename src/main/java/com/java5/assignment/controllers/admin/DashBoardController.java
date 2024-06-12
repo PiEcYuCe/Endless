@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 public class DashBoardController {
@@ -30,10 +29,7 @@ public class DashBoardController {
 
     @ModelAttribute("orders")
     public List<Order> orders() {
-        return orderRepository.findAll()
-                .stream()
-                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
-                .collect(Collectors.toList());
+        return orderRepository.findAll();
     }
 
     @GetMapping("/dashboard")
