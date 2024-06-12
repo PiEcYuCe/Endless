@@ -197,7 +197,7 @@ app.controller('myCtrl', function ($scope, $http) {
             voucherID: $scope.selectedVoucher.id ? $scope.selectedVoucher.id : 1,
             orderDate: new Date(),
             totalMoney: $scope.totalAmount - $scope.discount,
-            orderStatus: 'Shipping'
+            orderStatus: 'Processing'
         };
 
         var orderDetailsData = $scope.selectedItems.map(function (item) {

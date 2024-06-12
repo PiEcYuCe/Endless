@@ -1,8 +1,10 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.dto.OrderDto;
 import com.java5.assignment.dto.ProductInfoDTO;
 import com.java5.assignment.dto.UserInfoDto;
 import com.java5.assignment.dto.VoucherDto;
+import com.java5.assignment.entities.Order;
 import com.java5.assignment.entities.OrderDetail;
 import com.java5.assignment.entities.Voucher;
 import com.java5.assignment.jpa.OrderDetailRepository;
@@ -10,10 +12,7 @@ import com.java5.assignment.jpa.OrderRepository;
 import com.java5.assignment.jpa.ProductVersionRepository;
 import com.java5.assignment.jpa.UserVoucherRepository;
 import com.java5.assignment.model.Order.OrderRequest;
-import com.java5.assignment.services.OrderDetailService;
-import com.java5.assignment.services.ProductVersionService;
-import com.java5.assignment.services.UserService;
-import com.java5.assignment.services.VoucherService;
+import com.java5.assignment.services.*;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import jakarta.servlet.http.HttpSession;
@@ -54,6 +53,9 @@ public class ManageOrderController {
 
     @Autowired
     OrderDetailService orderDetailService;
+
+    @Autowired
+    OrderService orderService;
 
     @Autowired
     OrderDetailRepository orderDetailRepository;
@@ -113,5 +115,11 @@ public class ManageOrderController {
     @GetMapping("/manage-order")
     public String get(Model model) throws IOException {
         return "admin/layout";
+    }
+
+    @GetMapping("/api/get-all-order")
+    @ResponseBody
+    public List<OrderDto> getListOrders(){
+        return orderService.getAllOrdersDto();
     }
 }
