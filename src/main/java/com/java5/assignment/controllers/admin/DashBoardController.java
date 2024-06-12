@@ -6,6 +6,7 @@ import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,8 @@ public class DashBoardController {
 
     @ModelAttribute("orders")
     public List<Order> orders() {
-        return orderRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return orderRepository.findAll(sort);
     }
 
     @GetMapping("/dashboard")

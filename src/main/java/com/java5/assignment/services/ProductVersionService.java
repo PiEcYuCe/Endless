@@ -2,10 +2,12 @@ package com.java5.assignment.services;
 
 import com.java5.assignment.dto.ProductInfoDTO;
 import com.java5.assignment.entities.*;
+import com.java5.assignment.jpa.ProductRepository;
 import com.java5.assignment.jpa.ProductVersionRepository;
 import com.java5.assignment.jpa.PromotionProductRepository;
 import com.java5.assignment.jpa.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class ProductVersionService {
 
     @Autowired
     private RatingRepository ratingRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     public List<ProductInfoDTO> getProductInfoByCategory(Category category, Pageable pageable) {
         List<ProductVersion> productVersions = productVersionRepository.findByCategoryId(category.getId(), pageable);
@@ -92,10 +96,55 @@ public class ProductVersionService {
             double averageRating = calculateAverageRating(productVersion);
             productInfo.setAverageRating(averageRating);
 
+            BigDecimal price = productVersion.getPrice();
+            if (price != null && discountedPrice != null && price.compareTo(BigDecimal.ZERO) != 0) {
+                BigDecimal discountPercentage = BigDecimal.ONE
+                        .subtract(discountedPrice.divide(price, 2, RoundingMode.HALF_UP))
+                        .multiply(BigDecimal.valueOf(100));
+                productInfo.setDiscountPercentage(discountPercentage.intValue());
+            } else {
+                productInfo.setDiscountPercentage(0);
+            }
+
             productInfoList.add(productInfo);
         }
         return productInfoList;
     }
+
+
+
+    public List<ProductInfoDTO> getAllProductInfoPage(Pageable pageable) {
+        List<ProductVersion> productVersions = productVersionRepository.findAll(pageable).getContent();
+
+        List<ProductInfoDTO> productInfoList = new ArrayList<>();
+        for (ProductVersion productVersion : productVersions) {
+            ProductInfoDTO productInfo = new ProductInfoDTO();
+            productInfo.setId(productVersion.getId());
+            productInfo.setVersionName(productVersion.getVersionName());
+            productInfo.setPrice(productVersion.getPrice());
+
+            BigDecimal discountedPrice = calculateDiscountedPrice(productVersion);
+            productInfo.setDiscountedPrice(discountedPrice);
+            productInfo.setImage(productVersion.getImage());
+
+            double averageRating = calculateAverageRating(productVersion);
+            productInfo.setAverageRating(averageRating);
+
+            BigDecimal price = productVersion.getPrice();
+            if (price != null && discountedPrice != null && price.compareTo(BigDecimal.ZERO) != 0) {
+                BigDecimal discountPercentage = BigDecimal.ONE
+                        .subtract(discountedPrice.divide(price, 2, RoundingMode.HALF_UP))
+                        .multiply(BigDecimal.valueOf(100));
+                productInfo.setDiscountPercentage(discountPercentage.intValue());
+            } else {
+                productInfo.setDiscountPercentage(0);
+            }
+
+            productInfoList.add(productInfo);
+        }
+        return productInfoList;
+    }
+
 
     public ProductInfoDTO getProductInfoById(Long productId) {
         Optional<ProductVersion> optionalProductVersion = productVersionRepository.findById(productId);
@@ -162,5 +211,16 @@ public class ProductVersionService {
         return averageRating;
     }
 
+    public ProductInfoDTO convertToProductInfoDTO(Product product) {
+        ProductInfoDTO productInfoDTO = new ProductInfoDTO();
+        productInfoDTO.setId(product.getId());
+        productInfoDTO.setVersionName(product.getName());
+        return productInfoDTO;
+    }
+
+    public Page<ProductInfoDTO> getAllProducts(Pageable pageable) {
+        Page<Product> productPage = productRepository.findAll(pageable);
+        return productPage.map(this::convertToProductInfoDTO);
+    }
 
 }

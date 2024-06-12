@@ -11,6 +11,7 @@ import com.java5.assignment.model.BrandModel;
 import com.java5.assignment.services.UploadService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,10 +41,8 @@ public class ManageBrandController {
 
     @ModelAttribute("Brands")
     public List<Brand> getBrands() {
-        return brandRepository.findAll()
-                .stream()
-                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
-                .collect(Collectors.toList());
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return brandRepository.findAll(sort);
     }
 
     @GetMapping("/manage-brand")

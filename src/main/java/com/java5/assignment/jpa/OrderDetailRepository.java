@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
     @Query(value = "SELECT " +
-            "ROW_NUMBER() OVER (ORDER BY o.OrderDate) AS STT, " +
+            "ROW_NUMBER() OVER (ORDER BY o.OrderDate DESC) AS ID, " +
             "o.OrderDate AS Time, " +
             "COUNT(DISTINCT o.OrderID) AS NumberOfInvoices, " +
             "ISNULL(SUM(od.Quantity), 0) AS NumberOfProductsSold, " +

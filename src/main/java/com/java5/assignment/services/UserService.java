@@ -23,4 +23,5 @@ public class UserService {
         userDto.setAvatar(user.getAvatar());
         return userDto;
     }
+
 }

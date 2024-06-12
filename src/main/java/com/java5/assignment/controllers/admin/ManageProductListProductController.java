@@ -7,6 +7,7 @@ import com.java5.assignment.jpa.*;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -51,10 +52,8 @@ public class ManageProductListProductController {
 
     @ModelAttribute("productversions")
     public List<ProductVersion> getProdV() {
-        return productVersionRepository.findAll()
-                .stream()
-                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
-                .collect(Collectors.toList());
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return productVersionRepository.findAll(sort);
     }
 
     @ModelAttribute("attributevalues")

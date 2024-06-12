@@ -14,6 +14,7 @@ import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.ProductModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,10 +45,8 @@ public class ManageProductController {
 
     @ModelAttribute("products")
     public List<Product> getProducts() {
-        return productRepository.findAll()
-                .stream()
-                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
-                .collect(Collectors.toList());
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return productRepository.findAll(sort);
     }
 
     @ModelAttribute("categories")

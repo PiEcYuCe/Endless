@@ -7,6 +7,7 @@ import com.java5.assignment.entities.Rating;
 import com.java5.assignment.jpa.RatingRepository;
 import com.java5.assignment.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +36,8 @@ public class ManageRatingController {
     @ModelAttribute("Ratings")
     public List<Rating> ratings() {
         List<Rating> ratings = ratingRepository.findAll();
-        return ratingRepository.findAll()
-                .stream()
-                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
-                .collect(Collectors.toList());
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return ratingRepository.findAll(sort);
     }
 
     @GetMapping("/manage-rating")
