@@ -28,7 +28,7 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
     List<ProductVersion> findByStatus(boolean status);
 
     @Query(value = "SELECT " +
-            "    pv.ProductVersionID AS ID DESC, " +
+            "    pv.ProductVersionID AS ID, " +
             "    pv.VersionName, " +
             "    p.Name AS ProductName, " +
             "    b.Name AS Brand, " +
@@ -45,7 +45,14 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
             "INNER JOIN Categories c ON p.CategoryID = c.CategoryID " +
             "LEFT JOIN OrderDetails od ON pv.ProductVersionID = od.ProductVersionID " +
             "GROUP BY " +
-            "    pv.ProductVersionID, pv.VersionName, p.Name, b.Name, c.Name, pv.Quantity, pv.PurchasePrice, pv.Price;"+
+            "    pv.ProductVersionID, " +
+            "    pv.VersionName, " +
+            "    p.Name, " +
+            "    b.Name, " +
+            "    c.Name, " +
+            "    pv.Quantity, " +
+            "    pv.PurchasePrice, " +
+            "    pv.Price " +
             "ORDER BY pv.ProductVersionID DESC",
             nativeQuery = true)
     List<Object[]> findProductVersionsSummary();
