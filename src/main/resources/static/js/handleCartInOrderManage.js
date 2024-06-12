@@ -1,31 +1,28 @@
-
 var modalContainer = document.createElement('div');
 modalContainer.innerHTML = `
     <!-- Notification Modal -->
-<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-    <div class="modal-dialog text-center">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="notificationModalLabel">Order Notification</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{notifiMessage}}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog text-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationModalLabel">Order Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{notifiMessage}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 `;
-
 document.body.appendChild(modalContainer);
 
 var app = angular.module('myApp', []);
 
-app.controller('myCtrl', function ($scope, $http) {
+app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
     // Khởi tạo các biến
     $scope.productVersionModels = [];
     $scope.selectedItems = [];
@@ -35,6 +32,20 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.totalPrice = 0;
     $scope.totalAmount = 0;
     $scope.notifiMessage = '';
+    $scope.orderDetails = [];
+
+    // Hàm gọi API để lấy danh sách đơn hàng
+    $scope.getOrderDetails = function () {
+        $http.get("/api/get-all-order")
+            .then(function (response) {
+                $scope.orderDetails = response.data;
+            })
+            .catch(function (error) {
+                console.error('Error fetching order details:', error);
+            });
+    };
+
+    $scope.getOrderDetails();
 
     // Hàm gọi API để lấy dữ liệu product versions
     $http.get("/api/productVersions")
@@ -47,7 +58,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
     // Hàm gọi API để lấy thông tin của khách hàng dựa trên tên hoặc ID
     $scope.getUserInfo = function (searchCustomer) {
-        $http.get("/api/userInfo", {params: {userKey: searchCustomer}})
+        $http.get("/api/userInfo", { params: { userKey: searchCustomer } })
             .then(function (response) {
                 $scope.selectedCustomer = response.data;
                 $scope.updateTotalAmount(); // Cập nhật tổng tiền sau khi lấy thông tin khách hàng
@@ -60,7 +71,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
     // Hàm gọi API để lấy danh sách voucher dựa trên tổng số tiền
     $scope.getVouchersByAmountOrder = function (amount) {
-        $http.get("/api/getVoucherByAmountOrder", {params: {amount: amount}})
+        $http.get("/api/getVoucherByAmountOrder", { params: { amount: amount } })
             .then(function (response) {
                 $scope.vouchers = response.data;
                 $scope.updateSaleValueList(); // Cập nhật danh sách voucher
@@ -74,7 +85,7 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.updateSaleValueList = function () {
         $scope.saleValueList = [];
         angular.forEach($scope.vouchers, function (voucher) {
-            $scope.saleValueList.push({value: voucher.voucherCode}); // Thêm mã voucher vào danh sách
+            $scope.saleValueList.push({ value: voucher.voucherCode }); // Thêm mã voucher vào danh sách
         });
     };
 
@@ -173,6 +184,7 @@ app.controller('myCtrl', function ($scope, $http) {
         }
     };
 
+    // Hiển thị modal thông báo
     $scope.showNotificationModal = function() {
         var modal = new bootstrap.Modal(document.getElementById('notificationModal'));
         modal.show();
@@ -182,7 +194,7 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.submitOrder = function () {
         if (!$scope.selectedCustomer.id || $scope.selectedItems.length === 0) {
             $scope.notifiMessage = 'Please select a customer and add items to the cart before submitting the order.';
-            $scope.showNotificationModal(); // Show modal with message
+            $scope.showNotificationModal(); // Hiển thị modal với thông báo
             return; // Ngăn người dùng tiếp tục thực hiện hành động
         }
 
@@ -218,25 +230,14 @@ app.controller('myCtrl', function ($scope, $http) {
                 } else {
                     $scope.notifiMessage = 'Failed to create order. Please try again later.';
                 }
-                $scope.showNotificationModal(); // Show modal with message
+                $scope.showNotificationModal(); // Hiển thị modal với thông báo
             })
             .catch(function (error) {
                 console.error('Error creating order:', error);
                 console.log(orderData, orderDetailsData);
                 $scope.notifiMessage = 'Failed to create order. Please try again later.';
-                $scope.showNotificationModal(); // Show modal with message
+                $scope.showNotificationModal(); // Hiển thị modal với thông báo
             });
-    };
-});
-
-
-app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
-    $scope.order = {};
-    $scope.orderDetails = [];
-
-    $scope.getID = function (event) {
-        var elementId = event.target.id;
-        $scope.fetchOrderDetails(elementId);
     };
 
     // Hàm để lấy chi tiết đơn hàng từ API
@@ -326,7 +327,7 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
                                             <span class="text-danger">$ {{order.totalMoney}}</span>
                                         </div>
                                     </div>
-                                   <div class="row">
+                                    <div class="row">
                                         <div class="col-2 d-flex">
                                             <h6>Discount:</h6>
                                         </div>
@@ -342,7 +343,6 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
                                             <h3 class="text-danger">$ {{ order.voucherID ? (order.totalMoney - (order.totalMoney * order.voucherID.discountLevel / 100)) : order.totalMoney }}</h3>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -368,4 +368,3 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
         modal.show();
     }
 });
-
