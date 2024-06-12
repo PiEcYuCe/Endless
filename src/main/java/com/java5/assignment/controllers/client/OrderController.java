@@ -56,11 +56,6 @@ public class OrderController {
         return Page.route.get(PageType.ORDER);
     }
 
-    @ModelAttribute("Orders")
-    public List<Order> getOrders() {
-        UserDto userDto = (UserDto) session.getAttribute("user");
-        return orderRepository.findByUserID(userDto.getId());
-    }
 
     @GetMapping("/order")
     public String goToPage(Model model) {

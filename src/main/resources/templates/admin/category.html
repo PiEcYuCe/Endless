@@ -1,11 +1,7 @@
 <div class="container mt-5 bg-light">
-    <h1 class="mb-4">Category Management</h1>
     <div class="card mb-5" id="categoryFormCard" >
-        <div class="card-header">
-            Add/Edit Category
-        </div>
         <div class="card-body">
-            <form th:action="${category == null} ? '/add-category' : '/update-category?id='+${category?.id}" method="post" enctype="multipart/form-data">
+            <form th:action="${category == null} ? '/manage-add-category' : '/manage-update-category?id='+${category?.id}" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="categoryName" class="form-label">Category Name</label>
                     <input type="text" class="form-control" id="categoryName" name="name" th:value="${category?.name}">
@@ -17,12 +13,9 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea role="textbox" type="" class="form-control" id="description" name="description"
                               rows="3" th:text="${category?.description}"></textarea>
-                    <span class="text-danger"
-                          th:if='${error?.getFieldError("description") != null}'
-                          th:text='${error?.getFieldError("description")?.getDefaultMessage()}'></span>
                 </div>
                 <input type="submit" class="btn btn-success" th:value="${category == null} ? 'Create' : 'Update'">
-                <a th:href="'/clear-formCategory'" class="btn btn-primary">Clear</a>
+                <a th:href="'/manage-clear-formCategory'" class="btn btn-primary">Clear</a>
             </form>
         </div>
     </div>
@@ -44,7 +37,7 @@
                 <td>
                     <div class="row">
                         <div class="col-3">
-                            <form th:action="'/edit-category'" method="post">
+                            <form th:action="'/manage-edit-category'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}" class="btn btn-outline-primary btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -52,7 +45,7 @@
                             </form>
                         </div>
                         <div class="col">
-                            <form th:action="'/delete-category'" method="post">
+                            <form th:action="'/manage-delete-category'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}" class="btn btn-outline-danger btn-sm">
                                     <i class="fas fa-trash-alt"></i>

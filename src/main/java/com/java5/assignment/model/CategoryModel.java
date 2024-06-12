@@ -15,6 +15,5 @@ public class CategoryModel {
     private int categoryID;
     @NotBlank(message = "Please enter name")
     private String name;
-    @NotBlank(message = "Please enter description")
     private String description;
 }

@@ -1,29 +1,20 @@
 <div class="container mt-4 bg-light " id="form-my-info" enctype="multipart/form-data">
-    <form method="post" th:action="${promotion == null} ? '/add-promotion' : '/update-promotion?id='+${promotion?.id}"
+    <form method="post"
+          th:action="${promotion == null} ? '/manage-add-promotion' : '/manage-update-promotion?id='+${promotion?.id}"
           enctype="multipart/form-data">
         <div class="row">
             <div class="col-6">
-                <div class="card">
-                    <img th:if="${promotion?.poster != null}" th:src="${promotion?.poster}" class="img-fluid" alt=""
-                         id="user-avatar"
-                         style="width: 600px; height: 200px">
-                    <input th:value="${promotion?.poster}" class="form-control" type="file" id="poster" name="poster">
+                <div class="card mt-4">
+                    <input th:value="'promotion/'+${promotion?.poster}" class="form-control " type="file"
+                           id="poster" name="poster">
+                    <img th:if="${promotion?.poster != null}" th:src="'promotion/'+${promotion?.poster}"
+                         class="card-img-top" alt=""
+                         style="width: 635px; height: 210px">
                     <span class="text-danger"
                           th:if='${error?.getFieldError("poster") != null}'
                           th:text='${error?.getFieldError("poster")?.getDefaultMessage()}'></span>
                 </div>
-                <hr>
-                <div class="row d-flex justify-content-start j mt-4">
-                    <div class="d-flex col-1  ">
-                        <button type="button" class="btn btn-outline-primary btn-sm btn-nhu"><i class="bi bi-plus"></i>
-                        </button>
-                    </div>
-                    <div class="col-5 d-flex g-0 m-0 p-0">
-                        <input style="margin-left: -5px" placeholder="level_discout" type="text"
-                               class="form-control nhu"
-                               id="name1"
-                               name="name1"></div>
-                </div>
+
             </div>
             <div class="col-6">
                 <div class="mb-3">
@@ -79,7 +70,7 @@
                         <div class="mb-3 p-2 bd-highlight">
                             <input type="submit" class="btn btn-success"
                                    th:value="${promotion == null} ? 'Create' : 'Update'">
-                            <a th:href="'/clear-formPromotion'" class="btn btn-primary">Clear</a>
+                            <a th:href="'/manage-clear-formPromotion'" class="btn btn-primary">Clear</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +88,7 @@
             <tr>
                 <!--                <th scope="col">Promotion ID</th>-->
                 <th scope="col">Name</th>
-                <th >Description</th>
+                <th>Description</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Status</th>
@@ -114,11 +105,11 @@
                 <td cope="row" th:text="${item.startDate}">Start Date</td>
                 <td cope="row" th:text="${item.endDate}">End Date</td>
                 <td cope="row" th:text="${item.status ? 'Active' : 'Inactive'}">Status</td>
-                <td cope="row"><img th:src="@{'/uploads/product/' + ${item.poster}}" width="25"></td>
+                <td cope="row"><img th:src="'promotion/' + ${item.poster}" width="25"></td>
                 <td cope="row"> <!-- Thêm nút "Update" và "Delete" -->
                     <div class="row">
                         <div class="col-2">
-                            <form th:action="'/edit-promotion'" method="post">
+                            <form th:action="'/manage-edit-promotion'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}"
                                         class="btn btn-outline-primary btn-sm">
@@ -126,18 +117,14 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="col-2 ms-2">
-                            <form th:action="'/delete-promotion'" method="post">
+                        <div class="col-2 ms-4">
+                            <form th:action="'/manage-delete-promotion'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}"
                                         class="btn btn-outline-danger btn-sm">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
-                        </div>
-                        <div class="col-2 ms-2">
-                            <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </td>

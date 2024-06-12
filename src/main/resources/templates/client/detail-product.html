@@ -1,27 +1,34 @@
 <main class="pt-5">
-    <div class="container">
+    <div class="container border">
         <div class="row mt-5 mb-5">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center border-bottom">
+
                 <div class="col-12 mt-3 mb-3 col-md-5 offset-md-1">
-                    <img id="prodImg" style="max-width: 500px; height: 500px;" class="d-flex flex-block"
+                    <img style="max-width: 500px; height: 500px;" class="d-flex flex-block"
+                         th:id="'prodImg'+${product.id}"
                          th:src="@{${product.image}}" alt="Product Image">
                 </div>
                 <div class="col-12 mt-3 mb-3 col-md-5">
                     <div class="info1">
                         <h1 style="font-weight: bold" th:text="${product.versionName}"></h1>
-                        <h4 class="mt-1 mb-1"> <i class="fa-solid fa-star text-warning"></i>
+                        <h4 class="mt-1 mb-1"><i class="fa-solid fa-star text-warning"></i>
                             <span th:text="${product.averageRating}">4.9</span>/5</h4>
-                        <h3 class="text-danger"><span th:text="${product.discountedPrice}">$300.00</span>
-                            <s th:if="${product.discountedPrice lt product.price}" th:text="${product.price}"
-                               class="text-dark" style="font-size: 15px">$350</s><br></h3>
+
+                        <h3 class="text-danger">
+                            <span id="discountedPrice" th:text="'$'+${product.discountedPrice}">$</span>
+                            <s th:if="${product.discountedPrice lt product.price}" th:text=" '$'+${product.price}"
+                               class="text-dark" style="font-size: 15px">$350</s><br>
+                        </h3>
+
                         <hr class="mb-2">
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3 row">
                         <div id="quality1" class="col-3 mb-3">
                             <label class="col-2" for="quality1">Quality:</label><br>
-                            <div class="input-group mb-1">
+                            <div class="input-group mb-1 ">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" id="minusBtn1">-</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="minusBtn1">-
+                                    </button>
                                 </div>
                                 <input type="number" class="form-control text-end" id="numberInput1" min="1" value="1">
                                 <div class="input-group-append">
@@ -29,121 +36,88 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-end mt-1">
-                            <input type="hidden" class="form-control" readonly>
+                        <div class="text-end mt-1 col-9">
+                            <h3 id="totalPrice" class="text-danger">Total: $<span id="totalPriceValue">0</span></h3>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input class="form-control w-100" placeholder="Enter voucher code">
+                        <select class="form-select" name="voucher" id="voucherSelect">
+                            <option selected value="-1" data-least-discount="0">---Choose a voucher---</option>
+                            <option th:each="item : ${vouchers}"
+                                    th:selected="${item.id} == ${versionAttribute?.productVersionID?.id}"
+                                    th:text="${item.voucherCode}" th:value="${item.id}"
+                                    th:data-least-discount="${item.leastDiscount}">
+                            </option>
+                        </select>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a class="btn btn-warning col-6 mx-2 w-100" href="javascript:void(0);" onclick="addToCart(productId)">
+                        <a class="btn btn-warning col-6 mx-2 w-100"
+                           th:onclick="'addCart(' + ${product.id} + ')'">
                             <i class="fa-solid fa-bag-shopping"></i> Add to cart
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-                    <!-- Tab panes -->
-<!--                    <div class="tab-content">-->
-<!--                        <div id="menu1" class="container tab-pane active"><br>-->
-<!--                            <label for="color1">Color:</label><br>-->
-<!--                            <div id="color1" class="form-check form-check-inline mb-2" th:each="color : ${colors}">-->
-<!--                                <input type="radio" name="color" th:id="'color' + ${color.id}"-->
-<!--                                       th:value="${color.value}">-->
-<!--                                <label class="form-check-label" th:for="'color' + ${color.id}"-->
-<!--                                       th:text="${color.value}"></label>-->
-<!--                            </div>-->
-<!--                            <br>-->
-<!--                            <label class="mt-2" for="ram1">RAM:</label><br>-->
-<!--                            <div id="ram1" class="form-check form-check-inline mb-2" th:each="ram : ${ramValues}">-->
-<!--                                <input type="radio" class="btn p-0 mx-1" name="ram" th:id="'ram' + ${ram.id}"-->
-<!--                                       th:value="${ram.value}">-->
-<!--                                <label class="form-check-label" th:for="'ram' + ${ram.id}"-->
-<!--                                       th:text="${ram.value}"></label>-->
-<!--                            </div>-->
-<!--                            <br>-->
-<!--                            <label class="mt-2" for="rom1">ROM:</label><br>-->
-<!--                            <div id="rom1" class="form-check form-check-inline mb-3" th:each="storage : ${storageValues}">-->
-<!--                                <input type="radio" name="storage" th:id="'storage' + ${storage.id}"-->
-<!--                                       th:value="${storage.value}">-->
-<!--                                <label class="form-check-label" th:for="'storage' + ${storage.id}"-->
-<!--                                       th:text="${storage.value}"></label>-->
-<!--                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-    <script>
-        document.getElementById('plusBtn1').addEventListener('click', function() {
-            var input = document.getElementById('numberInput1');
-            var value = parseInt(input.value);
-            if (value >= 1) {
-                input.value = value + 1;
-            }
-        });
+        <script>
+            function updateTotalPrice() {
+                var quantity = parseInt(document.getElementById('numberInput1').value);
+                var discountedPrice = parseFloat(document.getElementById('discountedPrice').textContent.replace('$', ''));
+                var voucherSelect = document.getElementById('voucherSelect');
+                var selectedOption = voucherSelect.options[voucherSelect.selectedIndex];
+                var leastDiscount = parseFloat(selectedOption.getAttribute('data-least-discount'));
 
-        document.getElementById('minusBtn1').addEventListener('click', function() {
-            var input = document.getElementById('numberInput1');
-            var value = parseInt(input.value);
-            if (value > 1) {
-                input.value = value - 1;
+                var totalPrice = (quantity * discountedPrice) - leastDiscount;
+                document.getElementById('totalPriceValue').textContent = totalPrice.toFixed(2);
             }
-        });
-    </script>
+
+            document.getElementById('plusBtn1').addEventListener('click', function () {
+                var input = document.getElementById('numberInput1');
+                var value = parseInt(input.value);
+                if (value >= 1) {
+                    input.value = value + 1;
+                    updateTotalPrice(); // Gọi hàm updateTotalPrice() sau khi thay đổi số lượng
+                }
+            });
+
+            document.getElementById('minusBtn1').addEventListener('click', function () {
+                var input = document.getElementById('numberInput1');
+                var value = parseInt(input.value);
+                if (value > 1) {
+                    input.value = value - 1;
+                    updateTotalPrice(); // Gọi hàm updateTotalPrice() sau khi thay đổi số lượng
+                }
+            });
+
+            document.getElementById('voucherSelect').addEventListener('change', function () {
+                updateTotalPrice();
+            });
+
+            // Gọi hàm updateTotalPrice() khi trang web được tải để tính toán tổng giá ban đầu
+            window.onload = function () {
+                updateTotalPrice();
+            };
+
+        </script>
         <div class="row mt-5 mb-5">
-            <div class="col-8 offset-2">
+            <div class="col-7 offset-3">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title text-center">iPhone 12 Series Technical Specifications</h2>
+                        <h2 class="card-title text-center" style="font-weight: bold"
+                            th:text="${product.versionName}"></h2>
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                <tr>
-                                    <td>Display</td>
-                                    <td>6.1 inches, Super Retina XDR OLED, 1170 x 2532 Pixels, True Tone, HDR10</td>
-                                </tr>
-                                <tr>
-                                    <td>Rear Camera</td>
-                                    <td>12 MP (Wide, f/1.6, OIS) + 12 MP (Ultra Wide, f/2.4), Night mode, Deep Fusion, Smart HDR 3, 4K@24/30/60fps video recording</td>
-                                </tr>
-                                <tr>
-                                    <td>Front Camera</td>
-                                    <td>12 MP (f/2.2), Night mode, Deep Fusion, HDR, 4K@24/30/60fps video recording</td>
-                                </tr>
-                                <tr>
-                                    <td>RAM</td>
-                                    <td>4 GB</td>
-                                </tr>
-                                <tr>
-                                    <td>Internal Storage</td>
-                                    <td>64 GB, 128 GB, 256 GB</td>
-                                </tr>
-                                <tr>
-                                    <td>Chipset</td>
-                                    <td>Apple A14 Bionic (5 nm), Neural Engine</td>
-                                </tr>
-                                <tr>
-                                    <td>Battery Capacity</td>
-                                    <td>2815 mAh (iPhone 12, 12 Pro), 2775 mAh (iPhone 12 Mini), 3687 mAh (iPhone 12 Pro Max), Fast charging 20W, Qi wireless charging 15W, MagSafe wireless charging up to 15W</td>
-                                </tr>
-                                <tr>
-                                    <td>Sim Card</td>
-                                    <td>Nano-SIM and eSIM, Dual SIM (Nano-SIM and eSIM)</td>
-                                </tr>
-                                <tr>
-                                    <td>Operating System</td>
-                                    <td>iOS 14 (upgradable to latest iOS)</td>
-                                </tr>
-                                <tr>
-                                    <td>Origin</td>
-                                    <td>Various countries worldwide</td>
-                                </tr>
-                                <tr>
-                                    <td>Release Date</td>
-                                    <td>10/2020</td>
+                                <tr th:each="item : ${attributes}">
+
+                                    <td th:text="${item.attributeName}"></td>
+                                    <td></td>
+                                    <td>
+                                        <ul>
+                                            <li th:each="attrValue : ${item.attributeValues}"
+                                                th:text="${attrValue}"></li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

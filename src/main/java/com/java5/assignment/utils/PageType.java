@@ -9,6 +9,7 @@ public enum PageType {
     LOGIN,
     //    REGISTER,
     ADMIN_ATTRIBUTE_VALUE,
+    ADMIN_VERSION_ATTRIBUTE,
     PROFILE,
     CHANGE_PASSWORD,
     ORDER,
