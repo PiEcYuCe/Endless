@@ -1,10 +1,7 @@
 <div class="container mt-5 bg-light">
     <div id="productForm" class="card mb-5">
-        <div class="card-header">
-            Add/Edit Product
-        </div>
         <div class="card-body">
-            <form th:action="${product == null} ? '/add-product' : '/update-product?id='+${product?.id}" method="post"
+            <form th:action="${product == null} ? '/manage-add-product' : '/manage-update-product?id='+${product?.id}" method="post"
                   enctype="multipart/form-data">
 
                 <div class="mb-3">
@@ -63,7 +60,7 @@
                     <label class="form-check-label" for="brandStatus">Active</label>
                 </div>
                 <input type="submit" class="btn btn-success" th:value="${product == null} ? 'Create' : 'Update'">
-                <a href="/clear-product" type="button" class="btn btn-secondary" id="">Clear</a>
+                <a href="/manage-clear-product" type="button" class="btn btn-secondary" id="">Clear</a>
             </form>
         </div>
     </div>
@@ -96,7 +93,7 @@
                 <td> <!-- Thêm nút "Update" và "Delete" -->
                     <div class="row">
                         <div class="col-3">
-                            <form th:action="'/edit-product'" method="post">
+                            <form th:action="'/manage-edit-product'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}"
                                         class="btn btn-outline-primary btn-sm">
@@ -105,7 +102,7 @@
                             </form>
                         </div>
                         <div class="col-3">
-                            <form th:action="'/delete-product'" method="post">
+                            <form th:action="'/manage-delete-product'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}"
                                         class="btn btn-outline-danger btn-sm">

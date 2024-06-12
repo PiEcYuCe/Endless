@@ -50,11 +50,11 @@ public class ManageBrandController {
         return "admin/layout";
     }
 
-
-
-
-    @PostMapping("/add-brand")
+    @PostMapping("/manage-add-brand")
     public String addBrand(@Valid BrandModel brandModel, BindingResult error, Model model) {
+        if (brandRepository.existsByName(brandModel.getName())) {
+            error.rejectValue("name", "brand.name.exists", "Brand name already exists.");
+        }
 
         String fileName = uploadService.uploadFile(brandModel.getLogo(), "brand");
         if (fileName == null){
@@ -75,14 +75,14 @@ public class ManageBrandController {
 
 
 
-    @PostMapping("/edit-brand")
+    @PostMapping("/manage-edit-brand")
     public String editBrand(@RequestParam("id") long id, Model model) {
         Brand brand = brandRepository.findById(id).get();
         model.addAttribute("brand", brand);
         return "admin/layout";
     }
 
-    @PostMapping("/update-brand")
+    @PostMapping("/manage-update-brand")
     public String updateBrand(@Valid BrandModel brandModel, BindingResult error,
                               @RequestParam("id") long id, Model model){
         if (error.hasErrors()) {
@@ -103,7 +103,7 @@ public class ManageBrandController {
         return "redirect:/manage-brand";
     }
 
-    @PostMapping("/delete-brand")
+    @PostMapping("/manage-delete-brand")
     public String deleteBrand(@RequestParam("id") long id) {
         Brand brand = brandRepository.findById(id).get();
         uploadService.remove(brandRepository.findById(id).get().getLogo());
@@ -111,7 +111,7 @@ public class ManageBrandController {
         return "redirect:/manage-brand";
     }
 
-    @GetMapping("/clear-formBrand")
+    @GetMapping("/manage-clear-formBrand")
     public String clearForm() {
         return "redirect:/manage-brand";
     }

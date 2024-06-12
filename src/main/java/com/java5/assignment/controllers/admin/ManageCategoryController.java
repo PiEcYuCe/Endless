@@ -45,8 +45,11 @@ public class ManageCategoryController {
         return "admin/layout";
     }
 
-    @PostMapping("/add-category")
+    @PostMapping("/manage-add-category")
     public String addCategory(@Valid CategoryModel categoryModel, BindingResult error, Model model) {
+        if (categoryRepository.existsByName(categoryModel.getName())) {
+            error.rejectValue("name", "category.name.exists", "Category name already exists.");
+        }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
             return "admin/layout";
@@ -58,14 +61,14 @@ public class ManageCategoryController {
         return "redirect:/manage-category";
     }
 
-    @PostMapping("/edit-category")
+    @PostMapping("/manage-edit-category")
     public String editCategory(@RequestParam("id") long id, Model model) {
         Category category = categoryRepository.findById(id).get();
         model.addAttribute("category", category);
         return "admin/layout";
     }
 
-    @PostMapping("/update-category")
+    @PostMapping("/manage-update-category")
     public String updateCategory(@Valid CategoryModel categoryModel, BindingResult error,
                                  @RequestParam("id") long id, Model model) {
         if (error.hasErrors()) {
@@ -79,14 +82,14 @@ public class ManageCategoryController {
         return "redirect:/manage-category";
     }
 
-    @PostMapping("/delete-category")
+    @PostMapping("/manage-delete-category")
     public String deleteCategory(@RequestParam("id") long id) {
         Category category = categoryRepository.findById(id).get();
         categoryRepository.delete(category);
         return "redirect:/manage-category";
     }
 
-    @GetMapping("/clear-formCategory")
+    @GetMapping("/manage-clear-formCategory")
     public String clearForm() {
         return "redirect:/manage-category";
     }

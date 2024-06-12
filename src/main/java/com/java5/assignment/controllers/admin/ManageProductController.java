@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,8 +76,12 @@ public class ManageProductController {
     }
 
 
-    @PostMapping("/add-product")
+    @PostMapping("/manage-add-product")
     public String addPro(@Valid ProductModel productModel, BindingResult error, Model model) {
+
+        if (productRepository.existsByName(productModel.getProductName())) {
+            error.addError(new FieldError("productModel", "productName", "Product name already exists"));
+        }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
             return "admin/layout";
@@ -96,14 +101,14 @@ public class ManageProductController {
         return "redirect:/manage-product";
     }
 
-    @PostMapping("/edit-product")
+    @PostMapping("/manage-edit-product")
     public String editPro(@RequestParam("id") long id, Model model) {
         Product product = productRepository.findById(id).get();
         model.addAttribute("product", product);
         return "admin/layout";
     }
 
-    @PostMapping("/update-product")
+    @PostMapping("/manage-update-product")
     public String updateBrand(@Valid ProductModel productModel, BindingResult error,
                               @RequestParam("id") long id, Model model) {
         if (error.hasErrors()) {
@@ -122,14 +127,14 @@ public class ManageProductController {
         return "redirect:/manage-product";
     }
 
-    @PostMapping("/delete-product")
+    @PostMapping("/manage-delete-product")
     public String deleteBrand(@RequestParam("id") long id) {
         Product product = productRepository.findById(id).get();
         productRepository.delete(product);
         return "redirect:/manage-product";
     }
 
-    @GetMapping("/clear-product")
+    @GetMapping("/manage-clear-product")
     public String clearForm() {
         return "redirect:/manage-product";
     }

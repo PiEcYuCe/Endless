@@ -50,7 +50,7 @@ public class ManagerPromitionController {
     }
 
 
-    @PostMapping("/add-promotion")
+    @PostMapping("/manage-add-promotion")
     public String addVoucher(@Valid PromotionModel promotionModel, BindingResult error, Model model) {
         String fileName = uploadService.uploadFile(promotionModel.getPoster(), "product");
         if (fileName == null) {
@@ -76,14 +76,14 @@ public class ManagerPromitionController {
         return "redirect:/manage-promotion";
     }
 
-    @PostMapping("/edit-promotion")
+    @PostMapping("/manage-edit-promotion")
     public String editBrand(@RequestParam("id") long id, Model model) {
         Promotion promotion = promotionRepository.findById(id).get();
         model.addAttribute("promotion", promotion);
         return "admin/layout";
     }
 
-    @PostMapping("/update-promotion")
+    @PostMapping("/manage-update-promotion")
     public String updateBrand(@Valid PromotionModel promotionModel, BindingResult error,
                               @RequestParam("id") long id, Model model) {
         if (error.hasErrors()) {
@@ -109,7 +109,7 @@ public class ManagerPromitionController {
         return "redirect:/manage-promotion";
     }
 
-    @PostMapping("/delete-promotion")
+    @PostMapping("/manage-delete-promotion")
     public String deleteBrand(@RequestParam("id") long id) {
         Promotion promotion = promotionRepository.findById(id).get();
         uploadService.remove(promotionRepository.findById(id).get().getPoster());
@@ -117,7 +117,7 @@ public class ManagerPromitionController {
         return "redirect:/manage-promotion";
     }
 
-    @GetMapping("/clear-formPromotion")
+    @GetMapping("/manage-clear-formPromotion")
     public String clearForm() {
         return "redirect:/manage-promotion";
     }

@@ -80,15 +80,6 @@ public class ManageProductVersionController {
     }
 
 
-//    @PostMapping("/manage-product-version")
-//    public String profile(@Valid ProductVersionModel pro, BindingResult error, Model model) {
-//        if (error.hasErrors()) {
-//            model.addAttribute("error", error);
-//        }
-//        model.addAttribute("pro", pro);
-//        return "admin/layout";
-//    }
-
 
     @PostMapping("/manage-product-version")
     public String addPro(@Valid ProductVersionCreateModel productVersionCreateModel, BindingResult error, Model model) {
@@ -123,6 +114,8 @@ public class ManageProductVersionController {
 
         return "admin/layout";
     }
+
+
 
 
 }

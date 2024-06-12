@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,9 +54,11 @@ public class ManageAttributeValueController {
     }
 
 
-
-    @PostMapping("/add-attribute-value")
+    @PostMapping("/manage-add-attribute-value")
     public String addVoucher(@Valid AttributeValueModel attributeValueModel, BindingResult error, Model model) {
+        if (attributeValueRepository.existsByValue(attributeValueModel.getValue())) {
+            error.addError(new FieldError("attributeValueModel", "value", "Attribute value already exists"));
+        }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
             return "admin/layout";
@@ -70,7 +73,7 @@ public class ManageAttributeValueController {
         return "redirect:/manage-attribute-value";
     }
 
-    @PostMapping("/edit-attribute-value")
+    @PostMapping("/manage-edit-attribute-value")
     public String editVoucher(@RequestParam("id") long id, Model model) {
         AttributeValue attributeValue = attributeValueRepository.findById(id).get();
         model.addAttribute("attributeValue", attributeValue);
@@ -78,7 +81,7 @@ public class ManageAttributeValueController {
 
     }
 
-    @PostMapping("/update-attribute-value")
+    @PostMapping("/manage-update-attribute-value")
     public String updateVoucher(@Valid AttributeValueModel attributeValueModel, BindingResult error, Model model,
                                 @RequestParam("id") long id) {
         if (error.hasErrors()) {
@@ -94,14 +97,14 @@ public class ManageAttributeValueController {
         return "redirect:/manage-attribute-value";
     }
 
-    @PostMapping("/delete-attribute-value")
+    @PostMapping("/manage-delete-attribute-value")
     public String removeVoucher(@RequestParam("id") long id) {
         AttributeValue attributeValue = attributeValueRepository.findById(id).get();
         attributeValueRepository.delete(attributeValue);
         return "redirect:/manage-attribute-value";
     }
 
-    @GetMapping("/clear-attribute-value")
+    @GetMapping("/manage-clear-attribute-value")
     public String clearForm() {
         return "redirect:/manage-attribute-value";
     }

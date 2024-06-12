@@ -1,7 +1,7 @@
 <div class="container mt-5 bg-light">
     <div class="card mb-5">
         <div class="card-body">
-            <form th:action="${attributeValue == null} ? '/add-attribute-value' : '/update-attribute-value?id='+${attributeValue?.id}"
+            <form th:action="${attributeValue == null} ? '/manage-add-attribute-value' : '/manage-update-attribute-value?id='+${attributeValue?.id}"
                   method="post"
                   enctype="multipart/form-data">
                 <div class="row">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <input type="submit" class="btn btn-success" th:value="${attributeValue == null} ? 'Create' : 'Update'">
-                <a href="/clear-attribute-value" type="button" class="btn btn-secondary" id="">Clear</a>
+                <a href="/manage-clear-attribute-value" type="button" class="btn btn-secondary" id="">Clear</a>
             </form>
 
         </div>
@@ -62,7 +62,7 @@
                 <td>
                     <div class="row">
                         <div class="col-3">
-                            <form th:action="'/edit-attribute-value'" method="post">
+                            <form th:action="'/manage-edit-attribute-value'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}"
                                         class="btn btn-outline-primary btn-sm">
@@ -71,7 +71,7 @@
                             </form>
                         </div>
                         <div class="col-3">
-                            <form th:action="'/delete-attribute-value'" method="post">
+                            <form th:action="'/manage-delete-attribute-value'" method="post">
                                 <input type="hidden" name="id" th:value="${item?.id}">
                                 <button type="submit" role="button" th:if="${item?.id != null}"
                                         class="btn btn-outline-danger btn-sm">

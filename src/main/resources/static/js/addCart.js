@@ -24,6 +24,13 @@ function addToCart(productId) {
     addToCartWithQuantity(productId, defaultQuantity);
 }
 
+function addCart(prodID) {
+    let value = document.getElementById("numberInput1").value;
+    console.log(value);
+    addToCartWithQuantity(prodID, value);
+}
+
+
 function move(id) {
     let imgID = 'prodImg' + id;
     var productImage = document.getElementById(imgID);
