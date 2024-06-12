@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageProductController {
@@ -43,7 +44,10 @@ public class ManageProductController {
 
     @ModelAttribute("products")
     public List<Product> getProducts() {
-        return productRepository.findAll();
+        return productRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @ModelAttribute("categories")

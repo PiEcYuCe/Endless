@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 
@@ -50,7 +51,10 @@ public class ManageProductListProductController {
 
     @ModelAttribute("productversions")
     public List<ProductVersion> getProdV() {
-        return productVersionRepository.findAll();
+        return productVersionRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @ModelAttribute("attributevalues")

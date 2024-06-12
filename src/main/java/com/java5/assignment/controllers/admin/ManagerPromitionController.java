@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManagerPromitionController {
@@ -38,7 +39,10 @@ public class ManagerPromitionController {
 
     @ModelAttribute("promotions")
     public List<Promotion> getPromotions() {
-        return promotionRepository.findAll();
+        return promotionRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/manage-promotion")

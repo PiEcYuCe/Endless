@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageVoucherController {
@@ -32,7 +33,10 @@ public class ManageVoucherController {
 
     @ModelAttribute("Vouchers")
     public List<Voucher> getVouchers() {
-        return voucherRepository.findAll();
+        return voucherRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
 

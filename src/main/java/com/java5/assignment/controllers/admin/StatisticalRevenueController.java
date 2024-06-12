@@ -33,7 +33,7 @@ public class StatisticalRevenueController {
 
         for (Object[] result : results) {
             RevenueStatisticsDTO dto = new RevenueStatisticsDTO();
-            dto.setStt(((Number) result[0]).longValue());
+            dto.setId(((Number) result[0]).longValue());
             dto.setTime((Date) result[1]);
             dto.setNumberOfInvoices(((Number) result[2]).longValue());
             dto.setNumberOfProductsSold(((Number) result[3]).longValue());

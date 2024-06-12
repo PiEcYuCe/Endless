@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageAttributeValueController {
@@ -46,7 +47,10 @@ public class ManageAttributeValueController {
 
     @ModelAttribute("attributeValues")
     public List<AttributeValue> getAttributeValues() {
-        return attributeValueRepository.findAll();
+        return attributeValueRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
 

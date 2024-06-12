@@ -10,7 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductPage {
-    private String size;
+    private int size ;
     private String sort;
+
 
 }

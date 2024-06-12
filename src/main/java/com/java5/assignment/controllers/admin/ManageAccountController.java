@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageAccountController {
@@ -45,7 +46,10 @@ public class ManageAccountController {
 
     @ModelAttribute("accounts")
     public List<User> getUser() {
-        return userRepository.findAll();
+        return userRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/manage-account")

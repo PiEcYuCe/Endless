@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageOrderController {
@@ -68,7 +69,10 @@ public class ManageOrderController {
 
     @ModelAttribute("orderDetails")
     public List<OrderDetail> orderDetails() {
-        return orderDetailRepository.findAll();
+        return orderDetailRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/api/productVersions")

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageCategoryController {
@@ -34,7 +35,10 @@ public class ManageCategoryController {
 
     @ModelAttribute("Categories")
     public List<Category> getCategories() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/manage-category")

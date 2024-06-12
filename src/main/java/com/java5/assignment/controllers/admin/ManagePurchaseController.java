@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManagePurchaseController {
@@ -39,7 +40,10 @@ public class ManagePurchaseController {
 
     @ModelAttribute("purchaseOrderDetails")
     public List<PurchaseOrderDetail> purchaseOrderDetails() {
-        return purchaseOrderDetailRepository.findAll();
+        return purchaseOrderDetailRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/manage-purchase")

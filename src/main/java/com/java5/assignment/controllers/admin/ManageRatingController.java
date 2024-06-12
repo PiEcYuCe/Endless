@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageRatingController {
@@ -34,7 +35,10 @@ public class ManageRatingController {
     @ModelAttribute("Ratings")
     public List<Rating> ratings() {
         List<Rating> ratings = ratingRepository.findAll();
-        return ratingRepository.findAll();
+        return ratingRepository.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/manage-rating")
