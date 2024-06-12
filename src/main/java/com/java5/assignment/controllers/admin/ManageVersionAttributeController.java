@@ -1,5 +1,6 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.entities.Attribute;
 import com.java5.assignment.entities.AttributeValue;
 import com.java5.assignment.entities.ProductVersion;
 import com.java5.assignment.entities.VersionAttribute;
