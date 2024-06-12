@@ -24,37 +24,37 @@ import java.util.Set;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "Orders")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "OrderID", nullable = false)
-    private Long id;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    public class Order {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "OrderID", nullable = false)
+        private Long id;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "UserID", nullable = false)
-    private User userID;
+        @NotNull
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JoinColumn(name = "UserID", nullable = false)
+        private User userID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VoucherID", nullable = true)
-    private Voucher voucherID;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "VoucherID", nullable = true)
+        private Voucher voucherID;
 
-    @NotNull
-    @Column(name = "OrderDate", nullable = false)
-    private LocalDate orderDate;
+        @NotNull
+        @Column(name = "OrderDate", nullable = false)
+        private LocalDate orderDate;
 
-    @NotNull
-    @Column(name = "TotalMoney", nullable = false, precision = 18, scale = 2)
-    private BigDecimal totalMoney;
+        @NotNull
+        @Column(name = "TotalMoney", nullable = false, precision = 18, scale = 2)
+        private BigDecimal totalMoney;
 
-    @Size(max = 50)
-    @NotNull
-    @Nationalized
-    @Column(name = "OrderStatus", nullable = false, length = 50)
-    private String orderStatus;
+        @Size(max = 50)
+        @NotNull
+        @Nationalized
+        @Column(name = "OrderStatus", nullable = false, length = 50)
+        private String orderStatus;
 
-    @OneToMany(mappedBy = "orderID")
-    private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
+        @OneToMany(mappedBy = "orderID")
+        private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
-}
+    }

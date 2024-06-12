@@ -31,158 +31,156 @@
         color: #fff;
     }
 </style>
-<div>
-    <div class="container py-3 bg-light">
-        <div class="row mb-3 p-2">
-            <div class="row d-flex justify-content-between">
-                <div class="d-flex input-group w-25 px-3" style="position: relative;">
-                    <input type="text" class="form-control" id="productInput" style="max-height: 100px;"
-                           ng-model="searchQuery">
-                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <ul id="productList" class="autocomplete-items" style="user-select: none;">
-                        <li ng-repeat="item in filteredItems" ng-click="addProductToCart(item)">
-                            <img ng-src="{{ item.image }}" style="width: 50px; height: auto; margin-right: 10px;">
-                            <span>{{ item.versionName }}</span>
-                        </li>
-                    </ul>
-                </div>
+<div class="container py-3 bg-light">
+    <div class="row mb-3 p-2">
+        <div class="row d-flex justify-content-between">
+            <div class="d-flex input-group w-25 px-3" style="position: relative;">
+                <input type="text" class="form-control" id="productInput" style="max-height: 100px;"
+                       ng-model="searchQuery">
+                <button class="btn btn-primary input-group-text"><i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <ul id="productList" class="autocomplete-items" style="user-select: none;">
+                    <li ng-repeat="item in filteredItems" ng-click="addProductToCart(item)">
+                        <img ng-src="{{ item.image }}" style="width: 50px; height: auto; margin-right: 10px;">
+                        <span>{{ item.versionName }}</span>
+                    </li>
+                </ul>
             </div>
-            <div class="row mt-3">
-                <div class="col-8" style="max-height: 400px; overflow-y: auto;">
-                    <table class="table table-hover">
-                        <thead class="table-dark">
-                        <tr>
-                            <th scope="col" colspan="2" class="px-1">Product</th>
-                            <th scope="col" class="px-5">Quantity</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="item in selectedItems">
-                            <td class="px-0 mx-0 col-1 py-3">
-                                <div class="d-flex align-items-center">
-                                    <img ng-src="{{ item.image }}" class="img-fluid w-50">
-                                </div>
-                            </td>
-                            <td class="pt-4">
-                                <h6>{{ item.versionName }}</h6>
-                            </td>
-                            <td class="d-flex py-4">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary minus-btn" type="button" ng-click="decrementQuantity($index)">-</button>
-                                </div>
-                                <input type="number" class="form-control col-6 text-end" ng-model="item.quantity" min="0" value="1" style="width: 60px; max-height: 40px" ng-change="updateTotal()">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary plus-btn" type="button" ng-click="incrementQuantity($index)">+</button>
-                                </div>
-                            </td>
-                            <td class="py-4 price">
-                                <b class="text-danger">{{ '$' + item.discountedPrice }}</b><s style="font-size:10px">{{ '$' + item.price }}</s>
-                            </td>
-                            <td class="py-4">
-                                <button class="btn btn-danger delete-btn" ng-click="removeFromCart($index)">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-8" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col" colspan="2" class="px-1">Product</th>
+                        <th scope="col" class="px-5">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in selectedItems">
+                        <td class="px-0 mx-0 col-1 py-3">
+                            <div class="d-flex align-items-center">
+                                <img ng-src="{{ item.image }}" class="img-fluid w-50">
+                            </div>
+                        </td>
+                        <td class="pt-4">
+                            <h6>{{ item.versionName }}</h6>
+                        </td>
+                        <td class="d-flex py-4">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary minus-btn" type="button" ng-click="decrementQuantity($index)">-</button>
+                            </div>
+                            <input type="number" class="form-control col-6 text-end" ng-model="item.quantity" min="0" value="1" style="width: 60px; max-height: 40px" ng-change="updateTotal()">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary plus-btn" type="button" ng-click="incrementQuantity($index)">+</button>
+                            </div>
+                        </td>
+                        <td class="py-4 price">
+                            <b class="text-danger">{{ '$' + item.discountPrice }}</b><s style="font-size:10px">{{ '$' + item.price }}</s>
+                        </td>
+                        <td class="py-4">
+                            <button class="btn btn-danger delete-btn" ng-click="removeFromCart($index)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
-                    <form class="custom-form" id="total">
-                        <div class="input-group col-12">
-                            <input class="form-control rounded-2" placeholder="Enter customer's name or ID"
-                                   ng-model="searchCustomer"
-                                   ng-keyup="$event.keyCode === 13 && getUserInfo(searchCustomer)">
-                        </div>
-                        <small class="d-block mt-1">id: {{ selectedCustomer.id }}</small>
-                        <small class="d-block mt-1">Username: {{ selectedCustomer.username }}</small>
-                        <small class="d-block">Fullname: {{ selectedCustomer.fullname }}</small>
-                        <small class="d-block">Phone : {{ selectedCustomer.phone }}</small>
-                        <small class="d-block">Address: {{ selectedCustomer.address }}</small>
+            <div class="col-4 p-3 rounded-3" style="box-shadow: 2px 5px 8px gray">
+                <form class="custom-form" id="total">
+                    <div class="input-group col-12">
+                        <input class="form-control rounded-2" placeholder="Enter customer's name or ID"
+                               ng-model="searchCustomer"
+                               ng-keyup="$event.keyCode === 13 && getUserInfo(searchCustomer)">
+                    </div>
+                    <small class="d-block mt-1">id: {{ selectedCustomer.id }}</small>
+                    <small class="d-block mt-1">Username: {{ selectedCustomer.username }}</small>
+                    <small class="d-block">Fullname: {{ selectedCustomer.fullname }}</small>
+                    <small class="d-block">Phone : {{ selectedCustomer.phone }}</small>
+                    <small class="d-block">Address: {{ selectedCustomer.address }}</small>
 
-                        <hr>
-                        <div class="input-group col-12">
-                            <input class="form-control rounded-2" list="saleValueList" placeholder="Enter voucher code"
-                                   ng-model="selectedVoucher">
-                            <datalist id="saleValueList">
-                                <option ng-repeat="voucher in vouchers" ng-value="voucher.voucherCode">
-                                    Discount: {{ voucher.discountLevel }}{{ voucher.discountForm === 'fixed' ? '$' : '%' }},
-                                    From ${{ voucher.leastDiscount }} to ${{ voucher.biggestDiscount }}
-                                </option>
-                            </datalist>
+                    <hr>
+                    <div class="input-group col-12">
+                        <input class="form-control rounded-2" list="saleValueList" placeholder="Enter voucher code"
+                               ng-model="selectedVoucher">
+                        <datalist id="saleValueList">
+                            <option ng-repeat="voucher in vouchers" ng-value="voucher.voucherCode">
+                                Discount: {{ voucher.discountLevel }}{{ voucher.discountForm === 'fixed' ? '$' : '%' }},
+                                From ${{ voucher.leastDiscount }} to ${{ voucher.biggestDiscount }}
+                            </option>
+                        </datalist>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3 d-flex">
+                            <h6>Amount:</h6>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-3 d-flex">
-                                <h6>Amount:</h6>
-                            </div>
-                            <div class="col-3 offset-4 text-end d-flex">
-                                <span class="text-danger">{{ totalAmount }}</span>
-                            </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">{{ totalAmount }}</span>
                         </div>
-                        <div class="row">
-                            <div class="col-3 d-flex">
-                                <h6>Discount:</h6>
-                            </div>
-                            <div class="col-3 offset-4 text-end d-flex">
-                                <span class="text-danger">{{ totalDiscount }}</span>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex">
+                            <h6>Discount:</h6>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-3 d-flex">
-                                <h3 class="text-danger">Total:</h3>
-                            </div>
-                            <div class="col-3 offset-4 text-end d-flex">
-                                <h3 class="text-danger">{{ totalPrice }}</h3>
-                            </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <span class="text-danger">{{ totalDiscount }}</span>
                         </div>
-                        <button type="button" class="btn btn-primary w-100" ng-click="submitOrder()">Submit</button>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 d-flex">
+                            <h3 class="text-danger">Total:</h3>
+                        </div>
+                        <div class="col-3 offset-4 text-end d-flex">
+                            <h3 class="text-danger">{{ totalPrice }}</h3>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" ng-click="submitOrder()">Submit</button>
 
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-<div class="row mt-2 mb-3 px-2">
-    <div class="row mb-3 d-flex justify-content-end">
-        <div class="col-3">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter date">
-                <button class="btn btn-primary"><i class="bi bi-funnel"></i></button>
+    <div class="row mt-2 mb-3 px-2">
+        <div class="row mb-3 d-flex justify-content-end">
+            <div class="col-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter date">
+                    <button class="btn btn-primary"><i class="bi bi-funnel"></i></button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-        <table class="table table-bordered table-hover table-md">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Date</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item :${orderDetails}">
-                <td th:text="${item?.id}"></td>
-                <td th:text="${item?.orderID?.userID?.fullname}">></td>
-                <td th:text="${item?.productVersionID?.versionName}"></td>
-                <td th:text="${item?.quantity}"></td>
-                <td th:text="${item?.orderID?.orderDate}"></td>
-                <td>
-                    <button type="button" class="btn btn-primary" th:id="${item.orderID.id}" ng-click="getID($event)"><i
-                            class="bi bi-eye-fill"></i></button>
-                </td>
-            <tr>
-            </tbody>
-        </table>
+        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+            <table class="table table-bordered table-hover table-md">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Total Money</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="order in orderDetails">
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.userID.fullname }}</td>
+                    <td>{{ order.orderDate | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ order.totalMoney | currency }}</td>
+                    <td>{{ order.orderStatus }}</td>
+                    <td>
+                        <button type="button" id="{{order.id}}" class="btn btn-primary" ng-click="getID($event)"><i class="bi bi-eye-fill"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
     </div>
 </div>
 
 <script src="/js/handleCartInOrderManage.js"></script>
-</div>
