@@ -12,6 +12,7 @@ import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManagerPromitionController {
@@ -38,7 +40,8 @@ public class ManagerPromitionController {
 
     @ModelAttribute("promotions")
     public List<Promotion> getPromotions() {
-        return promotionRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return promotionRepository.findAll(sort);
     }
 
     @GetMapping("/manage-promotion")

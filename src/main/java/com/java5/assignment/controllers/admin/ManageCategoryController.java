@@ -11,6 +11,7 @@ import com.java5.assignment.model.CategoryModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageCategoryController {
@@ -34,7 +36,8 @@ public class ManageCategoryController {
 
     @ModelAttribute("Categories")
     public List<Category> getCategories() {
-        return categoryRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return categoryRepository.findAll(sort);
     }
 
     @GetMapping("/manage-category")
