@@ -17,103 +17,113 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
                             <table class="table table-bordered table-hover text-center mt-3">
                                 <thead class="table-dark">
                                 <tr>
-                                    <th >ID</th>
-                                    <th >Date</th>
-                                    <th >Total</th>
-                                    <th >Action</th>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="item :${Orders}"
-                                    th:if="${item.orderStatus == 'Processing'}">
-                                    <td class="px-5" th:text="${item?.id}">1</td>
-                                    <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
-                                    <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
-                                    <td >
-                                        <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-x-circle"></i> Cancel</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-delivered" role="tabpanel" aria-labelledby="pills-are-delivered" tabindex="0">
-                        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-                            <table class="table table-bordered table-hover text-center mt-3">
-                                <thead class="table-dark">
-                                <tr>
-                                    <th >ID</th>
-                                    <th >Date</th>
-                                    <th >Total</th>
-                                    <th >Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="item :${Orders}"
-                                    th:if="${item.orderStatus == 'Shipping'}">
-                                    <td class="px-5" th:text="${item?.id}">1</td>
-                                    <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
-                                    <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
-                                    <td >
-                                        <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
-                        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
-                            <table class="table table-bordered table-hover text-center mt-3">
-                                <thead class="table-dark">
-                                <tr>
-                                    <th >ID</th>
-                                    <th >Date</th>
-                                    <th >Total</th>
-                                    <th >Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="item :${Orders}"
-                                    th:if="${item.orderStatus == 'Delivered'}">
-                                    <td class="px-5" th:text="${item?.id}">1</td>
-                                    <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
-                                    <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
+                                <tr ng-repeat="item in orders" ng-if="item.orderStatus === 'Processing'">
+                                    <td class="px-5">{{item.id}}</td>
+                                    <td class="px-5">{{item.orderDate}}</td>
+                                    <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#evaluate"><i class="bi bi-eye-fill"></i> Evaulate</button>
+                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
+                                            <i class="bi bi-eye-fill"></i> View
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#chooseStar">
+                                            <i class="bi bi-x-circle"></i> Cancel
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-cancelled" role="tabpanel" aria-labelledby="pills-cancel" tabindex="0">
+                    <div class="tab-pane fade" id="pills-delivered" role="tabpanel" aria-labelledby="pills-are-delivered">
                         <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
                             <table class="table table-bordered table-hover text-center mt-3">
                                 <thead class="table-dark">
                                 <tr>
-                                    <th >ID</th>
-                                    <th >Date</th>
-                                    <th >Total</th>
-                                    <th >Action</th>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="item :${Orders}"
-                                    th:if="${item.orderStatus == 'Cancelled'}">
-                                    <td class="px-5" th:text="${item?.id}">1</td>
-                                    <td class="px-5" th:text="${item?.orderDate}">20-05-2024</td>
-                                    <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
-                                    <td >
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-eye-fill"></i> View</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-basket3"></i> Buy creek</button>
+                                <tr ng-repeat="item in orders" ng-if="item.orderStatus === 'Shipping'">
+                                    <td class="px-5">{{item.id}}</td>
+                                    <td class="px-5">{{item.orderDate}}</td>
+                                    <td class="px-5">$ {{item.totalMoney}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
+                                            <i class="bi bi-eye-fill"></i> View
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+                            <table class="table table-bordered table-hover text-center mt-3">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in orders" ng-if="item.orderStatus === 'Delivered'">
+                                    <td class="px-5">{{item.id}}</td>
+                                    <td class="px-5">{{item.orderDate}}</td>
+                                    <td class="px-5">$ {{item.totalMoney}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
+                                            <i class="bi bi-eye-fill"></i> View
+                                        </button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#evaluate">
+                                            <i class="bi bi-eye-fill"></i> Evaluate
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-cancelled" role="tabpanel" aria-labelledby="pills-cancel">
+                        <div class="d-flex" style="overflow-y: scroll; max-height: 500px">
+                            <table class="table table-bordered table-hover text-center mt-3">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in orders" ng-if="item.orderStatus === 'Cancelled'">
+                                    <td class="px-5">{{item.id}}</td>
+                                    <td class="px-5">{{item.orderDate}}</td>
+                                    <td class="px-5">$ {{item.totalMoney}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chooseStar">
+                                            <i class="bi bi-eye-fill"></i> View
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#chooseStar">
+                                            <i class="bi bi-basket3"></i> Buy creek
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -122,10 +132,12 @@
                     </div>
                 </div>
             </div>
-            <script src="/js/createModalRating.js"></script>
-            <script src="/js/chooseStar.js"></script>
-            <script src="/js/showRatingPicture.js"></script>
-            <script src="/js/showOrderDetailsModal.js"></script>
         </div>
     </div>
 </main>
+
+<!-- Include your JavaScript files -->
+<script src="/js/createModalRating.js"></script>
+<script src="/js/chooseStar.js"></script>
+<script src="/js/showRatingPicture.js"></script>
+<script src="/js/showOrderDetailsModal.js"></script>
