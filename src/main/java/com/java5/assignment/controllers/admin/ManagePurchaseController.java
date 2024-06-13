@@ -13,6 +13,7 @@ import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.ProductVersionModel;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManagePurchaseController {
@@ -39,7 +41,8 @@ public class ManagePurchaseController {
 
     @ModelAttribute("purchaseOrderDetails")
     public List<PurchaseOrderDetail> purchaseOrderDetails() {
-        return purchaseOrderDetailRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return purchaseOrderDetailRepository.findAll(sort);
     }
 
     @GetMapping("/manage-purchase")

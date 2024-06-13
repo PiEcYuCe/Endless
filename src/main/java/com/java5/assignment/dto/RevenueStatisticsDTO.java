@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RevenueStatisticsDTO {
-    private Long stt;
+    private Long id;
     private Date time;
     private Long numberOfInvoices;
     private Long numberOfProductsSold;

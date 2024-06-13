@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageOrderController {
@@ -71,7 +72,8 @@ public class ManageOrderController {
 
     @ModelAttribute("orderDetails")
     public List<OrderDetail> orderDetails() {
-        return orderDetailRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return orderDetailRepository.findAll(sort);
     }
 
     @GetMapping("/api/productVersions")

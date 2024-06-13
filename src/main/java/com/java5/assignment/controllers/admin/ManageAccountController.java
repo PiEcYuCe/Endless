@@ -2,6 +2,7 @@ package com.java5.assignment.controllers.admin;
 
 import com.java5.assignment.entities.Promotion;
 import com.java5.assignment.entities.User;
+import com.java5.assignment.jpa.OrderRepository;
 import com.java5.assignment.jpa.UserRepository;
 import com.java5.assignment.model.PromotionModel;
 import com.java5.assignment.services.EncodeService;
@@ -12,6 +13,7 @@ import com.java5.assignment.model.UserModel;
 import com.java5.assignment.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManageAccountController {
@@ -36,6 +39,8 @@ public class ManageAccountController {
 
     @Autowired
     EncodeService encode;
+    @Autowired
+    private OrderRepository orderRepository;
 
     @ModelAttribute("page")
     public Page page() {
@@ -45,7 +50,8 @@ public class ManageAccountController {
 
     @ModelAttribute("accounts")
     public List<User> getUser() {
-        return userRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return userRepository.findAll(sort);
     }
 
     @GetMapping("/manage-account")
