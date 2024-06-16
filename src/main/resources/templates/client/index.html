@@ -22,7 +22,8 @@
 
 <body ng-app="myApp" ng-controller="myCtrl">
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark position-fixed d-flex flex-column w-100 mb-5" style="z-index: 1000">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark position-fixed d-flex flex-column w-100 mb-5"
+     style="z-index: 1000">
     <div class="container">
         <img src="/ui/NonBGLogo.png" class="navbar-brandModel" style="width: 50px">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -41,7 +42,8 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false"></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li th:each="item: ${cat}"><a class="dropdown-item" th:href="'/product?catID='+${item?.id}" th:text="${item?.name}"></a></li>
+                        <li th:each="item: ${cat}"><a class="dropdown-item" th:href="'/product?catID='+${item?.id}"
+                                                      th:text="${item?.name}"></a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -84,7 +86,8 @@
                     </div>
                 </div>
 
-                <a href="/cart" id="cart-icon" class="btn btn-secondary rounded-circle mx-2"><h6 class="bi bi-cart2"></h6></a>
+                <a href="/cart" id="cart-icon" class="btn btn-secondary rounded-circle mx-2"><h6
+                        class="bi bi-cart2"></h6></a>
             </form>
         </div>
     </div>
@@ -92,6 +95,119 @@
 <main th:replace="~{${page?.url}}">
 
 </main>
+<section name="modals">
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true"
+         th:if="${successModal!=null}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-success text-white justify-content-center position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 me-2"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
+                    <h5 class="modal-title mb-3" th:text="${successModal?.title}">Success</h5>
+                    <p th:text="${successModal?.message}">This is a success message.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true"
+         th:if="${errorModal!=null}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-danger text-white justify-content-center position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 me-2"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-exclamation-triangle fa-5x text-danger mb-3"></i>
+                    <h5 class="modal-title mb-3" th:text="${errorModal?.title}">Error</h5>
+                    <p th:text="${errorModal?.message}">This is a erroe message.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true"
+         th:if="${warningModal!=null}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-warning text-dark justify-content-center position-relative">
+                    <button type="button" class="btn-close position-absolute end-0 me-2" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-exclamation-circle fa-5x text-warning mb-3"></i>
+                    <h5 class="modal-title mb-3" th:text="${warningModal?.title}">Warning</h5>
+                    <p th:text="${warningModal?.message}">This is a warning message.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <form th:action="${warningModal?.link}" method="post">
+                        <input type="checkbox" style="display: none" name="check" value="true" checked>
+                        <button type="submit" th:text="${warningModal?.text}" class="btn btn-warning">Go to Link
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ratingFormModal" tabindex="-1" aria-labelledby="ratingFormModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ratingFormModalLabel">Evaluate</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="p-2 text-center">
+                        <div class="mb-3">
+                            <input type="hidden" name="orderId" id="orderIdInput">
+                            <select class="form-select" id="prodVersionSelect">
+                                <option value="-1" disabled selected>Select product version</option>
+                            </select>
+                        </div>
+                        <div class="mb-5 text-warning">
+                            <b><i class="far fa-star" id="star1" onclick="chooseStar(1)"></i></b>
+                            <b><i class="far fa-star" id="star2" onclick="chooseStar(2)"></i></b>
+                            <b><i class="far fa-star" id="star3" onclick="chooseStar(3)"></i></b>
+                            <b><i class="far fa-star" id="star4" onclick="chooseStar(4)"></i></b>
+                            <b><i class="far fa-star" id="star5" onclick="chooseStar(5)"></i></b>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea class="form-control" id="reviewTextarea" placeholder="Enter review"
+                                      rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="file" id="imageInput" class="form-control" accept="image/*" multiple>
+                        </div>
+
+                        <div class="row d-flex justify-content-center" id="imageContainer"></div>
+
+                        <div>
+                            <button type="button" class="btn btn-warning w-100" onclick="submitEvaluation()">Evaluate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer class="footer mt-4 text-bg-dark py-5 pb-0">
     <div class="container ">
@@ -113,7 +229,8 @@
             <div class="col-md-2 text-center">
                 <h3>Cagories</h3>
                 <ul class="list-unstyled">
-                    <li th:each="item: ${cat}"><a class="nav-link" th:href="'/product?catID='+${item?.id}" th:text="${item?.name}"></a></li>
+                    <li th:each="item: ${cat}"><a class="nav-link" th:href="'/product?catID='+${item?.id}"
+                                                  th:text="${item?.name}"></a></li>
                 </ul>
             </div>
             <div class="col-md-3 text-center">
@@ -128,7 +245,7 @@
         </div>
         <hr>
         <div class="row text-center">
-            <h6>Copyright @ FPT POLYTECHNIC</h6>
+            <h6>Copyright @ Endless</h6>
         </div>
     </div>
 </footer>
@@ -142,7 +259,10 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 <script src="/js/addCart.js"></script>
+<script src="/js/showModals.js"></script>
 </body>
 
 </html>

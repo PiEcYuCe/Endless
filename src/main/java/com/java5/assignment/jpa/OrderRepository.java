@@ -1,7 +1,11 @@
 package com.java5.assignment.jpa;
 
 import com.java5.assignment.entities.Order;
+
 import com.java5.assignment.entities.User;
+
+import com.java5.assignment.entities.ProductVersion;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,8 +16,8 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query(value= "select or from Order or where or.userID.id = :uid")
-    public List<Order> findByUserID(@Param("uid") long id);
+    @Query(value= "select or from Order or where or.userID.id = :uid order by or.id desc")
+    public List<Order> findAllByUserId(@Param("uid") long id);
 
     List<Order> findAllByOrderStatus(String status);
 
@@ -32,4 +36,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT SUM(o.totalMoney) FROM Order o WHERE o.orderDate >= :startOfYear")
     BigDecimal getRevenueThisYear(@Param("startOfYear") LocalDate startOfYear);
+
+    @Query("select od.productVersionID from OrderDetail od where od.orderID.id   = :oid")
+    List<ProductVersion> selectProductVersionList(@Param("oid") long oid);
 }

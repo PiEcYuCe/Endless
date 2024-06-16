@@ -1,88 +1,92 @@
 <section class="container-fluid mt-3 mb-5">
+    <!-- Statistics Section -->
     <div class="row mt-3 mx-0 px-0 border border-light bg-light" style="box-shadow: 5px 5px 10px gray;">
         <div class="col-md-3 p-3">
             <div class="d-flex justify-content-around p-2 rounded-4 border border-warning bg-light">
-                <div class="text-warning rounded-4 border border-warning mx-0 p-3 px-4 my-2"><h1 class="fa-solid fa-hourglass-start"></h1></div>
+                <div class="text-warning rounded-4 border border-warning mx-0 p-3 px-4 my-2"><i class="fa-solid fa-hourglass-start"></i></div>
                 <div class="text-center text-warning mt-3">
-                    <h4 id="processing"></h4>
-                    <h6>Orders awaiting confirmation</h6>
+                    <h4 id="processing">{{ processingOrders }}</h4>
+                    <h6>Orders awaiting</h6>
                 </div>
             </div>
         </div>
         <div class="col-md-3 p-3">
             <div class="d-flex justify-content-around p-2 rounded-4 border border-info bg-light">
-                <div class="text-info rounded-4 border border-info mx-0 p-3 px-3 my-2"><h1 class="fa-solid fa-truck-fast"></h1></div>
+                <div class="text-info rounded-4 border border-info mx-0 p-3 px-3 my-2"><i class="fa-solid fa-truck-fast"></i></div>
                 <div class="text-center text-info mt-3">
-                    <h4 id="shipping">5</h4>
+                    <h4 id="shipping">{{ shippingOrders }}</h4>
                     <h6>Orders in transit</h6>
                 </div>
             </div>
         </div>
         <div class="col-md-3 p-3">
             <div class="d-flex justify-content-around p-2 rounded-4 border border-success bg-light">
-                <div class="text-success rounded-4 border border-success mx-0 p-3 px-4 my-2"><h1 class="fa-regular fa-square-check"></h1></h1></div>
+                <div class="text-success rounded-4 border border-success mx-0 p-3 px-4 my-2"><i class="fa-regular fa-square-check"></i></div>
                 <div class="text-center text-success mt-3">
-                    <h4 id="delivered">10</h4>
+                    <h4 id="delivered">{{ deliveredOrders }}</h4>
                     <h6>Orders delivered</h6>
                 </div>
             </div>
         </div>
         <div class="col-md-3 p-3">
             <div class="d-flex justify-content-around p-2 rounded-4 border border-danger bg-light">
-                <div class="text-danger rounded-4 border border-danger mx-0 p-3 px-4 my-2"><h1 class="fa-solid fa-ban"></h1></div>
+                <div class="text-danger rounded-4 border border-danger mx-0 p-3 px-4 my-2"><i class="fa-solid fa-ban"></i></div>
                 <div class="text-center text-danger mt-3">
-                    <h4 id="cancelled">1</h4>
+                    <h4 id="cancelled">{{ cancelledOrders }}</h4>
                     <h6>Orders cancelled</h6>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Orders Table Section -->
+    <section class="container-fluid mt-3 mb-5" style="max-height: 410px; overflow-y: auto;">
+        <h2>Waiting Order List</h2>
+        <table class="table table-bordered table-hover table-md">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Phone Number</th>
+                <th>Time</th>
+                <th>Total Amount</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in orders" ng-if="item.orderStatus === 'Processing'">
+                <td>{{ item.id }}</td>
+                <td>{{ item.userID.fullname }}</td>
+                <td>{{ item.userID.phone }}</td>
+                <td>{{ item.orderDate }}</td>
+                <td>{{ item.totalMoney }}</td>
+                <td>
+                    <div class="d-flex justify-content-start">
+                        <div class="p-1">
+                            <button type="button" class="btn btn-secondary" id="{{ item.id }}" ng-click="getID($event)">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="p-1">
+                            <form action="admin/cancel/order" method="post">
+                                <input type="hidden" name="orderId" value="{{ item.id }}">
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
+                            </form>
+                        </div>
+                        <div class="p-1">
+                            <form action="admin/confirm/order" method="post">
+                                <input type="hidden" name="orderId" value="{{ item.id }}">
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 </section>
 
-<section class="container-fluid mt-3 mb-5" style="max-height: 410px; overflow-y: auto; ">
-    <h2>Waiting Order List</h2>
-    <table class="table table-bordered table-hover table-md">
-        <thead class="table table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Customer Name</th>
-            <th>Phone Number</th>
-            <th>Time</th>
-            <th>Total Amount</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item :${orders}" th:if="${item.orderStatus=='Processing'}">
-            <td th:text="${item?.id}"></td>
-            <td th:text="${item?.userID?.fullname}"></td>
-            <td th:text="${item?.userID?.phone}"></td>
-            <td th:text="${item?.orderDate}"></td>
-            <td th:text="${item?.totalMoney}"></td>
-            <td>
-                <div class="d-flex justify-content-start">
-                    <div class="p-1">
-                        <button type="button" class="btn btn-secondary " th:id="${item.id}" ng-click="getID($event)">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                    <div class="p-1">
-                        <form action="/cancel/order" method="post">
-                            <input type="hidden" name="orderId" th:value="${item.id}">
-                            <button type="submit"  class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
-                        </form>
-                    </div>
-                    <div class="p-1">
-                        <form action="/confirm/order" method="post">
-                            <input type="hidden" name="orderId" th:value="${item.id}">
-                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Confirm</button>
-                        </form>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</section>
+<script src="/js/dashboard.js"></script>
 <script src="/js/showOrderDetailsModal.js"></script>
 <script src="/js/statistOrderController.js"></script>

@@ -33,7 +33,6 @@ public class ProductDetailController {
     @Autowired
     private ProductRepository productRepository;
 
-
     @Autowired
     VoucherRepository voucherRepository;
 
@@ -100,5 +99,7 @@ public class ProductDetailController {
         cartRepository.save(cart);
         return "client/index";
     }
+
+
 
 }
