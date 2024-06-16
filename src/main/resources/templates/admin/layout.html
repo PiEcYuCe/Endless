@@ -186,8 +186,108 @@
 
 </article>
 
-<script src="/js/dashboard.js"></script>
-<script src=""></script>
+<section name="modals">
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" th:if="${successModal!=null}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-success text-white justify-content-center position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
+                    <h5 class="modal-title mb-3" th:text="${successModal?.title}">Success</h5>
+                    <p th:text="${successModal?.message}">This is a success message.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true"  th:if="${errorModal!=null}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-danger text-white justify-content-center position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-exclamation-triangle fa-5x text-danger mb-3"></i>
+                    <h5 class="modal-title mb-3" th:text="${errorModal?.title}">Error</h5>
+                    <p th:text="${errorModal?.message}">This is a erroe message.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true" th:if="${warningModal!=null}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-warning text-dark justify-content-center position-relative">
+                    <button type="button" class="btn-close position-absolute end-0 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-exclamation-circle fa-5x text-warning mb-3"></i>
+                    <h5 class="modal-title mb-3" th:text="${warningModal?.title}">Warning</h5>
+                    <p th:text="${warningModal?.message}">This is a warning message.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <form th:action="${warningModal?.link}" method="post">
+                        <input type="checkbox" style="display: none"  name="check" value="true" checked>
+                        <button type="submit" th:text="${warningModal?.text}" class="btn btn-warning">Go to Link</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ratingFormModal" tabindex="-1" aria-labelledby="ratingFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ratingFormModalLabel">Evaluate</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="p-2 text-center">
+                        <img src="" id="userAvatar" class="img-fluid col-2 mx-3 rounded-circle">
+                        <h6 id="userName"></h6>
+                        <div class="mb-5 text-warning">
+                            <b><i class="far fa-star" id="star1" onclick="chooseStar(1)"></i></b>
+                            <b><i class="far fa-star" id="star2" onclick="chooseStar(2)"></i></b>
+                            <b><i class="far fa-star" id="star3" onclick="chooseStar(3)"></i></b>
+                            <b><i class="far fa-star" id="star4" onclick="chooseStar(4)"></i></b>
+                            <b><i class="far fa-star" id="star5" onclick="chooseStar(5)"></i></b>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea class="form-control" id="reviewTextarea" placeholder="Enter review" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="file" id="imageInput" class="form-control" accept="image/*" multiple>
+                        </div>
+
+                        <div class="row d-flex justify-content-center" id="imageContainer"></div>
+
+                        <div>
+                            <button type="button" class="btn btn-primary w-100" onclick="submitEvaluation()">Evaluate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
 <!-- Bootstrap JavaScript Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -199,6 +299,8 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="/js/showModals.js"></script>
 </body>
 
 </html>
