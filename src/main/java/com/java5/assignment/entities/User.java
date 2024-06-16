@@ -59,7 +59,7 @@ public class User {
 
     @NotNull
     @Column(name = "Role", nullable = false)
-    private Boolean role = false;
+    private Boolean role;
 
     @NotNull
     @Column(name = "Status", nullable = false)

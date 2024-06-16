@@ -1,5 +1,8 @@
 <div class="container bg-light">
     <div class="row mt-5 mb-5 p-2">
+        <div th:if="${message}" th:class="'alert alert-' + ${messageType}" role="alert">
+            <h6 th:text="${message}"></h6>
+        </div>
         <form id="form-my-info" class="px-4"
               th:action="${user == null} ? '/manage-add-account' : '/manage-update-account?id='+${user?.id}"
               method="post"
@@ -47,9 +50,9 @@
                             </div>
                             <div class="mb-1 mt-4">
                                 <div class="form-check form-switch">
-                                    <label th:checked="${user?.status}" class="form-label">Role: </label>
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked1" checked
-                                           name="status" th:checked="${user?.role}">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked1"
+                                           name="role" th:checked="${user?.role}">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked1">Role</label>
                                 </div>
 
                                 <br>
@@ -123,6 +126,7 @@
                     <th scope="col">UserId</th>
                     <th scope="col">Username</th>
                     <th scope="col">Fullname</th>
+                    <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
                     <th scope="col">Avatar</th>
@@ -136,16 +140,17 @@
                     <td th:text="${item?.id}">1</td>
                     <td th:text="${item?.username}">Marry</td>
                     <td th:text="${item?.fullname}">Joni Marry</td>
+                    <td th:text="${item?.phone}">Joni Marry</td>
                     <td th:text="${item?.email}">marry@gmail.com</td>
-                    <td th:text="${item?.role ? 'Admin' : 'User'}">User</td>
+                    <td th:text="${item?.role ? 'Admin' : 'User'}"></td>
                     <td>
                         <img th:src="'user/'+${item?.avatar}" class="card-img-top" alt="" style="width: 3rem;">
                     </td>
                     <td th:text="${item?.status ? 'Active' : 'Inactive'}">True</td>
                     <td th:text="${item?.address}">Can Tho</td>
                     <td>
-                        <div class="row">
-                            <div class="col-2 ms-5">
+                        <div class="row g-2">
+                            <div class="col">
                                 <form th:action="'/manage-edit-account'" method="post">
                                     <input type="hidden" name="id" th:value="${item?.id}">
                                     <button type="submit" role="button" th:if="${item?.id != null}"
@@ -154,11 +159,10 @@
                                     </button>
                                 </form>
                             </div>
-                            <div class="col-2 ">
+                            <div class="col">
                                 <form th:action="'/manage-delete-account'" method="post">
                                     <input type="hidden" name="id" th:value="${item?.id}">
-                                    <button type="submit" role="button" th:if="${item?.id != null}"
-                                            class="btn btn-outline-danger btn-sm">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
@@ -166,10 +170,10 @@
                         </div>
                     </td>
                 </tr>
-
                 </tbody>
             </table>
         </div>
+        <!-- Modal -->
         <script>
             document.getElementById('userModel-avatar').addEventListener('click', function (event) {
                 event.preventDefault();

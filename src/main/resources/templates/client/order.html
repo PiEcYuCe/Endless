@@ -36,7 +36,12 @@
                                     <td class="px-5" th:text="${item?.totalMoney}">$999.00</td>
                                     <td >
                                         <button type="button" class="btn btn-primary" th:id="${item.id}" ng-click="getID($event)"><i class="bi bi-eye-fill"></i> View</button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#chooseStar"><i class="bi bi-x-circle"></i> Cancel</button>
+                                        <div class="p-1">
+                                            <form action="/userCancel/order" method="post">
+                                                <input type="hidden" name="orderId" th:value="${item.id}">
+                                                <button type="submit"  class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>

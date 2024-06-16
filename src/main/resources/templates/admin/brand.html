@@ -1,4 +1,7 @@
 <div class="container mt-5 bg-light">
+    <div class="mt-2" th:if="${message}" th:class="'alert alert-' + ${messageType}" role="alert">
+        <h6 th:text="${message}"></h6>
+    </div>
     <div class="card mb-5">
         <div class="card-body">
             <form th:action="${brand == null} ? '/manage-add-brand' : '/manage-update-brand?id='+${brand?.id}"

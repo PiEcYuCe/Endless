@@ -93,8 +93,6 @@
                     productContainer.innerHTML += productHTML;
                 });
             }
-
-
         </script>
 <!--            <div class="row">-->
 <!--                &lt;!&ndash; Price &ndash;&gt;-->
@@ -177,24 +175,21 @@
 <!--                </div>-->
 <!--            </div>-->
         <article class="col-md-9 col-9">
-            <div class="row mt-3 mb-3 d-flex justify-content-end">
-                <div class="col-md-1 col-3 text-end">
-                    <label class="" for="sort">Sort by</label>
+            <div class="row g-3 mt-3 mb-3 d-flex justify-content-end">
+                <div class="col-auto">
+                    <input type="number" class="form-control"  name="minPriceInput" id="minPriceInput" th:value="${minPrice}" min="0">
                 </div>
-                <div class="col-3 col-md-2">
-                    <select class="form-select form-select-sm" name="sort" id="sort">
-                        <option selected value="-1">Default</option>
-                        <option value="0">Price</option>
-                        <option value="1">Promotion</option>
-                        <option value="2">Time</option>
-                    </select>
+                <div class="col-auto">
+                    <input type="number" id="maxPriceInput"  name="minPriceInput" class="form-control" th:value="${maxPrice}" min="0">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary sort-btn">Sort</button>
                 </div>
             </div>
-
             <section class="p-3 mt-3 mb-5">
                 <div class="container">
                     <div class="row">
-                        <div th:each="product : ${productInfoDTOS}" class="col-6 col-md-4 mt-3 mb-3">
+                        <div th:each="product : ${productPage.content}" class="col-6 col-md-4 mt-3 mb-3">
                             <div class="row">
                                 <div class="col-5">
                                     <div style="position: relative; height: 150px;">
@@ -226,24 +221,22 @@
                     </div>
                 </div>
             </section>
-
             <div class="row">
                 <nav aria-label="Page navigation example" th:if="${productPage.totalPages > 1}">
                     <ul class="pagination justify-content-center">
                         <li class="page-item" th:classappend="${productPage.first ? 'disabled' : ''}">
-                            <a class="page-link" th:href="@{/product(page=${productPage.number - 1})}">Previous</a>
+                            <a class="page-link" th:href="@{/product(page=${productPage.number - 1},size=${productPage.size})}">Previous</a>
                         </li>
                         <li class="page-item" th:each="i : ${#numbers.sequence(0, productPage.totalPages - 1)}"
                             th:classappend="${i == productPage.number ? 'active' : ''}">
-                            <a class="page-link" th:href="@{/product(page=${i})}" th:text="${i + 1}">1</a>
+                            <a class="page-link" th:href="@{/product(page=${i},size=${productPage.size})}" th:text="${i + 1}">1</a>
                         </li>
                         <li class="page-item" th:classappend="${productPage.last ? 'disabled' : ''}">
-                            <a class="page-link" th:href="@{/product(page=${productPage.number + 1})}">Next</a>
+                            <a class="page-link" th:href="@{/product(page=${productPage.number + 1},size=${productPage.size})}">Next</a>
                         </li>
                     </ul>
                 </nav>
             </div>
-
         </article>
     </section>
 </main>

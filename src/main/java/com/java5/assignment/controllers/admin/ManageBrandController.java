@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +52,7 @@ public class ManageBrandController {
     }
 
     @PostMapping("/manage-add-brand")
-    public String addBrand(@Valid BrandModel brandModel, BindingResult error, Model model) {
+    public String addBrand(@Valid BrandModel brandModel, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
         if (brandRepository.existsByName(brandModel.getName())) {
             error.rejectValue("name", "brand.name.exists", "Brand name already exists.");
         }
@@ -62,6 +63,8 @@ public class ManageBrandController {
         }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
+            redirectAttributes.addFlashAttribute("message", "Create failed the brand !!");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
             return "admin/layout";
         }
         Brand brand = new Brand();
@@ -69,6 +72,8 @@ public class ManageBrandController {
         brand.setLogo(fileName);
         brand.setStatus(brandModel.isStatus());
         brandRepository.save(brand);
+        redirectAttributes.addFlashAttribute("message", "Create the brand successfully!!");
+        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/manage-brand";
     }
 
@@ -84,9 +89,11 @@ public class ManageBrandController {
 
     @PostMapping("/manage-update-brand")
     public String updateBrand(@Valid BrandModel brandModel, BindingResult error,
-                              @RequestParam("id") long id, Model model){
+                              @RequestParam("id") long id, Model model,  RedirectAttributes redirectAttributes){
         if (error.hasErrors()) {
             model.addAttribute("error", error);
+            redirectAttributes.addFlashAttribute("message", "Update failed  the brand!!");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
             return "admin/layout";
         }
         Brand brand = brandRepository.findById(id).get();
@@ -100,14 +107,24 @@ public class ManageBrandController {
         }
         brand.setLogo(fileName);
         brandRepository.save(brand);
+        redirectAttributes.addFlashAttribute("message", "Update the brand successfully!!");
+        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/manage-brand";
     }
 
     @PostMapping("/manage-delete-brand")
-    public String deleteBrand(@RequestParam("id") long id) {
+    public String deleteBrand(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
         Brand brand = brandRepository.findById(id).get();
+        if (!brand.getProducts().isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Cannot delete brand with associated products.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
+            return "redirect:/manage-brand";
+        }
+
         uploadService.remove(brandRepository.findById(id).get().getLogo());
         brandRepository.delete(brand);
+        redirectAttributes.addFlashAttribute("message", "Delete the brand successfully!!");
+        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/manage-brand";
     }
 

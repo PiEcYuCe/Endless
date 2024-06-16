@@ -13,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +45,13 @@ public class ProductController {
     public String listProducts(Model model,
                                @RequestParam(value = "page", defaultValue = "0") int page,
                                @RequestParam(value = "size", defaultValue = "9") int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
-        org.springframework.data.domain.Page<ProductInfoDTO> productPage = productVersionService.getAllProducts(pageable);
-        model.addAttribute("productPage", productPage);
 
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
+        org.springframework.data.domain.Page<ProductInfoDTO> productPage = productVersionService.getAllProductInfoPage(pageable);
+
+        model.addAttribute("productPage", productPage);
         return "client/index";
     }
-
 
     @ModelAttribute("attributes")
     public String showColors(Model model) {
