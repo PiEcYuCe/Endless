@@ -58,13 +58,9 @@ public class ManageVersionAttributeController {
 
     @ModelAttribute("versionAttributes")
     public List<VersionAttribute> getVersionAttributes() {
-        return versionAttributeRepository.findAllByOrderByIdDesc();
-
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return versionAttributeRepository.findAll();
     }
-
-
-
-
 
     @PostMapping("/manage-add-version-attribute")
     public String addVersionAttribute(@Valid VersionAttributeModel versionAttributeModel, BindingResult error, Model model) {
@@ -96,8 +92,6 @@ public class ManageVersionAttributeController {
             model.addAttribute("error", error);
             return "admin/layout";
         }
-
-
         VersionAttribute versionAttribute = new VersionAttribute();
         versionAttribute.setProductVersionID(productVersionRepository.findById(versionAttributeModel.getProductVersionID()));
         versionAttribute.setAttributeValueID(attributeValueRepository.findById(versionAttributeModel.getAttributeValueID()).get());

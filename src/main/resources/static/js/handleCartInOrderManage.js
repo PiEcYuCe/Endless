@@ -153,6 +153,10 @@
         $scope.showNotificationModal = function() {
             var modal = new bootstrap.Modal(document.getElementById('notificationModal'));
             modal.show();
+
+            setTimeout(function () {
+                modal.hide();
+            }, 3000);
         };
 
         // Hàm tạo đơn hàng và chi tiết đơn hàng
@@ -330,9 +334,7 @@
             $compile(modalElement)($scope);
 
             // Sử dụng $timeout để đảm bảo $apply được gọi sau khi vòng lặp $digest hiện tại hoàn thành
-            $timeout(function () {
-                $scope.$apply();
-            });
+            $compile(modalElement)($scope);
 
             // Hiển thị modal
             var modal = new bootstrap.Modal(document.getElementById('detail-order'));

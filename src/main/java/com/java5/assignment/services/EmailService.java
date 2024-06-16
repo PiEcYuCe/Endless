@@ -28,4 +28,17 @@ public class EmailService {
 
         javaMailSender.send(mimeMessage);
     }
+
+    public void sendCancelOrder(long orderID, String to) throws MessagingException {
+        String subject = "Order Cancellation Confirmation";
+        String htmlBody = "<p>Dear Customer,</p>"
+                + "<p>We regret to inform you that your order with order ID <strong>" + orderID + "</strong> has been canceled successfully.</p>"
+                + "<p>If you have any questions or concerns regarding this cancellation, please feel free to contact our customer support team.</p>"
+                + "<p>Thank you for your understanding.</p>"
+                + "<p>Best regards,<br> [Your Company Name]</p>";
+
+        sendHtmlMail(to, subject, htmlBody);
+    }
+
+
 }

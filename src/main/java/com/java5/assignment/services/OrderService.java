@@ -10,6 +10,8 @@ import com.java5.assignment.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
@@ -93,6 +95,29 @@ public class OrderService {
             orderDtos.add(getOrderDto(order));
         }
         return orderDtos;
+    }
+
+    @Transactional
+    public void updateOrderStatus() {
+        List<Order> processingOrders = orderRepository.findAllByOrderStatus("Processing");
+
+        List<Order> shippingOrders = orderRepository.findAllByOrderStatus("Shipping");
+
+        LocalDate currentDate = LocalDate.now();
+
+        for (Order order : processingOrders) {
+            if (currentDate.minusDays(10).isAfter(order.getOrderDate())) {
+                order.setOrderStatus("Canceled");
+                orderRepository.save(order);
+            }
+        }
+
+        for(Order order : shippingOrders) {
+            if (currentDate.minusDays(5).isAfter(order.getOrderDate())) {
+                order.setOrderStatus("Canceled");
+                orderRepository.save(order);
+            }
+        }
     }
 
 }

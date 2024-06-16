@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -47,7 +48,7 @@ public class Rating {
 
     @NotNull
     @Column(name = "RatingDate", nullable = false)
-    private Instant ratingDate;
+    private LocalDate ratingDate;
 
     @OneToMany(mappedBy = "ratingID")
     private Set<RatingPicture> ratingPictures = new LinkedHashSet<>();

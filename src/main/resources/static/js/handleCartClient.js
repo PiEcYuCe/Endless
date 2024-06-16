@@ -180,10 +180,10 @@ app.controller('myCtrl', function ($scope, $http) {
         // Đóng modal sau một khoảng thời gian
         setTimeout(function () {
             modal.hide();
-        }, 3000); // 5000 là số miligiây, tương ứng với 5 giây
+        }, 3000);
     };
 
-    // Submit order
+
     // Submit order
     $scope.submitOrder = function () {
         if ($scope.selectedItems.length === 0) {
@@ -202,7 +202,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
         var orderDetailsData = $scope.selectedItems.map(function (item) {
             return {
-                productVersionID: item.id,
+                productVersionID: item.productVersionID,
                 quantity: item.quantity,
                 price: item.price,
                 discountPrice: item.disCountPrice

@@ -10,8 +10,10 @@ import com.java5.assignment.jpa.ProductVersionRepository;
 import com.java5.assignment.jpa.UserVoucherRepository;
 import com.java5.assignment.model.Order.OrderRequest;
 import com.java5.assignment.services.*;
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -101,12 +103,16 @@ public class ManageOrderController {
 
     @PostMapping("/api/addNewOrder")
     @ResponseBody
-    public boolean createOrderWithDetails(@RequestBody OrderRequest orderRequest) {
+    public boolean createOrderWithDetails(@RequestBody OrderRequest orderRequest, Model model) {
         try{
             orderDetailService.saveOrderAndDetail(orderRequest.getOrderData(), orderRequest.getOrderDetailData());
+            SuccessModal successModal = new SuccessModal("Create order successful !");
+            model.addAttribute("successModal", successModal);
             return true;
         }
         catch(Exception e){
+            ErrorModal errorModal = new ErrorModal("Create order error");
+            model.addAttribute("errorModal", errorModal);
             e.printStackTrace();
             return false;
         }

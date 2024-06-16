@@ -18,6 +18,9 @@ public class UserService {
 
     public UserInfoDto getUserInfo(String key) {
         User user = userRepository.findByUserKey(key);
+        if(!user.getStatus()){
+            return null;
+        }
         UserInfoDto userDto = new UserInfoDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
