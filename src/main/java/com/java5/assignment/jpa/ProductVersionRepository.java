@@ -77,5 +77,6 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
     @Query("select pv from ProductVersion pv where pv.productID.categoryID.id in :catID and pv.productID.brandID.id between :from and :to")
     Page<Product> findByCustomQuery(@Param("catID") List<Long> catID, @Param("from") int from, @Param("to") int to, Pageable pageable);
 
+    List<ProductVersion> findByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable);
 }
 

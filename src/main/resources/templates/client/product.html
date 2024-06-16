@@ -5,95 +5,31 @@
 </style>
 <main class="container pt-5">
     <section class="row pt-5">
-        <aside class="col-md-3">
-            <div class="row p-0">
-                <h4 class="mt-3 mb-3">Category</h4>
-                <div class="row">
-                    <div th:each="category : ${categories}" class="col-md-7">
-                        <input class="form-check-input" type="checkbox" name="category" th:id="'category' + ${category.id}"
-                               th:value="${category.name}">
-                        <label class="form-check-label" th:for="'category' + ${category.id}" th:text="${category.name}">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <h4 class="mt-3 mb-3">Brand</h4>
-                <div class="row">
-                    <div th:each="brand : ${brands}" class="col-md-5">
-                        <input class="form-check-input" type="checkbox" name="brand" th:id="'brand' + ${brand.id}"
-                               th:value="${brand.name}">
-                        <label class="form-check-label" th:for="'category' + ${brand.id}" th:text="${brand.name}">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary w-100 mt-3 filter-btn">Filter</button>
-        </aside>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const filterBtn = document.querySelector('.filter-btn');
-                filterBtn.addEventListener('click', function() {
-                    const categoryCheckboxes = document.querySelectorAll('input[name="category"]:checked');
-                    const brandCheckboxes = document.querySelectorAll('input[name="brand"]:checked');
-
-                    const selectedCategories = Array.from(categoryCheckboxes).map(checkbox => checkbox.value);
-                    const selectedBrands = Array.from(brandCheckboxes).map(checkbox => checkbox.value);
-
-                    // Gửi yêu cầu AJAX đến máy chủ với các danh mục và thương hiệu đã chọn
-                    const xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            if (xhr.status === 200) {
-                                const productInfoDTOS = JSON.parse(xhr.responseText);
-                                // Cập nhật giao diện người dùng với kết quả trả về từ máy chủ
-                                updateProductsUI(productInfoDTOS);
-                            } else {
-                                console.error('Failed to fetch products');
-                            }
-                        }
-                    };
-
-                    // Định dạng yêu cầu AJAX theo ý của bạn, ví dụ:
-                    xhr.open('POST', '/your-api-endpoint', true);
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.send(JSON.stringify({categories: selectedCategories, brands: selectedBrands}));
-                });
-            });
-
-            function updateProductsUI(productInfoDTOS) {
-                const productContainer = document.querySelector('.product-container');
-                productContainer.innerHTML = ''; // Xóa bỏ các sản phẩm hiện có trước khi thêm mới
-
-                productInfoDTOS.forEach(product => {
-                    const productHTML = `
-            <div class="col-6 col-md-4 mt-3 mb-3">
-                <div class="row">
-                    <div class="col-5">
-                        <div style="position: relative; height: 150px;">
-                            <span class="badge bg-warning" style="position: absolute; top: 2px; left: 2px; z-index: 10;" th:text="'-' + ${product.discountPercentage} + '%'"></span>
-                            <a th:href="'product/detail?id='+${product.id}" style="position: absolute; top: 15px; left: 0; right: 0; display: flex; justify-content: center;">
-                                <img th:src="${product.image}" th:id="'prodImg'+${product.id}" style="height: 130px; width: auto; margin-top: 10px;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="top-5 start-0">
-                            <h5 th:text="${product.versionName}">Name</h5>
-                            <b class="mt-1"><i class="fa-solid fa-star text-warning"></i> <span th:text="${product.averageRating}"></span>/5</b><br>
-                            <b class="text-danger" th:text="${product.discountedPrice}"></b>
-                            <s th:text="${product.price}">price</s><br>
-                        </div>
-                        <div class="bottom-0 start-0">
-                            <a class="btn btn-primary" th:onclick="'addToCart(' + ${product.id} + ')'">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-                    productContainer.innerHTML += productHTML;
-                });
-            }
-        </script>
+<!--        <aside class="col-md-3">-->
+<!--            <div class="row p-0">-->
+<!--                <h4 class="mt-3 mb-3">Category</h4>-->
+<!--                <div class="row">-->
+<!--                    <div th:each="category : ${categories}" class="col-md-7">-->
+<!--                        <input class="form-check-input" type="checkbox" name="category" th:id="'category' + ${category.id}"-->
+<!--                               th:value="${category.name}">-->
+<!--                        <label class="form-check-label" th:for="'category' + ${category.id}" th:text="${category.name}">-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <h4 class="mt-3 mb-3">Brand</h4>-->
+<!--                <div class="row">-->
+<!--                    <div th:each="brand : ${brands}" class="col-md-5">-->
+<!--                        <input class="form-check-input" type="checkbox" name="brand" th:id="'brand' + ${brand.id}"-->
+<!--                               th:value="${brand.name}">-->
+<!--                        <label class="form-check-label" th:for="'brand' + ${brand.id}" th:text="${brand.name}">-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-primary w-100 mt-3 filter-btn">Filter</button>-->
+<!--        </aside>-->
 <!--            <div class="row">-->
 <!--                &lt;!&ndash; Price &ndash;&gt;-->
 <!--                <div class="col-md-12">-->
@@ -174,18 +110,20 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-        <article class="col-md-9 col-9">
-            <div class="row g-3 mt-3 mb-3 d-flex justify-content-end">
-                <div class="col-auto">
-                    <input type="number" class="form-control"  name="minPriceInput" id="minPriceInput" th:value="${minPrice}" min="0">
+        <article class="col-md-12 col-9">
+            <form action="/product" method="get">
+                <div class="row g-3 mt-3 mb-3 d-flex justify-content-end">
+                    <div class="col-auto">
+                        <input type="number" class="form-control" name="minPrice" id="minPriceInput" th:value="${minPrice}" min="0">
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" id="maxPriceInput" name="maxPrice" class="form-control" th:value="${maxPrice}" min="0">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary sort-btn">Sort</button>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <input type="number" id="maxPriceInput"  name="minPriceInput" class="form-control" th:value="${maxPrice}" min="0">
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary sort-btn">Sort</button>
-                </div>
-            </div>
+            </form>
             <section class="p-3 mt-3 mb-5">
                 <div class="container">
                     <div class="row">

@@ -8,6 +8,7 @@ import com.java5.assignment.jpa.PromotionProductRepository;
 import com.java5.assignment.jpa.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,42 @@ public class ProductVersionService {
             productInfoList.add(productInfo);
         }
         return productInfoList;
+    }
+    public org.springframework.data.domain.Page<ProductInfoDTO> getProductInfoByPriceRange(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        // Lấy danh sách sản phẩm có giá trong khoảng minPrice và maxPrice
+        // Sử dụng productVersionRepository để truy vấn dữ liệu từ CSDL
+        List<ProductVersion> productVersions = productVersionRepository.findByPriceBetween(minPrice, maxPrice, pageable);
+
+        // Chuyển đổi sang danh sách ProductInfoDTO
+        List<ProductInfoDTO> productInfoList = new ArrayList<>();
+        for (ProductVersion productVersion : productVersions) {
+            ProductInfoDTO productInfo = new ProductInfoDTO();
+            productInfo.setId(productVersion.getId());
+            productInfo.setVersionName(productVersion.getVersionName());
+            productInfo.setPrice(productVersion.getPrice());
+
+            BigDecimal discountedPrice = calculateDiscountedPrice(productVersion);
+            productInfo.setDiscountedPrice(discountedPrice);
+            productInfo.setImage(productVersion.getImage());
+
+            double averageRating = calculateAverageRating(productVersion);
+            productInfo.setAverageRating(averageRating);
+
+            BigDecimal price = productVersion.getPrice();
+            if (price != null && discountedPrice != null && price.compareTo(BigDecimal.ZERO) != 0) {
+                BigDecimal discountPercentage = BigDecimal.ONE
+                        .subtract(discountedPrice.divide(price, 2, RoundingMode.HALF_UP))
+                        .multiply(BigDecimal.valueOf(100));
+                productInfo.setDiscountPercentage(discountPercentage.intValue());
+            } else {
+                productInfo.setDiscountPercentage(0);
+            }
+
+            productInfoList.add(productInfo);
+        }
+
+        // Tạo trang mới từ danh sách sản phẩm và pageable
+        return new PageImpl<>(productInfoList, pageable, productVersionRepository.count());
     }
 
     public List<ProductInfoDTO> getAllProductInfo() {

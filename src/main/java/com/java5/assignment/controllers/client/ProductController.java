@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,14 +45,26 @@ public class ProductController {
     @GetMapping("/product")
     public String listProducts(Model model,
                                @RequestParam(value = "page", defaultValue = "0") int page,
-                               @RequestParam(value = "size", defaultValue = "9") int size) {
+                               @RequestParam(value = "size", defaultValue = "9") int size,
+                               @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
+                               @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice) {
 
+        // Khởi tạo Pageable để phân trang
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
-        org.springframework.data.domain.Page<ProductInfoDTO> productPage = productVersionService.getAllProductInfoPage(pageable);
+
+        // Lấy trang sản phẩm dựa trên minPrice và maxPrice
+        org.springframework.data.domain.Page<ProductInfoDTO> productPage;
+        if (minPrice != null && maxPrice != null) {
+            productPage = productVersionService.getProductInfoByPriceRange(minPrice, maxPrice, pageable);
+        } else {
+            // Nếu không có minPrice hoặc maxPrice, lấy tất cả sản phẩm
+            productPage = productVersionService.getAllProductInfoPage(pageable);
+        }
 
         model.addAttribute("productPage", productPage);
         return "client/index";
     }
+
 
     @ModelAttribute("attributes")
     public String showColors(Model model) {
