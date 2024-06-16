@@ -104,7 +104,7 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
                                             <div class="col-2 d-flex">
                                                 <h6>Amount:</h6>
                                             </div>
-                                            <div class="col-6 offset-4 text-end d-flex">
+                                            <div class="col-8 offset-2 text-end d-flex">
                                                 <span class="text-danger">$ {{order.totalMoney}}</span>
                                             </div>
                                         </div>
@@ -112,16 +112,16 @@ app.controller('myCtrl', function ($scope, $http, $compile, $timeout) {
                                             <div class="col-2 d-flex">
                                                 <h6>Discount:</h6>
                                             </div>
-                                            <div class="col-6 offset-4 text-end d-flex">
-                                                <span class="text-danger">$ {{ order.voucherID ? (order.totalMoney * order.voucherID.discountLevel / 100) : 0 }}</span>
+                                            <div class="col-8 offset-2 text-end d-flex">
+                                                <span class="text-danger">$ {{ order.voucherID ? (order.totalMoney * order.voucherID.discountLevel / 100) : 0 | number: 2}}</span>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-2 d-flex">
                                                 <h3 class="text-danger">Total:</h3>
                                             </div>
-                                            <div class="col-6 offset-4 text-end d-flex">
-                                                <h3 class="text-danger">$ {{ order.voucherID ? (order.totalMoney - (order.totalMoney * order.voucherID.discountLevel / 100)) : order.totalMoney }}</h3>
+                                            <div class="col-8 offset-2 text-end d-flex">
+                                                <h3 class="text-danger">$ {{ order.voucherID ? (order.totalMoney - (order.totalMoney * order.voucherID.discountLevel / 100)) : order.totalMoney | number: 2 }}</h3>
                                             </div>
                                         </div>
                                     </form>

@@ -87,17 +87,11 @@ public class OrderController {
         return "client/index";
     }
 
-
     @GetMapping("/order")
     public String goToPage(Model model) {
         return "client/index";
     }
 
-    @ModelAttribute("Orders")
-    public List<Order> getOrders() {
-        UserDto userDto = (UserDto) session.getAttribute("user");
-        return orderRepository.findByUserID(userDto.getId());
-    }
 
     @PostMapping("/userCancel/order")
     public String cancelOrder(@RequestParam("orderId") long orderId) {
