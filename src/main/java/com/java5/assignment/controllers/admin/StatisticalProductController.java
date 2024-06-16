@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -24,11 +25,24 @@ public class StatisticalProductController {
         return Page.route.get(PageType.ADMIN_STATISTICAL_PRODUCT);
     }
 
+    @ModelAttribute("brands")
+    public List<String> brands() {
+        return productVersionRepository.findDistinctBrands();
+    }
+
+    @ModelAttribute("categories")
+    public List<String> categories() {
+        return productVersionRepository.findDistinctCategories();
+    }
 
     @ModelAttribute("statisticalProducts")
-    public List<ProductVersionStatisticalDTO> statisticalProducts() {
-        List<Object[]> results = productVersionRepository.findProductVersionsSummary();
-        List<ProductVersionStatisticalDTO> dtoList = new ArrayList<ProductVersionStatisticalDTO>();
+    public List<ProductVersionStatisticalDTO> statisticalProducts(
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false, defaultValue = "default") String sort) {
+
+        List<Object[]> results = productVersionRepository.findProductVersionsSummary(brand, category, sort);
+        List<ProductVersionStatisticalDTO> dtoList = new ArrayList<>();
 
         for (Object[] result : results) {
             ProductVersionStatisticalDTO dto = new ProductVersionStatisticalDTO();

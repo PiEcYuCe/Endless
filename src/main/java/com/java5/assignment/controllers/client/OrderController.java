@@ -96,7 +96,7 @@ public class OrderController {
     @ModelAttribute("Orders")
     public List<Order> getOrders() {
         UserDto userDto = (UserDto) session.getAttribute("user");
-        return orderRepository.findByUserID(userDto.getId());
+        return orderRepository.findAllByUserId(userDto.getId());
     }
 
     @PostMapping("/userCancel/order")

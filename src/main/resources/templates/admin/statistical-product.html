@@ -49,15 +49,11 @@
             <div class="input-group mb-3">
                 <label>Brand: </label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" list="brandModel" id="brandinput" placeholder="Enter brandModel">
-                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-filter"></i></button>
+                    <input type="text" class="form-control" list="brandModel" id="brandInput" placeholder="Enter brand">
+                    <button class="btn btn-primary input-group-text" onclick="applyFilters()"><i class="fa-solid fa-filter"></i></button>
                 </div>
                 <datalist id="brandModel">
-                    <option value="Samsung">
-                    <option value="Apple">
-                    <option value="Techno">
-                    <option value="Oppo">
-                    <option value="Xiaomi">
+                    <option th:each="brand : ${brands}" th:value="${brand}"></option>
                 </datalist>
             </div>
         </div>
@@ -65,30 +61,27 @@
             <div class="input-group mb-3">
                 <label>Category: </label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" list="category" id="categoryInput"
-                           placeholder="Enter category">
-                    <button class="btn btn-primary input-group-text"><i class="fa-solid fa-filter"></i></button>
+                    <input type="text" class="form-control" list="category" id="categoryInput" placeholder="Enter category">
+                    <button class="btn btn-primary input-group-text" onclick="applyFilters()"><i class="fa-solid fa-filter"></i></button>
                 </div>
                 <datalist id="category">
-                    <option value="Gaming">
-                    <option value="Compact">
-                    <option value="Cinema">
-                    <option value="Light">
+                    <option th:each="category : ${categories}" th:value="${category}"></option>
                 </datalist>
             </div>
         </div>
         <div class="mt-3 w-25">
             <label>Sort by: </label>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Default</option>
-                <option value="1">Price</option>
-                <option value="2">Quantity</option>
-                <option value="3">Revenue</option>
+            <select class="form-select" id="sortSelect" aria-label="Default select example">
+                <option value="default" selected>Default</option>
+                <option value="price">Price</option>
+                <option value="quantity">Quantity</option>
+                <option value="revenue">Revenue</option>
             </select>
         </div>
     </div>
+
     <div class="row px-2"  style="max-height: 380px; overflow-y: auto; ">
-        <table class="table table-bordered table-hover">
+        <table id="productTable" class="table table-bordered table-hover">
             <thead class="table-dark">
             <tr>
                 <th scope="col">ID</th>

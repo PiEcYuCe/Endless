@@ -28,34 +28,49 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
     List<ProductVersion> findByStatus(boolean status);
 
     @Query(value = "SELECT " +
-            "    pv.ProductVersionID AS ID, " +
-            "    pv.VersionName, " +
-            "    p.Name AS ProductName, " +
-            "    b.Name AS Brand, " +
-            "    c.Name AS Category, " +
-            "    ISNULL(SUM(od.Quantity), 0) AS UnitsSold, " +
-            "    pv.Quantity AS Inventory, " +
-            "    pv.PurchasePrice AS CostPrice, " +
-            "    pv.Price AS SellingPrice, " +
-            "    ISNULL(SUM(od.Price * od.Quantity), 0) AS Revenue " +
-            "FROM " +
-            "    ProductVersions pv " +
+            "pv.ProductVersionID AS ID, " +
+            "pv.VersionName, " +
+            "p.Name AS ProductName, " +
+            "b.Name AS Brand, " +
+            "c.Name AS Category, " +
+            "ISNULL(SUM(od.Quantity), 0) AS UnitsSold, " +
+            "pv.Quantity AS Inventory, " +
+            "pv.PurchasePrice AS CostPrice, " +
+            "pv.Price AS SellingPrice, " +
+            "ISNULL(SUM(od.Price * od.Quantity), 0) AS Revenue " +
+            "FROM ProductVersions pv " +
             "INNER JOIN Products p ON pv.ProductID = p.ProductID " +
             "INNER JOIN Brands b ON p.BrandID = b.BrandID " +
             "INNER JOIN Categories c ON p.CategoryID = c.CategoryID " +
             "LEFT JOIN OrderDetails od ON pv.ProductVersionID = od.ProductVersionID " +
+            "WHERE (:brand IS NULL OR b.Name = :brand) " +
+            "AND (:category IS NULL OR c.Name = :category) " +
             "GROUP BY " +
-            "    pv.ProductVersionID, " +
-            "    pv.VersionName, " +
-            "    p.Name, " +
-            "    b.Name, " +
-            "    c.Name, " +
-            "    pv.Quantity, " +
-            "    pv.PurchasePrice, " +
-            "    pv.Price " +
-            "ORDER BY pv.ProductVersionID DESC",
+            "pv.ProductVersionID, " +
+            "pv.VersionName, " +
+            "p.Name, " +
+            "b.Name, " +
+            "c.Name, " +
+            "pv.Quantity, " +
+            "pv.PurchasePrice, " +
+            "pv.Price " +
+            "ORDER BY " +
+            "CASE WHEN :sort = 'price' THEN pv.Price END DESC, " +
+            "CASE WHEN :sort = 'quantity' THEN SUM(od.Quantity) END DESC, " +
+            "CASE WHEN :sort = 'revenue' THEN SUM(od.Price * od.Quantity) END DESC, " +
+            "CASE WHEN :sort = 'default' THEN pv.ProductVersionID END DESC",
             nativeQuery = true)
-    List<Object[]> findProductVersionsSummary();
+    List<Object[]> findProductVersionsSummary(
+            @Param("brand") String brand,
+            @Param("category") String category,
+            @Param("sort") String sort);
+
+
+    @Query("SELECT DISTINCT b.name FROM Brand b")
+    List<String> findDistinctBrands();
+
+    @Query("SELECT DISTINCT c.name FROM Category c")
+    List<String> findDistinctCategories();
 
 
     @Query("SELECT MIN(pv.price) FROM ProductVersion pv")
@@ -86,5 +101,8 @@ public interface ProductVersionRepository extends JpaRepository<ProductVersion, 
 //            and od.orderID.userID.id = :uid"""
 //            )
 //    List<ProductVersion> findAllProductVersionsNotRating(@Param("uid")long uid, @Param("oid")long oid);
+
+    List<ProductVersion> findByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable);
+
 }
 

@@ -66,7 +66,6 @@ public class ManageAccountController {
 
     @PostMapping("/manage-add-account")
     public String addAccount(@Valid UserModel userModel, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
-
         if (userRepository.existsByUsername(userModel.getUsername())) {
             error.addError(new FieldError("userModel", "username", "Username already exists"));
         }
@@ -81,7 +80,7 @@ public class ManageAccountController {
         if (fileName == null) {
             error.addError(new FieldError("account", "avatar", "Please select a image"));
         }
-        // Validate password manually
+
         if (userModel.getPassword() == null || userModel.getPassword().isEmpty()) {
             error.addError(new FieldError("userModel", "password", "Please enter password here!"));
         } else {
@@ -129,22 +128,9 @@ public class ManageAccountController {
         return "redirect:/manage-account";
     }
 
-    @PostMapping("/manage-edit-account")
-    public String editBrand(@RequestParam("id") long id, Model model) {
-        User user = userRepository.findById(id).get();
-        if (user == null) {
-            return "redirect:/manage-account";
-        }
-        user.setPassword(null);
-        model.addAttribute("user", user);
-
-
-        return "admin/layout";
-    }
-
     @PostMapping("/manage-update-account")
     public String updateAccount(@Valid UserModel userModel, BindingResult error,
-                              @RequestParam("id") long id, Model model, RedirectAttributes redirectAttributes) {
+                                @RequestParam("id") long id, Model model, RedirectAttributes redirectAttributes) {
 
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser == null) {
@@ -181,7 +167,6 @@ public class ManageAccountController {
         user.setStatus(userModel.isStatus());
         user.setAddress(userModel.getAddress());
         user.setRole(userModel.isRole());
-
 
         String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
         if (fileName == null) {

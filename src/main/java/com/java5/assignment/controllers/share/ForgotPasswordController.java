@@ -34,60 +34,56 @@ public class ForgotPasswordController {
         return "public/send-mail";
     }
 
-    // Mapping để gửi email chứa OTP
-    @PostMapping("/send-mail")
-    public String forgotPassword(@RequestParam String email, Model model) {
-        // Tạo mã OTP ngẫu nhiên và gửi đi
-        String otp = generateOTP(); // Phần này bạn cần triển khai generateOTP() như đã đề cập ở trên
-
-        // Lưu thông tin vào session để sử dụng sau này
-        session.setAttribute("resetEmail", email);
-        session.setAttribute("resetOTP", otp);
-
-        // Gửi email chứa OTP
-        emailService.sendOTPEmail(email, otp);
-
-        model.addAttribute("status", "OTP sent successfully!");
-
-        return "public/forgot-password";
-    }
-
-    // Mapping để cập nhật mật khẩu mới
-    @PostMapping("/forgot-password")
-    public String changePassword(@RequestParam String otp, @RequestParam String newPassword, Model model) {
-        String resetEmail = (String) session.getAttribute("resetEmail");
-        String resetOTP = (String) session.getAttribute("resetOTP");
-
-        if (resetEmail == null || resetOTP == null || !resetOTP.equals(otp)) {
-            model.addAttribute("status", "Invalid OTP. Please enter the correct OTP.");
-            return "public/forgot-password";
-        }
-
-        User user = userRepository.findByEmail(resetEmail);
-        if (user == null) {
-            model.addAttribute("status", "User not found.");
-            return "public/forgot-password";
-        }
-
-        // Update mật khẩu
-        user.setPassword(encodeService.hashCode(newPassword)); // Sử dụng encodeService để mã hóa mật khẩu mới
-        userRepository.save(user);
-
-        model.addAttribute("status", "Password updated successfully!");
-
-        // Xóa các session attribute đã sử dụng
-        session.removeAttribute("resetEmail");
-        session.removeAttribute("resetOTP");
-
-        return "client/index"; // Hoặc trang chủ sau khi đổi mật khẩu thành công
-    }
-
-    // Phương thức sinh mã OTP ngẫu nhiên
-    private String generateOTP() {
-        // Triển khai logic sinh mã OTP ở đây (ví dụ: sử dụng Random)
-        // Đoạn mã mẫu cho mục đích minh họa:
-        Random random = new Random();
-        String otp = String.format("%06d", random.nextInt(999999));
-        return otp;
-    }
+//    @PostMapping("/send-mail")
+//    public String forgotPassword(@RequestParam String email, Model model) {
+//        // Tạo mã OTP ngẫu nhiên và gửi đi
+//        String otp = generateOTP(); // Phần này bạn cần triển khai generateOTP() như đã đề cập ở trên
+//
+//        // Lưu thông tin vào session để sử dụng sau này
+//        session.setAttribute("resetEmail", email);
+//        session.setAttribute("resetOTP", otp);
+//
+//        // Gửi email chứa OTP
+//        emailService.sendOTPEmail(email, otp);
+//
+//        model.addAttribute("status", "OTP sent successfully!");
+//
+//        return "public/forgot-password";
+//    }
+//
+//    @PostMapping("/forgot-password")
+//    public String changePassword(@RequestParam String otp, @RequestParam String newPassword, Model model) {
+//        String resetEmail = (String) session.getAttribute("resetEmail");
+//        String resetOTP = (String) session.getAttribute("resetOTP");
+//
+//        if (resetEmail == null || resetOTP == null || !resetOTP.equals(otp)) {
+//            model.addAttribute("status", "Invalid OTP. Please enter the correct OTP.");
+//            return "public/forgot-password";
+//        }
+//
+//        User user = userRepository.findByEmail(resetEmail);
+//        if (user == null) {
+//            model.addAttribute("status", "User not found.");
+//            return "public/forgot-password";
+//        }
+//
+//        // Update mật khẩu
+//        user.setPassword(encodeService.hashCode(newPassword)); // Sử dụng encodeService để mã hóa mật khẩu mới
+//        userRepository.save(user);
+//
+//        model.addAttribute("status", "Password updated successfully!");
+//
+//        // Xóa các session attribute đã sử dụng
+//        session.removeAttribute("resetEmail");
+//        session.removeAttribute("resetOTP");
+//
+//        return "client/index";
+//    }
+//
+//    // Phương thức sinh mã OTP ngẫu nhiên
+//    private String createOTP() {
+//        Random random = new Random();
+//        String otp = String.format("%06d", random.nextInt(999999));
+//        return otp;
+//    }
 }
