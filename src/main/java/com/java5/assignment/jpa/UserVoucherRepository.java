@@ -16,4 +16,7 @@ public interface UserVoucherRepository extends JpaRepository<UserVoucher, Long> 
     @Query(value = "SELECT uv.voucherID FROM UserVoucher uv WHERE uv.voucherID.startDate < CURRENT_TIMESTAMP AND uv.voucherID.endDate > CURRENT_TIMESTAMP AND uv.voucherID.biggestDiscount <= :amount")
     List<Voucher> findByAmount(@Param("amount") BigDecimal amount);
 
+    @Query(value = "select distinct uv.voucherID from UserVoucher uv")
+    List<UserVoucher> findAll();
+
 }

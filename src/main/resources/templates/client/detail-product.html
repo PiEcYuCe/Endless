@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" name="voucher" id="voucherSelect">
+                        <select style="display: none" class="form-select" name="voucher" id="voucherSelect" type="hidden">
                             <option selected value="-1" data-least-discount="0">---Choose a voucher---</option>
                             <option th:each="item : ${vouchers}"
                                     th:selected="${item.id} == ${versionAttribute?.productVersionID?.id}"

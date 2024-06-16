@@ -1,5 +1,6 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.dto.UserDto;
 import com.java5.assignment.entities.Promotion;
 import com.java5.assignment.entities.User;
 import com.java5.assignment.jpa.OrderRepository;
@@ -184,11 +185,23 @@ public class ManageAccountController {
     }
 
     @PostMapping("/manage-delete-account")
-    public String deleteBrand(@RequestParam("id") long id) {
-        User user = userRepository.findById(id).get();
-        uploadService.remove(userRepository.findById(id).get().getAvatar());
-        userRepository.delete(user);
-        return "redirect:/manage-account";
+    public String deleteBrand(@RequestParam("id") long id, Model model) {
+        UserDto currentUser = authService.getCurrentUser();
+        User userToDelete = userRepository.findById(id).orElse(null);
+
+        if (userToDelete == null) {
+            model.addAttribute("errorMessage", "User not found");
+        } else if (currentUser.getId().equals(userToDelete.getId())) {
+            model.addAttribute("errorMessage", "You cannot delete yourself");
+        } else if (currentUser.getRole() && userToDelete.getRole()) {
+            model.addAttribute("errorMessage", "You cannot delete an admin with the same level");
+        } else {
+            uploadService.remove(userToDelete.getAvatar());
+            userRepository.delete(userToDelete);
+            return "redirect:/manage-account";
+        }
+
+        return "admin/layout";
     }
 
     @GetMapping("/manage-clear-form-user")

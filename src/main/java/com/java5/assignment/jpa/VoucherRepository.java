@@ -11,5 +11,9 @@ import java.util.List;
 public interface VoucherRepository extends JpaRepository<Voucher, Long> {
     @Query(value = "select uv.voucherID from UserVoucher uv where uv.userID.id = :uid")
     List<Voucher> findAllByUserID(@Param("uid") Long id);
+    @Query(value = "select v from Voucher v where current date between v.startDate and v.endDate")
+    List<Voucher> findAllActive();
+
+
 
 }

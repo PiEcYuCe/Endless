@@ -11,10 +11,11 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query(value= "select or from Order or where or.userID.id = :uid")
-    public List<Order> findByUserID(@Param("uid") long id);
+    @Query(value= "select or from Order or where or.userID.id = :uid order by or.id desc")
+    public List<Order> findAllByUserId(@Param("uid") long id);
 
     List<Order> findAllByOrderStatus(String status);
+
 
     int countByOrderStatus(String status);
 
