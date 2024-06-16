@@ -111,39 +111,34 @@ public class ProductVersionService {
         return productInfoList;
     }
 
+    public Page<ProductInfoDTO> getAllProductInfoPage(Pageable pageable) {
+        Page<ProductVersion> productVersions = productVersionRepository.findAll(pageable);
 
-
-    public List<ProductInfoDTO> getAllProductInfoPage(Pageable pageable) {
-        List<ProductVersion> productVersions = productVersionRepository.findAll(pageable).getContent();
-
-        List<ProductInfoDTO> productInfoList = new ArrayList<>();
-        for (ProductVersion productVersion : productVersions) {
-            ProductInfoDTO productInfo = new ProductInfoDTO();
-            productInfo.setId(productVersion.getId());
-            productInfo.setVersionName(productVersion.getVersionName());
-            productInfo.setPrice(productVersion.getPrice());
+        return productVersions.map(productVersion -> {
+            ProductInfoDTO productInfoDTO = new ProductInfoDTO();
+            productInfoDTO.setId(productVersion.getId());
+            productInfoDTO.setVersionName(productVersion.getVersionName());
+            productInfoDTO.setPrice(productVersion.getPrice());
 
             BigDecimal discountedPrice = calculateDiscountedPrice(productVersion);
-            productInfo.setDiscountedPrice(discountedPrice);
-            productInfo.setImage(productVersion.getImage());
+            productInfoDTO.setDiscountedPrice(discountedPrice);
+            productInfoDTO.setImage(productVersion.getImage());
 
             double averageRating = calculateAverageRating(productVersion);
-            productInfo.setAverageRating(averageRating);
-
+            productInfoDTO.setAverageRating(averageRating);
             BigDecimal price = productVersion.getPrice();
             if (price != null && discountedPrice != null && price.compareTo(BigDecimal.ZERO) != 0) {
                 BigDecimal discountPercentage = BigDecimal.ONE
                         .subtract(discountedPrice.divide(price, 2, RoundingMode.HALF_UP))
                         .multiply(BigDecimal.valueOf(100));
-                productInfo.setDiscountPercentage(discountPercentage.intValue());
+                productInfoDTO.setDiscountPercentage(discountPercentage.intValue());
             } else {
-                productInfo.setDiscountPercentage(0);
+                productInfoDTO.setDiscountPercentage(0);
             }
-
-            productInfoList.add(productInfo);
-        }
-        return productInfoList;
+            return productInfoDTO;
+        });
     }
+
 
 
     public ProductInfoDTO getProductInfoById(Long productId) {
@@ -211,16 +206,5 @@ public class ProductVersionService {
         return averageRating;
     }
 
-    public ProductInfoDTO convertToProductInfoDTO(Product product) {
-        ProductInfoDTO productInfoDTO = new ProductInfoDTO();
-        productInfoDTO.setId(product.getId());
-        productInfoDTO.setVersionName(product.getName());
-        return productInfoDTO;
-    }
-
-    public Page<ProductInfoDTO> getAllProducts(Pageable pageable) {
-        Page<Product> productPage = productRepository.findAll(pageable);
-        return productPage.map(this::convertToProductInfoDTO);
-    }
 
 }

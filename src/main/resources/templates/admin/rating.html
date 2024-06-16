@@ -8,9 +8,27 @@
                 <tr>
                     <th>ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Product</th>
+                    <th scope="col">
+                        <div class="d-flex mb-1">
+                            <div class="me-auto p-1">Product</div>
+                            <a th:href="@{'/manage-rating'(sortBy='ProductVersionID.versionName', sortOrder=${sortOrder == 'asc' ? 'desc' : 'asc'})}"
+                               class="p-1 text-decoration-none text-light">
+                                <i class="fas fa-caret-up" th:if="${sortBy == 'ProductVersionID.versionName' && sortOrder == 'asc'}"></i>
+                                <i class="fas fa-caret-down" th:if="${sortBy == 'ProductVersionID.versionName' && sortOrder == 'desc'}"></i>
+                            </a>
+                        </div>
+                    </th>
                     <th scope="col">Date</th>
-                    <th scope="col">Review</th>
+                    <th scope="col">
+                        <div class="d-flex mb-1">
+                            <div class="me-auto p-1">Review</div>
+                            <a th:href="@{'/manage-rating'(sortBy='ratingValue', sortOrder=${sortOrder == 'asc' ? 'desc' : 'asc'})}"
+                               class="p-1 text-decoration-none text-light">
+                                <i class="fa-solid fa-sort-up" th:if="${sortBy == 'ratingValue' && sortOrder == 'asc'}"></i>
+                                <i class="fa-solid fa-caret-down" th:if="${sortBy == 'ratingValue' && sortOrder == 'desc'}"></i>
+                            </a>
+                        </div>
+                    </th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>

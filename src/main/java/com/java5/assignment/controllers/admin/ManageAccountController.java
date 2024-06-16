@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,7 +65,7 @@ public class ManageAccountController {
 
 
     @PostMapping("/manage-add-account")
-    public String addVoucher(@Valid UserModel userModel, BindingResult error, Model model) {
+    public String addAccount(@Valid UserModel userModel, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
 
         if (userRepository.existsByUsername(userModel.getUsername())) {
             error.addError(new FieldError("userModel", "username", "Username already exists"));
@@ -102,8 +103,12 @@ public class ManageAccountController {
         }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
+            redirectAttributes.addFlashAttribute("message", "Error: unable to add account!");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
             return "admin/layout";
         }
+
+        userModel.setRole(userModel.isRole());
 
         User user = new User();
         user.setUsername(userModel.getUsername());
@@ -117,15 +122,19 @@ public class ManageAccountController {
         user.setRole(userModel.isRole());
         user.setAvatar(fileName);
 
-
         userRepository.save(user);
 
+        redirectAttributes.addFlashAttribute("message", "Account added successfully");
+        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/manage-account";
     }
 
     @PostMapping("/manage-edit-account")
     public String editBrand(@RequestParam("id") long id, Model model) {
         User user = userRepository.findById(id).get();
+        if (user == null) {
+            return "redirect:/manage-account";
+        }
         user.setPassword(null);
         model.addAttribute("user", user);
 
@@ -134,8 +143,8 @@ public class ManageAccountController {
     }
 
     @PostMapping("/manage-update-account")
-    public String updateBrand(@Valid UserModel userModel, BindingResult error,
-                              @RequestParam("id") long id, Model model) {
+    public String updateAccount(@Valid UserModel userModel, BindingResult error,
+                              @RequestParam("id") long id, Model model, RedirectAttributes redirectAttributes) {
 
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser == null) {
@@ -153,9 +162,12 @@ public class ManageAccountController {
         }
         if (error.hasErrors()) {
             model.addAttribute("error", error);
+            redirectAttributes.addFlashAttribute("message", "Error: unable to update account!");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
             return "admin/layout";
         }
 
+        userModel.setRole(userModel.isRole());
 
         User user = userRepository.findById(id).get();
 
@@ -180,16 +192,36 @@ public class ManageAccountController {
         user.setAvatar(fileName);
 
         userRepository.save(user);
+        redirectAttributes.addFlashAttribute("message", "Account updated successfully!");
+        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/manage-account";
     }
 
     @PostMapping("/manage-delete-account")
-    public String deleteBrand(@RequestParam("id") long id) {
-        User user = userRepository.findById(id).get();
-        uploadService.remove(userRepository.findById(id).get().getAvatar());
-        userRepository.delete(user);
+    public String deleteAccount(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        User user = userRepository.findById(id).orElse(null);
+
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("message", "Account not found.");
+            redirectAttributes.addFlashAttribute("messageType", "warning");
+        } else if (Boolean.TRUE.equals(user.getStatus())) {
+            redirectAttributes.addFlashAttribute("message", "Cannot delete active accounts.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
+        } else if (Boolean.TRUE.equals(user.getRole())) {
+            redirectAttributes.addFlashAttribute("message", "Admin accounts cannot be deleted.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
+        } else if (orderRepository.existsByUserID(user)) {
+            redirectAttributes.addFlashAttribute("message", "Cannot delete accounts with orders.");
+            redirectAttributes.addFlashAttribute("messageType", "danger");
+        } else {
+            uploadService.remove(user.getAvatar());
+            userRepository.delete(user);
+            redirectAttributes.addFlashAttribute("message", "Account deleted successfully.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        }
         return "redirect:/manage-account";
     }
+
 
     @GetMapping("/manage-clear-form-user")
     public String clearForm() {

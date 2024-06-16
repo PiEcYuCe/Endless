@@ -1,7 +1,11 @@
 package com.java5.assignment.jpa;
 
 import com.java5.assignment.entities.Order;
+
+import com.java5.assignment.entities.User;
+
 import com.java5.assignment.entities.ProductVersion;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +21,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findAllByOrderStatus(String status);
 
+    boolean existsByUserID(User user);
 
     int countByOrderStatus(String status);
 

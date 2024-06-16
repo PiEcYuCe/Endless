@@ -93,6 +93,23 @@ public class OrderController {
         return "client/index";
     }
 
+    @ModelAttribute("Orders")
+    public List<Order> getOrders() {
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        return orderRepository.findByUserID(userDto.getId());
+    }
+
+    @PostMapping("/userCancel/order")
+    public String cancelOrder(@RequestParam("orderId") long orderId) {
+        Order order = orderRepository.findById(orderId).orElse(null);
+        if (order != null) {
+            order.setOrderStatus("Cancelled");
+            orderRepository.save(order);
+        }
+        return "redirect:/order";
+    }
+
+
     @PostMapping("/rating")
     public String addOrder(@ModelAttribute("Order") Order order) {
         UserDto userDto = (UserDto) session.getAttribute("user");
