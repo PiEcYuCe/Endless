@@ -222,9 +222,10 @@ app.controller('myCtrl', function ($scope, $http) {
                         $scope.removeItem(item.id);
                     });
 
-                    // Cập nhật lại tổng số tiền và chiết khấu
-                    $scope.totalAmount = 0;
-                    $scope.discount = 0;
+                    $scope.selectedItems = [];
+                    $scope.productSelected = [];
+                    $scope.selectedItem = null;
+                    $scope.selectedVoucher = '';
 
                     // Cập nhật hiển thị giỏ hàng sau khi xóa
                     $http.get("/api/get-cart-list")

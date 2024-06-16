@@ -21,7 +21,8 @@
                     <tr ng-repeat="item in cartItems">
                         <td class="py-4">
                             <div class="form-check">
-                                <input class="form-check-input checkbox-item" type="checkbox" id="checkbox-{{$index}}" ng-click="toggleSelection(item)">
+                                <input class="form-check-input checkbox-item" type="checkbox" id="checkbox-{{$index}}"
+                                       ng-click="toggleSelection(item)">
                             </div>
                         </td>
                         <td class="px-0 mx-0 col-1 py-3">
@@ -34,13 +35,18 @@
                         </td>
                         <td class="d-flex py-4">
                             <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary btn-minus" type="button" ng-click="decrementQuantity(item)" ng-class="{'disabled': item.quantity == 1}">-</button>
+                                <button class="btn btn-outline-secondary btn-minus" type="button"
+                                        ng-click="decrementQuantity(item)" ng-class="{'disabled': item.quantity == 1}">-
+                                </button>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control text-center" ng-model="item.quantity" ng-change="updateQuantity(item)">
+                                <input type="text" class="form-control text-center" ng-model="item.quantity"
+                                       ng-change="updateQuantity(item)">
                             </div>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary btn-plus" type="button" ng-click="incrementQuantity(item)">+</button>
+                                <button class="btn btn-outline-secondary btn-plus" type="button"
+                                        ng-click="incrementQuantity(item)">+
+                                </button>
                             </div>
                         </td>
                         <td class="py-2">
@@ -81,36 +87,39 @@
                     </div>
                     <div class="input-group col-12">
                         <select class="form-select" ng-model="selectedVoucher" ng-change="selectVoucher()">
-                            <option ng-repeat="voucher in vouchers" value="{{voucher.voucherCode}}" ng-if="voucher.discountLevel > 0 && totalAmount >= voucher.leastBill">
-                                {{voucher.voucherCode}} : Discount {{voucher.discountLevel}}{{voucher.discountForm === 'fixed' ? '$' : '%'}} From ${{voucher.leastDiscount}} to ${{voucher.biggestDiscount}}
+                            <option ng-repeat="voucher in vouchers" value="{{voucher.voucherCode}}"
+                                    ng-if="voucher.discountLevel > 0 && totalAmount >= voucher.leastBill">
+                                {{voucher.voucherCode}} : Discount {{voucher.discountLevel}}{{voucher.discountForm ===
+                                'fixed' ? '$' : '%'}} From ${{voucher.leastDiscount}} to ${{voucher.biggestDiscount}}
                             </option>
                         </select>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-3 d-flex">
+                        <div class="col-2 d-flex">
                             <h6>Amount:</h6>
                         </div>
-                        <div class="col-3 offset-4 text-end d-flex">
-                            <span class="text-danger">{{totalAmount | currency}}</span>
+                        <div class="col-7 offset-3 text-end d-flex">
+                            <span class="text-danger">$ {{totalAmount | number: 2}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 d-flex">
+                        <div class="col-2 d-flex">
                             <h6>Discount:</h6>
                         </div>
-                        <div class="col-3 offset-4 text-end d-flex">
-                            <span class="text-danger">{{discount | currency}}</span>
+                        <div class="col-6 offset-3 text-end d-flex">
+                            <span class="text-danger">$ {{discount | number: 2}}</span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-3 d-flex">
+                        <div class="col-2 d-flex">
                             <h3 class="text-danger">Total:</h3>
                         </div>
-                        <div class="col-3 offset-4 text-end d-flex">
-                            <h3 class="text-danger">{{totalAmount - discount | currency}}</h3>
+                        <div class="col-7 offset-3 text-end d-flex">
+                            <h3 class="text-danger">$ {{totalAmount - discount | number: 2}}</h3>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="model" data-bs-target="#notificationModal" ng-click="submitOrder()">
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="model"
+                            data-bs-target="#notificationModal" ng-click="submitOrder()">
                         Buy
                     </button>
                 </form>
@@ -120,12 +129,12 @@
 </main>
 
 
-
-<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content text-center">
             <div class="modal-header">
-                <h5 class="modal-title" id="notificationModalLabel">
+                <h5 class="modal-title text-center" id="notificationModalLabel">
                     <i ng-class="{
                         'fas fa-times-circle fa-2x text-danger': notifiMessage.includes('Failed'),
                         'fas fa-info-circle fa-2x text-info': notifiMessage.includes('Please'),
@@ -142,4 +151,4 @@
 </div>
 
 
-    <script src="/js/handleCartClient.js"></script>
+<script src="/js/handleCartClient.js"></script>

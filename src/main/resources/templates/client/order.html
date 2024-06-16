@@ -34,11 +34,11 @@
                                     <td class="px-5">{{item.id}}</td>
                                     <td class="px-5">{{item.orderDate}}</td>
                                     <td class="px-5">$ {{item.totalMoney}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{ item.id }}">
-                                            <i class="bi bi-eye-fill"></i> View
+                                    <td class="row">
+                                        <button type="button" class="btn btn-primary col-2 offset-4" ng-click="getID($event)" id="{{ item.id }}">
+                                            <i class="fa-regular fa-eye"></i> 
                                         </button>
-                                        <form action="/cancel/order" method="post">
+                                        <form action="/cancel/order" method="post" class="col-3">
                                             <input type="hidden" name="orderId" value="{{ item.id }}">
                                             <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
                                         </form>
@@ -66,7 +66,7 @@
                                     <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{ item.id}}">
-                                            <i class="bi bi-eye-fill"></i> View
+                                            <i class="fa-regular fa-eye"></i> 
                                         </button>
                                     </td>
                                 </tr>
@@ -92,10 +92,10 @@
                                     <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" ng-click="getID($event)" id="{{item.id}}">
-                                            <i class="bi bi-eye-fill"></i> View
+                                            <i class="fa-regular fa-eye"></i> 
                                         </button>
                                         <button type="button" class="btn btn-warning" id="rating-{{item.id}}" onclick="showRatingModal(this)">
-                                            <i class="bi bi-eye-fill"></i> Evaluate
+                                            <i class="fa-regular fa-eye"></i> Evaluate
                                         </button>
                                     </td>
                                 </tr>
@@ -121,7 +121,7 @@
                                     <td class="px-5">$ {{item.totalMoney}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" ng-click="getID($event)" id="{{ item.id }}">
-                                            <i class="bi bi-eye-fill"></i> View
+                                            <i class="fa-regular fa-eye"></i> 
                                         </button>
                                     </td>
                                 </tr>

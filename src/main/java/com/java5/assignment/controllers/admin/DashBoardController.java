@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.awt.*;
 import java.util.List;
@@ -50,13 +51,13 @@ public class DashBoardController {
         return orderService.getAllOrdersDto();
     }
 
-    @RequestMapping("/dashboard")
+    @GetMapping("/dashboard")
     public String get() {
         return "admin/layout";
     }
 
     @PostMapping("/admin/cancel/order")
-    public String cancelOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check ,Model model) {
+    public String cancelOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check , RedirectAttributes redirectAttributes) {
         if(check){
             Order order = orderRepository.findById(orderId).orElse(null);
             if (order != null && order.getOrderStatus().equals("Processing")) {
@@ -65,30 +66,32 @@ public class DashBoardController {
                     orderRepository.save(order);
                     SuccessModal successModal = new SuccessModal("Order cancellation successful !");
                     emailService.sendCancelOrder(order.getId(), order.getUserID().getEmail());
-                    model.addAttribute("successModal", successModal);
+                    redirectAttributes.addFlashAttribute("successModal", successModal);
+                    return "redirect:/dashboard";
                 } catch (MessagingException e) {
                     ErrorModal errorModal = new ErrorModal("We cannot find this order information!");
-                    model.addAttribute("errorModal", errorModal);
-                    System.out.println(e);
+                    redirectAttributes.addFlashAttribute("errorModal", errorModal);
+                    return "redirect:/dashboard";
                 }
             }
             else {
                 ErrorModal errorModal = new ErrorModal("Orders that have been processed or previously canceled");
-                model.addAttribute("errorModal", errorModal);
+                redirectAttributes.addFlashAttribute("errorModal", errorModal);
+                return "redirect:/dashboard";
             }
         }
         else{
             String message = "Do you want to delete this order?";
             String text = "Confirm";
-            String link = "order?orderId="+orderId;
+            String link = "/admin/cancel/order?orderId="+orderId;
             WarningModal warningModal = new WarningModal(message, text, link);
-            model.addAttribute("warningModal", warningModal);
+            redirectAttributes.addFlashAttribute("warningModal", warningModal);
+            return "redirect:/dashboard";
         }
-        return "forward:/dashboard";
     }
 
     @PostMapping("/admin/confirm/order")
-    public String confirmOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check ,Model model) {
+    public String confirmOrder(@RequestParam("orderId") long orderId, @RequestParam(name = "check", defaultValue = "false") boolean check ,RedirectAttributes redirectAttributes) {
         if (check) {
             Order order = orderRepository.findById(orderId).orElse(null);
             if (order != null) {
@@ -96,25 +99,24 @@ public class DashBoardController {
                     order.setOrderStatus("Shipping");
                     orderRepository.save(order);
                     SuccessModal successModal = new SuccessModal("Order confirmation successful!");
-
-                    model.addAttribute("successModal", successModal);
+                    redirectAttributes.addFlashAttribute("successModal", successModal);
                 } else {
                     ErrorModal errorModal = new ErrorModal("Order has already been cancelled and cannot be confirmed.");
-                    model.addAttribute("errorModal", errorModal);
+                    redirectAttributes.addFlashAttribute("errorModal", errorModal);
                 }
             } else {
                 ErrorModal errorModal = new ErrorModal("Order not found.");
-                model.addAttribute("errorModal", errorModal);
+                redirectAttributes.addFlashAttribute("errorModal", errorModal);
             }
         } else {
             String message = "Do you want to confirm this order?";
             String text = "Confirm";
-            String link = "order?orderId=" + orderId;
+            String link = "/admin/confirm/order?orderId=" + orderId;
             WarningModal warningModal = new WarningModal(message, text, link);
-            model.addAttribute("warningModal", warningModal);
+            redirectAttributes.addFlashAttribute("warningModal", warningModal);
         }
 
-        return "forward:/dashboard";
+        return "redirect:/dashboard";
     }
 
 
