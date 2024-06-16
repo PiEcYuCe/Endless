@@ -1,12 +1,10 @@
 package com.java5.assignment.controllers.client;
 
-import com.java5.assignment.dto.CartInfo;
-import com.java5.assignment.dto.UserDto;
-import com.java5.assignment.dto.UserInfoDto;
-import com.java5.assignment.dto.VoucherDto;
+import com.java5.assignment.dto.*;
 import com.java5.assignment.entities.*;
 import com.java5.assignment.jpa.*;
 import com.java5.assignment.services.CartService;
+import com.java5.assignment.services.OrderService;
 import com.java5.assignment.services.UserService;
 import com.java5.assignment.services.VoucherService;
 import com.java5.assignment.utils.Page;
@@ -48,6 +46,10 @@ public class OrderController {
 
     @Autowired
     private VoucherService voucherService;
+
+    @Autowired
+    private OrderService orderService;
+
     @Autowired
     private ProductVersionRepository productVersionRepository;
 
@@ -56,12 +58,15 @@ public class OrderController {
         return Page.route.get(PageType.ORDER);
     }
 
+    @GetMapping("/get-all-order-user")
+    public List<OrderDto> getAllOrderUser() {
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        return orderService.getAllOrdersDtoByUserID(userDto.getId());
+    }
+
 
     @GetMapping("/order")
     public String goToPage(Model model) {
-        UserDto userDto = (UserDto)session.getAttribute("user");
-        User user = userRepository.findById(userDto.getId()).get();
-        model.addAttribute("user", user);
         return "client/index";
     }
 
@@ -69,8 +74,7 @@ public class OrderController {
     public String addOrder(@ModelAttribute("Order") Order order) {
         UserDto userDto = (UserDto)session.getAttribute("user");
         User user = userRepository.findById(userDto.getId()).get();
-
-        return "";
+        return "redirect:/order";
     }
 
     @GetMapping("/api/get-order-details-list")
