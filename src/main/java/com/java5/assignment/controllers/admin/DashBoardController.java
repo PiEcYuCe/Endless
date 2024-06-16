@@ -7,8 +7,10 @@ import com.java5.assignment.entities.OrderDetail;
 import com.java5.assignment.jpa.OrderDetailRepository;
 import com.java5.assignment.jpa.OrderRepository;
 import com.java5.assignment.services.CartService;
+import com.java5.assignment.services.EmailService;
 import com.java5.assignment.services.OrderService;
 import com.java5.assignment.utils.*;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,9 @@ public class DashBoardController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    EmailService emailService;
+
     @ModelAttribute("page")
     public Page page() {
         return Page.route.get(PageType.ADMIN_DASHBOARD);
@@ -56,9 +61,16 @@ public class DashBoardController {
             Order order = orderRepository.findById(orderId).orElse(null);
             if (order != null && order.getOrderStatus().equals("Processing")) {
                 order.setOrderStatus("Cancelled");
-                orderRepository.save(order);
-                SuccessModal successModal = new SuccessModal("Order cancellation successful !");
-                model.addAttribute("successModal", successModal);
+                try{
+                    orderRepository.save(order);
+                    SuccessModal successModal = new SuccessModal("Order cancellation successful !");
+                    emailService.sendCancelOrder(order.getId(), order.getUserID().getEmail());
+                    model.addAttribute("successModal", successModal);
+                } catch (MessagingException e) {
+                    ErrorModal errorModal = new ErrorModal("We cannot find this order information!");
+                    model.addAttribute("errorModal", errorModal);
+                    System.out.println(e);
+                }
             }
             else {
                 ErrorModal errorModal = new ErrorModal("Orders that have been processed or previously canceled");
@@ -84,6 +96,7 @@ public class DashBoardController {
                     order.setOrderStatus("Shipping");
                     orderRepository.save(order);
                     SuccessModal successModal = new SuccessModal("Order confirmation successful!");
+
                     model.addAttribute("successModal", successModal);
                 } else {
                     ErrorModal errorModal = new ErrorModal("Order has already been cancelled and cannot be confirmed.");
