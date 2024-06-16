@@ -3,19 +3,21 @@
         <div class="card-body">
             <form th:action="${attribute == null} ? '/manage-add-attribute' : '/manage-update-attribute?id='+${attribute?.id}"
                   method="post"
-                  enctype="multipart/form-data">
+                  enctype="multipart/form-data"
+                  th:object="${attribute}">
                 <div class="mb-3">
                     <label class="form-label">Attribute Name</label>
                     <input th:value="${attribute?.attributeName}" class="form-control" id="" name="attributeName"
-                          >
+                    >
                     <small class="text-danger"
                            th:if='${error?.getFieldError("attributeName")!=null}'
                            th:text='${error?.getFieldError("attributeName")?.getDefaultMessage()}'></small>
                 </div>
                 <div class="mb-3">
                     <label for="attributeNote" class="form-label">Attribute Note</label>
-                    <input th:value="${attribute?.attributeNote}" class="form-control" id="attributeNote" name="attributeNote" rows="3"
-                         >
+                    <input th:value="${attribute?.attributeNote}" class="form-control" id="attributeNote"
+                           name="attributeNote" rows="3"
+                    >
                     <p th:text="${error1}" class="text-danger"></p>
                 </div>
 
@@ -32,6 +34,7 @@
         <table class="table table-striped">
             <thead class="table-dark">
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Attribute Name</th>
                 <th scope="col">Attribute Note</th>
                 <th scope="col"></th>
@@ -40,6 +43,7 @@
             <tbody>
             <!-- Điền dữ liệu của category từ cơ sở dữ liệu vào đây -->
             <tr th:each="item : ${attributes}">
+                <td th:text="${item.id}"></td>
                 <td th:text="${item.attributeName}"></td>
                 <td th:text="${item.attributeNote}"></td>
                 <td>

@@ -8,10 +8,10 @@
 <div class="container mt-5 bg-light">
     <div class="card mb-5">
         <div class="card-body">
-            <form th:action="${versionAttribute == null} ? '/manage-add-version-attribute' : '/manage-update-version-attribute?id='+${versionAttribute?.id}"
-                  method="post"
-                  enctype="multipart/form-data">
-                <div class="row">
+            <form th:action="${versionAttribute == null} ? '/manage-add-version-attribute' : '/manage-update-version-attribute?id='+${versionAttribute?.id}" method="post" enctype="multipart/form-data">
+
+
+            <div class="row">
                     <div class="col-6">
                         <div class="col-auto">
                             <label class="col-form-label">Product Version Name:</label>
@@ -51,7 +51,7 @@
         </div>
     </div>
     <!-- Version Attribute Table -->
-    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 300px">
+    <div class="d-flex mt-4" style="overflow-y: scroll; max-height: 450px">
         <table class="table table-striped">
             <thead class="table-dark">
             <tr>

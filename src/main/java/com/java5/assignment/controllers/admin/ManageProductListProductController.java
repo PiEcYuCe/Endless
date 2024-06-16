@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -61,6 +63,13 @@ public class ManageProductListProductController {
         return attributeValueRepository.findAll();
     }
 
+    @PostMapping("/manage-product-delete")
+    public String deleteProductVersion(@RequestParam("id") Long id) {
+        // Xoá sản phẩm với id được chỉ định
+        productVersionRepository.deleteById(id);
+        // Redirect về trang quản lý danh sách sản phẩm sau khi xoá
+        return "redirect:/manage-product-list";
+    }
 
 }
 

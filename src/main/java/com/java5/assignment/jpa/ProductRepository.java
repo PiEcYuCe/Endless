@@ -14,6 +14,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     boolean existsByName(String name);
 
+    boolean existsByNameAndCategoryID(String name, Category category);
+
+
     List<Product> findByCategoryID(Category categoryID, Pageable pageable);
 
     @Query(value = """

@@ -35,7 +35,7 @@
         </thead>
         <tbody>
         <tr th:each="item : ${productversions}" class="align-items-center">
-            <th th:text="${item?.id}"></th>
+            <td th:text="${item?.id}"></td>
             <td><input th:value="${item?.productID?.name}" class="input-group-text w-200" type="text"></td>
             <td><input th:value="${item?.versionName}" class="input-group-text"></td>
             <td><input th:value="${item?.purchasePrice}" class="input-group-text"></td>
@@ -43,24 +43,22 @@
             <td><input th:value="${item?.quantity}" class="input-group-text"></td>
             <td>
                 <div class="form-check form-switch">
-                    <input th:value="${item?.status}" class="form-check-input" type="checkbox"
-                           id="flexSwitchCheckDefault"
-                           th:checked="${item?.status}">
+                    <input th:value="${item?.status}" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" th:checked="${item?.status}">
                 </div>
             </td>
             <td>
-                <img class="img-fluid " th:src="${item?.image}">
+                <img class="img-fluid" th:src="${item?.image}">
             </td>
             <td>
-<!--                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"-->
-<!--                        data-bs-target="#viewModal"><i class="bi bi-eye"></i></button>-->
-                <button type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                <form th:action="'/manage-product-delete'" method="post">
+                    <input type="hidden" name="id" th:value="${item?.id}">
+                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </form>
             </td>
         </tr>
-
-
         </tbody>
     </table>
+
 </div>
 
 

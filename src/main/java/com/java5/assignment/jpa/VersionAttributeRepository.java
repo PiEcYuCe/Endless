@@ -10,6 +10,12 @@ import java.util.List;
 
 
 public interface VersionAttributeRepository extends JpaRepository<VersionAttribute, Long> {
+
+
+    List<VersionAttribute> findAllByOrderByIdDesc();
+
+
+
     @Query("SELECT v.attributeValueID.attributeID.attributeName, v.attributeValueID.value " +
             "FROM VersionAttribute v WHERE v.productVersionID.id = :id")
     List<Object[]> findByProductVersionID(@Param("id") Long id);

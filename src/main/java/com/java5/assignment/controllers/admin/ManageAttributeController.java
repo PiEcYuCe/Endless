@@ -66,13 +66,6 @@ public class ManageAttributeController {
         return "redirect:/manage-attribute";
     }
 
-    @PostMapping("/manage-edit-attribute")
-    public String editVoucher(@RequestParam("id") long id, Model model) {
-        Attribute attribute = attributeRepository.findById(id).get();
-        model.addAttribute("attribute", attribute);
-        return "admin/layout";
-
-    }
 
     @PostMapping("/manage-update-attribute")
     public String updateVoucher(@Valid AtributeModel atributeModel, BindingResult error, Model model, @RequestParam("id") long id) {
@@ -81,13 +74,24 @@ public class ManageAttributeController {
             return "admin/layout";
 
         }
-
-        Attribute attribute = new Attribute();
+        Attribute attribute = attributeRepository.findById(id).orElse(null);
+        if (attribute == null) {
+            // Xử lý khi không tìm thấy attribute
+            return "admin/layout";
+        }
         attribute.setAttributeName(atributeModel.getAttributeName());
         attribute.setAttributeNote(atributeModel.getAttributeNote());
 
         attributeRepository.save(attribute);
         return "redirect:/manage-attribute";
+    }
+
+    @PostMapping("/manage-edit-attribute")
+    public String editVoucher(@RequestParam("id") long id, Model model) {
+        Attribute attribute = attributeRepository.findById(id).get();
+        model.addAttribute("attribute", attribute);
+        return "admin/layout";
+
     }
 
     @PostMapping("/manage-delete-attribute")

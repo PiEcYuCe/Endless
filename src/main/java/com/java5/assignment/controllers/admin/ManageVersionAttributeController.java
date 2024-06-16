@@ -12,6 +12,7 @@ import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,8 +58,13 @@ public class ManageVersionAttributeController {
 
     @ModelAttribute("versionAttributes")
     public List<VersionAttribute> getVersionAttributes() {
-        return versionAttributeRepository.findAll();
+        return versionAttributeRepository.findAllByOrderByIdDesc();
+
     }
+
+
+
+
 
     @PostMapping("/manage-add-version-attribute")
     public String addVersionAttribute(@Valid VersionAttributeModel versionAttributeModel, BindingResult error, Model model) {
@@ -90,6 +96,8 @@ public class ManageVersionAttributeController {
             model.addAttribute("error", error);
             return "admin/layout";
         }
+
+
         VersionAttribute versionAttribute = new VersionAttribute();
         versionAttribute.setProductVersionID(productVersionRepository.findById(versionAttributeModel.getProductVersionID()));
         versionAttribute.setAttributeValueID(attributeValueRepository.findById(versionAttributeModel.getAttributeValueID()).get());

@@ -14,7 +14,8 @@ import lombok.Setter;
 public class ProductModel {
     @NotBlank(message = "Please enter product name")
     private String productName;
-    @NotBlank(message = "Please enter product description")
+
+
     private String productDescription;
 
     @Min(value = 0, message = "Please select Category")

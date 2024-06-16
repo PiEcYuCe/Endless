@@ -78,10 +78,12 @@ public class ManageProductController {
 
     @PostMapping("/manage-add-product")
     public String addPro(@Valid ProductModel productModel, BindingResult error, Model model) {
+        Category category = categoryRepository.findById(productModel.getProductCategory()).orElse(null);
 
-        if (productRepository.existsByName(productModel.getProductName())) {
-            error.addError(new FieldError("productModel", "productName", "Product name already exists"));
+        if (category != null && productRepository.existsByNameAndCategoryID(productModel.getProductName(), category)) {
+            error.addError(new FieldError("productModel", "productName", "Product name already exists in the selected category"));
         }
+
         if (error.hasErrors()) {
             model.addAttribute("error", error);
             return "admin/layout";
@@ -91,15 +93,51 @@ public class ManageProductController {
         product.setName(productModel.getProductName());
         product.setStatus(productModel.isProductStatus());
         product.setDescription(productModel.getProductDescription());
-
-        product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).get());
+        product.setCategoryID(category);
         product.setBrandID(brandRepository.findById(productModel.getProductBrand()).get());
-
 
         productRepository.save(product);
 
         return "redirect:/manage-product";
     }
+
+
+
+    @PostMapping("/manage-update-product")
+    public String updatePro(@Valid ProductModel productModel, BindingResult error,
+                              @RequestParam("id") long id, Model model) {
+        if (error.hasErrors()) {
+            model.addAttribute("error", error);
+            return "admin/layout";
+        }
+
+        Product product = productRepository.findById(id).orElse(null);
+        if (product == null) {
+            // Xử lý trường hợp không tìm thấy sản phẩm
+            model.addAttribute("error", "Không tìm thấy sản phẩm");
+            return "admin/layout";
+        }
+
+        product.setName(productModel.getProductName());
+        product.setStatus(productModel.isProductStatus());
+        product.setDescription(productModel.getProductDescription());
+        product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).orElse(null));
+        product.setBrandID(brandRepository.findById(productModel.getProductBrand()).orElse(null));
+
+        productRepository.save(product);
+        return "redirect:/manage-product";
+    }
+
+
+
+
+    @PostMapping("/manage-delete-product")
+    public String deletePro(@RequestParam("id") long id) {
+        Product product = productRepository.findById(id).get();
+        productRepository.delete(product);
+        return "redirect:/manage-product";
+    }
+
 
     @PostMapping("/manage-edit-product")
     public String editPro(@RequestParam("id") long id, Model model) {
@@ -108,31 +146,6 @@ public class ManageProductController {
         return "admin/layout";
     }
 
-    @PostMapping("/manage-update-product")
-    public String updateBrand(@Valid ProductModel productModel, BindingResult error,
-                              @RequestParam("id") long id, Model model) {
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
-        }
-        Product product = new Product();
-        product.setName(productModel.getProductName());
-        product.setStatus(productModel.isProductStatus());
-        product.setDescription(productModel.getProductDescription());
-        product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).get());
-        product.setBrandID(brandRepository.findById(productModel.getProductBrand()).get());
-
-
-        productRepository.save(product);
-        return "redirect:/manage-product";
-    }
-
-    @PostMapping("/manage-delete-product")
-    public String deleteBrand(@RequestParam("id") long id) {
-        Product product = productRepository.findById(id).get();
-        productRepository.delete(product);
-        return "redirect:/manage-product";
-    }
 
     @GetMapping("/manage-clear-product")
     public String clearForm() {
