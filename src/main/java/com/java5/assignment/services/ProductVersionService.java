@@ -1,6 +1,6 @@
 package com.java5.assignment.services;
 
-import com.java5.assignment.dto.ProductInfoDTO;
+import com.java5.assignment.dto.*;
 import com.java5.assignment.entities.*;
 import com.java5.assignment.jpa.ProductRepository;
 import com.java5.assignment.jpa.ProductVersionRepository;
@@ -23,14 +23,6 @@ import java.util.Set;
 public class ProductVersionService {
     @Autowired
     private ProductVersionRepository productVersionRepository;
-
-    @Autowired
-    private PromotionProductRepository promotionProductRepository;
-
-    @Autowired
-    private RatingRepository ratingRepository;
-    @Autowired
-    private ProductRepository productRepository;
 
     public List<ProductInfoDTO> getProductInfoByCategory(Category category, Pageable pageable) {
         List<ProductVersion> productVersions = productVersionRepository.findByCategoryId(category.getId(), pageable);
@@ -204,6 +196,23 @@ public class ProductVersionService {
 
         double averageRating = (double) totalRating / ratings.size();
         return averageRating;
+    }
+
+    public List<ProductVersionDto1> getAllForPromotion(){
+        List<ProductVersion> productVersions = productVersionRepository.findAll();
+        List<ProductVersionDto1> productVersionsDto = new ArrayList<>();
+        for (ProductVersion productVersion : productVersions) {
+            Product prod = productVersion.getProductID();
+            Brand brand = prod.getBrandID();
+            Category category = prod.getCategoryID();
+            BrandDto brandDto = new BrandDto(brand.getId(), brand.getName());
+            CategoryDto categoryDto = new CategoryDto(category.getId(), category.getName());
+            ProductDto1 productDto1 = new ProductDto1(prod.getId(), categoryDto, brandDto, prod.getName(), prod.getDescription(), prod.getStatus());
+            ProductVersionDto1 productVersionDto1 = new ProductVersionDto1(productVersion.getId(), productDto1, productVersion.getVersionName(),
+                    productVersion.getPurchasePrice(), productVersion.getPrice(), productVersion.getQuantity(), productVersion.getStatus(), productVersion.getImage());
+            productVersionsDto.add(productVersionDto1);
+        }
+        return productVersionsDto;
     }
 
 

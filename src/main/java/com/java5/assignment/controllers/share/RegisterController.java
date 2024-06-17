@@ -78,6 +78,10 @@ public class RegisterController {
             newUser.setPassword(encode.hashCode(registerModel.getPassword()));
             newUser.setRole(false);
             newUser.setStatus(true);
+            newUser.setFullname("");
+            newUser.setAddress("");
+            newUser.setPhone("");
+            newUser.setAvatar("");
             userRepository.save(newUser);
         }
         return "public/login";

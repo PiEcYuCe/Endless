@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface PromotionDetailRepository extends JpaRepository<PromotionDetail, Long> {
-    @Query("SELECT pd.discountLevel FROM PromotionDetail pd WHERE pd.id = :promotionDetailId")
-    Integer findDiscountLevelById(@Param("promotionDetailId") Long promotionDetailId);
+
+    @Query("SELECT pd FROM PromotionDetail pd WHERE pd.promotionID.id = :pid")
+    List<PromotionDetail> findAllByPromotionID(@Param("pid") Long promotionDetailId);
 }
