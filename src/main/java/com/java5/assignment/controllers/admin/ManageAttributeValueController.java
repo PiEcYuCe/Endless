@@ -5,8 +5,10 @@ import com.java5.assignment.entities.AttributeValue;
 import com.java5.assignment.jpa.AttributeRepository;
 import com.java5.assignment.jpa.AttributeValueRepository;
 import com.java5.assignment.model.AttributeValueModel;
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,23 +58,28 @@ public class ManageAttributeValueController {
 
 
     @PostMapping("/manage-add-attribute-value")
-    public String addVoucher(@Valid AttributeValueModel attributeValueModel, BindingResult error, Model model) {
-        if (attributeValueRepository.existsByValue(attributeValueModel.getValue())) {
-            error.addError(new FieldError("attributeValueModel", "value", "Attribute value already exists"));
+    public String addAttributeValue(@Valid AttributeValueModel attributeValueModel, BindingResult errors,
+                                    RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to add attribute value. Please check the form and try again."));
+            return "redirect:/manage-attribute-value";
         }
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
+
+        if (attributeValueRepository.existsByValue(attributeValueModel.getValue())) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute value already exists."));
+            return "redirect:/manage-attribute-value";
         }
 
         AttributeValue attributeValue = new AttributeValue();
-        attributeValue.setAttributeID(attributeRepository.findById(attributeValueModel.getAttributeID()).get());
+        attributeValue.setAttributeID(attributeRepository.findById(attributeValueModel.getAttributeID()).orElse(null));
         attributeValue.setValue(attributeValueModel.getValue());
 
         attributeValueRepository.save(attributeValue);
 
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Attribute value added successfully!"));
         return "redirect:/manage-attribute-value";
     }
+
 
     @PostMapping("/manage-edit-attribute-value")
     public String editVoucher(@RequestParam("id") long id, Model model) {
@@ -82,27 +90,47 @@ public class ManageAttributeValueController {
     }
 
     @PostMapping("/manage-update-attribute-value")
-    public String updateVoucher(@Valid AttributeValueModel attributeValueModel, BindingResult error, Model model,
-                                @RequestParam("id") long id) {
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
-
+    public String updateAttributeValue(@Valid AttributeValueModel attributeValueModel, BindingResult errors,
+                                       RedirectAttributes redirectAttributes, @RequestParam("id") long id) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to update attribute value. Please check the form and try again."));
+            return "redirect:/manage-attribute-value";
         }
-        AttributeValue attributeValue = new AttributeValue();
-        attributeValue.setAttributeID(attributeRepository.findById(attributeValueModel.getAttributeID()).get());
+
+        AttributeValue attributeValue = attributeValueRepository.findById(id).orElse(null);
+        if (attributeValue == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute value not found."));
+            return "redirect:/manage-attribute-value";
+        }
+
+        if (!attributeValue.getValue().equals(attributeValueModel.getValue()) &&
+                attributeValueRepository.existsByValue(attributeValueModel.getValue())) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute value already exists."));
+            return "redirect:/manage-attribute-value";
+        }
+
         attributeValue.setValue(attributeValueModel.getValue());
+        attributeValue.setAttributeID(attributeRepository.findById(attributeValueModel.getAttributeID()).orElse(null));
 
         attributeValueRepository.save(attributeValue);
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Attribute value updated successfully!"));
         return "redirect:/manage-attribute-value";
     }
 
+
     @PostMapping("/manage-delete-attribute-value")
-    public String removeVoucher(@RequestParam("id") long id) {
-        AttributeValue attributeValue = attributeValueRepository.findById(id).get();
-        attributeValueRepository.delete(attributeValue);
+    public String removeAttributeValue(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        AttributeValue attributeValue = attributeValueRepository.findById(id).orElse(null);
+        if (attributeValue == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute value not found."));
+        } else {
+            attributeValueRepository.delete(attributeValue);
+            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Attribute value deleted successfully!"));
+        }
         return "redirect:/manage-attribute-value";
     }
+
 
     @GetMapping("/manage-clear-attribute-value")
     public String clearForm() {

@@ -3,8 +3,10 @@ package com.java5.assignment.controllers.admin;
 import com.java5.assignment.entities.Attribute;
 import com.java5.assignment.jpa.AttributeRepository;
 import com.java5.assignment.model.AtributeModel;
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,24 +50,29 @@ public class ManageAttributeController {
     }
 
     @PostMapping("/manage-add-attribute")
-    public String addVoucher(@Valid AtributeModel atributeModel, BindingResult error, Model model) {
-
-        if (attributeRepository.existsByAttributeName(atributeModel.getAttributeName())) {
-            error.addError(new FieldError("atributeModel", "attributeName", "Attribute name already exists"));
+    public String addAttribute(@Valid AtributeModel attributeModel, BindingResult errors,
+                               RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to add attribute. Please check the form and try again."));
+            return "redirect:/manage-attribute";
         }
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
+
+        if (attributeRepository.existsByAttributeName(attributeModel.getAttributeName())) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute name already exists."));
+            return "redirect:/manage-attribute";
         }
 
         Attribute attribute = new Attribute();
-        attribute.setAttributeName(atributeModel.getAttributeName());
-        attribute.setAttributeNote(atributeModel.getAttributeNote());
+        attribute.setAttributeName(attributeModel.getAttributeName());
+        attribute.setAttributeNote(attributeModel.getAttributeNote());
 
         attributeRepository.save(attribute);
 
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Attribute added successfully!"));
         return "redirect:/manage-attribute";
     }
+
+
 
     @PostMapping("/manage-edit-attribute")
     public String editVoucher(@RequestParam("id") long id, Model model) {
@@ -75,27 +83,49 @@ public class ManageAttributeController {
     }
 
     @PostMapping("/manage-update-attribute")
-    public String updateVoucher(@Valid AtributeModel atributeModel, BindingResult error, Model model, @RequestParam("id") long id) {
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
-
+    public String updateAttribute(@Valid AtributeModel attributeModel, BindingResult errors,
+                                  RedirectAttributes redirectAttributes, @RequestParam("id") long id) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to update attribute. Please check the form and try again."));
+            return "redirect:/manage-attribute";
         }
 
-        Attribute attribute = new Attribute();
-        attribute.setAttributeName(atributeModel.getAttributeName());
-        attribute.setAttributeNote(atributeModel.getAttributeNote());
+        Attribute attribute = attributeRepository.findById(id).orElse(null);
+        if (attribute == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute not found."));
+            return "redirect:/manage-attribute";
+        }
+
+        if (!attribute.getAttributeName().equals(attributeModel.getAttributeName()) &&
+                attributeRepository.existsByAttributeName(attributeModel.getAttributeName())) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute name already exists."));
+            return "redirect:/manage-attribute";
+        }
+
+        attribute.setAttributeName(attributeModel.getAttributeName());
+        attribute.setAttributeNote(attributeModel.getAttributeNote());
 
         attributeRepository.save(attribute);
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Attribute updated successfully!"));
         return "redirect:/manage-attribute";
     }
 
+
     @PostMapping("/manage-delete-attribute")
-    public String removeVoucher(@RequestParam("id") long id) {
-        Attribute attribute = attributeRepository.findById(id).get();
+    public String removeAttribute(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        Attribute attribute = attributeRepository.findById(id).orElse(null);
+        if (attribute == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute not found."));
+            return "redirect:/manage-attribute";
+        }
+
         attributeRepository.delete(attribute);
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Attribute deleted successfully!"));
         return "redirect:/manage-attribute";
     }
+
 
     @GetMapping("/manage-clear-attribute")
     public String clearForm() {

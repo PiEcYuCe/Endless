@@ -75,6 +75,9 @@ public class User {
     @Column(name = "Address")
     private String address;
 
+    @Column(name = "ResetPasswordToken")
+    private String resetPasswordToken;
+
     @OneToMany(mappedBy = "userID")
     private Set<Cart> carts = new LinkedHashSet<>();
 

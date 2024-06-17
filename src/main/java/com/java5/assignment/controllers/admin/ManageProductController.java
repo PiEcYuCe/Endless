@@ -9,9 +9,11 @@ import com.java5.assignment.jpa.CategoryRepository;
 import com.java5.assignment.jpa.ProductRepository;
 import com.java5.assignment.model.BrandModel;
 import com.java5.assignment.model.VoucherModel;
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.ProductModel;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -77,29 +80,29 @@ public class ManageProductController {
 
 
     @PostMapping("/manage-add-product")
-    public String addPro(@Valid ProductModel productModel, BindingResult error, Model model) {
-
+    public String addPro(@Valid ProductModel productModel, BindingResult errors, RedirectAttributes redirectAttributes) {
         if (productRepository.existsByName(productModel.getProductName())) {
-            error.addError(new FieldError("productModel", "productName", "Product name already exists"));
+            errors.addError(new FieldError("productModel", "productName", "Product name already exists"));
         }
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
+
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to add product. Please check the form and try again."));
+            return "redirect:/manage-product";
         }
 
         Product product = new Product();
         product.setName(productModel.getProductName());
         product.setStatus(productModel.isProductStatus());
         product.setDescription(productModel.getProductDescription());
-
-        product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).get());
-        product.setBrandID(brandRepository.findById(productModel.getProductBrand()).get());
-
+        product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).orElse(null));
+        product.setBrandID(brandRepository.findById(productModel.getProductBrand()).orElse(null));
 
         productRepository.save(product);
 
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Product added successfully!"));
         return "redirect:/manage-product";
     }
+
 
     @PostMapping("/manage-edit-product")
     public String editPro(@RequestParam("id") long id, Model model) {
@@ -109,30 +112,45 @@ public class ManageProductController {
     }
 
     @PostMapping("/manage-update-product")
-    public String updateBrand(@Valid ProductModel productModel, BindingResult error,
-                              @RequestParam("id") long id, Model model) {
+    public String updateProduct(@Valid ProductModel productModel, BindingResult error,
+                                @RequestParam("id") long id, RedirectAttributes redirectAttributes) {
         if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to update product. Please check the form and try again."));
+            return "redirect:/manage-product";
         }
-        Product product = new Product();
-        product.setName(productModel.getProductName());
-        product.setStatus(productModel.isProductStatus());
-        product.setDescription(productModel.getProductDescription());
-        product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).get());
-        product.setBrandID(brandRepository.findById(productModel.getProductBrand()).get());
 
+        Product product = productRepository.findById(id).orElse(null);
+        if (product != null) {
+            product.setName(productModel.getProductName());
+            product.setStatus(productModel.isProductStatus());
+            product.setDescription(productModel.getProductDescription());
+            product.setCategoryID(categoryRepository.findById(productModel.getProductCategory()).orElse(null));
+            product.setBrandID(brandRepository.findById(productModel.getProductBrand()).orElse(null));
 
-        productRepository.save(product);
+            productRepository.save(product);
+
+            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Product updated successfully!"));
+        } else {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Product not found."));
+        }
+
         return "redirect:/manage-product";
     }
+
 
     @PostMapping("/manage-delete-product")
-    public String deleteBrand(@RequestParam("id") long id) {
-        Product product = productRepository.findById(id).get();
-        productRepository.delete(product);
+    public String deleteProduct(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        Product product = productRepository.findById(id).orElse(null);
+        if (product != null) {
+            productRepository.delete(product);
+            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Product deleted successfully!"));
+        } else {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Product not found."));
+        }
+
         return "redirect:/manage-product";
     }
+
 
     @GetMapping("/manage-clear-product")
     public String clearForm() {

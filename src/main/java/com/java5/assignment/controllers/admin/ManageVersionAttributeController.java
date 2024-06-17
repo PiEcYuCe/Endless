@@ -8,8 +8,10 @@ import com.java5.assignment.jpa.AttributeValueRepository;
 import com.java5.assignment.jpa.ProductVersionRepository;
 import com.java5.assignment.jpa.VersionAttributeRepository;
 import com.java5.assignment.model.VersionAttributeModel;
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -63,20 +66,35 @@ public class ManageVersionAttributeController {
     }
 
     @PostMapping("/manage-add-version-attribute")
-    public String addVersionAttribute(@Valid VersionAttributeModel versionAttributeModel, BindingResult error, Model model) {
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
+    public String addVersionAttribute(@Valid VersionAttributeModel versionAttributeModel, BindingResult errors,
+                                      RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to add version attribute. Please check the form and try again."));
+            return "redirect:/manage-version-attribute";
         }
 
         VersionAttribute versionAttribute = new VersionAttribute();
-        versionAttribute.setProductVersionID(productVersionRepository.findById(versionAttributeModel.getProductVersionID()));
-        versionAttribute.setAttributeValueID(attributeValueRepository.findById(versionAttributeModel.getAttributeValueID()).get());
+        ProductVersion productVersion = productVersionRepository.findById(versionAttributeModel.getProductVersionID());
+        if (productVersion == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Product version not found."));
+            return "redirect:/manage-version-attribute";
+        }
+
+        AttributeValue attributeValue = attributeValueRepository.findById(versionAttributeModel.getAttributeValueID()).orElse(null);
+        if (attributeValue == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute value not found."));
+            return "redirect:/manage-version-attribute";
+        }
+
+        versionAttribute.setProductVersionID(productVersion);
+        versionAttribute.setAttributeValueID(attributeValue);
 
         versionAttributeRepository.save(versionAttribute);
 
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Version attribute added successfully!"));
         return "redirect:/manage-version-attribute";
     }
+
 
     @PostMapping("/manage-edit-version-attribute")
     public String editVersionAttribute(@RequestParam("id") long id, Model model) {
@@ -86,26 +104,55 @@ public class ManageVersionAttributeController {
     }
 
     @PostMapping("/manage-update-version-attribute")
-    public String updateVersionAttribute(@Valid VersionAttributeModel versionAttributeModel, BindingResult error, Model model,
-                                         @RequestParam("id") long id) {
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            return "admin/layout";
+    public String updateVersionAttribute(@Valid VersionAttributeModel versionAttributeModel, BindingResult errors,
+                                         RedirectAttributes redirectAttributes, @RequestParam("id") long id) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to update version attribute. Please check the form and try again."));
+            return "redirect:/manage-version-attribute";
         }
-        VersionAttribute versionAttribute = new VersionAttribute();
-        versionAttribute.setProductVersionID(productVersionRepository.findById(versionAttributeModel.getProductVersionID()));
-        versionAttribute.setAttributeValueID(attributeValueRepository.findById(versionAttributeModel.getAttributeValueID()).get());
+
+        VersionAttribute versionAttribute = versionAttributeRepository.findById(id).orElse(null);
+        if (versionAttribute == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Version attribute not found."));
+            return "redirect:/manage-version-attribute";
+        }
+
+        ProductVersion productVersion = productVersionRepository.findById(versionAttributeModel.getProductVersionID());
+        if (productVersion == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Product version not found."));
+            return "redirect:/manage-version-attribute";
+        }
+
+        AttributeValue attributeValue = attributeValueRepository.findById(versionAttributeModel.getAttributeValueID()).orElse(null);
+        if (attributeValue == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Attribute value not found."));
+            return "redirect:/manage-version-attribute";
+        }
+
+        versionAttribute.setProductVersionID(productVersion);
+        versionAttribute.setAttributeValueID(attributeValue);
 
         versionAttributeRepository.save(versionAttribute);
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Version attribute updated successfully!"));
         return "redirect:/manage-version-attribute";
     }
 
+
     @PostMapping("/manage-delete-version-attribute")
-    public String removeVersionAttribute(@RequestParam("id") long id) {
-        VersionAttribute versionAttribute = versionAttributeRepository.findById(id).get();
+    public String removeVersionAttribute(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        VersionAttribute versionAttribute = versionAttributeRepository.findById(id).orElse(null);
+        if (versionAttribute == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Version attribute not found."));
+            return "redirect:/manage-version-attribute";
+        }
+
         versionAttributeRepository.delete(versionAttribute);
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Version attribute deleted successfully!"));
         return "redirect:/manage-version-attribute";
     }
+
 
     @GetMapping("/manage-clear-version-attribute")
     public String clearForm() {

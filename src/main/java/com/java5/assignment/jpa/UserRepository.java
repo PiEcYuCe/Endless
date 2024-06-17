@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
+    @Query("SELECT u FROM User u WHERE u.email = ?1")
     User findByEmail(String email);
+
+    public User findByResetPasswordToken(String token);
 
     @Query("SELECT u FROM User u WHERE (u.username = :userKey OR u.email = :userKey OR u.phone = :userKey) AND u.status = true")
     User findByUserKey(@Param("userKey") String userKey);
@@ -21,4 +24,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByPhone(String phone);
+
 }

@@ -49,4 +49,27 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
+        User User = userRepository.findByEmail(email);
+        if (User != null) {
+            User.setResetPasswordToken(token);
+            userRepository.save(User);
+        } else {
+            throw new UserNotFoundException("Could not find any User with the email " + email);
+        }
+    }
+
+    public User get(String resetPasswordToken) {
+        return userRepository.findByResetPasswordToken(resetPasswordToken);
+    }
+
+    public void updatePassword(User User, String newPassword) {
+        EncodeService encodeService = new EncodeService();
+        String encodedPassword = encodeService.hashCode(newPassword);
+        User.setPassword(encodedPassword);
+
+        User.setResetPasswordToken(null);
+        userRepository.save(User);
+    }
+
 }

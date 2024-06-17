@@ -1,5 +1,6 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.dto.UserDto;
 import com.java5.assignment.entities.Brand;
 import com.java5.assignment.entities.Promotion;
 import com.java5.assignment.entities.User;
@@ -14,6 +15,7 @@ import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.UserModel;
 import com.java5.assignment.services.AuthService;
 import com.java5.assignment.utils.SuccessModal;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -141,7 +143,20 @@ public class ManageAccountController {
 
     @PostMapping("/manage-update-account")
     public String updateAccount(@Valid UserModel userModel, BindingResult errors,
-                                @RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+                                @RequestParam("id") long id, HttpSession session,
+                                RedirectAttributes redirectAttributes) {
+
+        UserDto currentUserDto = (UserDto) session.getAttribute("user");
+        if (currentUserDto == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("User not logged in."));
+            return "redirect:/login";
+        }
+
+        User currentUser = userRepository.findById(currentUserDto.getId()).orElse(null);
+        if (currentUser == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Current user not found."));
+            return "redirect:/login";
+        }
 
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser == null) {
@@ -162,35 +177,38 @@ public class ManageAccountController {
             return "redirect:/manage-account";
         }
 
-        userModel.setRole(userModel.isRole());
+        boolean isUpdatingOwnRole = currentUser.getId() == id && !userModel.isRole();
 
-        User user = userRepository.findById(id).orElse(null);
-        if (user != null) {
-            user.setUsername(userModel.getUsername());
+        existingUser.setUsername(userModel.getUsername());
 
-            String password = userModel.getPassword() == null ? user.getPassword() : encode.hashCode(userModel.getPassword());
-            user.setPassword(password);
-            user.setEmail(userModel.getEmail());
-            user.setFullname(userModel.getFullName());
-            user.setPhone(userModel.getPhone());
-            user.setStatus(userModel.isStatus());
-            user.setAddress(userModel.getAddress());
-            user.setRole(userModel.isRole());
+        String password = userModel.getPassword() == null ? existingUser.getPassword() : encode.hashCode(userModel.getPassword());
+        existingUser.setPassword(password);
+        existingUser.setEmail(userModel.getEmail());
+        existingUser.setFullname(userModel.getFullName());
+        existingUser.setPhone(userModel.getPhone());
+        existingUser.setStatus(userModel.isStatus());
+        existingUser.setAddress(userModel.getAddress());
+        existingUser.setRole(userModel.isRole());
 
-            String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
-            if (fileName != null) {
-                uploadService.remove(user.getAvatar());
-                user.setAvatar(fileName);
-            }
-
-            userRepository.save(user);
-            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Account updated successfully!"));
-        } else {
-            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: User not found."));
+        String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
+        if (fileName != null) {
+            uploadService.remove(existingUser.getAvatar());
+            existingUser.setAvatar(fileName);
         }
 
+        userRepository.save(existingUser);
+
+        if (isUpdatingOwnRole) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Please use an admin account to continue accessing."));
+            session.invalidate();
+            return "redirect:/login";
+        }
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Account updated successfully!"));
         return "redirect:/manage-account";
     }
+
+
 
 
     @PostMapping("/manage-delete-account")
