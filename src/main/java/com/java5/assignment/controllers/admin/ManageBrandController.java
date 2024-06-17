@@ -1,6 +1,7 @@
 package com.java5.assignment.controllers.admin;
 
 
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 
@@ -9,6 +10,7 @@ import com.java5.assignment.jpa.BrandRepository;
 
 import com.java5.assignment.model.BrandModel;
 import com.java5.assignment.services.UploadService;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -52,30 +54,32 @@ public class ManageBrandController {
     }
 
     @PostMapping("/manage-add-brand")
-    public String addBrand(@Valid BrandModel brandModel, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
+    public String addBrand(@Valid BrandModel brandModel, BindingResult errors,
+                           RedirectAttributes redirectAttributes) {
         if (brandRepository.existsByName(brandModel.getName())) {
-            error.rejectValue("name", "brand.name.exists", "Brand name already exists.");
+            errors.rejectValue("name", "brand.name.exists", "Brand name already exists.");
         }
 
         String fileName = uploadService.uploadFile(brandModel.getLogo(), "brand");
-        if (fileName == null){
-            error.addError(new FieldError("brand", "logo", "Please select a logo"));
+        if (fileName == null) {
+            errors.addError(new FieldError("brandModel", "logo", "Please select a logo"));
         }
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            redirectAttributes.addFlashAttribute("message", "Create failed the brand !!");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
-            return "admin/layout";
+
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to create brand. Please check the form and try again."));
+            return "redirect:/manage-brand";
         }
+
         Brand brand = new Brand();
         brand.setName(brandModel.getName());
         brand.setLogo(fileName);
         brand.setStatus(brandModel.isStatus());
         brandRepository.save(brand);
-        redirectAttributes.addFlashAttribute("message", "Create the brand successfully!!");
-        redirectAttributes.addFlashAttribute("messageType", "success");
+
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Brand created successfully"));
         return "redirect:/manage-brand";
     }
+
 
 
 
@@ -88,43 +92,51 @@ public class ManageBrandController {
     }
 
     @PostMapping("/manage-update-brand")
-    public String updateBrand(@Valid BrandModel brandModel, BindingResult error,
-                              @RequestParam("id") long id, Model model,  RedirectAttributes redirectAttributes){
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            redirectAttributes.addFlashAttribute("message", "Update failed  the brand!!");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
-            return "admin/layout";
-        }
-        Brand brand = brandRepository.findById(id).get();
-        brand.setName(brandModel.getName());
-        brand.setStatus(brandModel.isStatus());
-        String fileName = uploadService.uploadFile(brandModel.getLogo(), "brand");
-        if (fileName == null){
-            fileName = brandRepository.findById(id).get().getLogo();
+    public String updateBrand(@Valid BrandModel brandModel, BindingResult errors,
+                              @RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        Brand existingBrand = brandRepository.findById(id).orElse(null);
+        if (existingBrand == null) {
+            errors.addError(new FieldError("brandModel", "id", "Brand not found"));
         } else {
-            uploadService.remove(brandRepository.findById(id).get().getLogo());
+            if (!existingBrand.getName().equals(brandModel.getName()) && brandRepository.existsByName(brandModel.getName())) {
+                errors.addError(new FieldError("brandModel", "name", "Brand name already exists"));
+            }
         }
-        brand.setLogo(fileName);
-        brandRepository.save(brand);
-        redirectAttributes.addFlashAttribute("message", "Update the brand successfully!!");
-        redirectAttributes.addFlashAttribute("messageType", "success");
-        return "redirect:/manage-brand";
-    }
 
-    @PostMapping("/manage-delete-brand")
-    public String deleteBrand(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
-        Brand brand = brandRepository.findById(id).get();
-        if (!brand.getProducts().isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Cannot delete brand with associated products.");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to update brand. Please check the form and try again."));
             return "redirect:/manage-brand";
         }
 
-        uploadService.remove(brandRepository.findById(id).get().getLogo());
-        brandRepository.delete(brand);
-        redirectAttributes.addFlashAttribute("message", "Delete the brand successfully!!");
-        redirectAttributes.addFlashAttribute("messageType", "success");
+        existingBrand.setName(brandModel.getName());
+        existingBrand.setStatus(brandModel.isStatus());
+
+        String fileName = uploadService.uploadFile(brandModel.getLogo(), "brand");
+        if (fileName != null) {
+            uploadService.remove(existingBrand.getLogo());
+            existingBrand.setLogo(fileName);
+        }
+
+        brandRepository.save(existingBrand);
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Brand updated successfully"));
+        return "redirect:/manage-brand";
+    }
+
+
+    @PostMapping("/manage-delete-brand")
+    public String deleteBrand(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
+        Brand brand = brandRepository.findById(id).orElse(null);
+
+        if (brand == null) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Brand not found."));
+        } else if (!brand.getProducts().isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Cannot delete brand with associated products."));
+        } else {
+            uploadService.remove(brand.getLogo());
+            brandRepository.delete(brand);
+            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Brand deleted successfully"));
+        }
+
         return "redirect:/manage-brand";
     }
 

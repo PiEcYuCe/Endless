@@ -1,5 +1,6 @@
 package com.java5.assignment.controllers.admin;
 
+import com.java5.assignment.entities.Brand;
 import com.java5.assignment.entities.Promotion;
 import com.java5.assignment.entities.User;
 import com.java5.assignment.jpa.OrderRepository;
@@ -7,10 +8,12 @@ import com.java5.assignment.jpa.UserRepository;
 import com.java5.assignment.model.PromotionModel;
 import com.java5.assignment.services.EncodeService;
 import com.java5.assignment.services.UploadService;
+import com.java5.assignment.utils.ErrorModal;
 import com.java5.assignment.utils.Page;
 import com.java5.assignment.utils.PageType;
 import com.java5.assignment.model.UserModel;
 import com.java5.assignment.services.AuthService;
+import com.java5.assignment.utils.SuccessModal;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -65,54 +68,51 @@ public class ManageAccountController {
 
 
     @PostMapping("/manage-add-account")
-    public String addAccount(@Valid UserModel userModel, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
+    public String addAccount(@Valid UserModel userModel, BindingResult errors, RedirectAttributes redirectAttributes) {
         if (userRepository.existsByUsername(userModel.getUsername())) {
-            error.addError(new FieldError("userModel", "username", "Username already exists"));
+            errors.addError(new FieldError("userModel", "username", "Username already exists"));
         }
         if (userRepository.existsByEmail(userModel.getEmail())) {
-            error.addError(new FieldError("userModel", "email", "Email already exists"));
+            errors.addError(new FieldError("userModel", "email", "Email already exists"));
         }
         if (userRepository.existsByPhone(userModel.getPhone())) {
-            error.addError(new FieldError("userModel", "phone", "Phone number already exists"));
+            errors.addError(new FieldError("userModel", "phone", "Phone number already exists"));
         }
 
         String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
         if (fileName == null) {
-            error.addError(new FieldError("account", "avatar", "Please select a image"));
+            errors.addError(new FieldError("userModel", "avatar", "Please select an image"));
         }
 
         if (userModel.getPassword() == null || userModel.getPassword().isEmpty()) {
-            error.addError(new FieldError("userModel", "password", "Please enter password here!"));
+            errors.addError(new FieldError("userModel", "password", "Please enter a password"));
         } else {
             if (userModel.getPassword().length() < 8) {
-                error.addError(new FieldError("userModel", "password", "Password must be at least 8 characters long"));
+                errors.addError(new FieldError("userModel", "password", "Password must be at least 8 characters long"));
             }
             if (!userModel.getPassword().matches("^(?=.*[a-z]).*$")) {
-                error.addError(new FieldError("userModel", "password", "Password must contain at least one lowercase letter"));
+                errors.addError(new FieldError("userModel", "password", "Password must contain at least one lowercase letter"));
             }
             if (!userModel.getPassword().matches("^(?=.*[A-Z]).*$")) {
-                error.addError(new FieldError("userModel", "password", "Password must contain at least one uppercase letter"));
+                errors.addError(new FieldError("userModel", "password", "Password must contain at least one uppercase letter"));
             }
             if (!userModel.getPassword().matches("^(?=.*\\d).*$")) {
-                error.addError(new FieldError("userModel", "password", "Password must contain at least one digit"));
+                errors.addError(new FieldError("userModel", "password", "Password must contain at least one digit"));
             }
             if (!userModel.getPassword().matches("^(?=.*[@$!%*?&]).*$")) {
-                error.addError(new FieldError("userModel", "password", "Password must contain at least one special character"));
+                errors.addError(new FieldError("userModel", "password", "Password must contain at least one special character"));
             }
         }
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            redirectAttributes.addFlashAttribute("message", "Error: unable to add account!");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
-            return "admin/layout";
-        }
 
-        userModel.setRole(userModel.isRole());
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to add account. Please check the form and try again."));
+            return "redirect:/manage-account";
+        }
 
         User user = new User();
         user.setUsername(userModel.getUsername());
-        String password = encode.hashCode(userModel.getPassword());
-        user.setPassword(password);
+        String hashedPassword = encode.hashCode(userModel.getPassword());
+        user.setPassword(hashedPassword);
         user.setEmail(userModel.getEmail());
         user.setFullname(userModel.getFullName());
         user.setPhone(userModel.getPhone());
@@ -123,89 +123,97 @@ public class ManageAccountController {
 
         userRepository.save(user);
 
-        redirectAttributes.addFlashAttribute("message", "Account added successfully");
-        redirectAttributes.addFlashAttribute("messageType", "success");
+        redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Account added successfully!"));
         return "redirect:/manage-account";
     }
 
+
+    @PostMapping("/manage-edit-account")
+    public String editBrand(@RequestParam("id") long id, Model model) {
+        User user = userRepository.findById(id).get();
+        if (user == null) {
+            return "redirect:/manage-account";
+        }
+        user.setPassword(null);
+        model.addAttribute("user", user);
+        return "admin/layout";
+    }
+
     @PostMapping("/manage-update-account")
-    public String updateAccount(@Valid UserModel userModel, BindingResult error,
-                                @RequestParam("id") long id, Model model, RedirectAttributes redirectAttributes) {
+    public String updateAccount(@Valid UserModel userModel, BindingResult errors,
+                                @RequestParam("id") long id, RedirectAttributes redirectAttributes) {
 
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser == null) {
-            error.addError(new FieldError("userModel", "id", "User not found"));
+            errors.addError(new FieldError("userModel", "id", "User not found"));
         } else {
             if (!existingUser.getUsername().equals(userModel.getUsername()) && userRepository.existsByUsername(userModel.getUsername())) {
-                error.addError(new FieldError("userModel", "username", "Username already exists"));
+                errors.addError(new FieldError("userModel", "username", "Username already exists"));
             }
             if (!existingUser.getEmail().equals(userModel.getEmail()) && userRepository.existsByEmail(userModel.getEmail())) {
-                error.addError(new FieldError("userModel", "email", "Email already exists"));
+                errors.addError(new FieldError("userModel", "email", "Email already exists"));
             }
             if (!existingUser.getPhone().equals(userModel.getPhone()) && userRepository.existsByPhone(userModel.getPhone())) {
-                error.addError(new FieldError("userModel", "phone", "Phone number already exists"));
+                errors.addError(new FieldError("userModel", "phone", "Phone number already exists"));
             }
         }
-        if (error.hasErrors()) {
-            model.addAttribute("error", error);
-            redirectAttributes.addFlashAttribute("message", "Error: unable to update account!");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
-            return "admin/layout";
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: Unable to update account. Please check the form and try again."));
+            return "redirect:/manage-account";
         }
 
         userModel.setRole(userModel.isRole());
 
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setUsername(userModel.getUsername());
 
-        user.setUsername(userModel.getUsername());
+            String password = userModel.getPassword() == null ? user.getPassword() : encode.hashCode(userModel.getPassword());
+            user.setPassword(password);
+            user.setEmail(userModel.getEmail());
+            user.setFullname(userModel.getFullName());
+            user.setPhone(userModel.getPhone());
+            user.setStatus(userModel.isStatus());
+            user.setAddress(userModel.getAddress());
+            user.setRole(userModel.isRole());
 
-        String password = userModel.getPassword() == null ? user.getPassword() : encode.hashCode(userModel.getPassword());
-        user.setPassword(password);
-        user.setEmail(userModel.getEmail());
-        user.setFullname(userModel.getFullName());
-        user.setPhone(userModel.getPhone());
-        user.setStatus(userModel.isStatus());
-        user.setAddress(userModel.getAddress());
-        user.setRole(userModel.isRole());
+            String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
+            if (fileName != null) {
+                uploadService.remove(user.getAvatar());
+                user.setAvatar(fileName);
+            }
 
-        String fileName = uploadService.uploadFile(userModel.getAvatar(), "user");
-        if (fileName == null) {
-            fileName = userRepository.findById(id).get().getAvatar();
+            userRepository.save(user);
+            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Account updated successfully!"));
         } else {
-            uploadService.remove(userRepository.findById(id).get().getAvatar());
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Error: User not found."));
         }
-        user.setAvatar(fileName);
 
-        userRepository.save(user);
-        redirectAttributes.addFlashAttribute("message", "Account updated successfully!");
-        redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/manage-account";
     }
+
 
     @PostMapping("/manage-delete-account")
     public String deleteAccount(@RequestParam("id") long id, RedirectAttributes redirectAttributes) {
         User user = userRepository.findById(id).orElse(null);
 
         if (user == null) {
-            redirectAttributes.addFlashAttribute("message", "Account not found.");
-            redirectAttributes.addFlashAttribute("messageType", "warning");
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Account not found."));
         } else if (Boolean.TRUE.equals(user.getStatus())) {
-            redirectAttributes.addFlashAttribute("message", "Cannot delete active accounts.");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Cannot delete active accounts."));
         } else if (Boolean.TRUE.equals(user.getRole())) {
-            redirectAttributes.addFlashAttribute("message", "Admin accounts cannot be deleted.");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Admin accounts cannot be deleted."));
         } else if (orderRepository.existsByUserID(user)) {
-            redirectAttributes.addFlashAttribute("message", "Cannot delete accounts with orders.");
-            redirectAttributes.addFlashAttribute("messageType", "danger");
+            redirectAttributes.addFlashAttribute("errorModal", new ErrorModal("Cannot delete accounts with orders."));
         } else {
             uploadService.remove(user.getAvatar());
             userRepository.delete(user);
-            redirectAttributes.addFlashAttribute("message", "Account deleted successfully.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
+            redirectAttributes.addFlashAttribute("successModal", new SuccessModal("Account deleted successfully."));
         }
+
         return "redirect:/manage-account";
     }
+
 
 
     @GetMapping("/manage-clear-form-user")

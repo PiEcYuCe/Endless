@@ -80,11 +80,9 @@ public class ProductVersionService {
         return productInfoList;
     }
     public org.springframework.data.domain.Page<ProductInfoDTO> getProductInfoByPriceRange(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        // Lấy danh sách sản phẩm có giá trong khoảng minPrice và maxPrice
-        // Sử dụng productVersionRepository để truy vấn dữ liệu từ CSDL
+
         List<ProductVersion> productVersions = productVersionRepository.findByPriceBetween(minPrice, maxPrice, pageable);
 
-        // Chuyển đổi sang danh sách ProductInfoDTO
         List<ProductInfoDTO> productInfoList = new ArrayList<>();
         for (ProductVersion productVersion : productVersions) {
             ProductInfoDTO productInfo = new ProductInfoDTO();

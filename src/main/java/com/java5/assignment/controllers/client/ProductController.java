@@ -49,15 +49,12 @@ public class ProductController {
                                @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
                                @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice) {
 
-        // Khởi tạo Pageable để phân trang
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
 
-        // Lấy trang sản phẩm dựa trên minPrice và maxPrice
         org.springframework.data.domain.Page<ProductInfoDTO> productPage;
         if (minPrice != null && maxPrice != null) {
             productPage = productVersionService.getProductInfoByPriceRange(minPrice, maxPrice, pageable);
         } else {
-            // Nếu không có minPrice hoặc maxPrice, lấy tất cả sản phẩm
             productPage = productVersionService.getAllProductInfoPage(pageable);
         }
 
